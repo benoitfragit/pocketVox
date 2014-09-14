@@ -24,6 +24,8 @@ struct _PocketvoxDictionnaryPrivate
 	GThreadPool *pool;
 };
 
+static GMutex mutex;
+
 G_DEFINE_TYPE (PocketvoxDictionnary, pocketvox_dictionnary, G_TYPE_OBJECT);
 
 static void pocketvox_dictionnary_dispose(GObject *object)
@@ -31,7 +33,81 @@ static void pocketvox_dictionnary_dispose(GObject *object)
 	G_OBJECT_CLASS (pocketvox_dictionnary_parent_class)->dispose (object);
 }
 
-static void pocketvox_dictionnary_process_request(gpointer data, gpointer user_data){}
+static void pocketvox_dictionnary_process_request(gpointer data, gpointer user_data)
+{
+	PocketvoxDictionnary* dictionnary = (PocketvoxDictionnary *)user_data;
+	gchar* query = (gchar *)data;
+
+	g_return_if_fail(NULL != dictionnary);
+	g_return_if_fail(NULL != query);
+
+	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
+			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
+	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;
+	
+	g_mutex_lock(&mutex);
+	
+	//split the string
+	GList* words = g_hash_table_get_values(priv->words);
+	GList* cmds  = g_hash_table_get_keys(priv->tfidf);
+	GList* tabs  = g_hash_table_get_values(priv->tfidf); 
+	
+	gint i,j ;
+	gint N = g_list_length(words);
+	gchar* result = NULL;
+	
+	gdouble *t = (gdouble *)g_malloc0(N*sizeof(gdouble));
+	gdouble dist, mindist;
+	
+	//for each of the dictionnary
+	for(i = 0; i < N ; i++)
+	{
+		gchar** w = g_strsplit_set(query, " ", -1);
+		pocketVoxWord *pwv = (pocketVoxWord *)g_list_nth_data(words, i);
+		gdouble iter = 0.0f;
+		gdouble tot = 0.0f;
+		
+		t[i] = log((gdouble)N/(gdouble)pwv->occurence);
+	
+		while(*w != NULL)
+		{
+			if(!g_strcmp0(*w, pwv->word)) iter = iter + 1.0f;
+			tot = tot + 1.0f;
+			w++;
+		}
+		
+		t[i] = t[i] * ((gdouble)iter/(gdouble)tot);
+	}
+	
+	//now find the nearest projection among all tfidf projections 
+	for(i = 0; i <g_list_length(cmds); i++)
+	{
+		dist = 0.0f;
+		gdouble* tab = (gdouble *)g_list_nth_data(tabs, i);
+		
+		for(j = 0; j <N; j++)
+		{
+			dist += (tab[j] - t[j])*(tab[j] - t[j]);
+		}
+	
+		if(i == 0 || dist < mindist)
+		{
+			mindist = dist;
+			result = (gchar *)g_list_nth_data(cmds, i);
+		}
+	}
+	
+	
+	g_warning("cmd: %s", result);
+	
+	g_free(t);
+	g_list_free(cmds);
+	g_list_free(tabs);
+	g_list_free(words);
+
+	g_mutex_unlock(&mutex);
+}
+
 
 static void pocketvox_dictionnary_finalize(GObject *object)
 {
@@ -45,6 +121,9 @@ static void pocketvox_dictionnary_finalize(GObject *object)
 	g_hash_table_destroy(priv->hash);
 	g_hash_table_destroy(priv->words);
 	g_hash_table_destroy(priv->tfidf);
+	
+	g_thread_pool_free(priv->pool, TRUE, TRUE);
+	
 	G_OBJECT_CLASS (pocketvox_dictionnary_parent_class)->finalize (object);
 }
 
@@ -125,7 +204,7 @@ static void pocketvox_dictionnary_init (PocketvoxDictionnary *dictionnary){
 	priv->words = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_dictionnary_free_word);
 	priv->tfidf = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
 	
-	priv->pool = g_thread_pool_new(pocketvox_dictionnary_process_request, dictionnary, 3, FALSE, NULL);
+	priv->pool = g_thread_pool_new(pocketvox_dictionnary_process_request, dictionnary, 2, FALSE, NULL);
 }
 
 static gboolean pocketvox_dictionnary_find_word(gpointer key, gpointer value, gpointer user_data)
@@ -318,4 +397,6 @@ void pocketvox_dictionnary_add_new_request(PocketvoxDictionnary *dictionnary, gc
 	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;	
 
 	g_thread_pool_push(priv->pool, request, NULL);
+	
+	g_usleep(1000);
 }

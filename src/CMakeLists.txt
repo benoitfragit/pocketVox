@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 project(POCKET_VOX)
 
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror -O2 -g3")
+
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 pkg_check_modules(LIBNOTIFY REQUIRED libnotify)
