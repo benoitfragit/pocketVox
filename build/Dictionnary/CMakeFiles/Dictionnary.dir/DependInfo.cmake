@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/home/benoit/Projet/pocketVox/src/Notifier/pocketvox_notifier.c" "/home/benoit/Projet/pocketVox/build/Notifier/CMakeFiles/Notifier.dir/pocketvox_notifier.c.o"
+  "/home/benoit/Projet/pocketVox/src/Dictionnary/pocketvox_dictionnary.c" "/home/benoit/Projet/pocketVox/build/Dictionnary/CMakeFiles/Dictionnary.dir/pocketvox_dictionnary.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 
@@ -33,7 +33,6 @@ SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/usr/include/gstreamer-0.10"
   "/usr/include/libxml2"
   "/home/benoit/Projet/pocketVox/src"
-  "/home/benoit/Projet/pocketVox/src/Notifier"
   "/home/benoit/Projet/pocketVox/src/Dictionnary"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

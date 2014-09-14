@@ -26,8 +26,9 @@ add_definitions(${GSTREAMER_CFLAGS_OTHER})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(Recognizer)
 add_subdirectory(Notifier)
+add_subdirectory(Dictionnary)
 
 set(SOURCES main.c)
 
 add_executable(pocketvox ${SOURCES})
-target_link_libraries (pocketvox LINK_PUBLIC Notifier Recognizer ${GTK3_LIBRARIES} ${LIBNOTIFY_LIBRARIES} ${GLIB_LIBRARIES} ${POCKETSPHINX_LIBRARIES}  ${GSTREAMER_LIBRARIES})
+target_link_libraries (pocketvox LINK_PUBLIC Dictionnary Notifier Recognizer ${GTK3_LIBRARIES} ${LIBNOTIFY_LIBRARIES} ${GLIB_LIBRARIES} ${POCKETSPHINX_LIBRARIES}  ${GSTREAMER_LIBRARIES})

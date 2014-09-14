@@ -56,11 +56,12 @@ CMAKE_BINARY_DIR = /home/benoit/Projet/pocketVox/build
 # Target rules for target CMakeFiles/pocketvox.dir
 
 # All Build rule for target.
-CMakeFiles/pocketvox.dir/all: Notifier/CMakeFiles/Notifier.dir/all
 CMakeFiles/pocketvox.dir/all: Recognizer/CMakeFiles/Recognizer.dir/all
+CMakeFiles/pocketvox.dir/all: Notifier/CMakeFiles/Notifier.dir/all
+CMakeFiles/pocketvox.dir/all: Dictionnary/CMakeFiles/Dictionnary.dir/all
 	$(MAKE) -f CMakeFiles/pocketvox.dir/build.make CMakeFiles/pocketvox.dir/depend
 	$(MAKE) -f CMakeFiles/pocketvox.dir/build.make CMakeFiles/pocketvox.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/benoit/Projet/pocketVox/build/CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/benoit/Projet/pocketVox/build/CMakeFiles  4
 	@echo "Built target pocketvox"
 .PHONY : CMakeFiles/pocketvox.dir/all
 
@@ -70,7 +71,7 @@ all: CMakeFiles/pocketvox.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pocketvox.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/benoit/Projet/pocketVox/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/benoit/Projet/pocketVox/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pocketvox.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/benoit/Projet/pocketVox/build/CMakeFiles 0
 .PHONY : CMakeFiles/pocketvox.dir/rule
@@ -110,7 +111,7 @@ Recognizer/preinstall:
 Recognizer/CMakeFiles/Recognizer.dir/all:
 	$(MAKE) -f Recognizer/CMakeFiles/Recognizer.dir/build.make Recognizer/CMakeFiles/Recognizer.dir/depend
 	$(MAKE) -f Recognizer/CMakeFiles/Recognizer.dir/build.make Recognizer/CMakeFiles/Recognizer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/benoit/Projet/pocketVox/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/benoit/Projet/pocketVox/build/CMakeFiles  3
 	@echo "Built target Recognizer"
 .PHONY : Recognizer/CMakeFiles/Recognizer.dir/all
 
@@ -160,7 +161,7 @@ Notifier/preinstall:
 Notifier/CMakeFiles/Notifier.dir/all:
 	$(MAKE) -f Notifier/CMakeFiles/Notifier.dir/build.make Notifier/CMakeFiles/Notifier.dir/depend
 	$(MAKE) -f Notifier/CMakeFiles/Notifier.dir/build.make Notifier/CMakeFiles/Notifier.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/benoit/Projet/pocketVox/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/benoit/Projet/pocketVox/build/CMakeFiles  2
 	@echo "Built target Notifier"
 .PHONY : Notifier/CMakeFiles/Notifier.dir/all
 
@@ -186,6 +187,56 @@ Notifier/CMakeFiles/Notifier.dir/clean:
 
 # clean rule for target.
 clean: Notifier/CMakeFiles/Notifier.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory Dictionnary
+
+# Convenience name for "all" pass in the directory.
+Dictionnary/all: Dictionnary/CMakeFiles/Dictionnary.dir/all
+.PHONY : Dictionnary/all
+
+# Convenience name for "clean" pass in the directory.
+Dictionnary/clean: Dictionnary/CMakeFiles/Dictionnary.dir/clean
+.PHONY : Dictionnary/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Dictionnary/preinstall:
+.PHONY : Dictionnary/preinstall
+
+#=============================================================================
+# Target rules for target Dictionnary/CMakeFiles/Dictionnary.dir
+
+# All Build rule for target.
+Dictionnary/CMakeFiles/Dictionnary.dir/all:
+	$(MAKE) -f Dictionnary/CMakeFiles/Dictionnary.dir/build.make Dictionnary/CMakeFiles/Dictionnary.dir/depend
+	$(MAKE) -f Dictionnary/CMakeFiles/Dictionnary.dir/build.make Dictionnary/CMakeFiles/Dictionnary.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/benoit/Projet/pocketVox/build/CMakeFiles  1
+	@echo "Built target Dictionnary"
+.PHONY : Dictionnary/CMakeFiles/Dictionnary.dir/all
+
+# Include target in all.
+all: Dictionnary/CMakeFiles/Dictionnary.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+Dictionnary/CMakeFiles/Dictionnary.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/benoit/Projet/pocketVox/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 Dictionnary/CMakeFiles/Dictionnary.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/benoit/Projet/pocketVox/build/CMakeFiles 0
+.PHONY : Dictionnary/CMakeFiles/Dictionnary.dir/rule
+
+# Convenience name for target.
+Dictionnary: Dictionnary/CMakeFiles/Dictionnary.dir/rule
+.PHONY : Dictionnary
+
+# clean rule for target.
+Dictionnary/CMakeFiles/Dictionnary.dir/clean:
+	$(MAKE) -f Dictionnary/CMakeFiles/Dictionnary.dir/build.make Dictionnary/CMakeFiles/Dictionnary.dir/clean
+.PHONY : Dictionnary/CMakeFiles/Dictionnary.dir/clean
+
+# clean rule for target.
+clean: Dictionnary/CMakeFiles/Dictionnary.dir/clean
 .PHONY : clean
 
 #=============================================================================

@@ -81,6 +81,7 @@ pocketvox_EXTERNAL_OBJECTS =
 
 pocketvox: CMakeFiles/pocketvox.dir/main.c.o
 pocketvox: CMakeFiles/pocketvox.dir/build.make
+pocketvox: Dictionnary/libDictionnary.a
 pocketvox: Notifier/libNotifier.a
 pocketvox: Recognizer/libRecognizer.a
 pocketvox: CMakeFiles/pocketvox.dir/link.txt

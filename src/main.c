@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include "pocketvox_recognizer.h"
 #include "pocketvox_notifier.h"
+#include "pocketvox_dictionnary.h"
 
 int main(int argc, char **argv)
 {
+	PocketvoxDictionnary* dict = pocketvox_dictionnary_new("/home/benoit/Bureau/dico.txt");
+	pocketvox_dictionnary_display(dict);
+	/*
 	PocketvoxNotifier *pn = pocketvox_notifier_new();
 	
 	PocketvoxRecognizer *pr = pocketvox_recognizer_new("/home/benoit/Projet/voicerecognition/lium_french_f0",
@@ -16,6 +20,6 @@ int main(int argc, char **argv)
 	gst_init(&argc, &argv);
 	
 	pocketvox_recognizer_start(pr);
-	
+	*/
 	return 0;
 }

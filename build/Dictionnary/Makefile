@@ -69,14 +69,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/benoit/Projet/pocketVox/build/CMakeFiles /home/benoit/Projet/pocketVox/build/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/benoit/Projet/pocketVox/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/benoit/Projet/pocketVox/build/CMakeFiles /home/benoit/Projet/pocketVox/build/Dictionnary/CMakeFiles/progress.marks
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f CMakeFiles/Makefile2 Dictionnary/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/benoit/Projet/pocketVox/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f CMakeFiles/Makefile2 Dictionnary/clean
 .PHONY : clean
 
 # The main clean target
@@ -85,94 +85,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f CMakeFiles/Makefile2 Dictionnary/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f CMakeFiles/Makefile2 Dictionnary/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/benoit/Projet/pocketVox/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named pocketvox
+# Convenience name for target.
+Dictionnary/CMakeFiles/Dictionnary.dir/rule:
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f CMakeFiles/Makefile2 Dictionnary/CMakeFiles/Dictionnary.dir/rule
+.PHONY : Dictionnary/CMakeFiles/Dictionnary.dir/rule
 
-# Build rule for target.
-pocketvox: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pocketvox
-.PHONY : pocketvox
-
-# fast build rule for target.
-pocketvox/fast:
-	$(MAKE) -f CMakeFiles/pocketvox.dir/build.make CMakeFiles/pocketvox.dir/build
-.PHONY : pocketvox/fast
-
-#=============================================================================
-# Target rules for targets named Recognizer
-
-# Build rule for target.
-Recognizer: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Recognizer
-.PHONY : Recognizer
-
-# fast build rule for target.
-Recognizer/fast:
-	$(MAKE) -f Recognizer/CMakeFiles/Recognizer.dir/build.make Recognizer/CMakeFiles/Recognizer.dir/build
-.PHONY : Recognizer/fast
-
-#=============================================================================
-# Target rules for targets named Notifier
-
-# Build rule for target.
-Notifier: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Notifier
-.PHONY : Notifier
-
-# fast build rule for target.
-Notifier/fast:
-	$(MAKE) -f Notifier/CMakeFiles/Notifier.dir/build.make Notifier/CMakeFiles/Notifier.dir/build
-.PHONY : Notifier/fast
-
-#=============================================================================
-# Target rules for targets named Dictionnary
-
-# Build rule for target.
-Dictionnary: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Dictionnary
+# Convenience name for target.
+Dictionnary: Dictionnary/CMakeFiles/Dictionnary.dir/rule
 .PHONY : Dictionnary
 
 # fast build rule for target.
 Dictionnary/fast:
-	$(MAKE) -f Dictionnary/CMakeFiles/Dictionnary.dir/build.make Dictionnary/CMakeFiles/Dictionnary.dir/build
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f Dictionnary/CMakeFiles/Dictionnary.dir/build.make Dictionnary/CMakeFiles/Dictionnary.dir/build
 .PHONY : Dictionnary/fast
 
-main.o: main.c.o
-.PHONY : main.o
+pocketvox_dictionnary.o: pocketvox_dictionnary.c.o
+.PHONY : pocketvox_dictionnary.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/pocketvox.dir/build.make CMakeFiles/pocketvox.dir/main.c.o
-.PHONY : main.c.o
+pocketvox_dictionnary.c.o:
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f Dictionnary/CMakeFiles/Dictionnary.dir/build.make Dictionnary/CMakeFiles/Dictionnary.dir/pocketvox_dictionnary.c.o
+.PHONY : pocketvox_dictionnary.c.o
 
-main.i: main.c.i
-.PHONY : main.i
+pocketvox_dictionnary.i: pocketvox_dictionnary.c.i
+.PHONY : pocketvox_dictionnary.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/pocketvox.dir/build.make CMakeFiles/pocketvox.dir/main.c.i
-.PHONY : main.c.i
+pocketvox_dictionnary.c.i:
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f Dictionnary/CMakeFiles/Dictionnary.dir/build.make Dictionnary/CMakeFiles/Dictionnary.dir/pocketvox_dictionnary.c.i
+.PHONY : pocketvox_dictionnary.c.i
 
-main.s: main.c.s
-.PHONY : main.s
+pocketvox_dictionnary.s: pocketvox_dictionnary.c.s
+.PHONY : pocketvox_dictionnary.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/pocketvox.dir/build.make CMakeFiles/pocketvox.dir/main.c.s
-.PHONY : main.c.s
+pocketvox_dictionnary.c.s:
+	cd /home/benoit/Projet/pocketVox/build && $(MAKE) -f Dictionnary/CMakeFiles/Dictionnary.dir/build.make Dictionnary/CMakeFiles/Dictionnary.dir/pocketvox_dictionnary.c.s
+.PHONY : pocketvox_dictionnary.c.s
 
 # Help Target
 help:
@@ -180,15 +142,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... pocketvox"
-	@echo "... rebuild_cache"
-	@echo "... Recognizer"
-	@echo "... Notifier"
 	@echo "... Dictionnary"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... pocketvox_dictionnary.o"
+	@echo "... pocketvox_dictionnary.i"
+	@echo "... pocketvox_dictionnary.s"
 .PHONY : help
 
 
@@ -200,6 +159,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/benoit/Projet/pocketVox/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

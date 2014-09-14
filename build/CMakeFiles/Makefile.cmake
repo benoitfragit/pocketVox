@@ -11,6 +11,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/2.8.12.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/2.8.12.2/CMakeSystem.cmake"
   "/home/benoit/Projet/pocketVox/src/CMakeLists.txt"
+  "/home/benoit/Projet/pocketVox/src/Dictionnary/CMakeLists.txt"
   "/home/benoit/Projet/pocketVox/src/Notifier/CMakeLists.txt"
   "/home/benoit/Projet/pocketVox/src/Recognizer/CMakeLists.txt"
   "/usr/share/cmake-2.8/Modules/CMakeCInformation.cmake"
@@ -44,6 +45,7 @@ SET(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "Recognizer/CMakeFiles/CMakeDirectoryInformation.cmake"
   "Notifier/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "Dictionnary/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -51,4 +53,5 @@ SET(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/pocketvox.dir/DependInfo.cmake"
   "Recognizer/CMakeFiles/Recognizer.dir/DependInfo.cmake"
   "Notifier/CMakeFiles/Notifier.dir/DependInfo.cmake"
+  "Dictionnary/CMakeFiles/Dictionnary.dir/DependInfo.cmake"
   )

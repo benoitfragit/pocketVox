@@ -10,6 +10,7 @@ SET(CMAKE_C_COMPILER_ID "GNU")
 
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/benoit/Projet/pocketVox/build/Dictionnary/CMakeFiles/Dictionnary.dir/DependInfo.cmake"
   "/home/benoit/Projet/pocketVox/build/Notifier/CMakeFiles/Notifier.dir/DependInfo.cmake"
   "/home/benoit/Projet/pocketVox/build/Recognizer/CMakeFiles/Recognizer.dir/DependInfo.cmake"
   )
@@ -36,6 +37,7 @@ SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/usr/include/libxml2"
   "/home/benoit/Projet/pocketVox/src"
   "/home/benoit/Projet/pocketVox/src/Notifier"
+  "/home/benoit/Projet/pocketVox/src/Dictionnary"
   "/home/benoit/Projet/pocketVox/src/Recognizer"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
