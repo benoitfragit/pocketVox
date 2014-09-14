@@ -1,0 +1,2 @@
+/usr/bin/ar cr libNotifier.a  CMakeFiles/Notifier.dir/pocketvox_notifier.c.o
+/usr/bin/ranlib libNotifier.a

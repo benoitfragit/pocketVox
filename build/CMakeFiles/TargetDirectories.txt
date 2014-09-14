@@ -1,0 +1,3 @@
+/home/benoit/Projet/pocketVox/build/Notifier/CMakeFiles/Notifier.dir
+/home/benoit/Projet/pocketVox/build/Recognizer/CMakeFiles/Recognizer.dir
+/home/benoit/Projet/pocketVox/build/CMakeFiles/pocketvox.dir
