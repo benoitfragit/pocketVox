@@ -16,9 +16,12 @@ typedef struct pocketVoxWord
 struct _PocketvoxDictionnaryPrivate 
 {
 	gchar		*path;
+	
 	GHashTable 	*hash;
 	GHashTable  *words;
 	GHashTable  *tfidf;
+
+	GThreadPool *pool;
 };
 
 G_DEFINE_TYPE (PocketvoxDictionnary, pocketvox_dictionnary, G_TYPE_OBJECT);
@@ -27,6 +30,8 @@ static void pocketvox_dictionnary_dispose(GObject *object)
 {
 	G_OBJECT_CLASS (pocketvox_dictionnary_parent_class)->dispose (object);
 }
+
+static void pocketvox_dictionnary_process_request(gpointer data, gpointer user_data){}
 
 static void pocketvox_dictionnary_finalize(GObject *object)
 {
@@ -119,6 +124,8 @@ static void pocketvox_dictionnary_init (PocketvoxDictionnary *dictionnary){
 	priv->hash 	= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
 	priv->words = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_dictionnary_free_word);
 	priv->tfidf = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+	
+	priv->pool = g_thread_pool_new(pocketvox_dictionnary_process_request, dictionnary, 3, FALSE, NULL);
 }
 
 static gboolean pocketvox_dictionnary_find_word(gpointer key, gpointer value, gpointer user_data)
@@ -300,4 +307,15 @@ void pocketvox_dictionnary_display(PocketvoxDictionnary* dictionnary)
 	g_list_free(words);
 	g_list_free(keys);
 	g_list_free(commands);
+}
+
+void pocketvox_dictionnary_add_new_request(PocketvoxDictionnary *dictionnary, gchar *request)
+{
+	g_return_if_fail(NULL != dictionnary);
+	
+	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
+			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
+	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;	
+
+	g_thread_pool_push(priv->pool, request, NULL);
 }

@@ -40,6 +40,8 @@ PocketvoxDictionnary* pocketvox_dictionnary_new(gchar *filepath);
 
 void pocketvox_dictionnary_display(PocketvoxDictionnary* dictionnary);
 
+void pocketvox_dictionnary_add_new_request(PocketvoxDictionnary *dictionnary, gchar *request)
+
 G_END_DECLS
 
 
