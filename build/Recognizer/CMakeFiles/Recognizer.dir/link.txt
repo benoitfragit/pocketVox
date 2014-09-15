@@ -1,2 +1,0 @@
-/usr/bin/ar cr libRecognizer.a  CMakeFiles/Recognizer.dir/pocketvox_recognizer.c.o
-/usr/bin/ranlib libRecognizer.a
