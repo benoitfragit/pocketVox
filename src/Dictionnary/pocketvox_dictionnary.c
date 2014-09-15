@@ -15,6 +15,7 @@ typedef struct pocketVoxWord
 
 struct _PocketvoxDictionnaryPrivate 
 {
+	gboolean	loaded;
 	gchar		*path;
 	
 	GHashTable 	*hash;
@@ -205,6 +206,8 @@ static void pocketvox_dictionnary_init (PocketvoxDictionnary *dictionnary){
 	priv->tfidf = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
 	
 	priv->pool = g_thread_pool_new(pocketvox_dictionnary_process_request, dictionnary, 2, FALSE, NULL);
+	
+	priv->loaded = FALSE;
 }
 
 static gboolean pocketvox_dictionnary_find_word(gpointer key, gpointer value, gpointer user_data)
@@ -325,7 +328,7 @@ static void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary)
 }
 
 
-PocketvoxDictionnary* pocketvox_dictionnary_new(gchar* filepath)
+PocketvoxDictionnary* pocketvox_dictionnary_new(gchar* filepath, gboolean load_tfidf)
 {
 	PocketvoxDictionnary* dictionnary = (PocketvoxDictionnary *)g_object_new(TYPE_POCKETVOX_DICTIONNARY,
 																			"rawfile", filepath,
@@ -336,8 +339,17 @@ PocketvoxDictionnary* pocketvox_dictionnary_new(gchar* filepath)
 	
 	priv->path = g_strdup(filepath);
 	
-	pocketvox_dictionnary_load_raw(dictionnary);
-	pocketvox_dictionnary_tfidf(dictionnary);
+	if(load_tfidf == FALSE)
+	{
+		pocketvox_dictionnary_load_raw(dictionnary);
+		pocketvox_dictionnary_tfidf(dictionnary);
+	}
+	else
+	{
+		pocketvox_dictionnary_load_tfidf_file(dictionnary, priv->path);
+	}
+	
+	priv->loaded = TRUE;
 	
 	return dictionnary;
 }
@@ -399,4 +411,171 @@ void pocketvox_dictionnary_add_new_request(PocketvoxDictionnary *dictionnary, gc
 	g_thread_pool_push(priv->pool, request, NULL);
 	
 	g_usleep(1000);
+}
+
+gboolean pocketvox_dictionnary_is_loaded(PocketvoxDictionnary *dictionnary)
+{
+	g_return_val_if_fail(NULL != dictionnary, FALSE);
+	
+	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
+			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
+	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;	
+	
+	return priv->loaded;	
+}
+
+void pocketvox_dictionnary_write_tfidf_file(PocketvoxDictionnary *dictionnary)
+{
+	g_return_if_fail(NULL != dictionnary);
+	
+	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
+			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
+	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;	
+	
+	g_return_if_fail(TRUE == priv->loaded);
+	
+	//build the filename
+	gchar* inipath = g_strdup(priv->path);
+	
+	if(!g_str_has_suffix(priv->path, ".ini"))
+	{
+		g_free(inipath);
+		gchar* dir = g_path_get_dirname(priv->path);
+		gchar* base = g_path_get_basename(priv->path);
+		gchar** fbase = g_strsplit_set(base, ".", -1);
+		
+		inipath = g_strdup_printf("%s/%s.ini", dir, fbase[0]); 
+		
+		g_strfreev(fbase);
+		g_free(dir);
+		g_free(base);
+	}
+	
+	GKeyFile* keyfile;
+    GError *error = NULL;
+    gsize size;
+    keyfile = g_key_file_new();
+    GList *commands = g_hash_table_get_keys(priv->tfidf);
+    GList *values = g_hash_table_get_values(priv->tfidf);
+    GList *words = g_hash_table_get_values(priv->words);
+    gint n = g_hash_table_size(priv->tfidf);
+    gint i;
+    gchar *data = NULL;
+    
+    //record firstly the projection
+    for(i = 0; i < n; i++)
+    {
+		gchar* cmd = g_strdup_printf("cmd%d", i);
+		gchar* proj = g_strdup_printf("proj%d", i);
+		
+		gchar* c = (gchar *)g_list_nth_data(commands, i);
+		gdouble* tab = (gdouble *)g_list_nth_data(values, i);
+				
+		g_key_file_set_string(		keyfile, "projection", cmd, c);
+		g_key_file_set_double_list(	keyfile, "projection", proj, tab, g_list_length(words));
+		
+		g_free(cmd);
+		g_free(proj);
+	}
+    
+    //then record word frequency
+    for(i = 0; i < g_list_length(words); i++)
+    {
+		pocketVoxWord* w = (pocketVoxWord *)g_list_nth_data(words, i);
+		gchar *wcmd = g_strdup_printf("word%d", i);
+		gchar *wfreq = g_strdup_printf("freq%d", i);
+		
+		g_key_file_set_string(keyfile, "words", wcmd, w->word);
+		g_key_file_set_integer(keyfile, "words", wfreq, w->occurence);
+		g_free(wcmd);
+		g_free(wfreq);
+	}
+    
+    data = g_key_file_to_data(keyfile, &size, &error);
+    g_file_set_contents(inipath, data, size, &error);
+    
+    g_free(data);
+    g_key_file_free(keyfile);	
+    
+    g_list_free(words);
+    g_list_free(commands);
+    g_list_free(values);
+
+    g_free(inipath);
+}
+
+void pocketvox_dictionnary_load_tfidf_file(PocketvoxDictionnary* dictionnary, gchar* path)
+{
+	g_return_if_fail(NULL != dictionnary);
+	
+	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
+			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
+	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;	
+
+	//make the flag loaded to FALSE
+	priv->loaded = FALSE;
+
+	g_return_if_fail(g_file_test(path, G_FILE_TEST_EXISTS) == TRUE);
+	
+	//create the keyfile to parse
+	GKeyFile* keyfile;
+	GKeyFileFlags flags;
+	GError *error = NULL;
+	keyfile = g_key_file_new();
+	flags = G_KEY_FILE_KEEP_COMMENTS;
+	gint i = 0;
+	
+	//get all groups in the keyfile
+	if(g_key_file_load_from_file (keyfile, path, flags, &error ) )
+	{
+		gchar** groups = g_key_file_get_groups(keyfile, NULL);
+		
+		while( *groups != NULL )
+		{
+			if ( !g_strcmp0(*groups, "projection"))
+			{
+				gchar** keys = g_key_file_get_keys(keyfile, *groups, NULL, NULL);
+
+				i = 0;
+				while(*keys != NULL)
+				{
+					gchar *cc = g_strdup_printf("cmd%d", i);
+					gchar *ct = g_strdup_printf("proj%d", i);
+					
+					gchar *k  = g_key_file_get_string(keyfile, *groups, cc, NULL);
+					gdouble *tab	= g_key_file_get_double_list(keyfile, *groups, ct, NULL, NULL);
+					
+					g_hash_table_insert(priv->tfidf, g_strdup(k), tab);
+					
+					i++;
+					keys += 2;
+					g_free(cc);
+					g_free(ct);
+				}
+			}
+			else
+			{
+				if(!g_strcmp0(*groups,"words"))
+				{
+					gchar **words = g_key_file_get_keys(keyfile, *groups, NULL, NULL);
+
+					while(*words != NULL)
+					{
+						pocketVoxWord *pvw = (pocketVoxWord *)g_malloc0(sizeof(pocketVoxWord));
+						pvw->word = g_strdup(*words);
+						pvw->occurence = (gint)g_key_file_get_integer(keyfile, *groups, *words, NULL);
+						
+						
+						g_hash_table_insert(priv->words, g_strdup(*words), pvw);
+						
+						words++;
+					}	
+				}
+			}
+			
+			groups++;
+		}
+	}
+	
+	priv->loaded = TRUE;
 }

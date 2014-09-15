@@ -5,10 +5,12 @@
 
 int main(int argc, char **argv)
 {
-	PocketvoxDictionnary* dict = pocketvox_dictionnary_new("/home/benoit/Bureau/dico.txt");
+	PocketvoxDictionnary* dict = pocketvox_dictionnary_new("/home/benoit/Bureau/dico.ini", TRUE);
 	pocketvox_dictionnary_display(dict);
 	
 	pocketvox_dictionnary_add_new_request(dict, "dire comment vas tu");
+
+	//pocketvox_dictionnary_write_tfidf_file(dict);
 	/*
 	PocketvoxNotifier *pn = pocketvox_notifier_new();
 	

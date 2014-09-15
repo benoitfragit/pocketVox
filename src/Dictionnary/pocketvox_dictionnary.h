@@ -36,14 +36,17 @@ struct _PocketvoxDictionnaryClass
 
 GType pocketvox_dictionnary_get_type (void) G_GNUC_CONST;
 
-PocketvoxDictionnary* pocketvox_dictionnary_new(gchar *filepath);
+PocketvoxDictionnary* pocketvox_dictionnary_new(gchar *filepath, gboolean load_tfidf);
 
 void pocketvox_dictionnary_display(PocketvoxDictionnary* dictionnary);
 
 void pocketvox_dictionnary_add_new_request(PocketvoxDictionnary *dictionnary, gchar *request);
 
+gboolean pocketvox_dictionnary_is_loaded(PocketvoxDictionnary *dictionnary);
+
+void pocketvox_dictionnary_write_tfidf_file(PocketvoxDictionnary *dictionnary);
+
+void pocketvox_dictionnary_load_tfidf_file(PocketvoxDictionnary* dictionnary, gchar* path);
+
 G_END_DECLS
-
-
-
 #endif
