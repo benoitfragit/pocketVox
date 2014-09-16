@@ -1,2 +1,0 @@
-/usr/bin/ar cr libIndicator.a  CMakeFiles/Indicator.dir/pocketvox_indicator.c.o
-/usr/bin/ranlib libIndicator.a
