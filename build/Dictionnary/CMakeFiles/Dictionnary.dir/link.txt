@@ -1,0 +1,2 @@
+/usr/bin/ar cr libDictionnary.a  CMakeFiles/Dictionnary.dir/pocketvox_dictionnary.c.o
+/usr/bin/ranlib libDictionnary.a
