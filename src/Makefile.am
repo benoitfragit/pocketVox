@@ -19,6 +19,7 @@ DEBUG_CFLAGS = @DEBUG_CFLAGS@
 AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 
 include_HEADERS = \
+	pocketvox_types.h \
 	pocketvox_recognizer.h \
 	pocketvox_dictionnary.h \
 	pocketvox_indicator.h \

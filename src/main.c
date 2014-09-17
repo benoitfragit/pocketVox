@@ -6,6 +6,7 @@
 
 int main(int argc, char **argv)
 {
+	gtk_init(&argc, &argv);
 	PocketvoxIndicator *indicator = pocketvox_indicator_new();
 	PocketvoxDictionnary* dict = pocketvox_dictionnary_new("/home/benoit/Bureau/dico.ini", TRUE);
 	pocketvox_dictionnary_display(dict);
@@ -20,7 +21,7 @@ int main(int argc, char **argv)
 	PocketvoxRecognizer *pr = pocketvox_recognizer_new("/home/benoit/Projet/voicerecognition/lium_french_f0",
 													   "/home/benoit/Projet/voicerecognition/lm/dictionnary.lm.dmp",
 													   "/home/benoit/Projet/voicerecognition/frenchWords62K.dic");	
-
+	
 	g_signal_connect_swapped(pr, "result", G_CALLBACK(pocketvox_notifier_notify), pn);
 
 	//start gstreamer

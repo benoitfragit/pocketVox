@@ -1,5 +1,6 @@
 #include "pocketvox_recognizer.h"
 #include <gst/gst.h>
+#include <pocketsphinx.h>
 
 enum 
 {
