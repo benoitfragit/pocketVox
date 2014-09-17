@@ -4,6 +4,7 @@
 #include <pocketsphinx.h>
 #include <glib.h>
 #include <glib-object.h>
+#include <gst/gst.h>
 
 G_BEGIN_DECLS
 
@@ -47,6 +48,6 @@ GType pocketvox_recognizer_get_type (void) G_GNUC_CONST;
 
 PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic);
 
-void pocketvox_recognizer_start(PocketvoxRecognizer *recognizer);
+void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer, GstState state);
 G_END_DECLS
 #endif

@@ -141,6 +141,9 @@ void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpoint
 			TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierPrivate);
 	PocketvoxNotifierPrivate *priv = notifier->priv;	
 	
+	
+	if (priv->msg != NULL) g_free(priv->msg);
+	
 	priv->msg = g_strdup((gchar *)hyp);
 	
 	pocketvox_notifier_bubble_notification(notifier);

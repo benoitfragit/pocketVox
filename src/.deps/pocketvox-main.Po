@@ -152,8 +152,88 @@ pocketvox-main.o: main.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/glib-2.0/gobject/gtypemodule.h \
  /usr/include/glib-2.0/gobject/gtypeplugin.h \
  /usr/include/glib-2.0/gobject/gvaluearray.h \
- /usr/include/glib-2.0/gobject/gvaluetypes.h pocketvox_notifier.h \
- pocketvox_dictionnary.h pocketvox_indicator.h
+ /usr/include/glib-2.0/gobject/gvaluetypes.h \
+ /usr/include/gstreamer-0.10/gst/gst.h \
+ /usr/include/gstreamer-0.10/gst/glib-compat.h \
+ /usr/include/gstreamer-0.10/gst/gstenumtypes.h \
+ /usr/include/gstreamer-0.10/gst/gstversion.h \
+ /usr/include/gstreamer-0.10/gst/gstatomicqueue.h \
+ /usr/include/gstreamer-0.10/gst/gstbin.h \
+ /usr/include/gstreamer-0.10/gst/gstelement.h \
+ /usr/include/gstreamer-0.10/gst/gstconfig.h \
+ /usr/include/libxml2/libxml/parser.h \
+ /usr/include/libxml2/libxml/xmlversion.h \
+ /usr/include/libxml2/libxml/xmlexports.h \
+ /usr/include/libxml2/libxml/tree.h \
+ /usr/include/libxml2/libxml/xmlstring.h \
+ /usr/include/libxml2/libxml/xmlregexp.h \
+ /usr/include/libxml2/libxml/dict.h /usr/include/libxml2/libxml/hash.h \
+ /usr/include/libxml2/libxml/valid.h \
+ /usr/include/libxml2/libxml/xmlerror.h \
+ /usr/include/libxml2/libxml/list.h \
+ /usr/include/libxml2/libxml/xmlautomata.h \
+ /usr/include/libxml2/libxml/entities.h \
+ /usr/include/libxml2/libxml/encoding.h /usr/include/iconv.h \
+ /usr/include/libxml2/libxml/xmlIO.h \
+ /usr/include/libxml2/libxml/globals.h /usr/include/libxml2/libxml/SAX.h \
+ /usr/include/libxml2/libxml/xlink.h /usr/include/libxml2/libxml/SAX2.h \
+ /usr/include/libxml2/libxml/xmlmemory.h \
+ /usr/include/libxml2/libxml/threads.h \
+ /usr/include/gstreamer-0.10/gst/gstobject.h \
+ /usr/include/gstreamer-0.10/gst/gstpad.h \
+ /usr/include/gstreamer-0.10/gst/gstbuffer.h \
+ /usr/include/gstreamer-0.10/gst/gstminiobject.h \
+ /usr/include/gstreamer-0.10/gst/gstclock.h \
+ /usr/include/gstreamer-0.10/gst/gstcaps.h \
+ /usr/include/gstreamer-0.10/gst/gststructure.h \
+ /usr/include/gstreamer-0.10/gst/gstdatetime.h \
+ /usr/include/gstreamer-0.10/gst/gstbufferlist.h \
+ /usr/include/gstreamer-0.10/gst/gstevent.h \
+ /usr/include/gstreamer-0.10/gst/gstformat.h \
+ /usr/include/gstreamer-0.10/gst/gstiterator.h \
+ /usr/include/gstreamer-0.10/gst/gsttaglist.h \
+ /usr/include/gstreamer-0.10/gst/gstquery.h \
+ /usr/include/gstreamer-0.10/gst/gsttask.h \
+ /usr/include/gstreamer-0.10/gst/gsttaskpool.h \
+ /usr/include/gstreamer-0.10/gst/gstpadtemplate.h \
+ /usr/include/gstreamer-0.10/gst/gstbus.h \
+ /usr/include/gstreamer-0.10/gst/gstmessage.h \
+ /usr/include/gstreamer-0.10/gst/gstelementfactory.h \
+ /usr/include/gstreamer-0.10/gst/gstplugin.h \
+ /usr/include/i386-linux-gnu/sys/stat.h \
+ /usr/include/i386-linux-gnu/bits/stat.h /usr/include/glib-2.0/gmodule.h \
+ /usr/include/gstreamer-0.10/gst/gstmacros.h \
+ /usr/include/gstreamer-0.10/gst/gstpluginfeature.h \
+ /usr/include/gstreamer-0.10/gst/gstindex.h \
+ /usr/include/gstreamer-0.10/gst/gstindexfactory.h \
+ /usr/include/gstreamer-0.10/gst/gstchildproxy.h \
+ /usr/include/gstreamer-0.10/gst/gstdebugutils.h \
+ /usr/include/gstreamer-0.10/gst/gsterror.h /usr/include/errno.h \
+ /usr/include/i386-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/i386-linux-gnu/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h \
+ /usr/include/gstreamer-0.10/gst/gstghostpad.h \
+ /usr/include/gstreamer-0.10/gst/gstinfo.h \
+ /usr/include/gstreamer-0.10/gst/gstinterface.h \
+ /usr/include/gstreamer-0.10/gst/gstmarshal.h \
+ /usr/include/gstreamer-0.10/gst/gstparamspecs.h \
+ /usr/include/gstreamer-0.10/gst/gstvalue.h \
+ /usr/include/gstreamer-0.10/gst/gstpipeline.h \
+ /usr/include/gstreamer-0.10/gst/gstpoll.h \
+ /usr/include/gstreamer-0.10/gst/gstpreset.h \
+ /usr/include/gstreamer-0.10/gst/gstregistry.h \
+ /usr/include/gstreamer-0.10/gst/gstsegment.h \
+ /usr/include/gstreamer-0.10/gst/gstsystemclock.h \
+ /usr/include/gstreamer-0.10/gst/gsttagsetter.h \
+ /usr/include/gstreamer-0.10/gst/gsttrace.h \
+ /usr/include/gstreamer-0.10/gst/gsttypefind.h \
+ /usr/include/gstreamer-0.10/gst/gsttypefindfactory.h \
+ /usr/include/gstreamer-0.10/gst/gsturi.h \
+ /usr/include/gstreamer-0.10/gst/gstutils.h \
+ /usr/include/gstreamer-0.10/gst/gstparse.h \
+ /usr/include/gstreamer-0.10/gst/gstxml.h \
+ /usr/include/gstreamer-0.10/gst/gstcompat.h pocketvox_notifier.h \
+ pocketvox_dictionnary.h pocketvox_indicator.h pocketvox_controller.h
 
 /usr/include/stdc-predef.h:
 
@@ -527,8 +607,186 @@ pocketvox_recognizer.h:
 
 /usr/include/glib-2.0/gobject/gvaluetypes.h:
 
+/usr/include/gstreamer-0.10/gst/gst.h:
+
+/usr/include/gstreamer-0.10/gst/glib-compat.h:
+
+/usr/include/gstreamer-0.10/gst/gstenumtypes.h:
+
+/usr/include/gstreamer-0.10/gst/gstversion.h:
+
+/usr/include/gstreamer-0.10/gst/gstatomicqueue.h:
+
+/usr/include/gstreamer-0.10/gst/gstbin.h:
+
+/usr/include/gstreamer-0.10/gst/gstelement.h:
+
+/usr/include/gstreamer-0.10/gst/gstconfig.h:
+
+/usr/include/libxml2/libxml/parser.h:
+
+/usr/include/libxml2/libxml/xmlversion.h:
+
+/usr/include/libxml2/libxml/xmlexports.h:
+
+/usr/include/libxml2/libxml/tree.h:
+
+/usr/include/libxml2/libxml/xmlstring.h:
+
+/usr/include/libxml2/libxml/xmlregexp.h:
+
+/usr/include/libxml2/libxml/dict.h:
+
+/usr/include/libxml2/libxml/hash.h:
+
+/usr/include/libxml2/libxml/valid.h:
+
+/usr/include/libxml2/libxml/xmlerror.h:
+
+/usr/include/libxml2/libxml/list.h:
+
+/usr/include/libxml2/libxml/xmlautomata.h:
+
+/usr/include/libxml2/libxml/entities.h:
+
+/usr/include/libxml2/libxml/encoding.h:
+
+/usr/include/iconv.h:
+
+/usr/include/libxml2/libxml/xmlIO.h:
+
+/usr/include/libxml2/libxml/globals.h:
+
+/usr/include/libxml2/libxml/SAX.h:
+
+/usr/include/libxml2/libxml/xlink.h:
+
+/usr/include/libxml2/libxml/SAX2.h:
+
+/usr/include/libxml2/libxml/xmlmemory.h:
+
+/usr/include/libxml2/libxml/threads.h:
+
+/usr/include/gstreamer-0.10/gst/gstobject.h:
+
+/usr/include/gstreamer-0.10/gst/gstpad.h:
+
+/usr/include/gstreamer-0.10/gst/gstbuffer.h:
+
+/usr/include/gstreamer-0.10/gst/gstminiobject.h:
+
+/usr/include/gstreamer-0.10/gst/gstclock.h:
+
+/usr/include/gstreamer-0.10/gst/gstcaps.h:
+
+/usr/include/gstreamer-0.10/gst/gststructure.h:
+
+/usr/include/gstreamer-0.10/gst/gstdatetime.h:
+
+/usr/include/gstreamer-0.10/gst/gstbufferlist.h:
+
+/usr/include/gstreamer-0.10/gst/gstevent.h:
+
+/usr/include/gstreamer-0.10/gst/gstformat.h:
+
+/usr/include/gstreamer-0.10/gst/gstiterator.h:
+
+/usr/include/gstreamer-0.10/gst/gsttaglist.h:
+
+/usr/include/gstreamer-0.10/gst/gstquery.h:
+
+/usr/include/gstreamer-0.10/gst/gsttask.h:
+
+/usr/include/gstreamer-0.10/gst/gsttaskpool.h:
+
+/usr/include/gstreamer-0.10/gst/gstpadtemplate.h:
+
+/usr/include/gstreamer-0.10/gst/gstbus.h:
+
+/usr/include/gstreamer-0.10/gst/gstmessage.h:
+
+/usr/include/gstreamer-0.10/gst/gstelementfactory.h:
+
+/usr/include/gstreamer-0.10/gst/gstplugin.h:
+
+/usr/include/i386-linux-gnu/sys/stat.h:
+
+/usr/include/i386-linux-gnu/bits/stat.h:
+
+/usr/include/glib-2.0/gmodule.h:
+
+/usr/include/gstreamer-0.10/gst/gstmacros.h:
+
+/usr/include/gstreamer-0.10/gst/gstpluginfeature.h:
+
+/usr/include/gstreamer-0.10/gst/gstindex.h:
+
+/usr/include/gstreamer-0.10/gst/gstindexfactory.h:
+
+/usr/include/gstreamer-0.10/gst/gstchildproxy.h:
+
+/usr/include/gstreamer-0.10/gst/gstdebugutils.h:
+
+/usr/include/gstreamer-0.10/gst/gsterror.h:
+
+/usr/include/errno.h:
+
+/usr/include/i386-linux-gnu/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/i386-linux-gnu/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/gstreamer-0.10/gst/gstghostpad.h:
+
+/usr/include/gstreamer-0.10/gst/gstinfo.h:
+
+/usr/include/gstreamer-0.10/gst/gstinterface.h:
+
+/usr/include/gstreamer-0.10/gst/gstmarshal.h:
+
+/usr/include/gstreamer-0.10/gst/gstparamspecs.h:
+
+/usr/include/gstreamer-0.10/gst/gstvalue.h:
+
+/usr/include/gstreamer-0.10/gst/gstpipeline.h:
+
+/usr/include/gstreamer-0.10/gst/gstpoll.h:
+
+/usr/include/gstreamer-0.10/gst/gstpreset.h:
+
+/usr/include/gstreamer-0.10/gst/gstregistry.h:
+
+/usr/include/gstreamer-0.10/gst/gstsegment.h:
+
+/usr/include/gstreamer-0.10/gst/gstsystemclock.h:
+
+/usr/include/gstreamer-0.10/gst/gsttagsetter.h:
+
+/usr/include/gstreamer-0.10/gst/gsttrace.h:
+
+/usr/include/gstreamer-0.10/gst/gsttypefind.h:
+
+/usr/include/gstreamer-0.10/gst/gsttypefindfactory.h:
+
+/usr/include/gstreamer-0.10/gst/gsturi.h:
+
+/usr/include/gstreamer-0.10/gst/gstutils.h:
+
+/usr/include/gstreamer-0.10/gst/gstparse.h:
+
+/usr/include/gstreamer-0.10/gst/gstxml.h:
+
+/usr/include/gstreamer-0.10/gst/gstcompat.h:
+
 pocketvox_notifier.h:
 
 pocketvox_dictionnary.h:
 
 pocketvox_indicator.h:
+
+pocketvox_controller.h:

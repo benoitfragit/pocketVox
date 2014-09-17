@@ -1,5 +1,4 @@
 #include "pocketvox_recognizer.h"
-#include <gst/gst.h>
 #include <pocketsphinx.h>
 
 enum 
@@ -23,9 +22,6 @@ struct _PocketvoxRecognizerPrivate
 	gchar* hmm;
 
     GstElement *pipeline;
-
-	//the main loop
-	GMainLoop* loop;
 };
 
 G_DEFINE_TYPE (PocketvoxRecognizer, pocketvox_recognizer, G_TYPE_OBJECT);
@@ -202,6 +198,9 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
 /** @copydoc pocketvox_recognizer.h : pocketvox_recognizer_new */
 PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 {
+	GstElement* sphinx = NULL;
+	GstBus *bus = NULL;
+	
 	PocketvoxRecognizer *recognizer = (PocketvoxRecognizer *)g_object_new(TYPE_POCKETVOX_RECOGNIZER,
 																		"hmm", 	hmm,
 																		"lm", 	lm,
@@ -222,25 +221,11 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 	priv->lm  = g_strdup(lm);
 	priv->dic = g_strdup(dic);
 
-	return recognizer;
-}
-
-void pocketvox_recognizer_start(PocketvoxRecognizer *recognizer)
-{
-	GstElement* sphinx = NULL;
-	GstBus *bus = NULL;
-	
-	g_return_if_fail(NULL != recognizer);
-	
-	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
-		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
-	PocketvoxRecognizerPrivate *priv = recognizer->priv;
-
 	//build the pipeline
 	priv->pipeline = gst_parse_launch("gsettingsaudiosrc \
 									! audioconvert \
 									! audioresample \
-									! vader auto-threshold=true \
+									! vader name=vad auto-threshold=true \
 									! pocketsphinx name=asr \
 									! fakesink",
 									 NULL);
@@ -261,7 +246,18 @@ void pocketvox_recognizer_start(PocketvoxRecognizer *recognizer)
 	g_signal_connect(bus, "message::application", G_CALLBACK(pocketvox_recognizer_parse_bus_message), recognizer);
 
 	//play
-	gst_element_set_state(priv->pipeline, GST_STATE_PLAYING);
-	priv->loop = g_main_loop_new(NULL, FALSE);
-	g_main_loop_run(priv->loop);
+	gst_element_set_state(priv->pipeline, GST_STATE_PAUSED);
+
+	return recognizer;
+}
+
+void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer, GstState state)
+{
+	g_return_if_fail(NULL != recognizer);
+	
+	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
+		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
+	PocketvoxRecognizerPrivate *priv = recognizer->priv;
+	
+	gst_element_set_state(priv->pipeline, state);
 }

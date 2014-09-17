@@ -46,6 +46,8 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 											  PocketvoxDictionnary *dictionnary,
 											  PocketvoxIndicator *indicator);
 
+void pocketvox_controller_start(PocketvoxController *controller);
+
 G_END_DECLS
 
 
