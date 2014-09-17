@@ -24,7 +24,8 @@ include_HEADERS = \
 	pocketvox_dictionnary.h \
 	pocketvox_indicator.h \
 	pocketvox_notifier.h \
-	pocketvox_controller.h
+	pocketvox_controller.h \
+	pocketvox_module.h
 
 lib_LTLIBRARIES = libpocketvox.la
 
@@ -33,7 +34,8 @@ libpocketvox_la_SOURCES = \
 	pocketvox_dictionnary.c \
 	pocketvox_indicator.c \
 	pocketvox_notifier.c \
-	pocketvox_controller.c
+	pocketvox_controller.c \
+	pocketvox_module.c
 
 libpocketvox_la_LDFLAGS = \
 	@GLIB_LIBS@ \
