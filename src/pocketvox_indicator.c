@@ -289,7 +289,7 @@ PocketvoxIndicator* pocketvox_indicator_new()
 	g_signal_connect(lmItem, 		"activate", G_CALLBACK(pocketvox_indicator_lm),				indicator);
 	g_signal_connect(acousticItem,	"activate",	G_CALLBACK(pocketvox_indicator_acoustic),		indicator);
 	
-	
+		
 	gtk_widget_show(priv->menu);
 	
 	app_indicator_set_menu(priv->applet, (GtkMenu *)priv->menu);
