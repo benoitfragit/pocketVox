@@ -5,37 +5,51 @@ AM_COMMON_FLAGS = $(DEPS_CFLAGS) $(COMPILER_FLAGS) \
 	    -DLOCALEDIR=\""$(localedir)"\" \
 	    -Wall -Werror -g3 -O2
 	    
-INCLUDES = 							\
+AM_CPPFLAGS = 							\
     -I ${top_srcdir}/src/			\
     @GLIB_CFLAGS@					\
     @GTK3_CFLAGS@					\
     @GSTREAMER_CFLAGS@				\
     @APPINDICATOR_CFLAGS@			\
     @POCKETSPHINX_CFLAGS@			\
-    @LIBNOTIFY_CFLAGS@
+    @LIBNOTIFY_CFLAGS@ 				\
+    @GOBJECT_CFLAGS@
 
 DEBUG_CFLAGS = @DEBUG_CFLAGS@
 
 AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 
 include_HEADERS = \
-	pocketvox_types.h \
-	pocketvox_recognizer.h \
-	pocketvox_dictionnary.h \
-	pocketvox_indicator.h \
-	pocketvox_notifier.h \
-	pocketvox_controller.h \
-	pocketvox_module.h
+	pocketvox-types.h \
+	pocketvox-recognizer.h \
+	pocketvox-dictionnary.h \
+	pocketvox-indicator.h \
+	pocketvox-notifier.h \
+	pocketvox-controller.h \
+	pocketvox-module.h
+
+sources_h = \
+	$(top_srcdir)/src/pocketvox-types.h \
+	$(top_srcdir)/src/pocketvox-recognizer.h \
+	$(top_srcdir)/src/pocketvox-dictionnary.h \
+	$(top_srcdir)/src/pocketvox-indicator.h \
+	$(top_srcdir)/src/pocketvox-notifier.h \
+	$(top_srcdir)/src/pocketvox-controller.h \
+	$(top_srcdir)/src/pocketvox-module.h
+
+sources_c = \
+	pocketvox-recognizer.c \
+	pocketvox-dictionnary.c \
+	pocketvox-indicator.c \
+	pocketvox-notifier.c \
+	pocketvox-controller.c \
+	pocketvox-module.c
 
 lib_LTLIBRARIES = libpocketvox.la
 
 libpocketvox_la_SOURCES = \
-	pocketvox_recognizer.c \
-	pocketvox_dictionnary.c \
-	pocketvox_indicator.c \
-	pocketvox_notifier.c \
-	pocketvox_controller.c \
-	pocketvox_module.c
+	$(sources_c) \
+	$(sources_h)
 
 libpocketvox_la_LDFLAGS = \
 	@GLIB_LIBS@ \
@@ -43,8 +57,9 @@ libpocketvox_la_LDFLAGS = \
 	@GSTREAMER_LIBS@ \
 	@APPINDICATOR_LIBS@ \
 	@LIBNOTIFY_LIBS@ \
-	@POCKETSPHINX_LIBS@
-
+	@POCKETSPHINX_LIBS@ \
+	@GOBJECT_LIBS@
+	
 bin_PROGRAMS = pocketvox
 
 pocketvox_SOURCES = \
@@ -61,3 +76,35 @@ pocketvox_LDADD = \
 
 pocketvox_LDFLAGS = -export-dynamic
 pocketvox_CFLAGS = $(DEPS_CFLAGS)
+
+-include $(INTROSPECTION_MAKEFILE)
+
+# Make sure the name of your library matches the name you defined in
+# lib_LTLIBRARIES. Capitalization can be important in these steps.
+INTROSPECTION_GIRS = Pocketvox_gir
+# These are flags to pass to g-ir-scanner and g-ir-compiler.
+INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) --warn-all
+INTROSPECTION_COMPILER_ARGS =
+
+if HAVE_INTROSPECTION
+introspection_sources = $(libpocketvox_la_SOURCES)
+
+# This step is fairly well documented in the Gnome wiki here:
+# https://wiki.gnome.org/Projects/GObjectIntrospection/AutotoolsIntegration
+Pocketvox.gir: libpocketvox.la
+Pocketvox_gir_INCLUDES = GObject-2.0
+Pocketvox_gir_CFLAGS = $(AM_CPPFLAGS)
+Pocketvox_gir_PACKAGES =
+Pocketvox_gir_LIBS = libpocketvox.la
+Pocketvox_gir_FILES = $(introspection_sources)
+Pocketvox_gir_NAMESPACE = Pocketvox
+INTROSPECTION_GIRS += Pocketvox.gir
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+CLEANFILES = $(gir_DATA) $(typelib_DATA)
+endif

@@ -11,7 +11,7 @@ pocketvox-main.o: main.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/i386-linux-gnu/bits/stdio_lim.h \
  /usr/include/i386-linux-gnu/bits/sys_errlist.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
- /usr/include/i386-linux-gnu/bits/stdio2.h pocketvox_recognizer.h \
+ /usr/include/i386-linux-gnu/bits/stdio2.h pocketvox-recognizer.h \
  /usr/local/include/pocketsphinx/pocketsphinx.h \
  /usr/local/include/sphinxbase/cmd_ln.h \
  /usr/local/include/sphinxbase/sphinxbase_export.h \
@@ -232,8 +232,9 @@ pocketvox-main.o: main.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/gstreamer-0.10/gst/gstutils.h \
  /usr/include/gstreamer-0.10/gst/gstparse.h \
  /usr/include/gstreamer-0.10/gst/gstxml.h \
- /usr/include/gstreamer-0.10/gst/gstcompat.h pocketvox_notifier.h \
- pocketvox_dictionnary.h pocketvox_indicator.h pocketvox_controller.h
+ /usr/include/gstreamer-0.10/gst/gstcompat.h pocketvox-types.h \
+ pocketvox-notifier.h pocketvox-indicator.h pocketvox-controller.h \
+ /usr/local/include/pocketvox_indicator.h pocketvox-module.h
 
 /usr/include/stdc-predef.h:
 
@@ -271,7 +272,7 @@ pocketvox-main.o: main.c /usr/include/stdc-predef.h /usr/include/stdio.h \
 
 /usr/include/i386-linux-gnu/bits/stdio2.h:
 
-pocketvox_recognizer.h:
+pocketvox-recognizer.h:
 
 /usr/local/include/pocketsphinx/pocketsphinx.h:
 
@@ -783,10 +784,14 @@ pocketvox_recognizer.h:
 
 /usr/include/gstreamer-0.10/gst/gstcompat.h:
 
-pocketvox_notifier.h:
+pocketvox-types.h:
 
-pocketvox_dictionnary.h:
+pocketvox-notifier.h:
 
-pocketvox_indicator.h:
+pocketvox-indicator.h:
 
-pocketvox_controller.h:
+pocketvox-controller.h:
+
+/usr/local/include/pocketvox_indicator.h:
+
+pocketvox-module.h:
