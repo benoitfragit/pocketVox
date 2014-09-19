@@ -10,5 +10,6 @@ int main(int argc, char **argv)
 	PocketvoxApplication *application = pocketvox_application_new(acoustic, lm, dict);
 	
 	pocketvox_application_start(application);
+	
 	return 0;
 }
