@@ -14,7 +14,7 @@ An exemple already exists for C. There no module for the moment.
 DEPENDANCIES
 ============
 
-Before using this librar you need to install all dependancies:
+Before using this library you need to install all dependancies:
 
 * pocketsphinx
 * sphinxbase
