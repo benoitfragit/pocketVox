@@ -9,7 +9,6 @@ enum
 	INDICATOR_DICT,
 	INDICATOR_LM,
 	INDICATOR_ACOUSTIC,
-	INDICATOR_REBUILD,
 	INDICATOR_QUIT,
 	LAST_SIGNAL
 };
@@ -123,17 +122,6 @@ static void pocketvox_indicator_class_init (PocketvoxIndicatorClass *klass)
                      0
         );
 
-    pocketvox_indicator_signals[INDICATOR_REBUILD] =
-        g_signal_new("indicator_rebuild",
-                     G_TYPE_FROM_CLASS(klass),
-                     G_SIGNAL_RUN_LAST,
-                     0,
-                     NULL, NULL,
-                     g_cclosure_marshal_VOID__VOID,
-                     G_TYPE_NONE,
-                     0
-        );
-
     pocketvox_indicator_signals[INDICATOR_QUIT] =
         g_signal_new("indicator_quit",
                      G_TYPE_FROM_CLASS(klass),
@@ -181,13 +169,6 @@ static void pocketvox_indicator_state_changed(GtkMenuItem *menuitem, gpointer us
 	g_signal_emit(indicator, pocketvox_indicator_signals[INDICATOR_STATE], 0, priv->state ? "Run" : "Stop");
 }
 
-static void pocketvox_indicator_rebuild(GtkMenuItem *item, gpointer user_data)
-{
-	PocketvoxIndicator *indicator = (PocketvoxIndicator *)user_data;
-
-	g_signal_emit(indicator, pocketvox_indicator_signals[INDICATOR_REBUILD], 0);
-}
-
 static void pocketvox_indicator_quit(GtkMenuItem *item, gpointer user_data)
 {
 	PocketvoxIndicator *indicator = (PocketvoxIndicator *)user_data;
@@ -216,11 +197,6 @@ static void pocketvox_indicator_acoustic(GtkMenuItem *item, gpointer user_data)
 	g_signal_emit(indicator, pocketvox_indicator_signals[INDICATOR_ACOUSTIC], 0);
 }
 
-/**
- * identifier_name: pocketvox_indicator_new
- * 
- */ 
-
 PocketvoxIndicator* pocketvox_indicator_new()
 {
 	PocketvoxIndicator *indicator = (PocketvoxIndicator *)g_object_new(TYPE_POCKETVOX_INDICATOR, NULL);
@@ -233,7 +209,6 @@ PocketvoxIndicator* pocketvox_indicator_new()
 
 	GtkWidget* stateItem 	= gtk_menu_item_new_with_label("Run");
 	GtkWidget* configItem 	= gtk_menu_item_new_with_label("Settings");
-	GtkWidget* buildItem 	= gtk_menu_item_new_with_label("Rebuild");
 	GtkWidget* quitItem 	= gtk_menu_item_new_with_label("Quit");
 
 	GtkWidget* submenu		= gtk_menu_new();
@@ -254,21 +229,17 @@ PocketvoxIndicator* pocketvox_indicator_new()
 
 	gtk_widget_show(stateItem);
 	gtk_widget_show(configItem);
-	gtk_widget_show(buildItem);
 	gtk_widget_show(quitItem);
 
 	gtk_menu_attach((GtkMenu *)priv->menu, stateItem, 	0, 1, 0, 1);
 	gtk_menu_attach((GtkMenu *)priv->menu, configItem, 	0, 1, 1, 2);
-	gtk_menu_attach((GtkMenu *)priv->menu, buildItem, 	0, 1, 2, 3);
-	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 	0, 1, 3, 4);
+	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 	0, 1, 2, 3);
 
 	g_signal_connect(stateItem, 	"activate", G_CALLBACK(pocketvox_indicator_state_changed), 	indicator);
-	g_signal_connect(buildItem, 	"activate", G_CALLBACK(pocketvox_indicator_rebuild), 		indicator);
 	g_signal_connect(quitItem,  	"activate", G_CALLBACK(pocketvox_indicator_quit), 			indicator);
 	g_signal_connect(dictItem,		"activate", G_CALLBACK(pocketvox_indicator_dictionnary), 	indicator);
 	g_signal_connect(lmItem, 		"activate", G_CALLBACK(pocketvox_indicator_lm),				indicator);
 	g_signal_connect(acousticItem,	"activate",	G_CALLBACK(pocketvox_indicator_acoustic),		indicator);
-
 
 	gtk_widget_show(priv->menu);
 

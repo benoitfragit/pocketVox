@@ -122,11 +122,6 @@ static void pocketvox_controller_quit(PocketvoxController *controller, gpointer 
 	g_main_loop_unref(priv->loop);
 }
 
-static void pocketvox_controller_rebuild(PocketvoxController *controller, gpointer user_data)
-{
-	g_warning("Should rebuild the language model file");
-}
-
 static void pocketvox_controller_set_dict(PocketvoxController *controller, gpointer user_data)
 {
 	g_warning("Set the dictionnary");
@@ -216,11 +211,6 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 							"indicator_quit",
 							G_CALLBACK(pocketvox_controller_quit),
 							controller);
-	
-	g_signal_connect_swapped(priv->indicator,
-							"indicator_rebuild",
-							G_CALLBACK(pocketvox_controller_rebuild),
-							controller);
 
 	g_signal_connect_swapped(priv->indicator,
 							"indicator_dict",
@@ -274,44 +264,4 @@ void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *
 	PocketvoxControllerPrivate *priv = controller->priv;
 	
 	g_hash_table_remove(priv->modules, id);
-}
-
-void pocketvox_controller_build_lm_file(PocketvoxController *controller)
-{
-	FILE *file = NULL;
-	const gchar filename[] = "/tmp/pockeetvox_lm.txt";
-	g_return_if_fail(NULL != controller);
-	
-	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
-			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
-	PocketvoxControllerPrivate *priv = controller->priv;
-
-	//make a string request on all dictionnary and append it to the tmp file
-	gchar *str = NULL;
-	gint i;
-	GList *modules = g_hash_table_get_values(priv->modules);
-	
-	for(i = 0; i < g_list_length(modules); i++)
-	{
-		PocketvoxModule* module = g_list_nth_data(modules, i);
-		
-		if(pocketvox_module_get_activated(module) == TRUE)
-		{
-			pocketvox_module_get_raw(module, str);
-		}
-	}
-	
-	g_list_free(modules);
-	
-	//write the string to a tmp file 
-	file = fopen(filename, "w");
-	
-	if(file != NULL)
-	{
-		fprintf(file, "%s", str);
-	
-		fclose(file);
-	}
-		
-	g_free(str);
 }
