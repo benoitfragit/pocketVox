@@ -133,7 +133,8 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 libpocketvox_1_0_la_LIBADD =
 am__objects_1 = pocketvox-recognizer.lo pocketvox-dictionnary.lo \
 	pocketvox-indicator.lo pocketvox-notifier.lo \
-	pocketvox-controller.lo pocketvox-module.lo
+	pocketvox-controller.lo pocketvox-module.lo \
+	pocketvox-application.lo
 am__objects_2 =
 am_libpocketvox_1_0_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libpocketvox_1_0_la_OBJECTS = $(am_libpocketvox_1_0_la_OBJECTS)
@@ -370,7 +371,7 @@ AM_COMMON_FLAGS = $(DEPS_CFLAGS) $(COMPILER_FLAGS) \
 	    -DPKGDATADIR=\"$(pkgdatadir)/\"  \
 	    -DPKGLIBDIR=\"$(pkglibdir)/\"    \
 	    -DLOCALEDIR=\""$(localedir)"\" \
-	    -Wall -Werror -g3 -O2
+	    -Wall -Werror -g3 -O2 -lm
 
 AM_CPPFLAGS = \
     -I ${top_srcdir}/src/			\
@@ -390,7 +391,8 @@ include_HEADERS = \
 	pocketvox-indicator.h \
 	pocketvox-notifier.h \
 	pocketvox-controller.h \
-	pocketvox-module.h
+	pocketvox-module.h \
+	pocketvox-application.h
 
 sources_h = \
 	$(top_srcdir)/src/pocketvox-types.h \
@@ -399,7 +401,8 @@ sources_h = \
 	$(top_srcdir)/src/pocketvox-indicator.h \
 	$(top_srcdir)/src/pocketvox-notifier.h \
 	$(top_srcdir)/src/pocketvox-controller.h \
-	$(top_srcdir)/src/pocketvox-module.h
+	$(top_srcdir)/src/pocketvox-module.h \
+	$(top_srcdir)/src/pocketvox-application.h
 
 sources_c = \
 	pocketvox-recognizer.c \
@@ -407,7 +410,8 @@ sources_c = \
 	pocketvox-indicator.c \
 	pocketvox-notifier.c \
 	pocketvox-controller.c \
-	pocketvox-module.c
+	pocketvox-module.c \
+	pocketvox-application.c
 
 lib_LTLIBRARIES = libpocketvox-1.0.la
 libpocketvox_1_0_la_SOURCES = \
@@ -588,6 +592,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-application.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-controller.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-dictionnary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-indicator.Plo@am__quote@

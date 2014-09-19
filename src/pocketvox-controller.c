@@ -1,5 +1,6 @@
 #include "pocketvox-controller.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 enum
 {
@@ -29,10 +30,6 @@ static void pocketvox_controller_finalize(GObject *object)
 	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
 		TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;	
-
-	g_object_unref(priv->recognizer);
-	g_object_unref(priv->notifier);
-	g_object_unref(priv->indicator);
 	
 	g_hash_table_destroy(priv->modules);
 	
@@ -315,6 +312,6 @@ void pocketvox_controller_build_lm_file(PocketvoxController *controller)
 	
 		fclose(file);
 	}
-	
+		
 	g_free(str);
 }

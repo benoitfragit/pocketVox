@@ -35,7 +35,6 @@ struct _PocketvoxIndicatorClass
 
 GType pocketvox_indicator_get_type (void) G_GNUC_CONST;
 
-
 PocketvoxIndicator* pocketvox_indicator_new();
 
 G_END_DECLS
