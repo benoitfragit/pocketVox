@@ -45,13 +45,13 @@ sources_c = \
 	pocketvox-controller.c \
 	pocketvox-module.c
 
-lib_LTLIBRARIES = libpocketvox.la
+lib_LTLIBRARIES = libpocketvox-1.0.la
 
-libpocketvox_la_SOURCES = \
+libpocketvox_1_0_la_SOURCES = \
 	$(sources_c) \
 	$(sources_h)
 
-libpocketvox_la_LDFLAGS = \
+libpocketvox_1_0_la_LDFLAGS = \
 	@GLIB_LIBS@ \
 	@GTK3_LIBS@ \
 	@GSTREAMER_LIBS@ \
@@ -66,7 +66,7 @@ pocketvox_SOURCES = \
 	main.c
 
 pocketvox_LDADD = \
-	${top_builddir}/src/libpocketvox.la	\
+	${top_builddir}/src/libpocketvox-1.0.la	\
 	@GLIB_LIBS@ \
 	@GTK3_LIBS@ \
 	@GSTREAMER_LIBS@ \
@@ -81,24 +81,24 @@ pocketvox_CFLAGS = $(DEPS_CFLAGS)
 
 # Make sure the name of your library matches the name you defined in
 # lib_LTLIBRARIES. Capitalization can be important in these steps.
-INTROSPECTION_GIRS = Pocketvox_gir
+INTROSPECTION_GIRS = Pocketvox_1_0_gir
 # These are flags to pass to g-ir-scanner and g-ir-compiler.
 INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) --warn-all
 INTROSPECTION_COMPILER_ARGS =
 
 if HAVE_INTROSPECTION
-introspection_sources = $(libpocketvox_la_SOURCES)
+introspection_sources = $(libpocketvox_1_0_la_SOURCES)
 
 # This step is fairly well documented in the Gnome wiki here:
 # https://wiki.gnome.org/Projects/GObjectIntrospection/AutotoolsIntegration
-Pocketvox.gir: libpocketvox.la
-Pocketvox_gir_INCLUDES = GObject-2.0
-Pocketvox_gir_CFLAGS = $(AM_CPPFLAGS)
-Pocketvox_gir_PACKAGES =
-Pocketvox_gir_LIBS = libpocketvox.la
-Pocketvox_gir_FILES = $(introspection_sources)
-Pocketvox_gir_NAMESPACE = Pocketvox
-INTROSPECTION_GIRS += Pocketvox.gir
+Pocketvox-1.0.gir: libpocketvox-1.0.la
+Pocketvox_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gst-0.10 Gtk-3.0 Notify-0.7 AppIndicator3-0.1
+Pocketvox_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
+Pocketvox_1_0_gir_PACKAGES = gtk+-3.0 gobject-2.0 glib-2.0 appindicator3-0.1 libnotify pocketsphinx gstreamer-0.10
+Pocketvox_1_0_gir_LIBS = libpocketvox-1.0.la
+Pocketvox_1_0_gir_FILES = $(introspection_sources)
+Pocketvox_1_0_gir_NAMESPACE = Pocketvox
+INTROSPECTION_GIRS += Pocketvox-1.0.gir
 
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)

@@ -553,3 +553,28 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 	
 	return mindist;
 }
+
+void pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary, gchar* raw)
+{
+	g_return_if_fail(dictionnary != NULL);
+
+	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
+			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
+	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;
+		
+	GList *keys = g_hash_table_get_keys(priv->hash);
+	GList *iter = NULL;
+	
+	for(iter = keys; iter; iter = iter->next)
+	{
+		gchar* key = (gchar *)iter->data;
+		gchar* tmp = g_strdup(raw);
+		g_free(raw);
+		
+		raw = g_strdup_printf("%s%s<s> %s </s>",tmp != NULL ? tmp : "", tmp !=NULL ? "\n": "", key);
+		g_free(tmp);
+	}
+	
+	g_list_free(keys);
+	g_list_free(iter);
+}

@@ -45,10 +45,9 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 											  PocketvoxIndicator *indicator);
 
 void pocketvox_controller_start(PocketvoxController *controller);
-
 void pocketvox_controller_add_module(PocketvoxController *controller, PocketvoxModule *module);
 void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *id);
-
+void pocketvox_controller_build_lm_file(PocketvoxController *controller);
 
 G_END_DECLS
 #endif

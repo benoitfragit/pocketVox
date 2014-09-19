@@ -181,3 +181,15 @@ gchar* pocketvox_module_get_command(PocketvoxModule *module)
 	
 	return priv->cmd;
 }
+
+void pocketvox_module_get_raw(PocketvoxModule *module, gchar *raw)
+{
+	g_return_if_fail(NULL != module);
+
+	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
+			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
+	PocketvoxModulePrivate *priv = module->priv;
+	
+	//get the raw sentence from the dictionnary
+	pocketvox_dictionnary_get_raw(priv->dict, raw);	
+}

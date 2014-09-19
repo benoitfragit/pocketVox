@@ -82,7 +82,7 @@ POST_UNINSTALL = :
 build_triplet = i686-pc-linux-gnu
 host_triplet = i686-pc-linux-gnu
 bin_PROGRAMS = pocketvox$(EXEEXT)
-am__append_1 = Pocketvox.gir
+am__append_1 = Pocketvox-1.0.gir
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp $(include_HEADERS)
@@ -130,25 +130,25 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(girdir)" "$(DESTDIR)$(typelibdir)" \
 	"$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libpocketvox_la_LIBADD =
+libpocketvox_1_0_la_LIBADD =
 am__objects_1 = pocketvox-recognizer.lo pocketvox-dictionnary.lo \
 	pocketvox-indicator.lo pocketvox-notifier.lo \
 	pocketvox-controller.lo pocketvox-module.lo
 am__objects_2 =
-am_libpocketvox_la_OBJECTS = $(am__objects_1) $(am__objects_2)
-libpocketvox_la_OBJECTS = $(am_libpocketvox_la_OBJECTS)
+am_libpocketvox_1_0_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libpocketvox_1_0_la_OBJECTS = $(am_libpocketvox_1_0_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libpocketvox_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+libpocketvox_1_0_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(AM_CFLAGS) $(CFLAGS) $(libpocketvox_la_LDFLAGS) $(LDFLAGS) \
-	-o $@
+	$(AM_CFLAGS) $(CFLAGS) $(libpocketvox_1_0_la_LDFLAGS) \
+	$(LDFLAGS) -o $@
 PROGRAMS = $(bin_PROGRAMS)
 am_pocketvox_OBJECTS = pocketvox-main.$(OBJEXT)
 pocketvox_OBJECTS = $(am_pocketvox_OBJECTS)
-pocketvox_DEPENDENCIES = ${top_builddir}/src/libpocketvox.la
+pocketvox_DEPENDENCIES = ${top_builddir}/src/libpocketvox-1.0.la
 pocketvox_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pocketvox_CFLAGS) \
 	$(CFLAGS) $(pocketvox_LDFLAGS) $(LDFLAGS) -o $@
@@ -186,8 +186,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libpocketvox_la_SOURCES) $(pocketvox_SOURCES)
-DIST_SOURCES = $(libpocketvox_la_SOURCES) $(pocketvox_SOURCES)
+SOURCES = $(libpocketvox_1_0_la_SOURCES) $(pocketvox_SOURCES)
+DIST_SOURCES = $(libpocketvox_1_0_la_SOURCES) $(pocketvox_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -299,7 +299,7 @@ PACKAGE_VERSION = 0.0.1
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
-PKG_CONFIG_PATH = :/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+PKG_CONFIG_PATH = :/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
 POCKETSPHINX_CFLAGS = -I/usr/local/include -I/usr/local/include/sphinxbase -I/usr/local/include/pocketsphinx  
 POCKETSPHINX_LIBS = -L/usr/local/lib -lpocketsphinx -lsphinxbase -lsphinxad -lpulse -lpulse-simple -lpthread -lm  
 POCKETVOX_MAJOR_VERSION = 0
@@ -409,12 +409,12 @@ sources_c = \
 	pocketvox-controller.c \
 	pocketvox-module.c
 
-lib_LTLIBRARIES = libpocketvox.la
-libpocketvox_la_SOURCES = \
+lib_LTLIBRARIES = libpocketvox-1.0.la
+libpocketvox_1_0_la_SOURCES = \
 	$(sources_c) \
 	$(sources_h)
 
-libpocketvox_la_LDFLAGS = \
+libpocketvox_1_0_la_LDFLAGS = \
 	-lglib-2.0   \
 	-lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0   \
 	-pthread -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lxml2 -lglib-2.0   \
@@ -427,7 +427,7 @@ pocketvox_SOURCES = \
 	main.c
 
 pocketvox_LDADD = \
-	${top_builddir}/src/libpocketvox.la	\
+	${top_builddir}/src/libpocketvox-1.0.la	\
 	-lglib-2.0   \
 	-lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0   \
 	-pthread -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lxml2 -lglib-2.0   \
@@ -440,17 +440,17 @@ pocketvox_CFLAGS = $(DEPS_CFLAGS)
 
 # Make sure the name of your library matches the name you defined in
 # lib_LTLIBRARIES. Capitalization can be important in these steps.
-INTROSPECTION_GIRS = Pocketvox_gir $(am__append_1)
+INTROSPECTION_GIRS = Pocketvox_1_0_gir $(am__append_1)
 # These are flags to pass to g-ir-scanner and g-ir-compiler.
 INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) --warn-all
 INTROSPECTION_COMPILER_ARGS = 
-introspection_sources = $(libpocketvox_la_SOURCES)
-Pocketvox_gir_INCLUDES = GObject-2.0
-Pocketvox_gir_CFLAGS = $(AM_CPPFLAGS)
-Pocketvox_gir_PACKAGES = 
-Pocketvox_gir_LIBS = libpocketvox.la
-Pocketvox_gir_FILES = $(introspection_sources)
-Pocketvox_gir_NAMESPACE = Pocketvox
+introspection_sources = $(libpocketvox_1_0_la_SOURCES)
+Pocketvox_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gst-0.10 Gtk-3.0 Notify-0.7 AppIndicator3-0.1
+Pocketvox_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
+Pocketvox_1_0_gir_PACKAGES = gtk+-3.0 gobject-2.0 glib-2.0 appindicator3-0.1 libnotify pocketsphinx gstreamer-0.10
+Pocketvox_1_0_gir_LIBS = libpocketvox-1.0.la
+Pocketvox_1_0_gir_FILES = $(introspection_sources)
+Pocketvox_1_0_gir_NAMESPACE = Pocketvox
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)
 typelibdir = $(libdir)/girepository-1.0
@@ -526,8 +526,8 @@ clean-libLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
-libpocketvox.la: $(libpocketvox_la_OBJECTS) $(libpocketvox_la_DEPENDENCIES) $(EXTRA_libpocketvox_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libpocketvox_la_LINK) -rpath $(libdir) $(libpocketvox_la_OBJECTS) $(libpocketvox_la_LIBADD) $(LIBS)
+libpocketvox-1.0.la: $(libpocketvox_1_0_la_OBJECTS) $(libpocketvox_1_0_la_DEPENDENCIES) $(EXTRA_libpocketvox_1_0_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(libpocketvox_1_0_la_LINK) -rpath $(libdir) $(libpocketvox_1_0_la_OBJECTS) $(libpocketvox_1_0_la_LIBADD) $(LIBS)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
@@ -921,7 +921,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-girDATA \
 
 # This step is fairly well documented in the Gnome wiki here:
 # https://wiki.gnome.org/Projects/GObjectIntrospection/AutotoolsIntegration
-Pocketvox.gir: libpocketvox.la
+Pocketvox-1.0.gir: libpocketvox-1.0.la
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
