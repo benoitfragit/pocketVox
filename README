@@ -23,5 +23,14 @@ Before using this librar you need to install all dependancies:
 * gobject-2.0
 * libnotify
 * appindicator3-0.1
+* espeak
+* cmuclmtk
 
+If you want to deelop for the root of pocketvox you need to install gobject-introspection-1.0
+
+you can type first
+
+sudo apt-get install glib-2.0 gobject-2.0 glib-2.0 gstreamer-0.10 libnotify appindicator3-0.10 espeak
+
+Then install the lates version of pocketsphin, sphinxbase, cmuclmtk
 
