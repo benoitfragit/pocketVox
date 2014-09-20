@@ -172,6 +172,23 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 	g_list_free(modules);
 }
 
+void pocketvox_controller_set_module_state(PocketvoxController *controller, gpointer data, gpointer user_data)
+{
+	gchar *id = (gchar *)data;
+	
+	g_return_if_fail(NULL != controller);
+	g_return_if_fail(NULL != id );
+	
+	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
+			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
+	PocketvoxControllerPrivate *priv = controller->priv;
+	
+	PocketvoxModule *module =(PocketvoxModule *)g_hash_table_lookup(priv->modules, id);
+	
+	pocketvox_module_set_activated(module, !pocketvox_module_get_activated(module));
+}
+
+
 PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer, 
 											  PocketvoxNotifier	*notifier,
 											  PocketvoxIndicator *indicator)
@@ -227,6 +244,11 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 							G_CALLBACK(pocketvox_controller_set_acoustic),
 							controller);
 	
+	g_signal_connect_swapped(priv->indicator,
+							"indicator_module_toggled",
+							G_CALLBACK(pocketvox_controller_set_module_state),
+							controller);
+	
 	return controller;
 }
 
@@ -255,7 +277,6 @@ void pocketvox_controller_add_module(PocketvoxController *controller, PocketvoxM
 	
 	g_hash_table_insert(priv->modules, g_strdup(id), module);	
 	pocketvox_indicator_add_module_item(priv->indicator, id);
-
 }
 
 void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *id)

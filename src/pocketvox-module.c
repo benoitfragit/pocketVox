@@ -162,7 +162,7 @@ void pocketvox_module_set_activated(PocketvoxModule *module, gboolean state)
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
 	PocketvoxModulePrivate *priv = module->priv;
-	
+		
 	priv->activated = state;	
 }
 

@@ -10,6 +10,7 @@ enum
 	INDICATOR_LM,
 	INDICATOR_ACOUSTIC,
 	INDICATOR_QUIT,
+	INDICATOR_MODULE_TOGGLED,
 	LAST_SIGNAL
 };
 
@@ -135,6 +136,18 @@ static void pocketvox_indicator_class_init (PocketvoxIndicatorClass *klass)
                      G_TYPE_NONE,
                      0
         );
+
+    pocketvox_indicator_signals[INDICATOR_MODULE_TOGGLED] =
+        g_signal_new("indicator_module_toggled",
+                     G_TYPE_FROM_CLASS(klass),
+                     G_SIGNAL_RUN_LAST,
+                     0,
+                     NULL, NULL,
+                     g_cclosure_marshal_VOID__POINTER,
+                     G_TYPE_NONE,
+                     1,
+                     G_TYPE_STRING
+        );
 }
 
 static void pocketvox_indicator_free_item(gpointer data){}
@@ -257,6 +270,16 @@ PocketvoxIndicator* pocketvox_indicator_new()
 	return indicator;
 }
 
+static void pocketvox_indicator_module_toggled(PocketvoxIndicator *indicator, gpointer data)
+{
+	GtkCheckMenuItem *widget = (GtkCheckMenuItem *)data;
+	
+	g_return_if_fail(NULL != indicator);
+	g_return_if_fail(NULL != widget);
+	
+	g_signal_emit(indicator, pocketvox_indicator_signals[INDICATOR_MODULE_TOGGLED], 0, gtk_menu_item_get_label((GtkMenuItem *)widget));
+}
+
 void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator,gchar *id)
 {
 	g_return_if_fail(NULL != indicator);
@@ -266,7 +289,11 @@ void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator,gchar *id
 			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
 	PocketvoxIndicatorPrivate *priv = indicator->priv;
 		
-	GtkWidget* item = gtk_menu_item_new_with_label(id);
+	GtkWidget* item = gtk_check_menu_item_new_with_label(id);
+	gtk_check_menu_item_set_draw_as_radio((GtkCheckMenuItem *)item, TRUE);
+	gtk_check_menu_item_set_active((GtkCheckMenuItem *)item, TRUE); 
+	g_signal_connect_swapped((GtkCheckMenuItem *)item, "toggled", G_CALLBACK(pocketvox_indicator_module_toggled), indicator);
+	
 	g_hash_table_insert(priv->table, g_strdup(id), item);
 		
 	gtk_menu_shell_append((GtkMenuShell *)priv->modulesMenu, item);
@@ -277,7 +304,7 @@ void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator,gchar *id
 }
 
 void pocketvox_indicator_remove_module_item(PocketvoxIndicator *indicator, gchar *id)
-{
+{	
 	g_return_if_fail(NULL != indicator);
 	g_return_if_fail(NULL != id);
 	

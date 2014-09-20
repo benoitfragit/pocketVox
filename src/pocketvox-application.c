@@ -111,11 +111,14 @@ PocketvoxApplication* pocketvox_application_new(gchar* acoustic, gchar *lm, gcha
 
 	PocketvoxModule *m1 = pocketvox_module_new("m1", "/home/benoit/Projet/google2ubuntu/workinprogress/test.txt", FALSE);
 	PocketvoxModule *m2 = pocketvox_module_new("m2", "/home/benoit/Projet/google2ubuntu/workinprogress/test.txt", FALSE);
+	PocketvoxModule *m3 = pocketvox_module_new("m3", "/home/benoit/Projet/google2ubuntu/workinprogress/test.txt", FALSE);
+
 
 	pocketvox_controller_add_module(priv->controller, m1);
 	pocketvox_controller_add_module(priv->controller, m2);
 	
 	pocketvox_controller_remove_module(priv->controller, "m1");
+	pocketvox_controller_add_module(priv->controller, m3);			
 			
 	return application;																		
 }
