@@ -4,6 +4,7 @@
 #include <glib.h>
 #include <glib-object.h>
 
+
 G_BEGIN_DECLS
 
 #define TYPE_POCKETVOX_INDICATOR                  (pocketvox_indicator_get_type ())
@@ -36,6 +37,8 @@ struct _PocketvoxIndicatorClass
 GType pocketvox_indicator_get_type (void) G_GNUC_CONST;
 
 PocketvoxIndicator* pocketvox_indicator_new();
+void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator, gchar *id);
+void pocketvox_indicator_remove_module_item(PocketvoxIndicator *indicator, gchar *id);
 
 G_END_DECLS
 

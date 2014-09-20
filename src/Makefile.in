@@ -388,20 +388,20 @@ include_HEADERS = \
 	pocketvox-types.h \
 	pocketvox-recognizer.h \
 	pocketvox-dictionnary.h \
+	pocketvox-module.h \
 	pocketvox-indicator.h \
 	pocketvox-notifier.h \
 	pocketvox-controller.h \
-	pocketvox-module.h \
 	pocketvox-application.h
 
 sources_h = \
 	$(top_srcdir)/src/pocketvox-types.h \
 	$(top_srcdir)/src/pocketvox-recognizer.h \
 	$(top_srcdir)/src/pocketvox-dictionnary.h \
+	$(top_srcdir)/src/pocketvox-module.h \
 	$(top_srcdir)/src/pocketvox-indicator.h \
 	$(top_srcdir)/src/pocketvox-notifier.h \
 	$(top_srcdir)/src/pocketvox-controller.h \
-	$(top_srcdir)/src/pocketvox-module.h \
 	$(top_srcdir)/src/pocketvox-application.h
 
 sources_c = \

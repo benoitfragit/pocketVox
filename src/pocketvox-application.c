@@ -108,7 +108,15 @@ PocketvoxApplication* pocketvox_application_new(gchar* acoustic, gchar *lm, gcha
 	priv->notifier 		= pocketvox_notifier_new();
 	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic);
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
-		
+
+	PocketvoxModule *m1 = pocketvox_module_new("m1", "/home/benoit/Projet/google2ubuntu/workinprogress/test.txt", FALSE);
+	PocketvoxModule *m2 = pocketvox_module_new("m2", "/home/benoit/Projet/google2ubuntu/workinprogress/test.txt", FALSE);
+
+	pocketvox_controller_add_module(priv->controller, m1);
+	pocketvox_controller_add_module(priv->controller, m2);
+	
+	pocketvox_controller_remove_module(priv->controller, "m1");
+			
 	return application;																		
 }
 

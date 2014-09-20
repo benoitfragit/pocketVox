@@ -4,7 +4,7 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "pocketvox_indicator.h"
+#include "pocketvox-indicator.h"
 #include "pocketvox-recognizer.h"
 #include "pocketvox-notifier.h"
 #include "pocketvox-module.h"

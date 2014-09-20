@@ -300,7 +300,7 @@ PACKAGE_VERSION = 0.0.1
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
-PKG_CONFIG_PATH = :/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+PKG_CONFIG_PATH = :/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
 POCKETSPHINX_CFLAGS = -I/usr/local/include -I/usr/local/include/sphinxbase -I/usr/local/include/pocketsphinx  
 POCKETSPHINX_LIBS = -L/usr/local/lib -lpocketsphinx -lsphinxbase -lsphinxad -lpulse -lpulse-simple -lpthread -lm  
 POCKETVOX_MAJOR_VERSION = 0
@@ -388,20 +388,20 @@ include_HEADERS = \
 	pocketvox-types.h \
 	pocketvox-recognizer.h \
 	pocketvox-dictionnary.h \
+	pocketvox-module.h \
 	pocketvox-indicator.h \
 	pocketvox-notifier.h \
 	pocketvox-controller.h \
-	pocketvox-module.h \
 	pocketvox-application.h
 
 sources_h = \
 	$(top_srcdir)/src/pocketvox-types.h \
 	$(top_srcdir)/src/pocketvox-recognizer.h \
 	$(top_srcdir)/src/pocketvox-dictionnary.h \
+	$(top_srcdir)/src/pocketvox-module.h \
 	$(top_srcdir)/src/pocketvox-indicator.h \
 	$(top_srcdir)/src/pocketvox-notifier.h \
 	$(top_srcdir)/src/pocketvox-controller.h \
-	$(top_srcdir)/src/pocketvox-module.h \
 	$(top_srcdir)/src/pocketvox-application.h
 
 sources_c = \

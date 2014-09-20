@@ -23,8 +23,11 @@ struct _PocketvoxIndicatorPrivate
 	//will appear in the panel
 	AppIndicator *applet;
 	//will contain all actions
-	GtkWidget *menu;
+	GtkWidget* menu;
 	PocketvoxState state;
+	//GList contenant les MenuItems pour chaque modules
+	GHashTable *table;
+	GtkWidget* modulesMenu;
 };
 
 G_DEFINE_TYPE (PocketvoxIndicator, pocketvox_indicator, G_TYPE_OBJECT);
@@ -134,6 +137,8 @@ static void pocketvox_indicator_class_init (PocketvoxIndicatorClass *klass)
         );
 }
 
+static void pocketvox_indicator_free_item(gpointer data){}
+
 static void pocketvox_indicator_init (PocketvoxIndicator *indicator)
 {
 	g_return_if_fail(NULL != indicator);
@@ -142,16 +147,14 @@ static void pocketvox_indicator_init (PocketvoxIndicator *indicator)
 			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
 	PocketvoxIndicatorPrivate *priv = indicator->priv;
 
-	priv->applet= app_indicator_new("pocketvox_indicator",
+	priv->applet		= app_indicator_new("pocketvox_indicator",
 									"audio-input-microphone-high-symbolic",
 									APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
 
-
-
-	priv->menu	= gtk_menu_new();
-
-	//initial state of the application
-	priv->state = POCKETVOX_STATE_STOP;
+	priv->menu			= gtk_menu_new();
+	priv->modulesMenu 	= gtk_menu_new();
+	priv->state 		= POCKETVOX_STATE_STOP;
+	priv->table			= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_indicator_free_item);
 }
 
 static void pocketvox_indicator_state_changed(GtkMenuItem *menuitem, gpointer user_data)
@@ -209,6 +212,7 @@ PocketvoxIndicator* pocketvox_indicator_new()
 
 	GtkWidget* stateItem 	= gtk_menu_item_new_with_label("Run");
 	GtkWidget* configItem 	= gtk_menu_item_new_with_label("Settings");
+	GtkWidget* modulesItem  = gtk_menu_item_new_with_label("Modules");
 	GtkWidget* quitItem 	= gtk_menu_item_new_with_label("Quit");
 
 	GtkWidget* submenu		= gtk_menu_new();
@@ -227,13 +231,18 @@ PocketvoxIndicator* pocketvox_indicator_new()
 	gtk_widget_show(submenu);
 	gtk_menu_item_set_submenu((GtkMenuItem *)configItem, submenu);
 
+	gtk_menu_item_set_submenu((GtkMenuItem *)modulesItem, priv->modulesMenu);
+	gtk_widget_show(priv->modulesMenu);
+
 	gtk_widget_show(stateItem);
 	gtk_widget_show(configItem);
+	gtk_widget_show(modulesItem);
 	gtk_widget_show(quitItem);
 
-	gtk_menu_attach((GtkMenu *)priv->menu, stateItem, 	0, 1, 0, 1);
-	gtk_menu_attach((GtkMenu *)priv->menu, configItem, 	0, 1, 1, 2);
-	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 	0, 1, 2, 3);
+	gtk_menu_attach((GtkMenu *)priv->menu, stateItem, 		0, 1, 0, 1);
+	gtk_menu_attach((GtkMenu *)priv->menu, configItem, 		0, 1, 1, 2);
+	gtk_menu_attach((GtkMenu *)priv->menu, modulesItem, 	0, 1, 2, 3);
+	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 		0, 1, 3, 4);
 
 	g_signal_connect(stateItem, 	"activate", G_CALLBACK(pocketvox_indicator_state_changed), 	indicator);
 	g_signal_connect(quitItem,  	"activate", G_CALLBACK(pocketvox_indicator_quit), 			indicator);
@@ -246,4 +255,38 @@ PocketvoxIndicator* pocketvox_indicator_new()
 	app_indicator_set_menu(priv->applet, (GtkMenu *)priv->menu);
 
 	return indicator;
+}
+
+void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator,gchar *id)
+{
+	g_return_if_fail(NULL != indicator);
+	g_return_if_fail(NULL != id);
+
+	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
+			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
+	PocketvoxIndicatorPrivate *priv = indicator->priv;
+		
+	GtkWidget* item = gtk_menu_item_new_with_label(id);
+	g_hash_table_insert(priv->table, g_strdup(id), item);
+		
+	gtk_menu_shell_append((GtkMenuShell *)priv->modulesMenu, item);
+	gtk_widget_queue_draw(priv->modulesMenu);
+	
+	gtk_widget_show(item);
+	gtk_widget_show(priv->modulesMenu);
+}
+
+void pocketvox_indicator_remove_module_item(PocketvoxIndicator *indicator, gchar *id)
+{
+	g_return_if_fail(NULL != indicator);
+	g_return_if_fail(NULL != id);
+	
+	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
+			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
+	PocketvoxIndicatorPrivate *priv = indicator->priv;	
+
+	GtkWidget* item = (GtkWidget *)g_hash_table_lookup(priv->table, id);
+	gtk_container_remove((GtkContainer *)priv->modulesMenu, item); 
+	g_hash_table_remove(priv->table, id);
+	gtk_widget_queue_draw(priv->modulesMenu);
 }

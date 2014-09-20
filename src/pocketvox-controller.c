@@ -226,7 +226,7 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 							"indicator_acoustic",
 							G_CALLBACK(pocketvox_controller_set_acoustic),
 							controller);
-								
+	
 	return controller;
 }
 
@@ -251,7 +251,11 @@ void pocketvox_controller_add_module(PocketvoxController *controller, PocketvoxM
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;
 	
-	g_hash_table_insert(priv->modules, g_strdup(pocketvox_module_get_id(module)), module);	
+	gchar *id = pocketvox_module_get_id(module);
+	
+	g_hash_table_insert(priv->modules, g_strdup(id), module);	
+	pocketvox_indicator_add_module_item(priv->indicator, id);
+
 }
 
 void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *id)
@@ -264,4 +268,5 @@ void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *
 	PocketvoxControllerPrivate *priv = controller->priv;
 	
 	g_hash_table_remove(priv->modules, id);
+	pocketvox_indicator_remove_module_item(priv->indicator, id);
 }
