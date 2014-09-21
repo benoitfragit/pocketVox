@@ -1,9 +1,5 @@
 #include "pocketvox-notifier.h"
 #include <libnotify/notify.h>
-#include <sys/wait.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 enum
 {
@@ -86,39 +82,6 @@ static void pocketvox_notifier_init (PocketvoxNotifier *notifier){
 	notify_init ("PocketVox");
 }
 
-static void pocketvox_notifier_sound_notification(PocketvoxNotifier* notifier)
-{
-	g_return_if_fail(NULL != notifier);
-
-	notifier->priv = G_TYPE_INSTANCE_GET_PRIVATE (notifier,
-			TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierPrivate);
-	PocketvoxNotifierPrivate *priv = notifier->priv;	
-	
-	g_return_if_fail(NULL != priv->msg);
-	
-	pid_t pid;
-	int status;
- 
-	pid = fork();
-	if (pid < 0) {
-		perror("fork");
-		goto end;
-	}
- 
-	if (pid == 0) {
-		execlp("espeak", "espeak", priv->msg, (void*)0);
-		perror("espeak");
-		goto end;
-	}
- 
-	waitpid(pid, &status, 0);
-	if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
-		goto end;
-
-end:
-	return;
-}
-
 static void pocketvox_notifier_bubble_notification(PocketvoxNotifier*notifier)
 {
 	g_return_if_fail(NULL != notifier);
@@ -146,7 +109,6 @@ void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpoint
 	priv->msg = g_strdup((gchar *)hyp);
 	
 	pocketvox_notifier_bubble_notification(notifier);
-	pocketvox_notifier_sound_notification(notifier);
 }
 
 PocketvoxNotifier* pocketvox_notifier_new()

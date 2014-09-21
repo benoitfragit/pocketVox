@@ -118,8 +118,6 @@ void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_d
 	
 	priv->score = pocketvox_dictionnary_process_request(priv->dict, request);	
 	priv->cmd = g_strdup(request);
-	
-	g_free(request);
 }
 
 gdouble pocketvox_module_get_score(PocketvoxModule *module)

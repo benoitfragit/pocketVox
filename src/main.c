@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "pocketvox-application.h"
 
 int main(int argc, char **argv)
@@ -8,8 +7,6 @@ int main(int argc, char **argv)
 	gchar *acoustic = "/home/benoit/Projet/voicerecognition/lium_french_f0";
 	
 	PocketvoxApplication *application = pocketvox_application_new(acoustic, lm, dict);
-	
-
 	
 	pocketvox_application_start(application);
 	

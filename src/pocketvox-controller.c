@@ -194,6 +194,8 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 	{
 		PocketvoxModule *module = g_list_nth_data(modules, i);
 		
+		dist = pocketvox_module_get_score(module);
+		
 		if(pocketvox_module_get_activated(module) == TRUE && (dist < mindist || i==0 ))
 		{
 			mindist = dist;
