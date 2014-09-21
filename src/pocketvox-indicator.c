@@ -224,42 +224,42 @@ PocketvoxIndicator* pocketvox_indicator_new()
 
 	app_indicator_set_status(priv->applet, APP_INDICATOR_STATUS_ACTIVE);
 
-	GtkWidget* stateItem 	= gtk_menu_item_new_with_label("Run");
-	GtkWidget* configItem 	= gtk_menu_item_new_with_label("Settings");
-	GtkWidget* modulesItem  = gtk_menu_item_new_with_label("Modules");
-	GtkWidget* separatorItem= gtk_separator_menu_item_new();
-	GtkWidget* quitItem 	= gtk_menu_item_new_with_label("Quit");
+	GtkWidget* stateItem 		= gtk_menu_item_new_with_label("Run");
+	GtkWidget* configItem 		= gtk_menu_item_new_with_label("Settings");	
+	GtkWidget* modulesItem  	= gtk_menu_item_new_with_label("Modules");
+	GtkWidget* separatorItem0	= gtk_separator_menu_item_new();
+	GtkWidget* separatorItem1	= gtk_separator_menu_item_new();
+	GtkWidget* separatorItem2	= gtk_separator_menu_item_new();
+	GtkWidget* quitItem 		= gtk_menu_item_new_with_label("Quit");
+	GtkWidget* dictItem			= gtk_menu_item_new_with_label("Set the dictionnary");
+	GtkWidget* lmItem			= gtk_menu_item_new_with_label("Set the language model");
+	GtkWidget* acousticItem 	= gtk_menu_item_new_with_label("Set the acoustic model");
 
-	GtkWidget* submenu		= gtk_menu_new();
-	GtkWidget* dictItem		= gtk_menu_item_new_with_label("Set the dictionnary");
-	GtkWidget* lmItem		= gtk_menu_item_new_with_label("Set the language model");
-	GtkWidget* acousticItem = gtk_menu_item_new_with_label("Set the acoustic model");
-
-	gtk_widget_show(dictItem);
-	gtk_widget_show(lmItem);
-	gtk_widget_show(acousticItem);
-
-	gtk_menu_attach((GtkMenu *)submenu, dictItem, 		0, 1, 0, 1);
-	gtk_menu_attach((GtkMenu *)submenu, lmItem, 		0, 1, 1, 2);
-	gtk_menu_attach((GtkMenu *)submenu, acousticItem,	0, 1, 2, 3);
-
-	gtk_widget_show(submenu);
-	gtk_menu_item_set_submenu((GtkMenuItem *)configItem, submenu);
-
+	gtk_widget_set_sensitive(configItem, FALSE);
 	gtk_menu_item_set_submenu((GtkMenuItem *)modulesItem, priv->modulesMenu);
 	gtk_widget_show(priv->modulesMenu);
 
 	gtk_widget_show(stateItem);
+	gtk_widget_show(separatorItem0);
 	gtk_widget_show(configItem);
+	gtk_widget_show(dictItem);
+	gtk_widget_show(lmItem);
+	gtk_widget_show(acousticItem);
+	gtk_widget_show(separatorItem1);
 	gtk_widget_show(modulesItem);
-	gtk_widget_show(separatorItem);
+	gtk_widget_show(separatorItem2);
 	gtk_widget_show(quitItem);
 
 	gtk_menu_attach((GtkMenu *)priv->menu, stateItem, 		0, 1, 0, 1);
-	gtk_menu_attach((GtkMenu *)priv->menu, configItem, 		0, 1, 1, 2);
-	gtk_menu_attach((GtkMenu *)priv->menu, modulesItem, 	0, 1, 2, 3);
-	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem,	0, 1, 3, 4);
-	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 		0, 1, 4, 5);
+	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem0,	0, 1, 1, 2);
+	gtk_menu_attach((GtkMenu *)priv->menu, configItem, 		0, 1, 2, 3);
+	gtk_menu_attach((GtkMenu *)priv->menu, dictItem, 		0, 1, 3, 4);
+	gtk_menu_attach((GtkMenu *)priv->menu, lmItem, 			0, 1, 4, 5);
+	gtk_menu_attach((GtkMenu *)priv->menu, acousticItem,	0, 1, 5, 6);
+	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem1, 	0, 1, 6, 7);
+	gtk_menu_attach((GtkMenu *)priv->menu, modulesItem, 	0, 1, 7, 8);
+	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem2,	0, 1, 8, 9);
+	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 		0, 1, 9, 10);
 
 	g_signal_connect(stateItem, 	"activate", G_CALLBACK(pocketvox_indicator_state_changed), 	indicator);
 	g_signal_connect(quitItem,  	"activate", G_CALLBACK(pocketvox_indicator_quit), 			indicator);
