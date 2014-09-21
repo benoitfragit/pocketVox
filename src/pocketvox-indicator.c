@@ -1,6 +1,7 @@
 #include "pocketvox-indicator.h"
 #include "pocketvox-types.h"
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 #include <libappindicator/app-indicator.h>
 
 enum
@@ -226,6 +227,7 @@ PocketvoxIndicator* pocketvox_indicator_new()
 	GtkWidget* stateItem 	= gtk_menu_item_new_with_label("Run");
 	GtkWidget* configItem 	= gtk_menu_item_new_with_label("Settings");
 	GtkWidget* modulesItem  = gtk_menu_item_new_with_label("Modules");
+	GtkWidget* separatorItem= gtk_separator_menu_item_new();
 	GtkWidget* quitItem 	= gtk_menu_item_new_with_label("Quit");
 
 	GtkWidget* submenu		= gtk_menu_new();
@@ -250,12 +252,14 @@ PocketvoxIndicator* pocketvox_indicator_new()
 	gtk_widget_show(stateItem);
 	gtk_widget_show(configItem);
 	gtk_widget_show(modulesItem);
+	gtk_widget_show(separatorItem);
 	gtk_widget_show(quitItem);
 
 	gtk_menu_attach((GtkMenu *)priv->menu, stateItem, 		0, 1, 0, 1);
 	gtk_menu_attach((GtkMenu *)priv->menu, configItem, 		0, 1, 1, 2);
 	gtk_menu_attach((GtkMenu *)priv->menu, modulesItem, 	0, 1, 2, 3);
-	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 		0, 1, 3, 4);
+	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem,	0, 1, 3, 4);
+	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 		0, 1, 4, 5);
 
 	g_signal_connect(stateItem, 	"activate", G_CALLBACK(pocketvox_indicator_state_changed), 	indicator);
 	g_signal_connect(quitItem,  	"activate", G_CALLBACK(pocketvox_indicator_quit), 			indicator);
@@ -292,6 +296,7 @@ void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator,gchar *id
 	GtkWidget* item = gtk_check_menu_item_new_with_label(id);
 	gtk_check_menu_item_set_draw_as_radio((GtkCheckMenuItem *)item, TRUE);
 	gtk_check_menu_item_set_active((GtkCheckMenuItem *)item, TRUE); 
+	
 	g_signal_connect_swapped((GtkCheckMenuItem *)item, "toggled", G_CALLBACK(pocketvox_indicator_module_toggled), indicator);
 	
 	g_hash_table_insert(priv->table, g_strdup(id), item);

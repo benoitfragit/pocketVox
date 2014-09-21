@@ -41,5 +41,8 @@ GType pocketvox_recognizer_get_type (void) G_GNUC_CONST;
 PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic);
 
 void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer,PocketvoxState state);
+
+void pocketvox_recognizer_set(PocketvoxRecognizer *recognizer, gchar* ppt, gchar *path);
+
 G_END_DECLS
 #endif

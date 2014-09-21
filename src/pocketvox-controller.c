@@ -1,4 +1,5 @@
 #include "pocketvox-controller.h"
+#include "pocketvox-chooser.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -124,17 +125,50 @@ static void pocketvox_controller_quit(PocketvoxController *controller, gpointer 
 
 static void pocketvox_controller_set_dict(PocketvoxController *controller, gpointer user_data)
 {
-	g_warning("Set the dictionnary");
+	g_return_if_fail(NULL != controller);
+
+	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
+			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
+	PocketvoxControllerPrivate *priv = controller->priv;	
+		
+	PocketvoxChooser *chooser = pocketvox_chooser_new(FALSE);
+	gchar *path = pocketvox_chooser_get_filepath(chooser);
+
+	g_return_if_fail(NULL != path);
+
+	pocketvox_recognizer_set(priv->recognizer, "dict", g_strdup(path));
 }
 
 static void pocketvox_controller_set_lm(PocketvoxController *controller, gpointer user_data)
 {
-	g_warning("Set the lm");
+	g_return_if_fail(NULL != controller);
+
+	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
+			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
+	PocketvoxControllerPrivate *priv = controller->priv;	
+
+	PocketvoxChooser *chooser = pocketvox_chooser_new(FALSE);
+	gchar *path = pocketvox_chooser_get_filepath(chooser);
+
+	g_return_if_fail(NULL != path);
+
+	pocketvox_recognizer_set(priv->recognizer, "lm", g_strdup(path));
 }
 
 static void pocketvox_controller_set_acoustic(PocketvoxController *controller, gpointer user_data)
 {
-	g_warning("Set the acoustic");
+	g_return_if_fail(NULL != controller);
+
+	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
+			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
+	PocketvoxControllerPrivate *priv = controller->priv;	
+	
+	PocketvoxChooser *chooser = pocketvox_chooser_new(TRUE);
+	gchar *path = pocketvox_chooser_get_filepath(chooser);
+	
+	g_return_if_fail(NULL != path);
+	
+	pocketvox_recognizer_set(priv->recognizer, "hmm", g_strdup(path));	
 }
 
 void pocketvox_controller_on_request(PocketvoxController *controller, gpointer hyp, gpointer user_data)

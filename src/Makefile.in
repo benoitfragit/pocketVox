@@ -132,9 +132,9 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libpocketvox_1_0_la_LIBADD =
 am__objects_1 = pocketvox-recognizer.lo pocketvox-dictionnary.lo \
-	pocketvox-indicator.lo pocketvox-notifier.lo \
-	pocketvox-controller.lo pocketvox-module.lo \
-	pocketvox-application.lo
+	pocketvox-chooser.lo pocketvox-indicator.lo \
+	pocketvox-notifier.lo pocketvox-controller.lo \
+	pocketvox-module.lo pocketvox-application.lo
 am__objects_2 =
 am_libpocketvox_1_0_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libpocketvox_1_0_la_OBJECTS = $(am_libpocketvox_1_0_la_OBJECTS)
@@ -244,6 +244,8 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
+GDK_CFLAGS = @GDK_CFLAGS@
+GDK_LIBS = @GDK_LIBS@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_COMPILE_RESOURCES = @GLIB_COMPILE_RESOURCES@
 GLIB_GENMARSHAL = @GLIB_GENMARSHAL@
@@ -377,6 +379,7 @@ AM_CPPFLAGS = \
     -I ${top_srcdir}/src/			\
     @GLIB_CFLAGS@					\
     @GTK3_CFLAGS@					\
+    @GDK_CFLAGS@					\
     @GSTREAMER_CFLAGS@				\
     @APPINDICATOR_CFLAGS@			\
     @POCKETSPHINX_CFLAGS@			\
@@ -385,32 +388,35 @@ AM_CPPFLAGS = \
 
 AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 include_HEADERS = \
-	pocketvox-types.h \
-	pocketvox-recognizer.h \
+	pocketvox-types.h 		\
+	pocketvox-recognizer.h 	\
 	pocketvox-dictionnary.h \
-	pocketvox-module.h \
-	pocketvox-indicator.h \
-	pocketvox-notifier.h \
-	pocketvox-controller.h \
+	pocketvox-module.h 		\
+	pocketvox-chooser.h		\
+	pocketvox-indicator.h 	\
+	pocketvox-notifier.h 	\
+	pocketvox-controller.h 	\
 	pocketvox-application.h
 
 sources_h = \
-	$(top_srcdir)/src/pocketvox-types.h \
-	$(top_srcdir)/src/pocketvox-recognizer.h \
-	$(top_srcdir)/src/pocketvox-dictionnary.h \
-	$(top_srcdir)/src/pocketvox-module.h \
-	$(top_srcdir)/src/pocketvox-indicator.h \
-	$(top_srcdir)/src/pocketvox-notifier.h \
-	$(top_srcdir)/src/pocketvox-controller.h \
+	$(top_srcdir)/src/pocketvox-types.h 		\
+	$(top_srcdir)/src/pocketvox-recognizer.h 	\
+	$(top_srcdir)/src/pocketvox-dictionnary.h 	\
+	$(top_srcdir)/src/pocketvox-module.h 		\
+	$(top_srcdir)/src/pocketvox-chooser.h		\
+	$(top_srcdir)/src/pocketvox-indicator.h 	\
+	$(top_srcdir)/src/pocketvox-notifier.h		\
+	$(top_srcdir)/src/pocketvox-controller.h 	\
 	$(top_srcdir)/src/pocketvox-application.h
 
 sources_c = \
-	pocketvox-recognizer.c \
+	pocketvox-recognizer.c 	\
 	pocketvox-dictionnary.c \
-	pocketvox-indicator.c \
-	pocketvox-notifier.c \
-	pocketvox-controller.c \
-	pocketvox-module.c \
+	pocketvox-chooser.c		\
+	pocketvox-indicator.c 	\
+	pocketvox-notifier.c 	\
+	pocketvox-controller.c 	\
+	pocketvox-module.c 		\
 	pocketvox-application.c
 
 lib_LTLIBRARIES = libpocketvox-1.0.la
@@ -421,6 +427,7 @@ libpocketvox_1_0_la_SOURCES = \
 libpocketvox_1_0_la_LDFLAGS = \
 	@GLIB_LIBS@ \
 	@GTK3_LIBS@ \
+	@GDK_LIBS@ \
 	@GSTREAMER_LIBS@ \
 	@APPINDICATOR_LIBS@ \
 	@LIBNOTIFY_LIBS@ \
@@ -434,6 +441,7 @@ pocketvox_LDADD = \
 	${top_builddir}/src/libpocketvox-1.0.la	\
 	@GLIB_LIBS@ \
 	@GTK3_LIBS@ \
+	@GDK_LIBS@ \
 	@GSTREAMER_LIBS@ \
 	@APPINDICATOR_LIBS@ \
 	@LIBNOTIFY_LIBS@ \
@@ -449,9 +457,9 @@ INTROSPECTION_GIRS = Pocketvox_1_0_gir $(am__append_1)
 INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) --warn-all
 INTROSPECTION_COMPILER_ARGS = 
 @HAVE_INTROSPECTION_TRUE@introspection_sources = $(libpocketvox_1_0_la_SOURCES)
-@HAVE_INTROSPECTION_TRUE@Pocketvox_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gst-0.10 Gtk-3.0 Notify-0.7 AppIndicator3-0.1
+@HAVE_INTROSPECTION_TRUE@Pocketvox_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gst-0.10 Gtk-3.0 Gdk-3.0 Notify-0.7 AppIndicator3-0.1
 @HAVE_INTROSPECTION_TRUE@Pocketvox_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
-@HAVE_INTROSPECTION_TRUE@Pocketvox_1_0_gir_PACKAGES = gtk+-3.0 gobject-2.0 glib-2.0 appindicator3-0.1 libnotify pocketsphinx gstreamer-0.10
+@HAVE_INTROSPECTION_TRUE@Pocketvox_1_0_gir_PACKAGES = gtk+-3.0 gdk-3.0 gobject-2.0 glib-2.0 appindicator3-0.1 libnotify pocketsphinx gstreamer-0.10
 @HAVE_INTROSPECTION_TRUE@Pocketvox_1_0_gir_LIBS = libpocketvox-1.0.la
 @HAVE_INTROSPECTION_TRUE@Pocketvox_1_0_gir_FILES = $(introspection_sources)
 @HAVE_INTROSPECTION_TRUE@Pocketvox_1_0_gir_NAMESPACE = Pocketvox
@@ -593,6 +601,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-application.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-chooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-controller.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-dictionnary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-indicator.Plo@am__quote@

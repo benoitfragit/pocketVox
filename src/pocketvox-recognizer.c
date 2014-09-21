@@ -20,7 +20,7 @@ struct _PocketvoxRecognizerPrivate
 	gchar* lm;
 	gchar* dic;
 	gchar* hmm;
-
+	PocketvoxState state;
     GstElement *pipeline;
 };
 
@@ -154,6 +154,7 @@ static void pocketvox_recognizer_init (PocketvoxRecognizer *recognizer)
 	priv->hmm = NULL;
 	priv->lm 	= NULL;
 	priv->dic = NULL;
+	priv->state = POCKETVOX_STATE_STOP;
 }
 
 
@@ -263,4 +264,28 @@ void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer,PocketvoxSta
 		default:
 			break;
 	}
+	
+	priv->state = state;
+}
+
+void pocketvox_recognizer_set(PocketvoxRecognizer *recognizer, gchar* ppt, gchar *path)
+{
+	g_return_if_fail(NULL != recognizer);
+	g_return_if_fail(!g_strcmp0("dict",ppt)
+				  || !g_strcmp0("lm",ppt)
+				  || !g_strcmp0("hmm", ppt) );
+	
+	pocketvox_recognizer_set_state(recognizer, POCKETVOX_STATE_STOP);
+	
+	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
+		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
+	PocketvoxRecognizerPrivate *priv = recognizer->priv;	
+
+	GstElement *sphinx = gst_bin_get_by_name(GST_BIN(priv->pipeline), "asr");
+	g_object_set(G_OBJECT(sphinx), 
+					ppt, path,
+					NULL);
+	
+	//put the pipeline in the same state
+	pocketvox_recognizer_set_state(recognizer,priv->state);
 }

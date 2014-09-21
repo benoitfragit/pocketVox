@@ -132,9 +132,9 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libpocketvox_1_0_la_LIBADD =
 am__objects_1 = pocketvox-recognizer.lo pocketvox-dictionnary.lo \
-	pocketvox-indicator.lo pocketvox-notifier.lo \
-	pocketvox-controller.lo pocketvox-module.lo \
-	pocketvox-application.lo
+	pocketvox-chooser.lo pocketvox-indicator.lo \
+	pocketvox-notifier.lo pocketvox-controller.lo \
+	pocketvox-module.lo pocketvox-application.lo
 am__objects_2 =
 am_libpocketvox_1_0_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libpocketvox_1_0_la_OBJECTS = $(am_libpocketvox_1_0_la_OBJECTS)
@@ -244,6 +244,8 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = 
 FGREP = /bin/grep -F
+GDK_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz  
+GDK_LIBS = -lgdk-3 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0  
 GLIB_CFLAGS = -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include  
 GLIB_COMPILE_RESOURCES = /usr/lib/i386-linux-gnu/glib-2.0/glib-compile-resources
 GLIB_GENMARSHAL = glib-genmarshal
@@ -300,7 +302,7 @@ PACKAGE_VERSION = 0.0.1
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
-PKG_CONFIG_PATH = :/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+PKG_CONFIG_PATH = :/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
 POCKETSPHINX_CFLAGS = -I/usr/local/include -I/usr/local/include/sphinxbase -I/usr/local/include/pocketsphinx  
 POCKETSPHINX_LIBS = -L/usr/local/lib -lpocketsphinx -lsphinxbase -lsphinxad -lpulse -lpulse-simple -lpthread -lm  
 POCKETVOX_MAJOR_VERSION = 0
@@ -377,6 +379,7 @@ AM_CPPFLAGS = \
     -I ${top_srcdir}/src/			\
     -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include  					\
     -pthread -I/usr/include/gtk-3.0 -I/usr/include/atk-1.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/pixman-1 -I/usr/include/libpng12  					\
+    -pthread -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz  					\
     -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/libxml2  				\
     -pthread -I/usr/include/libappindicator3-0.1 -I/usr/include/libdbusmenu-glib-0.4 -I/usr/include/gtk-3.0 -I/usr/include/atk-1.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/pixman-1 -I/usr/include/libpng12  			\
     -I/usr/local/include -I/usr/local/include/sphinxbase -I/usr/local/include/pocketsphinx  			\
@@ -385,32 +388,35 @@ AM_CPPFLAGS = \
 
 AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 include_HEADERS = \
-	pocketvox-types.h \
-	pocketvox-recognizer.h \
+	pocketvox-types.h 		\
+	pocketvox-recognizer.h 	\
 	pocketvox-dictionnary.h \
-	pocketvox-module.h \
-	pocketvox-indicator.h \
-	pocketvox-notifier.h \
-	pocketvox-controller.h \
+	pocketvox-module.h 		\
+	pocketvox-chooser.h		\
+	pocketvox-indicator.h 	\
+	pocketvox-notifier.h 	\
+	pocketvox-controller.h 	\
 	pocketvox-application.h
 
 sources_h = \
-	$(top_srcdir)/src/pocketvox-types.h \
-	$(top_srcdir)/src/pocketvox-recognizer.h \
-	$(top_srcdir)/src/pocketvox-dictionnary.h \
-	$(top_srcdir)/src/pocketvox-module.h \
-	$(top_srcdir)/src/pocketvox-indicator.h \
-	$(top_srcdir)/src/pocketvox-notifier.h \
-	$(top_srcdir)/src/pocketvox-controller.h \
+	$(top_srcdir)/src/pocketvox-types.h 		\
+	$(top_srcdir)/src/pocketvox-recognizer.h 	\
+	$(top_srcdir)/src/pocketvox-dictionnary.h 	\
+	$(top_srcdir)/src/pocketvox-module.h 		\
+	$(top_srcdir)/src/pocketvox-chooser.h		\
+	$(top_srcdir)/src/pocketvox-indicator.h 	\
+	$(top_srcdir)/src/pocketvox-notifier.h		\
+	$(top_srcdir)/src/pocketvox-controller.h 	\
 	$(top_srcdir)/src/pocketvox-application.h
 
 sources_c = \
-	pocketvox-recognizer.c \
+	pocketvox-recognizer.c 	\
 	pocketvox-dictionnary.c \
-	pocketvox-indicator.c \
-	pocketvox-notifier.c \
-	pocketvox-controller.c \
-	pocketvox-module.c \
+	pocketvox-chooser.c		\
+	pocketvox-indicator.c 	\
+	pocketvox-notifier.c 	\
+	pocketvox-controller.c 	\
+	pocketvox-module.c 		\
 	pocketvox-application.c
 
 lib_LTLIBRARIES = libpocketvox-1.0.la
@@ -421,6 +427,7 @@ libpocketvox_1_0_la_SOURCES = \
 libpocketvox_1_0_la_LDFLAGS = \
 	-lglib-2.0   \
 	-lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0   \
+	-lgdk-3 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0   \
 	-pthread -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lxml2 -lglib-2.0   \
 	-lappindicator3 -ldbusmenu-glib -lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0   \
 	-lnotify -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0   \
@@ -434,6 +441,7 @@ pocketvox_LDADD = \
 	${top_builddir}/src/libpocketvox-1.0.la	\
 	-lglib-2.0   \
 	-lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0   \
+	-lgdk-3 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0   \
 	-pthread -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lxml2 -lglib-2.0   \
 	-lappindicator3 -ldbusmenu-glib -lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0   \
 	-lnotify -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0   \
@@ -449,9 +457,9 @@ INTROSPECTION_GIRS = Pocketvox_1_0_gir $(am__append_1)
 INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) --warn-all
 INTROSPECTION_COMPILER_ARGS = 
 introspection_sources = $(libpocketvox_1_0_la_SOURCES)
-Pocketvox_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gst-0.10 Gtk-3.0 Notify-0.7 AppIndicator3-0.1
+Pocketvox_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gst-0.10 Gtk-3.0 Gdk-3.0 Notify-0.7 AppIndicator3-0.1
 Pocketvox_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
-Pocketvox_1_0_gir_PACKAGES = gtk+-3.0 gobject-2.0 glib-2.0 appindicator3-0.1 libnotify pocketsphinx gstreamer-0.10
+Pocketvox_1_0_gir_PACKAGES = gtk+-3.0 gdk-3.0 gobject-2.0 glib-2.0 appindicator3-0.1 libnotify pocketsphinx gstreamer-0.10
 Pocketvox_1_0_gir_LIBS = libpocketvox-1.0.la
 Pocketvox_1_0_gir_FILES = $(introspection_sources)
 Pocketvox_1_0_gir_NAMESPACE = Pocketvox
@@ -593,6 +601,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/pocketvox-application.Plo
+include ./$(DEPDIR)/pocketvox-chooser.Plo
 include ./$(DEPDIR)/pocketvox-controller.Plo
 include ./$(DEPDIR)/pocketvox-dictionnary.Plo
 include ./$(DEPDIR)/pocketvox-indicator.Plo
