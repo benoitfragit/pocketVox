@@ -39,6 +39,7 @@ GType pocketvox_notifier_get_type (void) G_GNUC_CONST;
 PocketvoxNotifier* pocketvox_notifier_new();
 
 void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpointer user_data);
+void pocketvox_notifier_set_voice(PocketvoxNotifier *notifier, gchar *voice);
 
 G_END_DECLS
 #endif

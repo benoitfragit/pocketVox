@@ -12,6 +12,7 @@ enum
 	INDICATOR_ACOUSTIC,
 	INDICATOR_QUIT,
 	INDICATOR_MODULE_TOGGLED,
+	INDICATOR_LANGUAGE_TOGGLED,
 	LAST_SIGNAL
 };
 
@@ -30,6 +31,8 @@ struct _PocketvoxIndicatorPrivate
 	//GList contenant les MenuItems pour chaque modules
 	GHashTable *table;
 	GtkWidget* modulesMenu;
+	
+	GHashTable *language;
 	GtkWidget* espeakMenu;
 };
 
@@ -44,6 +47,15 @@ static void pocketvox_indicator_dispose(GObject *object)
 
 static void pocketvox_indicator_finalize(GObject *object)
 {
+	PocketvoxIndicator *indicator = (PocketvoxIndicator *)object;
+	
+	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
+			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
+	PocketvoxIndicatorPrivate *priv = indicator->priv;
+	
+	g_hash_table_destroy(priv->table);
+	g_hash_table_destroy(priv->language);
+	
 	G_OBJECT_CLASS (pocketvox_indicator_parent_class)->finalize (object);
 }
 
@@ -150,6 +162,18 @@ static void pocketvox_indicator_class_init (PocketvoxIndicatorClass *klass)
                      1,
                      G_TYPE_STRING
         );
+
+    pocketvox_indicator_signals[INDICATOR_LANGUAGE_TOGGLED] =
+        g_signal_new("indicator_language_toggled",
+                     G_TYPE_FROM_CLASS(klass),
+                     G_SIGNAL_RUN_LAST,
+                     0,
+                     NULL, NULL,
+                     g_cclosure_marshal_VOID__POINTER,
+                     G_TYPE_NONE,
+                     1,
+                     G_TYPE_STRING
+        );
 }
 
 static void pocketvox_indicator_free_item(gpointer data){}
@@ -171,6 +195,7 @@ static void pocketvox_indicator_init (PocketvoxIndicator *indicator)
 	priv->state 		= POCKETVOX_STATE_STOP;
 	priv->table			= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_indicator_free_item);
 	
+	priv->language		= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_indicator_free_item);
 	priv->espeakMenu 	= gtk_menu_new();
 }
 
@@ -217,24 +242,77 @@ static void pocketvox_indicator_acoustic(GtkMenuItem *item, gpointer user_data)
 	g_signal_emit(indicator, pocketvox_indicator_signals[INDICATOR_ACOUSTIC], 0);
 }
 
+static void pocketvox_indicator_toggle_language(gpointer key , gpointer value, gpointer data)
+{
+	gchar *k = (gchar *)key;
+	gchar *l = (gchar *)data;
+	
+	GtkCheckMenuItem *item = (GtkCheckMenuItem *)value;
+	
+	gtk_check_menu_item_set_active(item, !g_strcmp0(k,l));
+}
+
+static void pocketvox_indicator_switch_language(PocketvoxIndicator *indicator, gpointer data)
+{
+	g_return_if_fail(NULL != indicator);
+	
+	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
+			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
+	PocketvoxIndicatorPrivate *priv = indicator->priv;
+	
+	GtkCheckMenuItem *item = (GtkCheckMenuItem *)data;
+	
+	if(gtk_check_menu_item_get_active(item))
+	{
+		const gchar *label = gtk_menu_item_get_label((GtkMenuItem *)item);
+	
+		gchar *tmp = g_strdup(label);
+	
+		g_hash_table_foreach(priv->language, pocketvox_indicator_toggle_language, tmp);
+		
+		g_signal_emit(indicator, pocketvox_indicator_signals[INDICATOR_LANGUAGE_TOGGLED], 0, gtk_menu_item_get_label((GtkMenuItem *)item));
+
+		g_free(tmp);
+	}
+}
+
 static void pocketvox_indicator_load_tts_voice(PocketvoxIndicator *indicator)
 {
 	g_return_if_fail(NULL != indicator);
+
+	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
+			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
+	PocketvoxIndicatorPrivate *priv = indicator->priv;
 	
 	gchar *voicesPath = (gchar *)g_getenv("ESPEAK_VOICES_PATH");
 	
 	g_return_if_fail(NULL != voicesPath);
 	
 	GDir *dir = g_dir_open(voicesPath, 0, NULL);
-	
 	const gchar *file ;
+	
 	while ((file = g_dir_read_name(dir)) != NULL)
 	{
 		gchar *path = g_strdup_printf("%s/%s", voicesPath, file);
 		
 		if(g_file_test(path, G_FILE_TEST_IS_DIR) == FALSE)
-		{
-			g_warning("%s", file);
+		{			
+			GtkWidget* item = gtk_check_menu_item_new_with_label(file);
+			gtk_check_menu_item_set_draw_as_radio((GtkCheckMenuItem *)item, TRUE);
+			
+			if(!g_strcmp0(file, "default"))
+			{
+				gtk_check_menu_item_set_active((GtkCheckMenuItem *)item, TRUE); 
+			}
+			
+			g_signal_connect_swapped((GtkCheckMenuItem *)item, "toggled", G_CALLBACK(pocketvox_indicator_switch_language), indicator);
+			
+			g_hash_table_insert(priv->language, g_strdup(file), item);
+				
+			gtk_menu_shell_append((GtkMenuShell *)priv->espeakMenu, item);
+			gtk_widget_queue_draw(priv->espeakMenu);
+			
+			gtk_widget_show(item);			
 		}
 		
 		g_free(path);
@@ -251,9 +329,6 @@ PocketvoxIndicator* pocketvox_indicator_new()
 	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
 			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
 	PocketvoxIndicatorPrivate *priv = indicator->priv;
-
-	pocketvox_indicator_load_tts_voice(indicator);
-
 
 	app_indicator_set_status(priv->applet, APP_INDICATOR_STATUS_ACTIVE);
 
@@ -278,6 +353,7 @@ PocketvoxIndicator* pocketvox_indicator_new()
 
 	gtk_menu_item_set_submenu((GtkMenuItem *)sphinxItem, sphinxMenu);
 
+	pocketvox_indicator_load_tts_voice(indicator);
 	GtkWidget *espeakItem = gtk_menu_item_new_with_label("Espeak");
 	gtk_menu_item_set_submenu((GtkMenuItem *)espeakItem, priv->espeakMenu);
 

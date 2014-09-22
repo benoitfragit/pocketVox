@@ -228,6 +228,18 @@ void pocketvox_controller_set_module_state(PocketvoxController *controller, gpoi
 	pocketvox_module_set_activated(module, !pocketvox_module_get_activated(module));
 }
 
+static void pocketvox_controller_set_voice(PocketvoxController* controller, gpointer v, gpointer user_data)
+{
+	gchar *voice = (gchar *)v;
+	g_return_if_fail(NULL != controller);
+	g_return_if_fail(NULL != voice);
+	
+	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
+			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
+	PocketvoxControllerPrivate *priv = controller->priv;
+	
+	pocketvox_notifier_set_voice(priv->notifier, voice);	
+}
 
 PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer, 
 											  PocketvoxNotifier	*notifier,
@@ -288,6 +300,12 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 							"indicator_module_toggled",
 							G_CALLBACK(pocketvox_controller_set_module_state),
 							controller);
+	
+	g_signal_connect_swapped(priv->indicator,
+							"indicator_language_toggled",
+							G_CALLBACK(pocketvox_controller_set_voice),
+							controller);
+	
 	
 	return controller;
 }
