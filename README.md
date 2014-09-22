@@ -32,5 +32,13 @@ you can type first
 
 sudo apt-get install glib-2.0 gobject-2.0 glib-2.0 gstreamer-0.10 libnotify appindicator3-0.10 espeak
 
+TODO
+====
+
+  * Adding a sound notification
+  * Adding a virtual method to run personal command
+
+
+
 Then install the lates version of pocketsphin, sphinxbase, cmuclmtk
 
