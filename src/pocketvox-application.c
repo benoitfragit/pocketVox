@@ -131,3 +131,27 @@ void pocketvox_application_start(PocketvoxApplication *application)
 	
 	pocketvox_controller_start(priv->controller);			
 }
+
+void pocketvox_application_add_module(PocketvoxApplication *application, PocketvoxModule *module)
+{
+	g_return_if_fail(NULL != application);
+	g_return_if_fail(NULL != module);
+	
+	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
+			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
+	PocketvoxApplicationPrivate *priv = application->priv;	
+	
+	pocketvox_controller_add_module(priv->controller, module);
+}
+
+void pocketvox_application_remove_module(PocketvoxApplication *application, gchar *id)
+{
+	g_return_if_fail(NULL != application);
+	g_return_if_fail(NULL != id);
+	
+	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
+			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
+	PocketvoxApplicationPrivate *priv = application->priv;	
+	
+	pocketvox_controller_remove_module(priv->controller, id);	
+}

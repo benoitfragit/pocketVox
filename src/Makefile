@@ -277,7 +277,7 @@ LDFLAGS =
 LIBNOTIFY_CFLAGS = -pthread -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/libpng12  
 LIBNOTIFY_LIBS = -lnotify -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0  
 LIBOBJS = 
-LIBS = 
+LIBS = -lespeak 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -388,6 +388,7 @@ AM_CPPFLAGS = \
 
 AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 include_HEADERS = \
+	$(top_srcdir)/config.h	\
 	pocketvox-types.h 		\
 	pocketvox-recognizer.h 	\
 	pocketvox-dictionnary.h \

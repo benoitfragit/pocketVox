@@ -185,7 +185,7 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 	g_hash_table_foreach(priv->modules, pocketvox_module_make_request, request);
 	
 	GList* modules = g_hash_table_get_values(priv->modules);
-	gint i;
+	gint i, j;
 	gdouble mindist = -1.0f;
 	gdouble dist;
 	gchar *cmd = NULL;
@@ -199,10 +199,14 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 		if(pocketvox_module_get_activated(module) == TRUE && (dist < mindist || i==0 ))
 		{
 			mindist = dist;
-			cmd = pocketvox_module_get_command(module);
+			j = i;
 		}
 	}
 	
+	PocketvoxModule *m = g_list_nth_data(modules, j);
+	pocketvox_module_execute(m);
+	
+	cmd = pocketvox_module_get_command(m);
 	g_warning("%s",cmd);
 	
 	g_list_free(modules);

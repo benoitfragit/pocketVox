@@ -4,6 +4,10 @@ AM_COMMON_FLAGS = $(DEPS_CFLAGS) $(COMPILER_FLAGS) \
 	    -DPKGLIBDIR=\"$(pkglibdir)/\"    \
 	    -DLOCALEDIR=\""$(localedir)"\" \
 	    -Wall -Werror -g3 -O2 -lm
+
+if HAVE_LIBESPEAK
+	AM_COMMON_FLAGS += -lespeak
+endif
 	    
 AM_CPPFLAGS = 						\
     -I ${top_srcdir}/src/			\
@@ -21,11 +25,12 @@ DEBUG_CFLAGS = @DEBUG_CFLAGS@
 AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 
 include_HEADERS = 			\
+	$(top_srcdir)/config.h	\
 	pocketvox-types.h 		\
 	pocketvox-recognizer.h 	\
 	pocketvox-dictionnary.h \
 	pocketvox-module.h 		\
-	pocketvox-chooser.h		\	
+	pocketvox-chooser.h		\
 	pocketvox-indicator.h 	\
 	pocketvox-notifier.h 	\
 	pocketvox-controller.h 	\

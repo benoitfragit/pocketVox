@@ -137,6 +137,12 @@ AC_SUBST(GOBJECT_CFLAGS)
 AC_SUBST(GOBJECT_LIBS)
 
 dnl
+dnl Test espeak lib
+dnl
+AC_CHECK_LIB([espeak], [espeak_Initialize])
+AS_IF([test "$ac_cv_lib_espeak_espeak_Initialize" = yes], [HAVE_LIBESPEAK=1], [HAVE_LIBESPEAK=0])
+
+dnl
 dnl Add Extra CFLAGS
 dnl
 WARNING_CFLAGS=" -Wall  -Werror  -Wshadow \

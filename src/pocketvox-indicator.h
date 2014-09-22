@@ -4,7 +4,6 @@
 #include <glib.h>
 #include <glib-object.h>
 
-
 G_BEGIN_DECLS
 
 #define TYPE_POCKETVOX_INDICATOR                  (pocketvox_indicator_get_type ())

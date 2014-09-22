@@ -19,23 +19,24 @@ typedef struct _PocketvoxModuleClass            PocketvoxModuleClass;
 
 struct _PocketvoxModule
 {
-  /*< private >*/
-  GInitiallyUnowned parent_instance;
+	/*< private >*/
+	GInitiallyUnowned parent_instance;
 
-  PocketvoxModulePrivate *priv;
+	PocketvoxModulePrivate *priv;
 };
 
 struct _PocketvoxModuleClass
 {
-  /*< private >*/
-  GInitiallyUnownedClass parent_class;
+	/*< private >*/
+	GInitiallyUnownedClass parent_class;
 
-  /*public funcs and data here*/
+	/*public funcs and data here*/
+	void (*execute)(PocketvoxModule *module);
+	
 };
 
 GType pocketvox_module_get_type (void) G_GNUC_CONST;
-
-
+	
 PocketvoxModule* pocketvox_module_new(gchar *id, gchar *path, gboolean loadtfidf);
 void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_data);
 gchar* pocketvox_module_get_id(PocketvoxModule *module);
@@ -45,6 +46,9 @@ void pocketvox_module_free(gpointer data);
 gdouble pocketvox_module_get_score(PocketvoxModule *module);
 gchar* pocketvox_module_get_command(PocketvoxModule *module);
 void pocketvox_module_get_raw(PocketvoxModule *module, gchar *raw);
+
+//overwritten by virtual methode
+void pocketvox_module_execute(PocketvoxModule *module);
 G_END_DECLS
 
 #endif

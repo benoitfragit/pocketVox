@@ -1,6 +1,13 @@
 #include "pocketvox-notifier.h"
 #include <libnotify/notify.h>
 
+#include "config.h"
+#include <string.h>
+
+#ifdef HAVE_LIBESPEAK
+	#include <espeak/speak_lib.h>
+#endif
+
 enum
 {
 	PROP_0,
@@ -80,6 +87,16 @@ static void pocketvox_notifier_init (PocketvoxNotifier *notifier){
 	priv->msg = NULL;
 	
 	notify_init ("PocketVox");
+	
+#ifdef HAVE_LIBESPEAK
+	espeak_AUDIO_OUTPUT output;
+	gint Buflength = 50;
+	gint Options=0;
+	gchar *path = NULL;
+	
+    espeak_Initialize(output, Buflength, path, Options );	
+    espeak_SetVoiceByName("fr");
+#endif	
 }
 
 static void pocketvox_notifier_bubble_notification(PocketvoxNotifier*notifier)
@@ -97,8 +114,30 @@ static void pocketvox_notifier_bubble_notification(PocketvoxNotifier*notifier)
 	g_object_unref(G_OBJECT(Bubble));	
 }
 
+#ifdef HAVE_LIBESPEAK
+static void pocketvox_notifier_sound_notification(PocketvoxNotifier *notifier)
+{
+	g_return_if_fail(NULL != notifier);
+	
+	notifier->priv = G_TYPE_INSTANCE_GET_PRIVATE (notifier,
+			TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierPrivate);
+	PocketvoxNotifierPrivate *priv = notifier->priv;	
+
+	guint Size = strlen(priv->msg) + 1;
+	guint position=0, end_position=0, flags=espeakCHARS_AUTO, *unique_identifier;
+	espeak_POSITION_TYPE position_type;
+	void* user_data;
+
+    espeak_Synth( priv->msg, Size, position, position_type, end_position, flags,
+    unique_identifier, user_data );
+    espeak_Synchronize( );	
+}
+#endif
+
 void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpointer user_data)
 {
+	g_return_if_fail(notifier != NULL);
+	
 	notifier->priv = G_TYPE_INSTANCE_GET_PRIVATE (notifier,
 			TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierPrivate);
 	PocketvoxNotifierPrivate *priv = notifier->priv;	
@@ -109,6 +148,10 @@ void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpoint
 	priv->msg = g_strdup((gchar *)hyp);
 	
 	pocketvox_notifier_bubble_notification(notifier);
+
+#ifdef HAVE_LIBESPEAK
+	pocketvox_notifier_sound_notification(notifier);
+#endif
 }
 
 PocketvoxNotifier* pocketvox_notifier_new()

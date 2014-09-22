@@ -191,3 +191,12 @@ void pocketvox_module_get_raw(PocketvoxModule *module, gchar *raw)
 	//get the raw sentence from the dictionnary
 	pocketvox_dictionnary_get_raw(priv->dict, raw);	
 }
+
+void pocketvox_module_execute(PocketvoxModule *module)
+{
+	g_return_if_fail(NULL != module);
+	
+	g_return_if_fail(NULL != POCKETVOX_MODULE_GET_CLASS(module)->execute);
+	
+	POCKETVOX_MODULE_GET_CLASS(module)->execute(module);
+}
