@@ -141,6 +141,8 @@ dnl Test espeak lib
 dnl
 AC_CHECK_LIB([espeak], [espeak_Initialize])
 AS_IF([test "$ac_cv_lib_espeak_espeak_Initialize" = yes], [HAVE_LIBESPEAK=1], [HAVE_LIBESPEAK=0])
+AM_CONDITIONAL([HAVE_LIBESPEAK], [test "$ac_cv_lib_espeak_espeak_Initialize" = yes])
+
 
 dnl
 dnl Add Extra CFLAGS

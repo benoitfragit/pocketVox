@@ -27,6 +27,7 @@ AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 include_HEADERS = 			\
 	$(top_srcdir)/config.h	\
 	pocketvox-types.h 		\
+	pocketvox-profile.h		\
 	pocketvox-recognizer.h 	\
 	pocketvox-dictionnary.h \
 	pocketvox-module.h 		\
@@ -38,6 +39,7 @@ include_HEADERS = 			\
 
 sources_h = 									\
 	$(top_srcdir)/src/pocketvox-types.h 		\
+	$(top_srcdir)/src/pocketvox-profile.h		\
 	$(top_srcdir)/src/pocketvox-recognizer.h 	\
 	$(top_srcdir)/src/pocketvox-dictionnary.h 	\
 	$(top_srcdir)/src/pocketvox-module.h 		\
@@ -48,6 +50,7 @@ sources_h = 									\
 	$(top_srcdir)/src/pocketvox-application.h
 
 sources_c = \
+	pocketvox-profile.c		\
 	pocketvox-recognizer.c 	\
 	pocketvox-dictionnary.c \
 	pocketvox-chooser.c		\

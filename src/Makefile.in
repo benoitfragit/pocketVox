@@ -131,10 +131,11 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libpocketvox_1_0_la_LIBADD =
-am__objects_1 = pocketvox-recognizer.lo pocketvox-dictionnary.lo \
-	pocketvox-chooser.lo pocketvox-indicator.lo \
-	pocketvox-notifier.lo pocketvox-controller.lo \
-	pocketvox-module.lo pocketvox-application.lo
+am__objects_1 = pocketvox-profile.lo pocketvox-recognizer.lo \
+	pocketvox-dictionnary.lo pocketvox-chooser.lo \
+	pocketvox-indicator.lo pocketvox-notifier.lo \
+	pocketvox-controller.lo pocketvox-module.lo \
+	pocketvox-application.lo
 am__objects_2 =
 am_libpocketvox_1_0_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libpocketvox_1_0_la_OBJECTS = $(am_libpocketvox_1_0_la_OBJECTS)
@@ -390,6 +391,7 @@ AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 include_HEADERS = \
 	$(top_srcdir)/config.h	\
 	pocketvox-types.h 		\
+	pocketvox-profile.h		\
 	pocketvox-recognizer.h 	\
 	pocketvox-dictionnary.h \
 	pocketvox-module.h 		\
@@ -401,6 +403,7 @@ include_HEADERS = \
 
 sources_h = \
 	$(top_srcdir)/src/pocketvox-types.h 		\
+	$(top_srcdir)/src/pocketvox-profile.h		\
 	$(top_srcdir)/src/pocketvox-recognizer.h 	\
 	$(top_srcdir)/src/pocketvox-dictionnary.h 	\
 	$(top_srcdir)/src/pocketvox-module.h 		\
@@ -411,6 +414,7 @@ sources_h = \
 	$(top_srcdir)/src/pocketvox-application.h
 
 sources_c = \
+	pocketvox-profile.c		\
 	pocketvox-recognizer.c 	\
 	pocketvox-dictionnary.c \
 	pocketvox-chooser.c		\
@@ -609,6 +613,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-module.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-notifier.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-profile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pocketvox-recognizer.Plo@am__quote@
 
 .c.o:
@@ -931,6 +936,8 @@ uninstall-am: uninstall-binPROGRAMS uninstall-girDATA \
 	uninstall-girDATA uninstall-includeHEADERS \
 	uninstall-libLTLIBRARIES uninstall-typelibDATA
 
+
+@HAVE_LIBESPEAK_TRUE@	AM_COMMON_FLAGS += -lespeak
 
 -include $(INTROSPECTION_MAKEFILE)
 
