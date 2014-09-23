@@ -1,6 +1,9 @@
+
+
 **POCKETVOX**
 =============
-Pocketvox is a library written in C by [Benoit Franquet](https://plus.google.com/117186375453277453598/posts). It uses [Pocketsphinx](http://cmusphinx.sourceforge.net/wiki/tutorialpocketsphinx) to do voice recognition. The voice recognition is done offline and doesn't nee any Internet connexion.![enter image description here](https://lh6.googleusercontent.com/-lAbMX8K--nU/VBlPcvFbZRI/AAAAAAAAB1Q/gUlz82rmoYk/s256-no/icons.png)  It's aim is to provide an efficient way to integrate voice recognition on the Linux desktop. More particularly, its main goal is to give to visual impaired (as I am) a powerfull tool to control their desktop. 
+![enter image description here](https://lh6.googleusercontent.com/-lAbMX8K--nU/VBlPcvFbZRI/AAAAAAAAB1Q/gUlz82rmoYk/s256-no/icons.png)
+Pocketvox is a library written in C by [Benoit Franquet](https://plus.google.com/117186375453277453598/posts). It uses [Pocketsphinx](http://cmusphinx.sourceforge.net/wiki/tutorialpocketsphinx) to do voice recognition. The voice recognition is done offline and doesn't nee any Internet connexion.  It's aim is to provide an efficient way to integrate voice recognition on the Linux desktop. More particularly, its main goal is to give to visual impaired (as I am) a powerfull tool to control their desktop. 
 
 The philosophy of pocketvox is to make a powerfull and collaborative voice recognition library. In order to do this, pocketvox will dispose of a Python interface in order to make everyone able to develop modules
 It give two main way to develop modules:
@@ -64,32 +67,19 @@ In order to find the nearest sentence, I've choosen to use tf-idf indexation tec
 DEPENDANCIES
 ============
 
-Before using this library you need to install all dependancies:
+First of all install sphinxbase, pocketsphinx and cmuclmtk from th CmuSphinx website. 
 
-* pocketsphinx
-* sphinxbase
-* glib-2.0
-* gstreamer-0.10
-* gobject-2.0
-* libnotify
-* appindicator3-0.1
-* espeak
-* cmuclmtk
+[sphinxbase/pocketsphinx installation from source](http://cmusphinx.sourceforge.net/wiki/tutorialpocketsphinx)
 
-If you want to deelop for the root of pocketvox you need to install gobject-introspection-1.0
+Then you can also intall cmuclmtk to generate your own language model 
+[cmuclmtk  installation](http://cmusphinx.sourceforge.net/wiki/cmuclmtkdevelopment) 
 
-you can type first
+Once you have downloaded and installed pocketsphinx, sphinxbase and cmuclmtk, you could also download a language model, a dictionnary and an acoustic model for you language [here](http://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/)
 
-sudo apt-get install glib-2.0 gobject-2.0 glib-2.0 gstreamer-0.10 libnotify appindicator3-0.10 espeak
+Now we are going to install other dependancies:
 
-TODO
-====
-
-  * Adding a sound notification
-  * Adding a virtual method to run personal command
-
-
-
-Then install the lates version of pocketsphin, sphinxbase, cmuclmtk
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo apt-get install libglib2.0-0 libgirepository-1.0.1 libgirepository1.0-dev libgstreamer-0.10-plugin-base gstramer-0.10-plugin-bad gir1.2-gstreamer-0.10 gstreamer-0.10-plugin-good  gir1.2-appindicator3-0.1 libappindicator3-1 libappindicator3-dev libespeak-dev libespeak1 libnotify-dev gir1.2-gtk-3.0 libgtk-3-0 gobject-introspection
 
 
