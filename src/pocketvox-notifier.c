@@ -17,6 +17,7 @@ struct _PocketvoxNotifierPrivate
 {
 	gchar *msg;
 	gchar *voice;
+	gchar *name;
 };
 
 G_DEFINE_TYPE (PocketvoxNotifier, pocketvox_notifier, G_TYPE_OBJECT);
@@ -36,6 +37,7 @@ static void pocketvox_notifier_finalize(GObject *object)
 	
 	if(priv->msg != NULL) g_free(priv->msg);
 	if(priv->voice != NULL) g_free(priv->voice);
+	if(priv->name != NULL) g_free(priv->name);
 	
 	notify_uninit();
 	
@@ -91,6 +93,7 @@ static void pocketvox_notifier_init (PocketvoxNotifier *notifier){
 	notify_init ("PocketVox");
 	
 	priv->voice = g_strdup("default");
+	priv->name = g_strdup("user");
 	
 #ifdef HAVE_LIBESPEAK
 	espeak_AUDIO_OUTPUT output;
@@ -138,6 +141,21 @@ static void pocketvox_notifier_sound_notification(PocketvoxNotifier *notifier)
 }
 #endif
 
+void pocketvox_notifier_say(PocketvoxNotifier *notifier, gchar *msg)
+{
+	g_return_if_fail(NULL != msg);
+	g_return_if_fail(NULL != notifier);
+	
+	notifier->priv = G_TYPE_INSTANCE_GET_PRIVATE (notifier,
+			TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierPrivate);
+	PocketvoxNotifierPrivate *priv = notifier->priv;
+	
+	priv->msg = g_strdup(msg);	
+	
+	pocketvox_notifier_sound_notification(notifier);
+}
+
+
 void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpointer user_data)
 {
 	g_return_if_fail(notifier != NULL);
@@ -158,9 +176,20 @@ void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpoint
 #endif
 }
 
-PocketvoxNotifier* pocketvox_notifier_new()
+PocketvoxNotifier* pocketvox_notifier_new(gchar *name, gchar *voice)
 {
 	PocketvoxNotifier *notifier = (PocketvoxNotifier *)g_object_new(TYPE_POCKETVOX_NOTIFIER, NULL);
+	
+	notifier->priv = G_TYPE_INSTANCE_GET_PRIVATE (notifier,
+			TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierPrivate);
+	PocketvoxNotifierPrivate *priv = notifier->priv;	
+		
+	priv->name 	= g_strdup(name);
+	priv->voice = g_strdup(voice);
+	
+#ifdef HAVE_LIBESPEAK	
+    espeak_SetVoiceByName(priv->voice);
+#endif
 	
 	return notifier;																		
 }

@@ -2,11 +2,8 @@
 
 int main(int argc, char **argv)
 {	
-	gchar *dict 	= "/home/benoit/Projet/voicerecognition/frenchWords62K.dic";
-	gchar *lm 		= "/home/benoit/Projet/voicerecognition/lm/dictionnary.lm.dmp";
-	gchar *acoustic = "/home/benoit/Projet/voicerecognition/lium_french_f0";
-	
-	PocketvoxApplication *application = pocketvox_application_new(acoustic, lm, dict);
+
+	PocketvoxApplication *application = pocketvox_application_new("/home/benoit/Bureau/benoit.profile");
 
 
 	PocketvoxModule *m1 = pocketvox_module_new("Move", "/home/benoit/Projet/google2ubuntu/workinprogress/test.txt", FALSE);

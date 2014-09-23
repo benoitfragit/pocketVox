@@ -19,6 +19,8 @@ struct _PocketvoxApplicationPrivate
 	PocketvoxRecognizer *recognizer;
 	
 	PocketvoxController *controller;
+	
+	PocketvoxProfile 	*profile;
 };
 
 G_DEFINE_TYPE (PocketvoxApplication, pocketvox_application, G_TYPE_OBJECT);
@@ -40,6 +42,7 @@ static void pocketvox_application_finalize(GObject *object)
 	g_object_unref(priv->notifier);
 	g_object_unref(priv->indicator);
 	g_object_unref(priv->controller);
+	g_object_unref(priv->profile);
 	
 	G_OBJECT_CLASS (pocketvox_application_parent_class)->finalize (object);
 }
@@ -92,10 +95,13 @@ static void pocketvox_application_init (PocketvoxApplication *application){
 	priv->notifier 		= NULL;
 	priv->controller 	= NULL;
 	priv->indicator 	= NULL;
+	priv->profile		= NULL;
 }
 
-PocketvoxApplication* pocketvox_application_new(gchar* acoustic, gchar *lm, gchar *dic)
+PocketvoxApplication* pocketvox_application_new(gchar* path)
 {
+	g_return_val_if_fail(NULL != path, NULL);
+	
 	PocketvoxApplication *application = (PocketvoxApplication *)g_object_new(TYPE_POCKETVOX_APPLICATION, NULL);
 
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
@@ -104,11 +110,27 @@ PocketvoxApplication* pocketvox_application_new(gchar* acoustic, gchar *lm, gcha
 	
 	gtk_init(NULL, NULL);
 	gst_init(NULL, NULL);
-	
+
+	//read the user profile
+	priv->profile		= pocketvox_profile_new(path);
+
 	priv->indicator 	= pocketvox_indicator_new();
-	priv->notifier 		= pocketvox_notifier_new();
+
+	//we will set the starting voice and give your name here
+	gchar *name 		= pocketvox_profile_get_name(priv->profile);
+	gchar *voice		= pocketvox_profile_get_voice(priv->profile);
+	gchar *lm			= pocketvox_profile_get_lm(priv->profile);
+	gchar *dic			= pocketvox_profile_get_dict(priv->profile);
+	gchar *acoustic		= pocketvox_profile_get_acoustic(priv->profile);
+	
+	priv->notifier 		= pocketvox_notifier_new(name, voice);
 	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic);
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
+
+	//a little startup msg
+	gchar *startup = g_strdup_printf("Hello %s, I'm earing you", name);
+	pocketvox_notifier_say(priv->notifier, startup);
+	g_free(startup);
 
 	return application;																		
 }
