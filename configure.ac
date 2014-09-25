@@ -10,6 +10,9 @@ m4_define([pocketvox_micro], [1])
 m4_define([pocketvox_version],
         [pocketvox_major.pocketvox_minor.pocketvox_micro])
 
+
+AC_CONFIG_MACRO_DIR(m4)
+
 # autoconf
 AC_INIT([pocketvox],[pocketvox_version])
 AC_CONFIG_MACRO_DIR([build/autotools])
@@ -161,9 +164,18 @@ AC_SUBST(DEBUG_CFLAGS)
 
 GOBJECT_INTROSPECTION_CHECK([1.38.0])
 
+# check for gtk-doc
+m4_ifdef([GTK_DOC_CHECK], [
+GTK_DOC_CHECK([1.18],[--flavour no-tmpl])
+],[
+AM_CONDITIONAL([ENABLE_GTK_DOC], false)
+])
+
 AC_CONFIG_FILES([
                 Makefile
                 src/Makefile
+                docs/Makefile
+                docs/reference/Makefile
                 pocketvox.pc
 ])
 

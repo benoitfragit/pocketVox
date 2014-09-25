@@ -92,7 +92,8 @@ am__aclocal_m4_deps = $(top_srcdir)/build/autotools/libtool.m4 \
 	$(top_srcdir)/build/autotools/ltsugar.m4 \
 	$(top_srcdir)/build/autotools/ltversion.m4 \
 	$(top_srcdir)/build/autotools/lt~obsolete.m4 \
-	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/gtk-doc.m4 $(top_srcdir)/m4/introspection.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -260,6 +261,13 @@ GSTREAMER_CFLAGS = -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.
 GSTREAMER_LIBS = -pthread -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lxml2 -lglib-2.0  
 GTK3_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/atk-1.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/pixman-1 -I/usr/include/libpng12  
 GTK3_LIBS = -lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0  
+GTKDOC_CHECK = gtkdoc-check.test
+GTKDOC_CHECK_PATH = /usr/bin/gtkdoc-check
+GTKDOC_DEPS_CFLAGS = -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include  
+GTKDOC_DEPS_LIBS = -lgobject-2.0 -lglib-2.0  
+GTKDOC_MKPDF = /usr/bin/gtkdoc-mkpdf
+GTKDOC_REBASE = /usr/bin/gtkdoc-rebase
+HTML_DIR = ${datadir}/gtk-doc/html
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}

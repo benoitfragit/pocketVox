@@ -13,6 +13,14 @@ enum
 	PROP_0,
 };
 
+/**
+ * PocketvoxNotifier
+ * @msg: a message. 
+ * @voice: the voice to use.
+ * @name: the user name.
+ * 
+ * a structure to store information
+ */
 struct _PocketvoxNotifierPrivate 
 {
 	gchar *msg;
@@ -20,6 +28,14 @@ struct _PocketvoxNotifierPrivate
 	gchar *name;
 };
 
+
+/**
+* SECTION: PocketvoxNotifier
+* @short_description: A PocketvoxNotifier.
+* @include: pocketvox-notifier.h
+* 
+* The #PocketvoxNotifier is a Notifier.
+*/
 G_DEFINE_TYPE (PocketvoxNotifier, pocketvox_notifier, G_TYPE_OBJECT);
 
 static void pocketvox_notifier_dispose(GObject *object)
@@ -141,6 +157,14 @@ static void pocketvox_notifier_sound_notification(PocketvoxNotifier *notifier)
 }
 #endif
 
+/**
+ * pocketvox_notifier_say:
+ * @notifier: The #PocketvoxNotifier to use.
+ * @msg: a message to notify to the user.
+ * 
+ * Give a sound notification to the user
+ * 
+ */
 void pocketvox_notifier_say(PocketvoxNotifier *notifier, gchar *msg)
 {
 	g_return_if_fail(NULL != msg);
@@ -156,6 +180,15 @@ void pocketvox_notifier_say(PocketvoxNotifier *notifier, gchar *msg)
 }
 
 
+/**
+ * pocketvox_notifier_notify:
+ * @notifier: The #PocketvoxNotifier to use.
+ * @hyp: The text to pass to the notifier.
+ * @user_data: user data. 
+ * 
+ * Notify the user about important events with visual and sound notifications
+ * 
+ */ 
 void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpointer user_data)
 {
 	g_return_if_fail(notifier != NULL);
@@ -176,6 +209,15 @@ void pocketvox_notifier_notify(PocketvoxNotifier *notifier, gpointer hyp, gpoint
 #endif
 }
 
+/**
+ * pocketvox_notifier_new:
+ * @name  : the name of the user.
+ * @voice : espeak's voice to use.
+ * 
+ * Create a new PocketvoxNotifier
+ * 
+ * Returns: the new PocketvoxNotifier.
+ */ 
 PocketvoxNotifier* pocketvox_notifier_new(gchar *name, gchar *voice)
 {
 	PocketvoxNotifier *notifier = (PocketvoxNotifier *)g_object_new(TYPE_POCKETVOX_NOTIFIER, NULL);
@@ -194,6 +236,14 @@ PocketvoxNotifier* pocketvox_notifier_new(gchar *name, gchar *voice)
 	return notifier;																		
 }
 
+
+/**
+ * pocketvox_notifier_set_voice:
+ * @notifier: The #PocketvoxNotifier to modify.
+ * @voice: a gchar* representing an Espeak voice.
+ * 
+ * Set the Espeak's voice of the notifier
+ */
 void pocketvox_notifier_set_voice(PocketvoxNotifier *notifier, gchar *voice)
 {
 	g_return_if_fail(notifier 	!= NULL);
