@@ -57,6 +57,9 @@ A **PocketvoxModule** is an object that let Pocketvox able to do action on your 
 
 A **dictionnary** is basically a set of key/value, each key is a sentence, each value is an action or a value to execue an action in a switch/case structure.
 
+open my web browser = xdg-open www.google.com
+open my musics = xdg-open $HOME/Musics
+
 When the PocketvoxRecognizer detects that the user is speaking and get a result. Then all modules is looking in its dictionnary the nearest sentence and its associated action.
 
 SOME WORDS ON DICTIONNARY REQUEST !
@@ -83,3 +86,72 @@ Now we are going to install other dependancies:
     sudo apt-get install libglib2.0-0 libgirepository-1.0.1 libgirepository1.0-dev libgstreamer-0.10-plugin-base gstramer-0.10-plugin-bad gir1.2-gstreamer-0.10 gstreamer-0.10-plugin-good  gir1.2-appindicator3-0.1 libappindicator3-1 libappindicator3-dev libespeak-dev libespeak1 libnotify-dev gir1.2-gtk-3.0 libgtk-3-0 gobject-introspection
 
 
+**BUILD THE PROJECT FROM SOURCE**
+=============================
+
+Download ar clone the project on Github..
+
+    wget https://github.com/benoitfragit/pocketVox/archive/master.zip
+ 
+ Then you have to setup the environment variable using the setup.sh script. This script will set the following variable:
+ 
+ 1. LD_LIBRARY_PATH
+ 2. PKG_CONFIG_PATH  
+ 3. GST_PLUGIN_PATH
+ 4. GI_TYPELIB_PATH
+
+Once you have done this, you have to build the project autotools.
+
+    ./autogen.sh
+    make
+
+if you want to install on your system then type
+
+    sudo make install
+
+**DEVELOPING WITH THE LIBRARY**
+===========================
+
+Now that you have built the library you can develop for pocketvox.  If you want to develop a module the first thing to do is do write a dictionnary.
+
+DEVELOPING NEW MODULE IN C
+-------------------------------------
+If you want to develop a module in C you just have to create a GObject based object if you don't know how to proceed you can take an example by opening following files: pocketvox-notifier.h and pocketvox-notifier.c
+
+What is very powerfull with GObject is that you can herite from the PocketvoxModule type by modifying the following line in the .c file
+
+    G_DEFINE_TYPE (PocketvoxModule, pocketvox_module, TYPE_POCKETVOX_MODULE);
+
+Then add your methode in the pocketvox-your-module.c and add headers in pocketvox-your-module.h.
+
+Some best practices must be respected, for example:
+
+functions that user shouldn't access could be declared static in the .c file
+Private members could be declare in the .c file in the _PocketvoxYourModulePrivate structure
+
+If you need to implement a signal take example in the PocketvoxIndicator and in the PocketvoxController
+
+
+DEVELOPING NEW MODULE IN PYTHON
+---------------------------------------------
+
+In order to be dynamic and interactive, pocketvox has been design in order to have a python interface. 
+
+Be sure that the GI_TYPELIB_PATH point to the typelib created for pocketvox and the LD_LIBRARY_PATH point to the libpocketvox-1.0.la
+
+the first line to add to your program is the next one:
+
+`from gi.repository import Pocketvox as pv`
+
+Then create a class that inherite from pv.Module
+
+    def class MyModule(pv.Module)::
+	def __init__(self, id, path, loadtfidf):
+		self = pv.Module.new(id, path, loadtfidf)
+		
+The	the next thing you have to do is to redefine the execute function (virtual function from PocketvoxModule) by defining a function in the your module
+
+    def do_execute(self):
+    	#process the self.cmd field
+	
+Done, you only need to add your module to a PocketvoxApplication	
