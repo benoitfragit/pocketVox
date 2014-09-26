@@ -36,6 +36,16 @@ struct _PocketvoxIndicatorPrivate
 	GtkWidget* espeakMenu;
 };
 
+
+/**
+* SECTION: PocketvoxIndicator
+* @short_description: PocketvoxIndicator let the user manage params and module.
+* @include: pocketvox-indicator.h
+* 
+* The #PocketvoxIndicator allows the user to activate/deactivate the voice recognition
+* it lets the user change some settings and activate/deactivate modules
+* 
+*/
 G_DEFINE_TYPE (PocketvoxIndicator, pocketvox_indicator, G_TYPE_OBJECT);
 
 static guint pocketvox_indicator_signals[LAST_SIGNAL];
@@ -276,7 +286,7 @@ static void pocketvox_indicator_switch_language(PocketvoxIndicator *indicator, g
 	}
 }
 
-static void pocketvox_indicator_load_tts_voice(PocketvoxIndicator *indicator)
+static void pocketvox_indicator_load_tts_voice(PocketvoxIndicator *indicator, gchar *voice)
 {
 	g_return_if_fail(NULL != indicator);
 
@@ -300,7 +310,7 @@ static void pocketvox_indicator_load_tts_voice(PocketvoxIndicator *indicator)
 			GtkWidget* item = gtk_check_menu_item_new_with_label(file);
 			gtk_check_menu_item_set_draw_as_radio((GtkCheckMenuItem *)item, TRUE);
 			
-			if(!g_strcmp0(file, "default"))
+			if(!g_strcmp0(file, voice))
 			{
 				gtk_check_menu_item_set_active((GtkCheckMenuItem *)item, TRUE); 
 			}
@@ -322,7 +332,7 @@ static void pocketvox_indicator_load_tts_voice(PocketvoxIndicator *indicator)
 }
 
 
-PocketvoxIndicator* pocketvox_indicator_new()
+PocketvoxIndicator* pocketvox_indicator_new(gchar *voice)
 {
 	PocketvoxIndicator *indicator = (PocketvoxIndicator *)g_object_new(TYPE_POCKETVOX_INDICATOR, NULL);
 
@@ -353,7 +363,7 @@ PocketvoxIndicator* pocketvox_indicator_new()
 
 	gtk_menu_item_set_submenu((GtkMenuItem *)sphinxItem, sphinxMenu);
 
-	pocketvox_indicator_load_tts_voice(indicator);
+	pocketvox_indicator_load_tts_voice(indicator, voice);
 	GtkWidget *espeakItem = gtk_menu_item_new_with_label("Espeak");
 	gtk_menu_item_set_submenu((GtkMenuItem *)espeakItem, priv->espeakMenu);
 

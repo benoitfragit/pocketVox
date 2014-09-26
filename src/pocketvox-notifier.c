@@ -14,7 +14,17 @@ enum
 };
 
 /**
- * PocketvoxNotifier
+* SECTION: PocketvoxNotifier
+* @short_description: A PocketvoxNotifier.
+* @include: pocketvox-notifier.h
+* 
+* The #PocketvoxNotifier will send popup and sound notificatins to
+* the user. Sound notifications are managed using Espeak library
+*/
+G_DEFINE_TYPE (PocketvoxNotifier, pocketvox_notifier, G_TYPE_OBJECT);
+
+/**
+ * PocketvoxNotifier:
  * @msg: a message. 
  * @voice: the voice to use.
  * @name: the user name.
@@ -27,16 +37,6 @@ struct _PocketvoxNotifierPrivate
 	gchar *voice;
 	gchar *name;
 };
-
-
-/**
-* SECTION: PocketvoxNotifier
-* @short_description: A PocketvoxNotifier.
-* @include: pocketvox-notifier.h
-* 
-* The #PocketvoxNotifier is a Notifier.
-*/
-G_DEFINE_TYPE (PocketvoxNotifier, pocketvox_notifier, G_TYPE_OBJECT);
 
 static void pocketvox_notifier_dispose(GObject *object)
 {
@@ -243,6 +243,8 @@ PocketvoxNotifier* pocketvox_notifier_new(gchar *name, gchar *voice)
  * @voice: a gchar* representing an Espeak voice.
  * 
  * Set the Espeak's voice of the notifier
+ * be sure that the selected language is present on your system
+ * 
  */
 void pocketvox_notifier_set_voice(PocketvoxNotifier *notifier, gchar *voice)
 {

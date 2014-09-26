@@ -331,9 +331,11 @@ void pocketvox_controller_add_module(PocketvoxController *controller, PocketvoxM
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;
 	
+
 	gchar *id = pocketvox_module_get_id(module);
-	
+
 	g_hash_table_insert(priv->modules, g_strdup(id), module);	
+	
 	pocketvox_indicator_add_module_item(priv->indicator, id);
 }
 

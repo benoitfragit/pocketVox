@@ -17,9 +17,7 @@ struct _PocketvoxApplicationPrivate
 	PocketvoxIndicator  *indicator;
 	PocketvoxNotifier   *notifier;
 	PocketvoxRecognizer *recognizer;
-	
 	PocketvoxController *controller;
-	
 	PocketvoxProfile 	*profile;
 };
 
@@ -32,8 +30,10 @@ static void pocketvox_application_dispose(GObject *object)
 
 static void pocketvox_application_finalize(GObject *object)
 {
+	/*
 	PocketvoxApplication *application= POCKETVOX_APPLICATION(object);
 
+	
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
 		TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
 	PocketvoxApplicationPrivate *priv = application->priv;	
@@ -43,7 +43,7 @@ static void pocketvox_application_finalize(GObject *object)
 	g_object_unref(priv->indicator);
 	g_object_unref(priv->controller);
 	g_object_unref(priv->profile);
-	
+	*/
 	G_OBJECT_CLASS (pocketvox_application_parent_class)->finalize (object);
 }
 
@@ -114,15 +114,14 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 	//read the user profile
 	priv->profile		= pocketvox_profile_new(path);
 
-	priv->indicator 	= pocketvox_indicator_new();
-
 	//we will set the starting voice and give your name here
 	gchar *name 		= pocketvox_profile_get_name(priv->profile);
 	gchar *voice		= pocketvox_profile_get_voice(priv->profile);
 	gchar *lm			= pocketvox_profile_get_lm(priv->profile);
 	gchar *dic			= pocketvox_profile_get_dict(priv->profile);
 	gchar *acoustic		= pocketvox_profile_get_acoustic(priv->profile);
-	
+
+	priv->indicator 	= pocketvox_indicator_new(voice);		
 	priv->notifier 		= pocketvox_notifier_new(name, voice);
 	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic);
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
@@ -142,6 +141,12 @@ void pocketvox_application_start(PocketvoxApplication *application)
 	PocketvoxApplicationPrivate *priv = application->priv;
 	
 	pocketvox_controller_start(priv->controller);			
+	
+	//say goodbye to the user
+	gchar *name = pocketvox_profile_get_name(priv->profile);
+	gchar *msg = g_strdup_printf("Goodbye %s", name);
+	pocketvox_notifier_say(priv->notifier, msg);
+	g_free(msg);
 }
 
 void pocketvox_application_add_module(PocketvoxApplication *application, PocketvoxModule *module)

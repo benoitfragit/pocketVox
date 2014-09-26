@@ -33,9 +33,18 @@ struct _PocketvoxIndicatorClass
   /*public funcs and data here*/
 };
 
+
+/**
+ * pocketvox_indicator_get_type:
+ * 
+ * get the type 
+ * 
+ * Returns: return the type
+ * 
+ */ 
 GType pocketvox_indicator_get_type (void) G_GNUC_CONST;
 
-PocketvoxIndicator* pocketvox_indicator_new();
+PocketvoxIndicator* pocketvox_indicator_new(gchar *voice);
 void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator, gchar *id);
 void pocketvox_indicator_remove_module_item(PocketvoxIndicator *indicator, gchar *id);
 

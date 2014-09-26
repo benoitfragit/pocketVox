@@ -4,6 +4,8 @@
 enum
 {
 	PROP_0,
+	PROP_MODULE_DICT,
+	PROP_MODULE_ID
 };
 
 struct _PocketvoxModulePrivate 
@@ -33,7 +35,7 @@ static void pocketvox_module_finalize(GObject *object)
 	if(priv->id != NULL) g_free(priv->id);
 	if(priv->cmd != NULL) g_free(priv->cmd);
 	
-	g_object_unref(G_OBJECT(priv->dict));
+	//g_object_unref(G_OBJECT(priv->dict));
 	
 	G_OBJECT_CLASS (pocketvox_module_parent_class)->finalize (object);
 }
@@ -43,8 +45,17 @@ static void pocketvox_module_set_property (GObject      *gobject,
 														 const GValue *value,
 														 GParamSpec   *pspec)
 {
+	PocketvoxModule *module = POCKETVOX_MODULE(gobject);
+	PocketvoxModulePrivate *priv = module->priv;
+		
 	switch (prop_id)
 	{
+		case PROP_MODULE_ID:
+			priv->id = g_strdup((gchar *)g_value_get_string(value));
+			break;
+		case PROP_MODULE_DICT:
+			priv->dict =  pocketvox_dictionnary_new( (gchar *)g_value_get_string(value),FALSE); 
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
 			break;
@@ -73,11 +84,25 @@ static void pocketvox_module_class_init (PocketvoxModuleClass *klass)
 	gklass->set_property = pocketvox_module_set_property;
 	gklass->dispose      = pocketvox_module_dispose;
 	gklass->finalize     = pocketvox_module_finalize;
+
+	GParamSpec *pspec = g_param_spec_string ("id",
+		"id",
+		"id",
+		NULL,
+		G_PARAM_READWRITE);
+	g_object_class_install_property (gklass, PROP_MODULE_ID, pspec);
+
+	pspec = g_param_spec_string ("dict",
+		"dict",
+		"dict",
+		NULL,
+		G_PARAM_READWRITE);
+	g_object_class_install_property (gklass, PROP_MODULE_DICT, pspec);
 }
 
 static void pocketvox_module_init (PocketvoxModule *module){
 	g_return_if_fail(NULL != module);
-
+	
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
 	PocketvoxModulePrivate *priv = module->priv;	
@@ -166,7 +191,7 @@ void pocketvox_module_set_activated(PocketvoxModule *module, gboolean state)
 
 void pocketvox_module_free(gpointer data)
 {
-	g_object_unref(G_OBJECT(data));
+//	g_object_unref(G_OBJECT(data));
 }
 
 gchar* pocketvox_module_get_command(PocketvoxModule *module)
