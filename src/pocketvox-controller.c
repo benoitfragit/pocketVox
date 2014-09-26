@@ -15,6 +15,8 @@ struct _PocketvoxControllerPrivate
 	PocketvoxIndicator 	*indicator;
 	GHashTable 			*modules;
 	GMainLoop			*loop;
+	
+	gboolean 			first_launch;
 };
 
 G_DEFINE_TYPE (PocketvoxController, pocketvox_controller, G_TYPE_OBJECT);
@@ -87,6 +89,8 @@ static void pocketvox_controller_init (PocketvoxController *controller){
 	priv->modules		= NULL;
 	
 	priv->modules		= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_module_free);
+
+	priv->first_launch	= TRUE;
 }
 
 static void pocketvox_controller_state_changer(PocketvoxController *controller, gchar *state, gpointer user_data)
@@ -96,17 +100,23 @@ static void pocketvox_controller_state_changer(PocketvoxController *controller, 
 	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;	
-	
+
+	pocketvox_notifier_notify(priv->notifier,state, NULL);
+
 	if(!g_strcmp0("Run", state))
 	{
+		if(priv->first_launch == TRUE)
+		{
+			pocketvox_notifier_say(priv->notifier, "It's your first launch, I need some time to initialize myself");
+			priv->first_launch = FALSE;
+		}
+				
 		pocketvox_recognizer_set_state(priv->recognizer, POCKETVOX_STATE_RUN);
 	}	
 	else
 	{
 		pocketvox_recognizer_set_state(priv->recognizer, POCKETVOX_STATE_STOP);
-	}
-	
-	pocketvox_notifier_notify(priv->notifier,state, NULL);
+	}	
 }
 
 static void pocketvox_controller_quit(PocketvoxController *controller, gpointer user_data)
@@ -188,7 +198,6 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 	gint i, j;
 	gdouble mindist = -1.0f;
 	gdouble dist;
-	gchar *cmd = NULL;
 		
 	for(i = 0; i< g_list_length(modules); i++)
 	{
@@ -205,10 +214,7 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 	
 	PocketvoxModule *m = g_list_nth_data(modules, j);
 	pocketvox_module_execute(m);
-	
-	cmd = pocketvox_module_get_command(m);
-	g_warning("%s",cmd);
-	
+		
 	g_list_free(modules);
 }
 

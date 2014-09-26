@@ -5,7 +5,8 @@ enum
 {
 	PROP_0,
 	PROP_MODULE_DICT,
-	PROP_MODULE_ID
+	PROP_MODULE_ID,
+	PROP_MODULE_CMD
 };
 
 struct _PocketvoxModulePrivate 
@@ -67,8 +68,14 @@ static void pocketvox_module_get_property (GObject    *gobject,
 														 GValue     *value,
 														 GParamSpec *pspec)
 {
+	PocketvoxModule *module = POCKETVOX_MODULE(gobject);
+	PocketvoxModulePrivate *priv = module->priv;
+		
 	switch (prop_id)
 	{
+		case PROP_MODULE_CMD:
+			g_value_set_string(value, priv->cmd);		
+			break;		
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
 			break;
@@ -98,6 +105,13 @@ static void pocketvox_module_class_init (PocketvoxModuleClass *klass)
 		NULL,
 		G_PARAM_READWRITE);
 	g_object_class_install_property (gklass, PROP_MODULE_DICT, pspec);
+
+	pspec = g_param_spec_string ("cmd",
+		"cmd",
+		"cmd",
+		NULL,
+		G_PARAM_READWRITE);
+	g_object_class_install_property (gklass, PROP_MODULE_CMD, pspec);
 }
 
 static void pocketvox_module_init (PocketvoxModule *module){
@@ -142,7 +156,7 @@ void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_d
 	PocketvoxModulePrivate *priv = module->priv;		
 	
 	priv->score = pocketvox_dictionnary_process_request(priv->dict, request);	
-	priv->cmd = g_strdup(request);
+	priv->cmd = pocketvox_dictionnary_get_result(priv->dict);
 }
 
 gdouble pocketvox_module_get_score(PocketvoxModule *module)

@@ -50,5 +50,7 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 
 void pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary, gchar* raw);
 
+gchar* pocketvox_dictionnary_get_result(PocketvoxDictionnary *dictionnary);
+
 G_END_DECLS
 #endif

@@ -17,6 +17,7 @@ struct _PocketvoxDictionnaryPrivate
 {
 	gboolean	loaded;
 	gchar		*path;
+	gchar		*result;
 	
 	GHashTable 	*hash;
 	GHashTable  *words;
@@ -39,6 +40,8 @@ static void pocketvox_dictionnary_finalize(GObject *object)
 	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;	
 	
 	g_free(priv->path);
+	g_free(priv->result);
+	
 	g_hash_table_destroy(priv->hash);
 	g_hash_table_destroy(priv->words);
 	g_hash_table_destroy(priv->tfidf);
@@ -499,7 +502,6 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 	
 	gint i,j ;
 	gint N = g_list_length(words);
-	gchar* result = NULL;
 	
 	gdouble *t = (gdouble *)g_malloc0(N*sizeof(gdouble));
 	gdouble dist, mindist;
@@ -538,13 +540,9 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 		if(i == 0 || dist < mindist)
 		{
 			mindist = dist;
-			result = (gchar *)g_list_nth_data(cmds, i);
+			priv->result = g_strdup((gchar *)g_list_nth_data(cmds, i));
 		}
 	}
-	
-	
-	g_free(query);
-	query = g_strdup(result);
 	
 	g_free(t);
 	g_list_free(cmds);
@@ -552,6 +550,17 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 	g_list_free(words);
 	
 	return mindist;
+}
+
+gchar* pocketvox_dictionnary_get_result(PocketvoxDictionnary *dictionnary)
+{
+	g_return_val_if_fail(dictionnary != NULL, NULL);
+
+	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
+			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
+	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;	
+	
+	return priv->result;
 }
 
 void pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary, gchar* raw)
