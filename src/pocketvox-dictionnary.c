@@ -563,7 +563,7 @@ gchar* pocketvox_dictionnary_get_result(PocketvoxDictionnary *dictionnary)
 	return priv->result;
 }
 
-void pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary, gchar* raw)
+gchar* pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary)
 {
 	g_return_if_fail(dictionnary != NULL);
 
@@ -572,18 +572,21 @@ void pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary, gchar* raw
 	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;
 		
 	GList *keys = g_hash_table_get_keys(priv->hash);
-	GList *iter = NULL;
+	gint i;
 	
-	for(iter = keys; iter; iter = iter->next)
+	gchar *raw = g_strdup_printf("<s> %s </s>\n",(gchar *)g_list_nth_data(keys, i));
+	
+	for(i=1; i < g_list_length(keys); i++)
 	{
-		gchar* key = (gchar *)iter->data;
+		gchar* key = (gchar *)g_list_nth_data(keys, i);
 		gchar* tmp = g_strdup(raw);
 		g_free(raw);
 		
-		raw = g_strdup_printf("%s%s<s> %s </s>",tmp != NULL ? tmp : "", tmp !=NULL ? "\n": "", key);
+		raw = g_strdup_printf("%s<s> %s </s>\n",tmp, key);
 		g_free(tmp);
 	}
 	
 	g_list_free(keys);
-	g_list_free(iter);
+
+	return raw;
 }

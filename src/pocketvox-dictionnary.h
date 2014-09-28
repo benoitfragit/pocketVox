@@ -48,7 +48,7 @@ void pocketvox_dictionnary_load_tfidf_file(PocketvoxDictionnary* dictionnary, gc
 
 gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary, gchar* query);
 
-void pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary, gchar* raw);
+gchar* pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary);
 
 gchar* pocketvox_dictionnary_get_result(PocketvoxDictionnary *dictionnary);
 

@@ -45,7 +45,7 @@ void pocketvox_module_set_activated(PocketvoxModule *module, gboolean state);
 void pocketvox_module_free(gpointer data);
 gdouble pocketvox_module_get_score(PocketvoxModule *module);
 gchar* pocketvox_module_get_command(PocketvoxModule *module);
-void pocketvox_module_get_raw(PocketvoxModule *module, gchar *raw);
+gchar* pocketvox_module_get_raw(PocketvoxModule *module);
 
 //overwritten by virtual methode
 void pocketvox_module_execute(PocketvoxModule *module);

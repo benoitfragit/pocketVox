@@ -84,8 +84,8 @@ static void pocketvox_profile_init (PocketvoxProfile *profile){
 			TYPE_POCKETVOX_PROFILE, PocketvoxProfilePrivate);
 	PocketvoxProfilePrivate *priv = profile->priv;	
 	
-	priv->name  	= g_strdup("user");
-	priv->voice 	= g_strdup("default");
+	priv->name  	= NULL;
+	priv->voice 	= NULL;
 	priv->lm		= NULL;
 	priv->dict		= NULL;
 	priv->acoustic 	= NULL;
@@ -119,12 +119,15 @@ PocketvoxProfile* pocketvox_profile_new(gchar *path)
 		priv->acoustic 	= g_key_file_get_string(keyfile, "profile", "acoustic", NULL);
 		
 		g_key_file_free(keyfile);
+	
+		priv->name 	= priv->name 	== NULL ? g_strdup(g_get_user_name()) : priv->name;
+		priv->voice = priv->voice 	== NULL ? g_strdup("default") : priv->voice;
 	}
 	else
 	{
 		return NULL;
 	}
-	
+		
 	return profile;																		
 }
 
