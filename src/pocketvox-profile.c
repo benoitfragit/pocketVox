@@ -13,6 +13,8 @@ struct _PocketvoxProfilePrivate
 	gchar *lm;
 	gchar *dict;
 	gchar *acoustic;
+    
+    GHashTable *apps;
 };
 
 G_DEFINE_TYPE (PocketvoxProfile, pocketvox_profile, G_TYPE_OBJECT);
@@ -36,6 +38,8 @@ static void pocketvox_profile_finalize(GObject *object)
 	g_free(priv->dict);
 	g_free(priv->acoustic);
 	g_free(priv->path);	
+	
+	g_hash_table_destroy(priv->apps);
 		
 	G_OBJECT_CLASS (pocketvox_profile_parent_class)->finalize (object);
 }
@@ -89,6 +93,8 @@ static void pocketvox_profile_init (PocketvoxProfile *profile){
 	priv->lm		= NULL;
 	priv->dict		= NULL;
 	priv->acoustic 	= NULL;
+	
+	priv->apps = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
 }
 
 PocketvoxProfile* pocketvox_profile_new(gchar *path)
@@ -112,16 +118,49 @@ PocketvoxProfile* pocketvox_profile_new(gchar *path)
 	
 	if(g_key_file_load_from_file (keyfile, path, flags, &error ) )
 	{
+	    //loading first/personal parameters
 		priv->name 		= g_key_file_get_string(keyfile, "profile", "name",  NULL);
 		priv->voice 	= g_key_file_get_string(keyfile, "profile", "voice", NULL);
 		priv->lm		= g_key_file_get_string(keyfile, "profile", "lm",	 NULL);	
 		priv->dict  	= g_key_file_get_string(keyfile, "profile", "dict",	 NULL);
 		priv->acoustic 	= g_key_file_get_string(keyfile, "profile", "acoustic", NULL);
-		
-		g_key_file_free(keyfile);
-	
+			
 		priv->name 	= priv->name 	== NULL ? g_strdup(g_get_user_name()) : priv->name;
 		priv->voice = priv->voice 	== NULL ? g_strdup("default") : priv->voice;
+	
+	    //then load app category app=dict
+	    //goal is to associate an destkop app to a dictionnary
+	    gchar **groups = g_key_file_get_groups(keyfile, NULL);
+	    
+	    while ( *groups != NULL )
+	    {
+	        if(!g_strcmp0(*groups, "applications"))
+	        {
+	            gchar **keys = g_key_file_get_keys(keyfile, "applications", NULL, NULL);
+	            
+	            //browse all keys
+	            while( *keys != NULL)
+	            {
+	                gchar *dict = g_key_file_get_string(keyfile, "applications", *keys, NULL);
+	                
+	                if( g_file_test(dict, G_FILE_TEST_EXISTS) )
+	                {
+	                    //add to a hashtable associated apps and dictionnary in order to
+	                    //create a module specialized for this app
+	                    g_hash_table_insert(priv->apps, g_strdup(*keys), g_strdup(dict)); 
+	                }
+	                
+	          	                
+	                keys ++;
+	            }
+	            
+	            break;
+	        }
+	        
+	        groups++;
+	    }
+	    
+	   g_key_file_free(keyfile);
 	}
 	else
 	{
@@ -259,6 +298,9 @@ void pocketvox_profile_save(PocketvoxProfile *profile)
     gchar *data	= NULL;
     gsize size;
     keyfile = g_key_file_new();
+    GList *keys = g_hash_table_get_keys(priv->apps);
+    GList *values = g_hash_table_get_values(priv->apps);
+	gint i;
     
     g_key_file_set_string(keyfile, "profile", "name", 		priv->name);
     g_key_file_set_string(keyfile, "profile", "voice", 		priv->voice);
@@ -266,9 +308,31 @@ void pocketvox_profile_save(PocketvoxProfile *profile)
 	g_key_file_set_string(keyfile, "profile", "dict",		priv->dict);
 	g_key_file_set_string(keyfile, "profile", "acoustic", 	priv->acoustic);
 
+	for(i = 0; i < g_list_length(keys); i++)
+	{
+		gchar *id = (gchar *)g_list_nth_data(keys, i);
+		gchar *dict = (gchar *)g_list_nth_data(values, i);
+		
+		g_key_file_set_string(keyfile, "applications", id, dict);
+	}
+
+	g_list_free(keys);
+	g_list_free(values);
+
 	data = g_key_file_to_data(keyfile, &size, &error);
     g_file_set_contents(priv->path, data, size, &error);
     
     g_free(data);
     g_key_file_free(keyfile);		
+}
+
+GHashTable* pocketvox_profile_get_profile_apps(PocketvoxProfile *profile)
+{
+	g_return_val_if_fail(NULL != profile, NULL);
+
+	profile->priv = G_TYPE_INSTANCE_GET_PRIVATE (profile,
+			TYPE_POCKETVOX_PROFILE, PocketvoxProfilePrivate);
+	PocketvoxProfilePrivate *priv = profile->priv;	
+	
+	return priv->apps;
 }

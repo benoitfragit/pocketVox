@@ -1,20 +1,23 @@
 #include "pocketvox-module.h"
 #include "pocketvox-dictionnary.h"
+#include <stdlib.h>
 
 enum
 {
 	PROP_0,
 	PROP_MODULE_DICT,
 	PROP_MODULE_ID,
-	PROP_MODULE_CMD
+	PROP_MODULE_CMD,
+    PROP_MODULE_APPS
 };
 
-struct _PocketvoxModulePrivate 
+struct _PocketvoxModulePrivate
 {
-	PocketvoxDictionnary *dict;	
+	PocketvoxDictionnary *dict;
 	gchar *id;
 	gchar *cmd;
 	gboolean activated;
+	gboolean apps;
 	gdouble score;
 };
 
@@ -31,13 +34,13 @@ static void pocketvox_module_finalize(GObject *object)
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 		TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;	
-	
+	PocketvoxModulePrivate *priv = module->priv;
+
 	if(priv->id != NULL) g_free(priv->id);
 	if(priv->cmd != NULL) g_free(priv->cmd);
-	
+
 	//g_object_unref(G_OBJECT(priv->dict));
-	
+
 	G_OBJECT_CLASS (pocketvox_module_parent_class)->finalize (object);
 }
 
@@ -48,16 +51,19 @@ static void pocketvox_module_set_property (GObject      *gobject,
 {
 	PocketvoxModule *module = POCKETVOX_MODULE(gobject);
 	PocketvoxModulePrivate *priv = module->priv;
-		
+
 	switch (prop_id)
 	{
 		case PROP_MODULE_ID:
 			priv->id = g_strdup((gchar *)g_value_get_string(value));
 			break;
 		case PROP_MODULE_DICT:
-			priv->dict =  pocketvox_dictionnary_new( (gchar *)g_value_get_string(value),FALSE); 
+			priv->dict =  pocketvox_dictionnary_new( (gchar *)g_value_get_string(value),FALSE);
 			break;
-		default:
+                case PROP_MODULE_APPS:
+                        priv->apps = (gboolean)g_value_get_boolean(value);
+		        break;
+                default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
 			break;
 	}
@@ -70,12 +76,12 @@ static void pocketvox_module_get_property (GObject    *gobject,
 {
 	PocketvoxModule *module = POCKETVOX_MODULE(gobject);
 	PocketvoxModulePrivate *priv = module->priv;
-		
+
 	switch (prop_id)
 	{
 		case PROP_MODULE_CMD:
-			g_value_set_string(value, priv->cmd);		
-			break;		
+			g_value_set_string(value, priv->cmd);
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
 			break;
@@ -112,15 +118,23 @@ static void pocketvox_module_class_init (PocketvoxModuleClass *klass)
 		NULL,
 		G_PARAM_READWRITE);
 	g_object_class_install_property (gklass, PROP_MODULE_CMD, pspec);
+
+	pspec = g_param_spec_boolean ("apps",
+								  "apps",
+								  "apps",
+								  FALSE,
+								  G_PARAM_READWRITE);
+								  
+	g_object_class_install_property (gklass, PROP_MODULE_APPS, pspec);
 }
 
 static void pocketvox_module_init (PocketvoxModule *module){
 	g_return_if_fail(NULL != module);
-	
+
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;	
-	
+	PocketvoxModulePrivate *priv = module->priv;
+
 	priv->id = NULL;
 	priv->dict = NULL;
 	priv->score = -1;
@@ -135,27 +149,28 @@ PocketvoxModule* pocketvox_module_new(gchar *id, gchar* path, gboolean loadtfidf
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;		
-	
+	PocketvoxModulePrivate *priv = module->priv;
+
 	priv->id 	= g_strdup(id);
-	priv->dict 	= pocketvox_dictionnary_new(path, loadtfidf); 
-	
-	return module;																		
+
+	priv->dict 	= pocketvox_dictionnary_new(path, loadtfidf);
+
+	return module;
 }
 
 void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_data)
-{	
+{
 	PocketvoxModule *module = (PocketvoxModule *)value;
 	gchar *request = g_strdup((gchar *)user_data);
-	
+
 	g_return_val_if_fail(NULL != module,	-1);
 	g_return_val_if_fail(NULL != request, 	-1);
-	
+
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;		
-	
-	priv->score = pocketvox_dictionnary_process_request(priv->dict, request);	
+	PocketvoxModulePrivate *priv = module->priv;
+
+	priv->score = pocketvox_dictionnary_process_request(priv->dict, request);
 	priv->cmd = pocketvox_dictionnary_get_result(priv->dict);
 }
 
@@ -165,9 +180,9 @@ gdouble pocketvox_module_get_score(PocketvoxModule *module)
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;	
-		
-	return priv->score;	
+	PocketvoxModulePrivate *priv = module->priv;
+
+	return priv->score;
 }
 
 gchar* pocketvox_module_get_id(PocketvoxModule *module)
@@ -176,8 +191,8 @@ gchar* pocketvox_module_get_id(PocketvoxModule *module)
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;	
-		
+	PocketvoxModulePrivate *priv = module->priv;
+
 	return priv->id;
 }
 
@@ -187,20 +202,20 @@ gboolean pocketvox_module_get_activated(PocketvoxModule *module)
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;	
-		
+	PocketvoxModulePrivate *priv = module->priv;
+
 	return priv->activated;
 }
 
 void pocketvox_module_set_activated(PocketvoxModule *module, gboolean state)
 {
 	g_return_if_fail(NULL != module);
-	
+
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
 	PocketvoxModulePrivate *priv = module->priv;
-		
-	priv->activated = state;	
+
+	priv->activated = state;
 }
 
 void pocketvox_module_free(gpointer data)
@@ -211,11 +226,11 @@ void pocketvox_module_free(gpointer data)
 gchar* pocketvox_module_get_command(PocketvoxModule *module)
 {
 	g_return_val_if_fail(NULL != module, NULL);
-	
+
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;	
-	
+	PocketvoxModulePrivate *priv = module->priv;
+
 	return priv->cmd;
 }
 
@@ -226,16 +241,37 @@ gchar* pocketvox_module_get_raw(PocketvoxModule *module)
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
 	PocketvoxModulePrivate *priv = module->priv;
-	
+
 	//get the raw sentence from the dictionnary
-	return pocketvox_dictionnary_get_raw(priv->dict);	
+	return pocketvox_dictionnary_get_raw(priv->dict);
 }
 
 void pocketvox_module_execute(PocketvoxModule *module)
 {
 	g_return_if_fail(NULL != module);
-	
-	g_return_if_fail(NULL != POCKETVOX_MODULE_GET_CLASS(module)->execute);
-	
-	POCKETVOX_MODULE_GET_CLASS(module)->execute(module);
+
+	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
+			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
+	PocketvoxModulePrivate *priv = module->priv;
+
+	if(NULL != POCKETVOX_MODULE_GET_CLASS(module)->execute)
+	{
+		POCKETVOX_MODULE_GET_CLASS(module)->execute(module);
+	}
+	else
+	{
+		gint res = system(priv->cmd);
+		if( res == -1) g_error("An error occured when I've executed %s", priv->cmd);
+	}
+}
+
+gboolean pocketvox_module_is_apps(PocketvoxModule *module)
+{
+	g_return_if_fail(NULL != module);
+
+	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
+			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
+	PocketvoxModulePrivate *priv = module->priv;
+
+	return priv->apps;
 }

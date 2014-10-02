@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 
 	pocketvox_application_remove_module(application, "Move");
 	pocketvox_application_add_module(application, m3);			
-		
+
 	pocketvox_application_start(application);
 		
 	return 0;

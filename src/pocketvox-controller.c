@@ -337,12 +337,18 @@ void pocketvox_controller_add_module(PocketvoxController *controller, PocketvoxM
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;
 	
-
 	gchar *id = pocketvox_module_get_id(module);
 
 	g_hash_table_insert(priv->modules, g_strdup(id), module);	
-	
-	pocketvox_indicator_add_module_item(priv->indicator, id);
+
+	if( pocketvox_module_is_apps(module) == FALSE )
+	{
+		pocketvox_indicator_add_module_item(priv->indicator, id);
+	}
+	else
+	{
+		pocketvox_indicator_add_apps_item(priv->indicator, id);
+	}
 }
 
 void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *id)
@@ -372,7 +378,6 @@ static void pocketvox_controller_write_dictionnary(gpointer key, gpointer value,
 	fclose(fp);
 	g_free(raw);
 }
-
 
 gint pocketvox_controller_create_custom_lm_file(PocketvoxController *controller)
 {

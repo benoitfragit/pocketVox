@@ -50,5 +50,7 @@ gchar* pocketvox_profile_get_dict(PocketvoxProfile *profile);
 gchar* pocketvox_profile_get_voice(PocketvoxProfile *profile);
 
 void pocketvox_profile_save(PocketvoxProfile *profile);
+
+GHashTable* pocketvox_profile_get_profile_apps(PocketvoxProfile *profile);
 G_END_DECLS
 #endif

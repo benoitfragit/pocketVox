@@ -84,6 +84,24 @@ static void pocketvox_application_init (PocketvoxApplication *application){
 	priv->profile		= NULL;
 }
 
+static void pocketvox_application_add_profile_module(gpointer key, gpointer value, gpointer data)
+{
+    gchar *app = (gchar *)key;
+    gchar *dict = (gchar *)value;
+    
+    PocketvoxApplication *application = (PocketvoxApplication *)data;
+    
+    PocketvoxModule* module = pocketvox_module_new(g_strdup(app), g_strdup(dict), FALSE);
+        
+    //set the module ModuleProfile to TRUE :: TODO
+    g_object_set(G_OBJECT(module), "apps", TRUE, NULL);
+    
+    //here we should define the execute methoee :: TODO
+    
+    //add the module to the application
+    pocketvox_application_add_module( application, module);
+}
+
 PocketvoxApplication* pocketvox_application_new(gchar* path)
 {
 	g_return_val_if_fail(NULL != path, NULL);
@@ -107,11 +125,15 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 	gchar *dic			= pocketvox_profile_get_dict(priv->profile);
 	gchar *acoustic		= pocketvox_profile_get_acoustic(priv->profile);
 
+    GHashTable* apps    = pocketvox_profile_get_profile_apps(priv->profile);
+
 	priv->indicator 	= pocketvox_indicator_new(voice);		
 	priv->notifier 		= pocketvox_notifier_new(name, voice);
 	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic);
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
 
+    g_hash_table_foreach(apps, pocketvox_application_add_profile_module, application);
+    
 	//a little startup msg
 	gchar *startup = g_strdup_printf("Hello %s, I'm listening you", name);
 	pocketvox_notifier_say(priv->notifier, startup);
@@ -133,6 +155,8 @@ void pocketvox_application_start(PocketvoxApplication *application)
 	gchar *msg = g_strdup_printf("Goodbye %s", name);
 	pocketvox_notifier_say(priv->notifier, msg);
 	g_free(msg);
+	
+	pocketvox_profile_save(priv->profile);
 }
 
 void pocketvox_application_add_module(PocketvoxApplication *application, PocketvoxModule *module)

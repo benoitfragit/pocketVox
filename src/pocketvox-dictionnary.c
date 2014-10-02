@@ -192,6 +192,7 @@ static void pocketvox_dictionnary_load_raw(PocketvoxDictionnary *dictionnary)
 		
 	}while( line != NULL);
 	
+	g_io_channel_shutdown(io, FALSE, NULL);
 }
 
 static void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary)

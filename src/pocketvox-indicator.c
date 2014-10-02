@@ -31,6 +31,7 @@ struct _PocketvoxIndicatorPrivate
 	//GList contenant les MenuItems pour chaque modules
 	GHashTable *table;
 	GtkWidget* modulesMenu;
+	GtkWidget* appsMenu;
 	
 	GHashTable *language;
 	GtkWidget* espeakMenu;
@@ -202,6 +203,8 @@ static void pocketvox_indicator_init (PocketvoxIndicator *indicator)
 
 	priv->menu			= gtk_menu_new();
 	priv->modulesMenu 	= gtk_menu_new();
+	priv->appsMenu		= gtk_menu_new();
+	
 	priv->state 		= POCKETVOX_STATE_STOP;
 	priv->table			= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_indicator_free_item);
 	
@@ -349,6 +352,7 @@ PocketvoxIndicator* pocketvox_indicator_new(gchar *voice)
 	GtkWidget* separatorItem1	= gtk_separator_menu_item_new();
 	GtkWidget* separatorItem2	= gtk_separator_menu_item_new();
 	GtkWidget* quitItem 		= gtk_menu_item_new_with_label("Quit");
+	GtkWidget* appsItem			= gtk_menu_item_new_with_label("Apps");
 
 	GtkWidget *sphinxItem		= gtk_menu_item_new_with_label("Pocketsphinx");
 	GtkWidget *sphinxMenu		= gtk_menu_new();
@@ -370,6 +374,8 @@ PocketvoxIndicator* pocketvox_indicator_new(gchar *voice)
 	gtk_widget_set_sensitive(configItem, FALSE);
 	gtk_menu_item_set_submenu((GtkMenuItem *)modulesItem, priv->modulesMenu);
 	
+	gtk_menu_item_set_submenu((GtkMenuItem *)appsItem, priv->appsMenu);
+	
 	gtk_menu_attach((GtkMenu *)priv->menu, stateItem, 		0, 1, 0, 1);
 	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem0,	0, 1, 1, 2);
 	gtk_menu_attach((GtkMenu *)priv->menu, configItem, 		0, 1, 2, 3);
@@ -377,9 +383,12 @@ PocketvoxIndicator* pocketvox_indicator_new(gchar *voice)
 	gtk_menu_attach((GtkMenu *)priv->menu, espeakItem, 		0, 1, 4, 5);
 	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem1, 	0, 1, 5, 6);
 	gtk_menu_attach((GtkMenu *)priv->menu, modulesItem, 	0, 1, 6, 7);
-	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem2,	0, 1, 7, 8);
-	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 		0, 1, 8, 9);
+	gtk_menu_attach((GtkMenu *)priv->menu, appsItem,		0, 1, 7, 8);
+	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem2,	0, 1, 8, 9);
+	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 		0, 1, 9, 10);
 
+	gtk_widget_show(priv->appsMenu);
+	gtk_widget_show(appsItem);
 	gtk_widget_show(priv->modulesMenu);
 	gtk_widget_show(stateItem);
 	gtk_widget_show(separatorItem0);
@@ -416,6 +425,25 @@ static void pocketvox_indicator_module_toggled(PocketvoxIndicator *indicator, gp
 	g_return_if_fail(NULL != widget);
 	
 	g_signal_emit(indicator, pocketvox_indicator_signals[INDICATOR_MODULE_TOGGLED], 0, gtk_menu_item_get_label((GtkMenuItem *)widget));
+}
+
+
+void pocketvox_indicator_add_apps_item(PocketvoxIndicator *indicator, gchar *id)
+{
+	g_return_if_fail(NULL != indicator);
+	g_return_if_fail(NULL != id);
+	
+	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
+			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
+	PocketvoxIndicatorPrivate *priv = indicator->priv;
+	
+	GtkWidget *item = gtk_menu_item_new_with_label(id);
+
+	gtk_menu_shell_append((GtkMenuShell *)priv->appsMenu, item);
+	gtk_widget_queue_draw(priv->appsMenu);
+	
+	gtk_widget_show(item);
+	gtk_widget_show(priv->appsMenu);		
 }
 
 void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator,gchar *id)
