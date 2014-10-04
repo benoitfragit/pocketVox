@@ -1,5 +1,6 @@
 #include "pocketvox-controller.h"
 #include "pocketvox-chooser.h"
+#include "pocketvox-xmanager.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,6 +14,7 @@ struct _PocketvoxControllerPrivate
 	PocketvoxRecognizer *recognizer; 
 	PocketvoxNotifier	*notifier;
 	PocketvoxIndicator 	*indicator;
+	PocketvoxXmanager 	*xmanager;
 	GHashTable 			*modules;
 	GMainLoop			*loop;
 	
@@ -87,7 +89,7 @@ static void pocketvox_controller_init (PocketvoxController *controller){
 	priv->notifier 		= NULL;
 	priv->indicator   	= NULL;
 	priv->modules		= NULL;
-	
+	priv->xmanager		= NULL;
 	priv->modules		= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_module_free);
 
 	priv->first_launch	= TRUE;
@@ -192,10 +194,16 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;	
 	
+	gchar* window = pocketvox_xmanager_get_window(priv->xmanager);
+		
+	//put modules apps to activated
+	g_hash_table_foreach(priv->modules, pocketvox_module_manage_apps, window);
+	
+	//make request
 	g_hash_table_foreach(priv->modules, pocketvox_module_make_request, request);
 	
 	GList* modules = g_hash_table_get_values(priv->modules);
-	gint i, j;
+	gint i = 0, j = 0;
 	gdouble mindist = -1.0f;
 	gdouble dist;
 		
@@ -213,6 +221,7 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 	}
 	
 	PocketvoxModule *m = g_list_nth_data(modules, j);
+		
 	pocketvox_module_execute(m);
 		
 	g_list_free(modules);
@@ -265,6 +274,7 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 	priv->recognizer 	= recognizer;
 	priv->notifier 		= notifier;
 	priv->indicator 	= indicator;
+	priv->xmanager		= pocketvox_xmanager_new();
 	
 	//connect all signals
 	g_signal_connect_swapped(priv->recognizer,

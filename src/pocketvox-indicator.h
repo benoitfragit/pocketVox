@@ -48,6 +48,7 @@ PocketvoxIndicator* pocketvox_indicator_new(gchar *voice);
 void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator, gchar *id);
 void pocketvox_indicator_remove_module_item(PocketvoxIndicator *indicator, gchar *id);
 void pocketvox_indicator_add_apps_item(PocketvoxIndicator *indicator, gchar *id);
+void pocketvox_indicator_toggle_apps_item(PocketvoxIndicator *indicator, gchar *window);
 G_END_DECLS
 
 #endif

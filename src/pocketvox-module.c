@@ -170,6 +170,10 @@ void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_d
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
 	PocketvoxModulePrivate *priv = module->priv;
 
+	g_return_if_fail(pocketvox_module_get_activated(module) == TRUE);
+	
+	g_warning("%s %d %d", priv->id, priv->activated, priv->apps);
+
 	priv->score = pocketvox_dictionnary_process_request(priv->dict, request);
 	priv->cmd = pocketvox_dictionnary_get_result(priv->dict);
 }
@@ -274,4 +278,23 @@ gboolean pocketvox_module_is_apps(PocketvoxModule *module)
 	PocketvoxModulePrivate *priv = module->priv;
 
 	return priv->apps;
+}
+
+void pocketvox_module_manage_apps(gpointer key, gpointer value, gpointer user_data)
+{
+	PocketvoxModule *module = (PocketvoxModule *)value;
+	gchar *window = (gchar *)user_data;
+	gchar *id = (gchar *)key;
+	
+	if(pocketvox_module_is_apps(module) == TRUE)
+	{
+		if(!g_strcmp0(id, window) == TRUE )
+		{
+			pocketvox_module_set_activated(module, TRUE);
+		}
+		else
+		{
+			pocketvox_module_set_activated(module, FALSE);
+		}
+	}
 }

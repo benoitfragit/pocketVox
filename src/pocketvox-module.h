@@ -47,6 +47,7 @@ gdouble pocketvox_module_get_score(PocketvoxModule *module);
 gchar* pocketvox_module_get_command(PocketvoxModule *module);
 gchar* pocketvox_module_get_raw(PocketvoxModule *module);
 gboolean pocketvox_module_is_apps(PocketvoxModule *module);
+void pocketvox_module_manage_apps(gpointer key, gpointer value, gpointer user_data);
 
 
 

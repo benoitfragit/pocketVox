@@ -4,7 +4,6 @@
 #include "pocketvox-indicator.h"
 #include "pocketvox-controller.h"
 #include "pocketvox-profile.h"
-#include "pocketvox-xmanager.h"
 #include <gtk/gtk.h>
 #include <gst/gst.h>
 
@@ -164,6 +163,8 @@ void pocketvox_application_add_module(PocketvoxApplication *application, Pocketv
 {
 	g_return_if_fail(NULL != application);
 	g_return_if_fail(NULL != module);
+	
+	g_warning("OK");
 	
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
 			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);

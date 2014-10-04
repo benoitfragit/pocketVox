@@ -32,6 +32,7 @@ struct _PocketvoxIndicatorPrivate
 	GHashTable *table;
 	GtkWidget* modulesMenu;
 	GtkWidget* appsMenu;
+	GHashTable *apps;
 	
 	GHashTable *language;
 	GtkWidget* espeakMenu;
@@ -66,6 +67,7 @@ static void pocketvox_indicator_finalize(GObject *object)
 	
 	g_hash_table_destroy(priv->table);
 	g_hash_table_destroy(priv->language);
+	g_hash_table_destroy(priv->apps);
 	
 	G_OBJECT_CLASS (pocketvox_indicator_parent_class)->finalize (object);
 }
@@ -203,7 +205,9 @@ static void pocketvox_indicator_init (PocketvoxIndicator *indicator)
 
 	priv->menu			= gtk_menu_new();
 	priv->modulesMenu 	= gtk_menu_new();
+	
 	priv->appsMenu		= gtk_menu_new();
+	priv->apps			= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_indicator_free_item);
 	
 	priv->state 		= POCKETVOX_STATE_STOP;
 	priv->table			= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_indicator_free_item);
@@ -437,13 +441,45 @@ void pocketvox_indicator_add_apps_item(PocketvoxIndicator *indicator, gchar *id)
 			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
 	PocketvoxIndicatorPrivate *priv = indicator->priv;
 	
-	GtkWidget *item = gtk_menu_item_new_with_label(id);
+	GtkWidget* item = gtk_check_menu_item_new_with_label(id);
+	gtk_check_menu_item_set_draw_as_radio((GtkCheckMenuItem *)item, TRUE);
+	gtk_check_menu_item_set_active((GtkCheckMenuItem *)item, FALSE); 
 
+	gtk_widget_set_sensitive(item, FALSE);
+
+	g_hash_table_insert(priv->apps, g_strdup(id), item);
+	
 	gtk_menu_shell_append((GtkMenuShell *)priv->appsMenu, item);
 	gtk_widget_queue_draw(priv->appsMenu);
 	
 	gtk_widget_show(item);
 	gtk_widget_show(priv->appsMenu);		
+}
+
+void pocketvox_indicator_toggle_apps_item(PocketvoxIndicator *indicator, gchar *window)
+{	
+	//browse all apps items and activate only the good one
+	g_return_if_fail(NULL != indicator);
+	g_return_if_fail(NULL != window);
+	
+	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
+			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
+	PocketvoxIndicatorPrivate *priv = indicator->priv;
+	
+	GList *keys = g_hash_table_get_keys(priv->apps);
+	GList *values = g_hash_table_get_values(priv->apps);
+	gint i;
+	
+	for(i=0; i < g_list_length(keys); i++)
+	{
+		gchar *id = (gchar *)g_list_nth_data(keys, i);
+		GtkWidget *item = (GtkWidget *)g_list_nth_data(values, i);
+		
+		gtk_check_menu_item_set_active((GtkCheckMenuItem *)item, !g_strcmp0(id,window));
+	}			
+	
+	g_list_free(keys);
+	g_list_free(values);
 }
 
 void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator,gchar *id)
@@ -458,7 +494,7 @@ void pocketvox_indicator_add_module_item(PocketvoxIndicator *indicator,gchar *id
 	GtkWidget* item = gtk_check_menu_item_new_with_label(id);
 	gtk_check_menu_item_set_draw_as_radio((GtkCheckMenuItem *)item, TRUE);
 	gtk_check_menu_item_set_active((GtkCheckMenuItem *)item, TRUE); 
-	
+		
 	g_signal_connect_swapped((GtkCheckMenuItem *)item, "toggled", G_CALLBACK(pocketvox_indicator_module_toggled), indicator);
 	
 	g_hash_table_insert(priv->table, g_strdup(id), item);
