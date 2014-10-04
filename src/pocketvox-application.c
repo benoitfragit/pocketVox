@@ -4,6 +4,7 @@
 #include "pocketvox-indicator.h"
 #include "pocketvox-controller.h"
 #include "pocketvox-profile.h"
+#include "pocketvox-xmanager.h"
 #include <gtk/gtk.h>
 #include <gst/gst.h>
 

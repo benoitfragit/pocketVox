@@ -132,11 +132,11 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libpocketvox_1_0_la_LIBADD =
-am__objects_1 = pocketvox-profile.lo pocketvox-recognizer.lo \
-	pocketvox-dictionnary.lo pocketvox-chooser.lo \
-	pocketvox-indicator.lo pocketvox-notifier.lo \
-	pocketvox-controller.lo pocketvox-module.lo \
-	pocketvox-application.lo
+am__objects_1 = pocketvox-profile.lo pocketvox-xmanager.lo \
+	pocketvox-recognizer.lo pocketvox-dictionnary.lo \
+	pocketvox-chooser.lo pocketvox-indicator.lo \
+	pocketvox-notifier.lo pocketvox-controller.lo \
+	pocketvox-module.lo pocketvox-application.lo
 am__objects_2 =
 am_libpocketvox_1_0_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libpocketvox_1_0_la_OBJECTS = $(am_libpocketvox_1_0_la_OBJECTS)
@@ -382,7 +382,7 @@ AM_COMMON_FLAGS = $(DEPS_CFLAGS) $(COMPILER_FLAGS) \
 	    -DPKGDATADIR=\"$(pkgdatadir)/\"  \
 	    -DPKGLIBDIR=\"$(pkglibdir)/\"    \
 	    -DLOCALEDIR=\""$(localedir)"\" \
-	    -Wall -Werror -g3 -O2 -lm
+	    -Wall -Werror -g3 -O2 -lm -lX11
 
 AM_CPPFLAGS = \
     -I ${top_srcdir}/src/			\
@@ -399,6 +399,7 @@ AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
 include_HEADERS = \
 	$(top_srcdir)/config.h	\
 	pocketvox-types.h 		\
+	pocketvox-xmanager.h	\
 	pocketvox-profile.h		\
 	pocketvox-recognizer.h 	\
 	pocketvox-dictionnary.h \
@@ -412,6 +413,7 @@ include_HEADERS = \
 sources_h = \
 	$(top_srcdir)/src/pocketvox-types.h 		\
 	$(top_srcdir)/src/pocketvox-profile.h		\
+	$(top_srcdir)/src/pocketvox-xmanager.h		\
 	$(top_srcdir)/src/pocketvox-recognizer.h 	\
 	$(top_srcdir)/src/pocketvox-dictionnary.h 	\
 	$(top_srcdir)/src/pocketvox-module.h 		\
@@ -423,6 +425,7 @@ sources_h = \
 
 sources_c = \
 	pocketvox-profile.c		\
+	pocketvox-xmanager.c	\
 	pocketvox-recognizer.c 	\
 	pocketvox-dictionnary.c \
 	pocketvox-chooser.c		\
@@ -623,6 +626,7 @@ include ./$(DEPDIR)/pocketvox-module.Plo
 include ./$(DEPDIR)/pocketvox-notifier.Plo
 include ./$(DEPDIR)/pocketvox-profile.Plo
 include ./$(DEPDIR)/pocketvox-recognizer.Plo
+include ./$(DEPDIR)/pocketvox-xmanager.Plo
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
