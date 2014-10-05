@@ -140,19 +140,40 @@ In order to be dynamic and interactive, pocketvox has been design in order to ha
 
 Be sure that the GI_TYPELIB_PATH point to the typelib created for pocketvox and the LD_LIBRARY_PATH point to the libpocketvox-1.0.la
 
-the first line to add to your program is the next one:
+the first line to create your module is the next one:
 
 `from gi.repository import Pocketvox as pv`
 
-Then create a class that inherite from pv.Module
+then create your module by heriting from PocketvoxModule
 
-    def class MyModule(pv.Module)::
-	def __init__(self, id, path, loadtfidf):
-		self = pv.Module.new(id, path, loadtfidf)
-		
-The	the next thing you have to do is to redefine the execute function (virtual function from PocketvoxModule) by defining a function in the your module
+    `class MyModule(pv.Module):
+    	def __init__(self, id, path, tfidf):
+     		# call the parent constructor
+    		pv.Module.__init__(self)
+    		
+    		# set the module ID (will be display in the applet)
+    		# set the dictionnary path
+     		pv.Module.set_property(self, "id", id)
+    		pv.Module.set_property(self, "dict", path)
+    	
+    	# overwrite the execute method of PocketvoxModule	
+    	def do_execute(self):
+    		# manage actions or execute commands
+    		cmd = pv.Module.get_property(self, "cmd")
+    		print "Result: ", cmd
+    		os.system(cmd+" &")
+    `
 
-    def do_execute(self):
-    	#process the self.cmd field
-	
 Done, you only need to add your module to a PocketvoxApplication	
+
+To create a PocketvoxApplication you only need to type the following line
+`Application = pv.Application.new("/home/benoit/Bureau/benoit.profile")`
+
+create your new personnal module
+`mod = MyModule("MyModule", "MyModule.dic", False)`
+
+add your module
+`Application.add_module(mod)`
+
+Then you can start the application using:
+`Application.start()`
