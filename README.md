@@ -31,8 +31,13 @@ This object first read a **PocketvoxProfile** that make the user able to pass so
     dict=/home/benoit/Projet/voicerecognition/frenchWords62K.dic
     acoustic=/home/benoit/Projet/voicerecognition/lium_french_f0
     lm=/home/benoit/Projet/voicerecognition/lm/dictionnary.lm.dmp
+    [applications]
+    Thunar=/home/benoit/Bureau/MyModule/MyModule.dic
 
 The profile could be registered in any text file but should keep the same structure.
+
+The section "applications" let you start some specific modules those module will be activated when the given window is activated. For example here commands in the dictionnary MyModule.dic will  be executed if Thunar is activated. This structure let you separate commands for differents applications.
+
 
 Once the PocketvoxProfile has been readen, some objects are started:
 
