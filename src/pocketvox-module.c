@@ -170,12 +170,14 @@ void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_d
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
 	PocketvoxModulePrivate *priv = module->priv;
 
-	g_return_if_fail(pocketvox_module_get_activated(module) == TRUE);
+	if(pocketvox_module_get_activated(module) == FALSE)
+		goto end;
 	
-	g_warning("%s %d %d", priv->id, priv->activated, priv->apps);
-
 	priv->score = pocketvox_dictionnary_process_request(priv->dict, request);
 	priv->cmd = pocketvox_dictionnary_get_result(priv->dict);
+
+end:
+	return;
 }
 
 gdouble pocketvox_module_get_score(PocketvoxModule *module)
@@ -264,7 +266,9 @@ void pocketvox_module_execute(PocketvoxModule *module)
 	}
 	else
 	{
-		gint res = system(priv->cmd);
+		gchar* cc = g_strdup_printf("%s &", priv->cmd);
+		gint res = system(cc);
+		g_free(cc);
 		if( res == -1) g_error("An error occured when I've executed %s", priv->cmd);
 	}
 }

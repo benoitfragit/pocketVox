@@ -12,7 +12,7 @@ enum
 	PROP_0,
 };
 
-struct _PocketvoxApplicationPrivate 
+struct _PocketvoxApplicationPrivate
 {
 	PocketvoxIndicator  *indicator;
 	PocketvoxNotifier   *notifier;
@@ -75,8 +75,8 @@ static void pocketvox_application_init (PocketvoxApplication *application){
 
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
 			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
-	PocketvoxApplicationPrivate *priv = application->priv;	
-	
+	PocketvoxApplicationPrivate *priv = application->priv;
+
 	priv->recognizer 	= NULL;
 	priv->notifier 		= NULL;
 	priv->controller 	= NULL;
@@ -88,16 +88,16 @@ static void pocketvox_application_add_profile_module(gpointer key, gpointer valu
 {
     gchar *app = (gchar *)key;
     gchar *dict = (gchar *)value;
-    
+
     PocketvoxApplication *application = (PocketvoxApplication *)data;
-    
+
     PocketvoxModule* module = pocketvox_module_new(g_strdup(app), g_strdup(dict), FALSE);
-        
+
     //set the module ModuleProfile to TRUE :: TODO
     g_object_set(G_OBJECT(module), "apps", TRUE, NULL);
-    
+
     //here we should define the execute methoee :: TODO
-    
+
     //add the module to the application
     pocketvox_application_add_module( application, module);
 }
@@ -105,13 +105,13 @@ static void pocketvox_application_add_profile_module(gpointer key, gpointer valu
 PocketvoxApplication* pocketvox_application_new(gchar* path)
 {
 	g_return_val_if_fail(NULL != path, NULL);
-	
+
 	PocketvoxApplication *application = (PocketvoxApplication *)g_object_new(TYPE_POCKETVOX_APPLICATION, NULL);
 
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
 			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
 	PocketvoxApplicationPrivate *priv = application->priv;
-	
+
 	gtk_init(NULL, NULL);
 	gst_init(NULL, NULL);
 
@@ -127,19 +127,19 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 
     GHashTable* apps    = pocketvox_profile_get_profile_apps(priv->profile);
 
-	priv->indicator 	= pocketvox_indicator_new(voice);		
+	priv->indicator 	= pocketvox_indicator_new(voice);
 	priv->notifier 		= pocketvox_notifier_new(name, voice);
 	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic);
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
 
     g_hash_table_foreach(apps, pocketvox_application_add_profile_module, application);
-    
+
 	//a little startup msg
 	gchar *startup = g_strdup_printf("Hello %s, I'm listening you", name);
 	pocketvox_notifier_say(priv->notifier, startup);
 	g_free(startup);
 
-	return application;																		
+	return application;
 }
 
 void pocketvox_application_start(PocketvoxApplication *application)
@@ -147,15 +147,15 @@ void pocketvox_application_start(PocketvoxApplication *application)
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
 			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
 	PocketvoxApplicationPrivate *priv = application->priv;
-	
-	pocketvox_controller_start(priv->controller);			
-	
+
+	pocketvox_controller_start(priv->controller);
+
 	//say goodbye to the user
 	gchar *name = pocketvox_profile_get_name(priv->profile);
 	gchar *msg = g_strdup_printf("Goodbye %s", name);
 	pocketvox_notifier_say(priv->notifier, msg);
 	g_free(msg);
-	
+
 	pocketvox_profile_save(priv->profile);
 }
 
@@ -163,13 +163,11 @@ void pocketvox_application_add_module(PocketvoxApplication *application, Pocketv
 {
 	g_return_if_fail(NULL != application);
 	g_return_if_fail(NULL != module);
-	
-	g_warning("OK");
-	
+
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
 			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
-	PocketvoxApplicationPrivate *priv = application->priv;	
-	
+	PocketvoxApplicationPrivate *priv = application->priv;
+
 	pocketvox_controller_add_module(priv->controller, module);
 }
 
@@ -177,10 +175,10 @@ void pocketvox_application_remove_module(PocketvoxApplication *application, gcha
 {
 	g_return_if_fail(NULL != application);
 	g_return_if_fail(NULL != id);
-	
+
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
 			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
-	PocketvoxApplicationPrivate *priv = application->priv;	
-	
-	pocketvox_controller_remove_module(priv->controller, id);	
+	PocketvoxApplicationPrivate *priv = application->priv;
+
+	pocketvox_controller_remove_module(priv->controller, id);
 }
