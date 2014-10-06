@@ -89,7 +89,7 @@ Now we are going to install other dependancies:
 
     sudo apt-get update
     sudo apt-get upgrade
-    sudo apt-get install libglib2.0-0 libgirepository-1.0.1 libgirepository1.0-dev libgstreamer-0.10-plugin-base gstramer-0.10-plugin-bad gir1.2-gstreamer-0.10 gstreamer-0.10-plugin-good  gir1.2-appindicator3-0.1 libappindicator3-1 libappindicator3-dev libespeak-dev libespeak1 libnotify-dev gir1.2-gtk-3.0 libgtk-3-0 gobject-introspection
+    sudo apt-get install libglib2.0-0 libgirepository-1.0.1 libgirepository1.0-dev libgstreamer-0.10-plugin-base gstramer-0.10-plugin-bad gir1.2-gstreamer-0.10 gstreamer-0.10-plugin-good  gir1.2-appindicator3-0.1 libappindicator3-1 libappindicator3-dev libespeak-dev libespeak1 libnotify-dev gir1.2-gtk-3.0 libgtk-3-0 gobject-introspection gtk-doc-tools
 
 
 **BUILD THE PROJECT FROM SOURCE**
@@ -114,6 +114,14 @@ Once you have done this, you have to build the project autotools.
 if you want to install on your system then type
 
     sudo make install
+
+Note, the first launch you should generate the documentation using
+
+    ./autogen.sh --enable-gtk-doc
+
+instead of 
+
+    ./autogen.sh
 
 **DEVELOPING WITH THE LIBRARY**
 ===========================
