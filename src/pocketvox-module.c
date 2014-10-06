@@ -163,8 +163,8 @@ void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_d
 	PocketvoxModule *module = (PocketvoxModule *)value;
 	gchar *request = g_strdup((gchar *)user_data);
 
-	g_return_val_if_fail(NULL != module,	-1);
-	g_return_val_if_fail(NULL != request, 	-1);
+	g_return_if_fail(NULL != module);
+	g_return_if_fail(NULL != request);
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
@@ -240,7 +240,7 @@ gchar* pocketvox_module_get_command(PocketvoxModule *module)
 
 gchar* pocketvox_module_get_raw(PocketvoxModule *module)
 {
-	g_return_if_fail(NULL != module);
+	g_return_val_if_fail(NULL != module, NULL);
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
@@ -271,7 +271,7 @@ void pocketvox_module_execute(PocketvoxModule *module)
 
 gboolean pocketvox_module_is_apps(PocketvoxModule *module)
 {
-	g_return_if_fail(NULL != module);
+	g_return_val_if_fail(NULL != module, FALSE);
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);

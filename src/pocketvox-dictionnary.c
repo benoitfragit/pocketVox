@@ -489,8 +489,8 @@ void pocketvox_dictionnary_load_tfidf_file(PocketvoxDictionnary* dictionnary, gc
 
 gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary, gchar* query)
 {
-	g_return_if_fail(NULL != dictionnary);
-	g_return_if_fail(NULL != query);
+	g_return_val_if_fail(NULL != dictionnary, -1);
+	g_return_val_if_fail(NULL != query, -1);
 
 	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
 			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
@@ -566,7 +566,7 @@ gchar* pocketvox_dictionnary_get_result(PocketvoxDictionnary *dictionnary)
 
 gchar* pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary)
 {
-	g_return_if_fail(dictionnary != NULL);
+	g_return_val_if_fail(dictionnary != NULL, NULL);
 
 	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
 			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
