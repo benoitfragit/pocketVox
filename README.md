@@ -31,8 +31,13 @@ This object first read a **PocketvoxProfile** that make the user able to pass so
     dict=/home/benoit/Projet/voicerecognition/frenchWords62K.dic
     acoustic=/home/benoit/Projet/voicerecognition/lium_french_f0
     lm=/home/benoit/Projet/voicerecognition/lm/dictionnary.lm.dmp
+    [applications]
+    Thunar=/home/benoit/Bureau/MyModule/MyModule.dic
 
 The profile could be registered in any text file but should keep the same structure.
+
+The section "applications" let you start some specific modules those module will be activated when the given window is activated. For example here commands in the dictionnary MyModule.dic will  be executed if Thunar is activated. This structure let you separate commands for differents applications.
+
 
 Once the PocketvoxProfile has been readen, some objects are started:
 
@@ -84,7 +89,7 @@ Now we are going to install other dependancies:
 
     sudo apt-get update
     sudo apt-get upgrade
-    sudo apt-get install libglib2.0-0 libgirepository-1.0.1 libgirepository1.0-dev libgstreamer-0.10-plugin-base gstramer-0.10-plugin-bad gir1.2-gstreamer-0.10 gstreamer-0.10-plugin-good  gir1.2-appindicator3-0.1 libappindicator3-1 libappindicator3-dev libespeak-dev libespeak1 libnotify-dev gir1.2-gtk-3.0 libgtk-3-0 gobject-introspection
+    sudo apt-get install libglib2.0-0 libgirepository-1.0.1 libgirepository1.0-dev libgstreamer-0.10-plugin-base gstramer-0.10-plugin-bad gir1.2-gstreamer-0.10 gstreamer-0.10-plugin-good  gir1.2-appindicator3-0.1 libappindicator3-1 libappindicator3-dev libespeak-dev libespeak1 libnotify-dev gir1.2-gtk-3.0 libgtk-3-0 gobject-introspection gtk-doc-tools
 
 
 **BUILD THE PROJECT FROM SOURCE**
@@ -109,6 +114,14 @@ Once you have done this, you have to build the project autotools.
 if you want to install on your system then type
 
     sudo make install
+
+Note, the first launch you should generate the documentation using
+
+    ./autogen.sh --enable-gtk-doc
+
+instead of 
+
+    ./autogen.sh
 
 **DEVELOPING WITH THE LIBRARY**
 ===========================
@@ -140,19 +153,40 @@ In order to be dynamic and interactive, pocketvox has been design in order to ha
 
 Be sure that the GI_TYPELIB_PATH point to the typelib created for pocketvox and the LD_LIBRARY_PATH point to the libpocketvox-1.0.la
 
-the first line to add to your program is the next one:
+the first line to create your module is the next one:
 
 `from gi.repository import Pocketvox as pv`
 
-Then create a class that inherite from pv.Module
+then create your module by heriting from PocketvoxModule
 
-    def class MyModule(pv.Module)::
-	def __init__(self, id, path, loadtfidf):
-		self = pv.Module.new(id, path, loadtfidf)
-		
-The	the next thing you have to do is to redefine the execute function (virtual function from PocketvoxModule) by defining a function in the your module
+    `class MyModule(pv.Module):
+    	def __init__(self, id, path, tfidf):
+     		# call the parent constructor
+    		pv.Module.__init__(self)
+    		
+    		# set the module ID (will be display in the applet)
+    		# set the dictionnary path
+     		pv.Module.set_property(self, "id", id)
+    		pv.Module.set_property(self, "dict", path)
+    	
+    	# overwrite the execute method of PocketvoxModule	
+    	def do_execute(self):
+    		# manage actions or execute commands
+    		cmd = pv.Module.get_property(self, "cmd")
+    		print "Result: ", cmd
+    		os.system(cmd+" &")
+    `
 
-    def do_execute(self):
-    	#process the self.cmd field
-	
 Done, you only need to add your module to a PocketvoxApplication	
+
+To create a PocketvoxApplication you only need to type the following line
+`Application = pv.Application.new("/home/benoit/Bureau/benoit.profile")`
+
+create your new personnal module
+`mod = MyModule("MyModule", "MyModule.dic", False)`
+
+add your module
+`Application.add_module(mod)`
+
+Then you can start the application using:
+`Application.start()`

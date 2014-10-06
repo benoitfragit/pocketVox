@@ -393,7 +393,7 @@ gint pocketvox_controller_create_custom_lm_file(PocketvoxController *controller)
 {
 	gint res;
 	
-	g_return_if_fail(NULL != controller);
+	g_return_val_if_fail(NULL != controller, -1);
 		
 	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);

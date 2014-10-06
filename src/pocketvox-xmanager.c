@@ -92,7 +92,7 @@ PocketvoxXmanager* pocketvox_xmanager_new()
 
 gchar* pocketvox_xmanager_get_window(PocketvoxXmanager *xmanager)
 {
-	g_return_if_fail(NULL != xmanager);
+	g_return_val_if_fail(NULL != xmanager, NULL);
 
 	xmanager->priv = G_TYPE_INSTANCE_GET_PRIVATE (xmanager,
 			TYPE_POCKETVOX_XMANAGER, PocketvoxXmanagerPrivate);
