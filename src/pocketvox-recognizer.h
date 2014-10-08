@@ -44,5 +44,7 @@ void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer,PocketvoxSta
 
 void pocketvox_recognizer_set(PocketvoxRecognizer *recognizer, gchar* ppt, gchar *path);
 
+void pocketvox_recognizer_set_keyword(PocketvoxRecognizer *recognizer, gchar *keyword);
+
 G_END_DECLS
 #endif

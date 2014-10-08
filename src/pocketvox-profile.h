@@ -48,6 +48,8 @@ gchar* pocketvox_profile_get_acoustic(PocketvoxProfile *profile);
 gchar* pocketvox_profile_get_lm(PocketvoxProfile *profile);
 gchar* pocketvox_profile_get_dict(PocketvoxProfile *profile);
 gchar* pocketvox_profile_get_voice(PocketvoxProfile *profile);
+gchar* pocketvox_profile_get_keyword(PocketvoxProfile *profile);
+void pocketvox_profile_set_keyword(PocketvoxProfile *profile, gchar *k);
 
 void pocketvox_profile_save(PocketvoxProfile *profile);
 

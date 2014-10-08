@@ -96,8 +96,6 @@ static void pocketvox_application_add_profile_module(gpointer key, gpointer valu
     //set the module ModuleProfile to TRUE :: TODO
     g_object_set(G_OBJECT(module), "apps", TRUE, NULL);
 
-    //here we should define the execute methoee :: TODO
-
     //add the module to the application
     pocketvox_application_add_module( application, module);
 }
@@ -124,12 +122,17 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 	gchar *lm			= pocketvox_profile_get_lm(priv->profile);
 	gchar *dic			= pocketvox_profile_get_dict(priv->profile);
 	gchar *acoustic		= pocketvox_profile_get_acoustic(priv->profile);
+    gchar *keyword      = pocketvox_profile_get_keyword(priv->profile);
 
     GHashTable* apps    = pocketvox_profile_get_profile_apps(priv->profile);
 
 	priv->indicator 	= pocketvox_indicator_new(voice);
 	priv->notifier 		= pocketvox_notifier_new(name, voice);
 	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic);
+
+    //set the keyword in th recognizer
+    pocketvox_recognizer_set_keyword(priv->recognizer, keyword);
+
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
 
     g_hash_table_foreach(apps, pocketvox_application_add_profile_module, application);

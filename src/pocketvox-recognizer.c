@@ -1,7 +1,7 @@
 #include "pocketvox-recognizer.h"
 #include <pocketsphinx.h>
 
-enum 
+enum
 {
 	SIGNAL_RESULT,
 	LAST_SIGNAL
@@ -22,6 +22,8 @@ struct _PocketvoxRecognizerPrivate
 	gchar* hmm;
 	PocketvoxState state;
     GstElement *pipeline;
+    gchar *keyword;
+    gboolean waiting;
 };
 
 G_DEFINE_TYPE (PocketvoxRecognizer, pocketvox_recognizer, G_TYPE_OBJECT);
@@ -45,6 +47,7 @@ static void pocketvox_recognizer_finalize(GObject *object)
 	g_free(priv->hmm);
 	g_free(priv->dic);
 	g_free(priv->lm);
+    g_free(priv->keyword);
 
 	G_OBJECT_CLASS (pocketvox_recognizer_parent_class)->finalize (object);
 }
@@ -129,8 +132,8 @@ static void pocketvox_recognizer_class_init (PocketvoxRecognizerClass *klass)
 		NULL,
 		G_PARAM_READWRITE);
 	g_object_class_install_property(gklass, PROP_DIC, pspec);
-	
-    pocketvox_recognizer_signals[SIGNAL_RESULT] = 
+
+    pocketvox_recognizer_signals[SIGNAL_RESULT] =
         g_signal_new("result",
                      G_TYPE_FROM_CLASS(klass),
                      G_SIGNAL_RUN_LAST,
@@ -151,10 +154,12 @@ static void pocketvox_recognizer_init (PocketvoxRecognizer *recognizer)
 			TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
 	PocketvoxRecognizerPrivate *priv = recognizer->priv;
 
-	priv->hmm = NULL;
-	priv->lm 	= NULL;
-	priv->dic = NULL;
-	priv->state = POCKETVOX_STATE_STOP;
+	priv->hmm     = NULL;
+	priv->lm 	  = NULL;
+    priv->dic     = NULL;
+	priv->state   = POCKETVOX_STATE_STOP;
+    priv->keyword = NULL;
+    priv->waiting = TRUE;
 }
 
 
@@ -163,16 +168,16 @@ static void pocketvox_recognizer_process_result(GstElement* sphinx, gchar *hyp, 
 	GstStructure *stt = gst_structure_empty_new("result");
 	GValue hypv = G_VALUE_INIT, uttidv = G_VALUE_INIT;
 	GstMessage *msg;
-	
+
 	g_value_init(&hypv, G_TYPE_STRING);
 	g_value_init(&uttidv, G_TYPE_STRING);
-	
+
 	g_value_set_string(&hypv, g_strdup(hyp));
 	g_value_set_string(&uttidv, g_strdup(uttid));
-	
+
 	gst_structure_set_value(stt,"hyp",	&hypv);
 	gst_structure_set_value(stt,"uttid",&uttidv);
-	
+
 	msg = gst_message_new_custom( GST_MESSAGE_APPLICATION, GST_OBJECT(sphinx), stt);
 	gst_element_post_message(sphinx, msg);
 }
@@ -181,26 +186,49 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
 {
 	PocketvoxRecognizer *recognizer = (PocketvoxRecognizer *)user_data;
 	GstStructure *stt = msg->structure;
-		
+
 	if(!g_strcmp0(gst_structure_get_name(stt), "result"))
 	{
 		//get values
 		gchar* hyp = (gchar *)g_value_get_string(gst_structure_get_value(stt, "hyp"));
 		gchar* uttid = (gchar *)g_value_get_string(gst_structure_get_value(stt, "uttid"));
-		
+
 		g_warning("RESULT %s %s", hyp , uttid);
-		
+
 		g_return_if_fail(NULL != recognizer);
-		g_signal_emit(recognizer, pocketvox_recognizer_signals[SIGNAL_RESULT],
-                          0, hyp);
-	}
+
+        recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
+            TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
+        PocketvoxRecognizerPrivate *priv = recognizer->priv;
+
+        if(priv->keyword == NULL)
+        {
+            //if the keyword is not available then emit the signal
+            g_signal_emit(recognizer, pocketvox_recognizer_signals[SIGNAL_RESULT],
+                0, hyp);
+        }
+        else
+        {
+            if(priv->waiting == FALSE)
+            {
+                g_signal_emit(recognizer, pocketvox_recognizer_signals[SIGNAL_RESULT],
+                    0, hyp);
+
+                priv->waiting = TRUE;
+            }
+            else
+            {
+                priv->waiting = g_strcmp0(hyp, priv->keyword);
+            }
+        }
+    }
 }
 
 PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 {
 	GstElement* sphinx = NULL;
 	GstBus *bus = NULL;
-	
+
 	PocketvoxRecognizer *recognizer = (PocketvoxRecognizer *)g_object_new(TYPE_POCKETVOX_RECOGNIZER,
 																		"hmm", 	hmm,
 																		"lm", 	lm,
@@ -212,7 +240,7 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 	g_return_val_if_fail(g_file_test(hmm, G_FILE_TEST_EXISTS), 	NULL);
 	g_return_val_if_fail(g_file_test(lm, G_FILE_TEST_EXISTS), 	NULL);
 	g_return_val_if_fail(g_file_test(dic, G_FILE_TEST_EXISTS), 	NULL);
-	
+
 	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
 		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
 	PocketvoxRecognizerPrivate *priv = recognizer->priv;
@@ -223,17 +251,17 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 
 	//build the pipeline
 	priv->pipeline = gst_parse_launch("gsettingsaudiosrc ! audioconvert ! audioresample ! vader name=vad auto-threshold=true ! pocketsphinx name=asr ! fakesink", NULL);
-	
+
 	//set properties
 	sphinx = gst_bin_get_by_name(GST_BIN(priv->pipeline), "asr");
-	g_object_set(G_OBJECT(sphinx), 
+	g_object_set(G_OBJECT(sphinx),
 					"hmm", 	priv->hmm,
 					"lm",  	priv->lm,
 					"dict", priv->dic,
 					NULL);
-	
+
 	//connect to a callback function
-	g_signal_connect(sphinx, "result", G_CALLBACK(pocketvox_recognizer_process_result), NULL );	
+	g_signal_connect(sphinx, "result", G_CALLBACK(pocketvox_recognizer_process_result), NULL );
 
 	bus = gst_element_get_bus (priv->pipeline);
 	gst_bus_add_signal_watch(bus);
@@ -248,11 +276,11 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer,PocketvoxState state)
 {
 	g_return_if_fail(NULL != recognizer);
-	
+
 	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
 		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
 	PocketvoxRecognizerPrivate *priv = recognizer->priv;
-	
+
 	switch(state)
 	{
 		case POCKETVOX_STATE_RUN:
@@ -264,7 +292,7 @@ void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer,PocketvoxSta
 		default:
 			break;
 	}
-	
+
 	priv->state = state;
 }
 
@@ -274,18 +302,30 @@ void pocketvox_recognizer_set(PocketvoxRecognizer *recognizer, gchar* ppt, gchar
 	g_return_if_fail(!g_strcmp0("dict",ppt)
 				  || !g_strcmp0("lm",ppt)
 				  || !g_strcmp0("hmm", ppt) );
-	
+
 	pocketvox_recognizer_set_state(recognizer, POCKETVOX_STATE_STOP);
-	
+
 	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
 		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
-	PocketvoxRecognizerPrivate *priv = recognizer->priv;	
+	PocketvoxRecognizerPrivate *priv = recognizer->priv;
 
 	GstElement *sphinx = gst_bin_get_by_name(GST_BIN(priv->pipeline), "asr");
-	g_object_set(G_OBJECT(sphinx), 
+	g_object_set(G_OBJECT(sphinx),
 					ppt, path,
 					NULL);
-	
+
 	//put the pipeline in the same state
 	pocketvox_recognizer_set_state(recognizer,priv->state);
+}
+
+void pocketvox_recognizer_set_keyword(PocketvoxRecognizer *recognizer, gchar *keyword)
+{
+    g_return_if_fail(NULL != recognizer);
+    g_return_if_fail(NULL != keyword);
+
+	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
+		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
+	PocketvoxRecognizerPrivate *priv = recognizer->priv;
+
+    priv->keyword = g_strdup(keyword);
 }

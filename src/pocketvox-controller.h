@@ -40,7 +40,7 @@ struct _PocketvoxControllerClass
 
 GType pocketvox_controller_get_type (void) G_GNUC_CONST;
 
-PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer, 
+PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 											  PocketvoxNotifier	*notifier,
 											  PocketvoxIndicator *indicator);
 
