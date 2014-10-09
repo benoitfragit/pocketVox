@@ -116,6 +116,11 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 	//read the user profile
 	priv->profile		= pocketvox_profile_new(path);
 
+    if(priv->profile == NULL)
+    {
+        g_error("Unable to load your profile, be sure that your profile's file exists");
+    }
+
 	//we will set the starting voice and give your name here
 	gchar *name 		= pocketvox_profile_get_name(priv->profile);
 	gchar *voice		= pocketvox_profile_get_voice(priv->profile);
@@ -130,10 +135,25 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 	priv->notifier 		= pocketvox_notifier_new(name, voice);
 	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic);
 
+    if(priv->indicator  == NULL
+    || priv->notifier   == NULL
+    || priv->recognizer == NULL)
+    {
+        g_error("A pocketvox component couldn't be created:\n%s %p\n%s %p\n%s %p",
+                 "PocketvoxIndicator",priv->indicator,
+                 "PocketvoxNotifier", priv->notifier,
+                 "PocketvoxRecognizer", priv->recognizer);
+    }
+
     //set the keyword in th recognizer
     pocketvox_recognizer_set_keyword(priv->recognizer, keyword);
 
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
+
+    if(priv->controller == NULL)
+    {
+        g_error("PocketvoxController couldn't be created");
+    }
 
     g_hash_table_foreach(apps, pocketvox_application_add_profile_module, application);
 

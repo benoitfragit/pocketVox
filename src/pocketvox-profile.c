@@ -311,6 +311,7 @@ void pocketvox_profile_save(PocketvoxProfile *profile)
     g_key_file_set_string(keyfile, "profile", "lm",			priv->lm);
 	g_key_file_set_string(keyfile, "profile", "dict",		priv->dict);
 	g_key_file_set_string(keyfile, "profile", "acoustic", 	priv->acoustic);
+    g_key_file_set_string(keyfile, "profile", "keyword",    priv->keyword);
 
 	for(i = 0; i < g_list_length(keys); i++)
 	{

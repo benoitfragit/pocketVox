@@ -124,7 +124,7 @@ static void pocketvox_module_class_init (PocketvoxModuleClass *klass)
 								  "apps",
 								  FALSE,
 								  G_PARAM_READWRITE);
-								  
+
 	g_object_class_install_property (gklass, PROP_MODULE_APPS, pspec);
 }
 
@@ -172,7 +172,7 @@ void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_d
 
 	if(pocketvox_module_get_activated(module) == FALSE)
 		goto end;
-	
+
 	priv->score = pocketvox_dictionnary_process_request(priv->dict, request);
 	priv->cmd = pocketvox_dictionnary_get_result(priv->dict);
 
@@ -289,7 +289,7 @@ void pocketvox_module_manage_apps(gpointer key, gpointer value, gpointer user_da
 	PocketvoxModule *module = (PocketvoxModule *)value;
 	gchar *window = (gchar *)user_data;
 	gchar *id = (gchar *)key;
-	
+
 	if(pocketvox_module_is_apps(module) == TRUE)
 	{
 		if(!g_strcmp0(id, window) == TRUE )
