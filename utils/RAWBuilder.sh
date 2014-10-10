@@ -31,7 +31,7 @@ then
 fi
 
 FILES=(${FILES_LIST// / })
-OUTPUT_FILE="./modele.lm.dmp"
+OUTPUT_FILE="./modele.txt"
 > $OUTPUT_FILE
 
 for file in ${FILES[*]};
@@ -48,4 +48,5 @@ do
     done < $file
 done
 
+echo "raw file: $OUTPUT_FILE created in ."
 exit 0
