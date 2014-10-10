@@ -1,4 +1,14 @@
 #!/bin/bash
+# this script has been written by Benoit Franquet
+# it provides and easy way to create a raw file to use with the cmuclmtk kit
+# to create your own langage model.
+# In order to create a raw file avalaible for cmuclmtk you should give
+# a folder containing dictionnary files
+# or a list of such a folder
+# a dictionnary is simply a list of key=value like this
+# open my documents=xdg-open ~/Documents
+# This script will browse all your dictionnaries, get all formated line to
+# create a valid raw file named modele.txt in the current directory
 # check if there is files
 if [ $@ == "" ] && [ $1 == ""  ];
 then

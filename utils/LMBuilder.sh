@@ -1,4 +1,10 @@
 #!/bin/bash
+# This script has been written by Benoit Franquet to
+# easily generage langage model by reading a raw file
+# formatted like this <s> text </s>
+#
+# All step comes from the cmusphinx website: http://cmusphinx.sourceforge.net/wiki/tutoriallm
+# and require the cmuclmtk kit
 raw=$1
 folder=$2
 
