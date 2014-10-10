@@ -56,5 +56,5 @@ do
     done < $file
 done
 
-echo "raw file: $OUTPUT_FILE created in ."
+
 exit 0
