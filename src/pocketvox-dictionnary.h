@@ -52,5 +52,8 @@ gchar* pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary);
 
 gchar* pocketvox_dictionnary_get_result(PocketvoxDictionnary *dictionnary);
 
+void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary);
+
+
 G_END_DECLS
 #endif

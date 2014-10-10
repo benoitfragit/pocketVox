@@ -1,6 +1,8 @@
 #include "pocketvox-dictionnary.h"
 #include <math.h>
 
+static GHashTable* fullWordsList = NULL;
+
 enum
 {
 	PROP_0,
@@ -20,7 +22,6 @@ struct _PocketvoxDictionnaryPrivate
 	gchar		*result;
 
 	GHashTable 	*hash;
-	GHashTable  *words;
 	GHashTable  *tfidf;
 };
 
@@ -43,7 +44,6 @@ static void pocketvox_dictionnary_finalize(GObject *object)
 	g_free(priv->result);
 
 	g_hash_table_destroy(priv->hash);
-	g_hash_table_destroy(priv->words);
 	g_hash_table_destroy(priv->tfidf);
 
 	G_OBJECT_CLASS (pocketvox_dictionnary_parent_class)->finalize (object);
@@ -123,8 +123,13 @@ static void pocketvox_dictionnary_init (PocketvoxDictionnary *dictionnary){
 	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;
 
 	priv->hash 	= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
-	priv->words = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_dictionnary_free_word);
-	priv->tfidf = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+	//priv->words = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_dictionnary_free_word);
+	if(fullWordsList == NULL)
+    {
+        fullWordsList = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_dictionnary_free_word);
+    }
+
+    priv->tfidf = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
 
 	priv->loaded = FALSE;
 }
@@ -170,7 +175,7 @@ static void pocketvox_dictionnary_load_raw(PocketvoxDictionnary *dictionnary)
 				nw->word = g_strdup(*w);
 				nw->occurence = 1;
 
-				pocketVoxWord* ww = (pocketVoxWord *)g_hash_table_find(priv->words, pocketvox_dictionnary_find_word, nw);
+				pocketVoxWord* ww = (pocketVoxWord *)g_hash_table_find(fullWordsList, pocketvox_dictionnary_find_word, nw);
 
 				if (ww != NULL)
 				{
@@ -181,7 +186,7 @@ static void pocketvox_dictionnary_load_raw(PocketvoxDictionnary *dictionnary)
 				}
 				else
 				{
-					g_hash_table_insert(priv->words,g_strdup(*w), nw);
+					g_hash_table_insert(fullWordsList,g_strdup(*w), nw);
 				}
 
 				w++;
@@ -195,7 +200,7 @@ static void pocketvox_dictionnary_load_raw(PocketvoxDictionnary *dictionnary)
 	g_io_channel_shutdown(io, FALSE, NULL);
 }
 
-static void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary)
+void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary)
 {
 	g_return_if_fail(NULL != dictionnary);
 
@@ -205,7 +210,7 @@ static void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary)
 
 	GList *keys 	= g_hash_table_get_keys(priv->hash);
 	GList *commands = g_hash_table_get_values(priv->hash);
-	GList *nwords	= g_hash_table_get_values(priv->words);
+	GList *nwords	= g_hash_table_get_values(fullWordsList);
 	gint i, j;
 	gint N = g_list_length(keys);
 
@@ -214,7 +219,7 @@ static void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary)
 		gchar *key   = (gchar *)g_list_nth_data(keys, i);
 		gchar *cmd   = (gchar *)g_list_nth_data(commands, i);
 
-		gdouble *tab = (gdouble *)g_malloc0(g_hash_table_size(priv->words)*sizeof(gdouble));
+		gdouble *tab = (gdouble *)g_malloc0(g_hash_table_size(fullWordsList)*sizeof(gdouble));
 
 		//get the tfidf frequency
 		for(j = 0; j < g_list_length(nwords); j++ )
@@ -261,7 +266,6 @@ PocketvoxDictionnary* pocketvox_dictionnary_new(gchar* filepath, gboolean load_t
 	if(load_tfidf == FALSE)
 	{
 		pocketvox_dictionnary_load_raw(dictionnary);
-		pocketvox_dictionnary_tfidf(dictionnary);
 	}
 	else
 	{
@@ -283,9 +287,9 @@ void pocketvox_dictionnary_display(PocketvoxDictionnary* dictionnary)
 	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;
 
 	//display all words and frequency in the document
-	g_return_if_fail(NULL != priv->words);
+	g_return_if_fail(NULL != fullWordsList);
 
-	GList *words = g_hash_table_get_values(priv->words);
+	GList *words = g_hash_table_get_values(fullWordsList);
 	GList *keys	 = g_hash_table_get_keys(priv->hash);
 	GList *commands= g_hash_table_get_values(priv->hash);
 
@@ -363,7 +367,7 @@ void pocketvox_dictionnary_write_tfidf_file(PocketvoxDictionnary *dictionnary)
     keyfile = g_key_file_new();
     GList *commands = g_hash_table_get_keys(priv->tfidf);
     GList *values = g_hash_table_get_values(priv->tfidf);
-    GList *words = g_hash_table_get_values(priv->words);
+    GList *words = g_hash_table_get_values(fullWordsList);
     gint n = g_hash_table_size(priv->tfidf);
     gint i;
     gchar *data = NULL;
@@ -472,7 +476,7 @@ void pocketvox_dictionnary_load_tfidf_file(PocketvoxDictionnary* dictionnary, gc
 						pvw->occurence = (gint)g_key_file_get_integer(keyfile, *groups, *words, NULL);
 
 
-						g_hash_table_insert(priv->words, g_strdup(*words), pvw);
+						g_hash_table_insert(fullWordsList, g_strdup(*words), pvw);
 
 						words++;
 					}
@@ -496,7 +500,7 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;
 
 	//split the string
-	GList* words = g_hash_table_get_values(priv->words);
+	GList* words = g_hash_table_get_values(fullWordsList);
 	GList* cmds  = g_hash_table_get_keys(priv->tfidf);
 	GList* tabs  = g_hash_table_get_values(priv->tfidf);
 

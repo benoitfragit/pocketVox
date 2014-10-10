@@ -209,18 +209,18 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
         }
         else
         {
-            /*if(priv->waiting == FALSE)
-            {*/
+            if(priv->waiting == FALSE)
+            {
                 g_signal_emit(recognizer, pocketvox_recognizer_signals[SIGNAL_RESULT],
                     0, hyp);
 
                 priv->waiting = TRUE;
-            /*}
+            }
             else
             {
                 g_warning("%s", hyp);
                 priv->waiting = g_strcmp0(hyp, priv->keyword);
-            }*/
+            }
         }
     }
 }

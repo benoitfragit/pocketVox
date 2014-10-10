@@ -32,11 +32,11 @@ struct _PocketvoxModuleClass
 
 	/*public funcs and data here*/
 	void (*execute)(PocketvoxModule *module);
-	
+
 };
 
 GType pocketvox_module_get_type (void) G_GNUC_CONST;
-	
+
 PocketvoxModule* pocketvox_module_new(gchar *id, gchar *path, gboolean loadtfidf);
 void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_data);
 gchar* pocketvox_module_get_id(PocketvoxModule *module);
@@ -48,8 +48,7 @@ gchar* pocketvox_module_get_command(PocketvoxModule *module);
 gchar* pocketvox_module_get_raw(PocketvoxModule *module);
 gboolean pocketvox_module_is_apps(PocketvoxModule *module);
 void pocketvox_module_manage_apps(gpointer key, gpointer value, gpointer user_data);
-
-
+void pocketvox_module_build_dictionnary(PocketvoxModule *module);
 
 //overwritten by virtual methode
 void pocketvox_module_execute(PocketvoxModule *module);
