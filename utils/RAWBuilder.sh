@@ -8,7 +8,7 @@
 # a dictionnary is simply a list of key=value like this
 # open my documents=xdg-open ~/Documents
 # This script will browse all your dictionnaries, get all formated line to
-# create a valid raw file named modele.txt in the current directory
+# create a valid raw that you can paste to a raw file
 # check if there is files
 if [ $@ == "" ] && [ $1 == ""  ];
 then
@@ -41,8 +41,6 @@ then
 fi
 
 FILES=(${FILES_LIST// / })
-OUTPUT_FILE="./modele.txt"
-> $OUTPUT_FILE
 
 for file in ${FILES[*]};
 do
@@ -53,7 +51,7 @@ do
 
         if [ "$key" != " " ] && [ "$key" != "" ] && [ "$key" != "$value" ];
         then
-            echo "<s> $key </s>" >> $OUTPUT_FILE
+            echo "<s> $key </s>"
         fi
     done < $file
 done
