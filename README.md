@@ -12,8 +12,6 @@ It give two main way to develop modules:
 * In C object oriented (GObject, GLib) using autotools
 * In Python by heriting the Module class from the Pocketvox package
 
-A first basic C example of how building a little application is disponible [here](https://github.com/benoitfragit/pocketVox/blob/master/src/main.c)
-
 **HOW IT WORKS ?**
 =================
 
@@ -31,6 +29,7 @@ This object first read a **PocketvoxProfile** that make the user able to pass so
     dict=/home/benoit/Projet/voicerecognition/frenchWords62K.dic
     acoustic=/home/benoit/Projet/voicerecognition/lium_french_f0
     lm=/home/benoit/Projet/voicerecognition/lm/dictionnary.lm.dmp
+    keyword=écoute
     [applications]
     Thunar=/home/benoit/Bureau/MyModule/MyModule.dic
 
