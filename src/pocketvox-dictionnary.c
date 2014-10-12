@@ -163,34 +163,40 @@ static void pocketvox_dictionnary_load_raw(PocketvoxDictionnary *dictionnary)
 		{
 			gchar** w;
 			gchar** fields = g_strsplit_set(line, "=\n", 3);
-			g_hash_table_insert(priv->hash, g_strdup(fields[0]), g_strdup(fields[1]));
 
-			//add new word to the dictionnary word
+            if(g_strcmp0("",  fields[0])
+            && g_strcmp0(" ", fields[0])
+            && g_strcmp0("",  fields[1])
+            && g_strcmp0(" ", fields[1]))
+            {
+                g_hash_table_insert(priv->hash, g_strdup(fields[0]), g_strdup(fields[1]));
 
-			w = g_strsplit_set(fields[0], " ", -1);
+			    //add new word to the dictionnary word
+			    w = g_strsplit_set(fields[0], " ", -1);
 
-			while( *w != NULL)
-			{
-				pocketVoxWord* nw = (pocketVoxWord *)g_malloc0(sizeof(pocketVoxWord));
-				nw->word = g_strdup(*w);
-				nw->occurence = 1;
+			    while( *w != NULL)
+			    {
+				    pocketVoxWord* nw = (pocketVoxWord *)g_malloc0(sizeof(pocketVoxWord));
+				    nw->word = g_strdup(*w);
+				    nw->occurence = 1;
 
-				pocketVoxWord* ww = (pocketVoxWord *)g_hash_table_find(fullWordsList, pocketvox_dictionnary_find_word, nw);
+				    pocketVoxWord* ww = (pocketVoxWord *)g_hash_table_find(fullWordsList, pocketvox_dictionnary_find_word, nw);
 
-				if (ww != NULL)
-				{
-					ww->occurence ++;
+				    if (ww != NULL)
+				    {
+					    ww->occurence ++;
 
-					g_free(nw->word);
-					g_free(nw);
-				}
-				else
-				{
-					g_hash_table_insert(fullWordsList,g_strdup(*w), nw);
-				}
+					    g_free(nw->word);
+					    g_free(nw);
+				    }
+				    else
+				    {
+					    g_hash_table_insert(fullWordsList,g_strdup(*w), nw);
+				    }
 
-				w++;
-			}
+				    w++;
+			    }
+            }
 
 			g_strfreev(fields);
 		}
@@ -228,7 +234,7 @@ void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary)
 			gdouble tot = 0.0;
 			pocketVoxWord* pw = (pocketVoxWord *)g_list_nth_data(nwords, j);
 
-			tab[j] = log((gdouble)g_list_length(commands)/(gdouble)pw->occurence);
+			tab[j] = log((gdouble)N/(gdouble)(pw->occurence + 1.0f));
 			gchar **ww = g_strsplit_set(key, " ", -1);
 
 			while( *ww != NULL)
@@ -250,7 +256,6 @@ void pocketvox_dictionnary_tfidf(PocketvoxDictionnary *dictionnary)
 	g_list_free(keys);
 	g_list_free(commands);
 }
-
 
 PocketvoxDictionnary* pocketvox_dictionnary_new(gchar* filepath, gboolean load_tfidf)
 {
@@ -276,7 +281,6 @@ PocketvoxDictionnary* pocketvox_dictionnary_new(gchar* filepath, gboolean load_t
 
 	return dictionnary;
 }
-
 
 void pocketvox_dictionnary_display(PocketvoxDictionnary* dictionnary)
 {
@@ -518,7 +522,7 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 		gdouble iter = 0.0f;
 		gdouble tot = 0.0f;
 
-		t[i] = log((gdouble)g_list_length(cmds)/(gdouble)pwv->occurence);
+		t[i] = log((gdouble)g_list_length(cmds)/(gdouble)(pwv->occurence + 1.0f));
 
 		while(*w != NULL)
 		{
@@ -536,7 +540,7 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 		dist = 0.0f;
 		gdouble* tab = (gdouble *)g_list_nth_data(tabs, i);
 
-		for(j = 0; j <N; j++)
+		for(j = 0; j < N; j++)
 		{
 			dist += (tab[j] - t[j])*(tab[j] - t[j]);
 		}
@@ -546,7 +550,7 @@ gdouble pocketvox_dictionnary_process_request(PocketvoxDictionnary* dictionnary,
 			mindist = dist;
             if(priv->result != NULL) g_free(priv->result);
 
-			priv->result = g_strdup((gchar *)g_list_nth_data(cmds, i));
+            priv->result = g_strdup((gchar *)g_list_nth_data(cmds, i));
 		}
 	}
 

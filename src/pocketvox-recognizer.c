@@ -4,6 +4,7 @@
 enum
 {
 	SIGNAL_RESULT,
+    SIGNAL_WAITING,
 	LAST_SIGNAL
 };
 
@@ -27,7 +28,6 @@ struct _PocketvoxRecognizerPrivate
 };
 
 G_DEFINE_TYPE (PocketvoxRecognizer, pocketvox_recognizer, G_TYPE_OBJECT);
-
 
 static guint pocketvox_recognizer_signals[LAST_SIGNAL];
 
@@ -143,6 +143,17 @@ static void pocketvox_recognizer_class_init (PocketvoxRecognizerClass *klass)
                      G_TYPE_NONE,
                      1, G_TYPE_STRING
             );
+
+    pocketvox_recognizer_signals[SIGNAL_WAITING] =
+        g_signal_new("waiting",
+                    G_TYPE_FROM_CLASS(klass),
+                    G_SIGNAL_RUN_LAST,
+                    0,
+                    NULL, NULL,
+                    g_cclosure_marshal_VOID__POINTER,
+                    G_TYPE_NONE,
+                    0
+        );
 }
 
 
@@ -218,8 +229,17 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
             }
             else
             {
+                gboolean state = priv->waiting;
+
                 g_warning("%s", hyp);
                 priv->waiting = g_strcmp0(hyp, priv->keyword);
+
+                //start a sound notification when the user should speak
+                if(state != priv->waiting && priv->waiting == FALSE)
+                {
+                    g_signal_emit(recognizer, pocketvox_recognizer_signals[SIGNAL_WAITING],
+                        0);
+                }
             }
         }
     }
@@ -250,8 +270,8 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 	priv->lm  = g_strdup(lm);
 	priv->dic = g_strdup(dic);
 
-	//build the pipeline
-	priv->pipeline = gst_parse_launch("gsettingsaudiosrc ! audioconvert ! audioresample ! vader name=vad auto-threshold=true ! pocketsphinx name=asr ! fakesink", NULL);
+	//build the pipeline auto-threshold=true
+	priv->pipeline = gst_parse_launch("gsettingsaudiosrc ! audioconvert ! audioresample ! vader name=vad ! pocketsphinx name=asr ! fakesink", NULL);
 
 	//set properties
 	sphinx = gst_bin_get_by_name(GST_BIN(priv->pipeline), "asr");

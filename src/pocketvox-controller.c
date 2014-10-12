@@ -256,6 +256,17 @@ static void pocketvox_controller_set_voice(PocketvoxController* controller, gpoi
 	pocketvox_notifier_set_voice(priv->notifier, voice);
 }
 
+static void pocketvox_controller_waiting(PocketvoxController *controller, gpointer data)
+{
+    g_return_if_fail(NULL != controller);
+
+ 	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
+			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
+	PocketvoxControllerPrivate *priv = controller->priv;
+
+    pocketvox_notifier_say(priv->notifier, "I'm waiting for your orders");
+}
+
 PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 											  PocketvoxNotifier	*notifier,
 											  PocketvoxIndicator *indicator)
@@ -322,6 +333,10 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 							G_CALLBACK(pocketvox_controller_set_voice),
 							controller);
 
+    g_signal_connect_swapped(priv->recognizer,
+                            "waiting",
+                            G_CALLBACK(pocketvox_controller_waiting),
+                            controller);
 
 	return controller;
 }
