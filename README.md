@@ -12,8 +12,6 @@ It give two main way to develop modules:
 * In C object oriented (GObject, GLib) using autotools
 * In Python by heriting the Module class from the Pocketvox package
 
-A first basic C example of how building a little application is disponible [here](https://github.com/benoitfragit/pocketVox/blob/master/src/main.c)
-
 **HOW IT WORKS ?**
 =================
 
@@ -31,6 +29,7 @@ This object first read a **PocketvoxProfile** that make the user able to pass so
     dict=/home/benoit/Projet/voicerecognition/frenchWords62K.dic
     acoustic=/home/benoit/Projet/voicerecognition/lium_french_f0
     lm=/home/benoit/Projet/voicerecognition/lm/dictionnary.lm.dmp
+    keyword=écoute
     [applications]
     Thunar=/home/benoit/Bureau/MyModule/MyModule.dic
 
@@ -99,12 +98,20 @@ Download ar clone the project on Github..
 
     wget https://github.com/benoitfragit/pocketVox/archive/master.zip
  
- Then you have to setup the environment variable using the setup.sh script. This script will set the following variable:
+ or 
+ 
+    git clone https://github.com/benoitfragit/pocketVox
+  
+ Then you have to setup the environment variable using the setup.sh script (look in the utils folder to find this script). This script will set the following variable:
  
  1. LD_LIBRARY_PATH
  2. PKG_CONFIG_PATH  
  3. GST_PLUGIN_PATH
  4. GI_TYPELIB_PATH
+
+To load variable do the following:
+
+    . ./setup.sh
 
 Once you have done this, you have to build the project autotools.
 
@@ -124,7 +131,7 @@ instead of
     ./autogen.sh
 
 **DEVELOPING WITH THE LIBRARY**
-===========================
+=============================
 
 Now that you have built the library you can develop for pocketvox.  If you want to develop a module the first thing to do is do write a dictionnary.
 
@@ -159,23 +166,23 @@ the first line to create your module is the next one:
 
 then create your module by heriting from PocketvoxModule
 
-    `class MyModule(pv.Module):
-    	def __init__(self, id, path, tfidf):
-     		# call the parent constructor
-    		pv.Module.__init__(self)
-    		
-    		# set the module ID (will be display in the applet)
-    		# set the dictionnary path
-     		pv.Module.set_property(self, "id", id)
-    		pv.Module.set_property(self, "dict", path)
-    	
-    	# overwrite the execute method of PocketvoxModule	
-    	def do_execute(self):
-    		# manage actions or execute commands
-    		cmd = pv.Module.get_property(self, "cmd")
-    		print "Result: ", cmd
-    		os.system(cmd+" &")
-    `
+    class MyModule(pv.Module):
+        	def __init__(self, id, path, tfidf):
+         		# call the parent constructor
+        		pv.Module.__init__(self)
+        		
+        		# set the module ID (will be display in the applet)
+        		# set the dictionnary path
+         		pv.Module.set_property(self, "id", id)
+        		pv.Module.set_property(self, "dict", path)
+        	
+        	# overwrite the execute method of PocketvoxModule	
+        	def do_execute(self):
+        		# manage actions or execute commands
+        		cmd = pv.Module.get_property(self, "cmd")
+        		print "Result: ", cmd
+        		os.system(cmd+" &")
+    
 
 Done, you only need to add your module to a PocketvoxApplication	
 
@@ -190,3 +197,62 @@ add your module
 
 Then you can start the application using:
 `Application.start()`
+
+
+ANNEXE: WRITE DICTIONNARIES AND CREATE CUSTOM LANGUAGE MODELS
+===========================
+
+
+Because I want everybody to be able to use Pocketvox, I've added to the Github project somes scripts that automatize and make very easy dictionnaries creation and langage model creation.
+The main purpose of those module is to make users able to create their own dictionnary for their modules. those scripts require that cmuclmtk is installed on the system.
+
+When you know which sentence associate to your module actions then you can write a dictionnary file like this
+
+dictionnary1.dic>
+
+    open my documents=xdg-open $HOME/Documents
+    open my musics=xdg-open $HOME/Musics
+    open my pictures=xdg-open $HOME/Images
+
+dictionnary2.dic>
+
+    cut=xdotool key Alt+x
+    copy=xdotool key Alt+c
+    paste=xdotool key Alt+v
+
+Then use the RAWBuilder.sh scripts in th utils folder to output
+
+    ./utils/RAWBuilder.sh  dictionnary1.dic dictionnary2.dic
+
+If you have a lot of dictionnary then you can simply give the folder containing all these dic files
+
+    ./utils/RAWBuilder.sh $HOME/dict_folder
+    
+This will output the following
+
+    <s> open my documents </s>
+    <s> open my musics </s>
+    <s> open my pictures </s>
+    <s> copy </s>
+    <s> paste </s>
+    <s> cut </s>
+
+copy this output to a file and save it. Then add the keyword that will let you start action (keyword activation), so if I choose the word listen to make Pocketvox start an action. Then my final raw file 
+
+raw_file.txt>
+
+    <s> open my documents </s>
+    <s> open my musics </s>
+    <s> open my pictures </s>
+    <s> copy </s>
+    <s> paste </s>
+    <s> cut </s>
+    <s> listen </s>
+
+Hop, the raw file is ready then build the language module file using the LMBuilder.sh script located in the utils folder.
+
+    ./utils/LMBuilder path_to_raw_file/raw_file.txt output_lm_dir
+
+This script will generate a language model file in the current folder or in the output_lm_dir if it is given.
+
+Then you can use this language model with your application.
