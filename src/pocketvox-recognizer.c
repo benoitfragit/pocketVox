@@ -247,7 +247,7 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
 
 PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 {
-	GstElement* sphinx = NULL;
+	GstElement *source, *converter, *sampler, *vader, *sphinx;
 	GstBus *bus = NULL;
 
 	PocketvoxRecognizer *recognizer = (PocketvoxRecognizer *)g_object_new(TYPE_POCKETVOX_RECOGNIZER,
@@ -271,10 +271,38 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 	priv->dic = g_strdup(dic);
 
 	//build the pipeline auto-threshold=true
-	priv->pipeline = gst_parse_launch("gsettingsaudiosrc ! audioconvert ! audioresample ! vader name=vad ! pocketsphinx name=asr ! fakesink", NULL);
+    priv->pipeline = gst_pipeline_new("pipeline");
+    g_assert(priv->pipeline);
+
+    bus = gst_pipeline_get_bus(GST_PIPELINE(priv->pipeline));
+    g_assert(bus);
+
+    source    = gst_element_factory_make("gsettingsaudiosrc", "src");
+    g_assert(source);
+
+    converter = gst_element_factory_make("audioconvert",      "convert");
+    g_assert(converter);
+
+    sampler   = gst_element_factory_make("audioresample",     "resample");
+    g_assert(sampler);
+
+    vader     = gst_element_factory_make("vader",             "vader");
+    g_assert(vader);
+
+    sphinx    = gst_element_factory_make("pocketsphinx",      "psphinx");
+    g_assert(sphinx);
+
+    gst_bin_add_many(GST_BIN(priv->pipeline),
+                    source,
+                    converter,
+                    sampler,
+                    vader,
+                    sphinx,
+                    NULL);
+
+    gst_element_link_many(source, converter, sampler, vader, sphinx, NULL);
 
 	//set properties
-	sphinx = gst_bin_get_by_name(GST_BIN(priv->pipeline), "asr");
 	g_object_set(G_OBJECT(sphinx),
 					"hmm", 	priv->hmm,
 					"lm",  	priv->lm,
@@ -284,7 +312,6 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 	//connect to a callback function
 	g_signal_connect(sphinx, "result", G_CALLBACK(pocketvox_recognizer_process_result), NULL );
 
-	bus = gst_element_get_bus (priv->pipeline);
 	gst_bus_add_signal_watch(bus);
 	g_signal_connect(bus, "message::application", G_CALLBACK(pocketvox_recognizer_parse_bus_message), recognizer);
 
