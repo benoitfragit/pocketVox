@@ -78,8 +78,8 @@ else
 fi
 
 dnl
-dnl Check Deps  
-dnl 
+dnl Check Deps
+dnl
 
 PKG_CONFIG_PATH+=":/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig"
 
@@ -162,6 +162,25 @@ dnl Finely set DEBUG_CFLAGS
 dnl
 AC_SUBST(DEBUG_CFLAGS)
 
+dnl
+dnl locale
+dnl
+IT_PROG_INTLTOOL([0.35.0])
+
+GETTEXT_PACKAGE=Pocketvox
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"],
+                   [Domaine de portée de gettext])
+AM_GLIB_GNU_GETTEXT
+
+PROGRAMNAME_LOCALEDIR=[${datadir}/locale]
+AC_SUBST(PROGRAMNAME_LOCALEDIR)
+
+
+dnl
+dnl Introspection
+dnl
+
 GOBJECT_INTROSPECTION_CHECK([>1.32])
 
 # check for gtk-doc
@@ -174,6 +193,7 @@ AM_CONDITIONAL([ENABLE_GTK_DOC], false)
 AC_CONFIG_FILES([
                 Makefile
                 src/Makefile
+                po/Makefile.in
                 docs/Makefile
                 docs/reference/Makefile
                 pocketvox.pc

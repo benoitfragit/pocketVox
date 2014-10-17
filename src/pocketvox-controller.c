@@ -4,6 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "config.h"
+
+#include <libintl.h>
+#define _(String) dgettext(GETTEXT_PACKAGE, String)
+
 enum
 {
 	PROP_0,
@@ -109,7 +114,7 @@ static void pocketvox_controller_state_changer(PocketvoxController *controller, 
 	{
 		if(priv->first_launch == TRUE)
 		{
-			pocketvox_notifier_say(priv->notifier, "It's your first launch, I need some time to initialize myself");
+			pocketvox_notifier_say(priv->notifier, _("It's your first launch, I need some time to initialize myself"));
 			priv->first_launch = FALSE;
 		}
 
@@ -264,7 +269,7 @@ static void pocketvox_controller_waiting(PocketvoxController *controller, gpoint
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;
 
-    pocketvox_notifier_say(priv->notifier, "I'm waiting for your orders");
+    pocketvox_notifier_say(priv->notifier, _("I'm waiting for your orders"));
 }
 
 PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,

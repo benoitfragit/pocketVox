@@ -1,6 +1,7 @@
 #include "pocketvox-dictionnary.h"
 #include <math.h>
 
+
 static GHashTable* fullWordsList = NULL;
 
 enum

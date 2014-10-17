@@ -85,8 +85,8 @@ am__aclocal_m4_deps = $(top_srcdir)/build/autotools/libtool.m4 \
 	$(top_srcdir)/build/autotools/ltsugar.m4 \
 	$(top_srcdir)/build/autotools/ltversion.m4 \
 	$(top_srcdir)/build/autotools/lt~obsolete.m4 \
-	$(top_srcdir)/m4/gtk-doc.m4 $(top_srcdir)/m4/introspection.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/gtk-doc.m4 $(top_srcdir)/m4/intltool.m4 \
+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -175,6 +175,7 @@ am__relativize = \
   done; \
   reldir="$$dir2"
 ACLOCAL = ${SHELL} /home/benoit/Projet/pocketVox/missing aclocal-1.14
+ALL_LINGUAS = 
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 APPINDICATOR_CFLAGS = -pthread -I/usr/include/libappindicator3-0.1 -I/usr/include/libdbusmenu-glib-0.4 -I/usr/include/gtk-3.0 -I/usr/include/atk-1.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/pixman-1 -I/usr/include/libpng12  
@@ -184,12 +185,15 @@ AUTOCONF = ${SHELL} /home/benoit/Projet/pocketVox/missing autoconf
 AUTOHEADER = ${SHELL} /home/benoit/Projet/pocketVox/missing autoheader
 AUTOMAKE = ${SHELL} /home/benoit/Projet/pocketVox/missing automake-1.14
 AWK = gawk
+CATALOGS = 
+CATOBJEXT = .gmo
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
+DATADIRNAME = share
 DEBUG_CFLAGS = -fno-strict-aliasing -Wall  -Werror  -Wshadow                 -Wno-uninitialized -Wno-strict-aliasing                 -Wformat -Wformat-security                 -Winit-self  -Wpointer-arith
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -204,11 +208,14 @@ EXEEXT =
 FGREP = /bin/grep -F
 GDK_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz  
 GDK_LIBS = -lgdk-3 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0  
+GETTEXT_PACKAGE = Pocketvox
 GLIB_CFLAGS = -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include  
 GLIB_COMPILE_RESOURCES = /usr/lib/i386-linux-gnu/glib-2.0/glib-compile-resources
 GLIB_GENMARSHAL = glib-genmarshal
 GLIB_LIBS = -lglib-2.0  
 GLIB_MKENUMS = glib-mkenums
+GMOFILES = 
+GMSGFMT = /usr/bin/msgfmt
 GOBJECT_CFLAGS = -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include  
 GOBJECT_LIBS = -lgobject-2.0 -lglib-2.0  
 GOBJECT_QUERY = gobject-query
@@ -229,6 +236,16 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
+INSTOBJEXT = .mo
+INTLLIBS = 
+INTLTOOL_EXTRACT = /usr/bin/intltool-extract
+INTLTOOL_MERGE = /usr/bin/intltool-merge
+INTLTOOL_PERL = /usr/bin/perl
+INTLTOOL_UPDATE = /usr/bin/intltool-update
+INTLTOOL_V_MERGE = $(INTLTOOL__v_MERGE_$(V))
+INTLTOOL_V_MERGE_OPTIONS = $(intltool__v_merge_options_$(V))
+INTLTOOL__v_MERGE_ = $(INTLTOOL__v_MERGE_$(AM_DEFAULT_VERBOSITY))
+INTLTOOL__v_MERGE_0 = @echo "  ITMRG " $@;
 INTROSPECTION_CFLAGS = -pthread -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/gobject-introspection-1.0  
 INTROSPECTION_COMPILER = /usr/bin/g-ir-compiler
 INTROSPECTION_GENERATE = /usr/bin/g-ir-generate
@@ -251,6 +268,10 @@ MAINT = #
 MAKEINFO = ${SHELL} /home/benoit/Projet/pocketVox/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
+MKINSTALLDIRS = ./mkinstalldirs
+MSGFMT = /usr/bin/msgfmt
+MSGFMT_OPTS = -c
+MSGMERGE = /usr/bin/msgmerge
 NM = /usr/bin/nm -B
 NMEDIT = 
 OBJDUMP = objdump
@@ -274,13 +295,20 @@ POCKETVOX_MAJOR_VERSION = 0
 POCKETVOX_MICRO_VERSION = 1
 POCKETVOX_MINOR_VERSION = 0
 POCKETVOX_VERSION = 0.0.1
+POFILES = 
+POSUB = po
+PO_IN_DATADIR_FALSE = 
+PO_IN_DATADIR_TRUE = 
 PREFIX = NONE
+PROGRAMNAME_LOCALEDIR = ${datarootdir}/locale
 RANLIB = ranlib
 SED = /bin/sed
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = strip
+USE_NLS = yes
 VERSION = 0.0.1
+XGETTEXT = /usr/bin/xgettext
 abs_builddir = /home/benoit/Projet/pocketVox/docs
 abs_srcdir = /home/benoit/Projet/pocketVox/docs
 abs_top_builddir = /home/benoit/Projet/pocketVox
@@ -314,6 +342,8 @@ htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
 install_sh = ${SHELL} /home/benoit/Projet/pocketVox/install-sh
+intltool__v_merge_options_ = $(intltool__v_merge_options_$(AM_DEFAULT_VERBOSITY))
+intltool__v_merge_options_0 = -q
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale

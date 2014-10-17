@@ -4,6 +4,11 @@
 #include <gdk/gdkkeysyms.h>
 #include <libappindicator/app-indicator.h>
 
+#include "config.h"
+
+#include <libintl.h>
+#define _(String) dgettext(GETTEXT_PACKAGE, String)
+
 enum
 {
 	INDICATOR_STATE,
@@ -237,7 +242,7 @@ static void pocketvox_indicator_state_changed(GtkMenuItem *menuitem, gpointer us
 
 	priv->state = !priv->state;
 
-	gtk_menu_item_set_label(menuitem, priv->state ? "Stop" : "Run");
+	gtk_menu_item_set_label(menuitem, priv->state ? _("Stop") : _("Run"));
 
 	g_signal_emit(indicator, pocketvox_indicator_signals[INDICATOR_STATE], 0, priv->state ? "Run" : "Stop");
 }
@@ -360,21 +365,21 @@ PocketvoxIndicator* pocketvox_indicator_new(gchar *voice)
 
 	app_indicator_set_status(priv->applet, APP_INDICATOR_STATUS_ACTIVE);
 
-	GtkWidget* stateItem 		= gtk_menu_item_new_with_label("Run");
-    priv->modulesItem  	        = gtk_menu_item_new_with_label("Modules");
+	GtkWidget* stateItem 		= gtk_menu_item_new_with_label(_("Run"));
+    priv->modulesItem  	        = gtk_menu_item_new_with_label(_("Modules"));
 
     GtkWidget* separatorItem0	= gtk_separator_menu_item_new();
 	GtkWidget* separatorItem1	= gtk_separator_menu_item_new();
 	GtkWidget* separatorItem2	= gtk_separator_menu_item_new();
-	GtkWidget* quitItem 		= gtk_menu_item_new_with_label("Quit");
-    priv->appsItem			    = gtk_menu_item_new_with_label("Apps");
+	GtkWidget* quitItem 		= gtk_menu_item_new_with_label(_("Quit"));
+    priv->appsItem			    = gtk_menu_item_new_with_label(_("Apps"));
 
-	GtkWidget *sphinxItem		= gtk_menu_item_new_with_label("Pocketsphinx");
+	GtkWidget *sphinxItem		= gtk_menu_item_new_with_label(_("Pocketsphinx"));
 	GtkWidget *sphinxMenu		= gtk_menu_new();
 
-	GtkWidget* dictItem			= gtk_menu_item_new_with_label("Set the dictionnary");
-	GtkWidget* lmItem			= gtk_menu_item_new_with_label("Set the language model");
-	GtkWidget* acousticItem 	= gtk_menu_item_new_with_label("Set the acoustic model");
+	GtkWidget* dictItem			= gtk_menu_item_new_with_label(_("Set the dictionnary"));
+	GtkWidget* lmItem			= gtk_menu_item_new_with_label(_("Set the language model"));
+	GtkWidget* acousticItem 	= gtk_menu_item_new_with_label(_("Set the acoustic model"));
 
 	gtk_menu_attach((GtkMenu *)sphinxMenu, dictItem, 		0, 1, 0, 1);
 	gtk_menu_attach((GtkMenu *)sphinxMenu, lmItem, 			0, 1, 1, 2);
@@ -383,7 +388,7 @@ PocketvoxIndicator* pocketvox_indicator_new(gchar *voice)
 	gtk_menu_item_set_submenu((GtkMenuItem *)sphinxItem, sphinxMenu);
 
 	pocketvox_indicator_load_tts_voice(indicator, voice);
-	GtkWidget *espeakItem = gtk_menu_item_new_with_label("Espeak");
+	GtkWidget *espeakItem = gtk_menu_item_new_with_label(_("Espeak"));
 	gtk_menu_item_set_submenu((GtkMenuItem *)espeakItem, priv->espeakMenu);
 
 	gtk_menu_item_set_submenu((GtkMenuItem *)priv->modulesItem, priv->modulesMenu);

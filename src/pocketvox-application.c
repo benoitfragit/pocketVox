@@ -7,6 +7,11 @@
 #include <gtk/gtk.h>
 #include <gst/gst.h>
 
+#include "config.h"
+
+#include <libintl.h>
+#define _(String) dgettext(GETTEXT_PACKAGE,String)
+
 enum
 {
 	PROP_0,
@@ -110,6 +115,10 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
 	PocketvoxApplicationPrivate *priv = application->priv;
 
+	bindtextdomain (GETTEXT_PACKAGE, PROGRAMNAME_LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+    textdomain(GETTEXT_PACKAGE);
+
 	gtk_init(NULL, NULL);
 	gst_init(NULL, NULL);
 
@@ -158,7 +167,7 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
     g_hash_table_foreach(apps, pocketvox_application_add_profile_module, application);
 
 	//a little startup msg
-	gchar *startup = g_strdup_printf("Hello %s, I'm listening you", name);
+	gchar *startup = g_strdup_printf(_("Hello %s, I'm listening you"), name);
 	pocketvox_notifier_say(priv->notifier, startup);
 	g_free(startup);
 
@@ -175,7 +184,7 @@ void pocketvox_application_start(PocketvoxApplication *application)
 
 	//say goodbye to the user
 	gchar *name = pocketvox_profile_get_name(priv->profile);
-	gchar *msg = g_strdup_printf("Goodbye %s", name);
+	gchar *msg = g_strdup_printf(_("Goodbye %s"), name);
 	pocketvox_notifier_say(priv->notifier, msg);
 	g_free(msg);
 

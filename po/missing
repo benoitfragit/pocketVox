@@ -1,0 +1,4 @@
+src/pocketvox-application.c
+src/pocketvox-chooser.c
+src/pocketvox-controller.c
+src/pocketvox-indicator.c
