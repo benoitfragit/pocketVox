@@ -269,9 +269,9 @@ Don't be afraid the way to translate pocketvox is very easy and everybody can do
 
     The first thing you have to do is to create a .po for you language.
     
-    `cd po/
-     msginit --input=Pocketvox.pot --output=<LANGAGE_CODE>.po
-    `
+    cd po/
+    msginit --input=Pocketvox.pot --output=<LANGAGE_CODE>.po
+    
     
     You only need to change <LANGAGE_CODE> by your langage code for example fr for french users.
     
@@ -280,10 +280,10 @@ Don't be afraid the way to translate pocketvox is very easy and everybody can do
     
     Then you need to open the file and translate fill all msgstr field
 
-    `
-     msgid "Hello world"
-     msgstr "Bonjour le monde"
-    `
+    
+    msgid "Hello world"
+    msgstr "Bonjour le monde"
+    
 
 3. Then add your new langage to the LINGUAS file
 
