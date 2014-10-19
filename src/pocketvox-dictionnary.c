@@ -3,17 +3,17 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
+ *
  */
 
 #include "pocketvox-dictionnary.h"
@@ -592,30 +592,3 @@ gchar* pocketvox_dictionnary_get_result(PocketvoxDictionnary *dictionnary)
 	return priv->result;
 }
 
-gchar* pocketvox_dictionnary_get_raw(PocketvoxDictionnary *dictionnary)
-{
-	g_return_val_if_fail(dictionnary != NULL, NULL);
-
-	dictionnary->priv = G_TYPE_INSTANCE_GET_PRIVATE (dictionnary,
-			TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryPrivate);
-	PocketvoxDictionnaryPrivate *priv = dictionnary->priv;
-
-	GList *keys = g_hash_table_get_keys(priv->hash);
-	gint i;
-
-	gchar *raw = g_strdup_printf("<s> %s </s>\n",(gchar *)g_list_nth_data(keys, i));
-
-	for(i=1; i < g_list_length(keys); i++)
-	{
-		gchar* key = (gchar *)g_list_nth_data(keys, i);
-		gchar* tmp = g_strdup(raw);
-		g_free(raw);
-
-		raw = g_strdup_printf("%s<s> %s </s>\n",tmp, key);
-		g_free(tmp);
-	}
-
-	g_list_free(keys);
-
-	return raw;
-}

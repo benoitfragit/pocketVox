@@ -47,6 +47,5 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 void pocketvox_controller_start(PocketvoxController *controller);
 void pocketvox_controller_add_module(PocketvoxController *controller, PocketvoxModule *module);
 void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *id);
-gint pocketvox_controller_create_custom_lm_file(PocketvoxController *controller);
 G_END_DECLS
 #endif

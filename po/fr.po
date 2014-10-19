@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pocketvox 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-17 18:21+0200\n"
+"POT-Creation-Date: 2014-10-19 15:27+0200\n"
 "PO-Revision-Date: 2014-10-17 18:25+0200\n"
 "Last-Translator: benoit franquet <benoitfranquet@gmail.com>\n"
 "Language-Team: French\n"
@@ -18,64 +18,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/pocketvox-application.c:169
+#: ../src/pocketvox-application.c:188
 #, c-format
 msgid "Hello %s, I'm listening you"
 msgstr "Bonjour %s, je vous écoute"
 
-#: ../src/pocketvox-application.c:186
-#, c-format
-msgid "Goodbye %s"
-msgstr "Au revoir %S"
-
-#: ../src/pocketvox-chooser.c:89
+#: ../src/pocketvox-chooser.c:107
 msgid "Choose a file or folder"
 msgstr "Choisir un fichier ou un dossier"
 
-#: ../src/pocketvox-controller.c:117
+#: ../src/pocketvox-controller.c:135
 msgid "It's your first launch, I need some time to initialize myself"
 msgstr "C'est votre premièr lancement, j'ai besoin de quelques secondes pour m'initialiser"
 
-#: ../src/pocketvox-controller.c:272
+#: ../src/pocketvox-controller.c:290
 msgid "I'm waiting for your orders"
 msgstr "J'attends vos ordres"
 
-#: ../src/pocketvox-indicator.c:245
+#: ../src/pocketvox-indicator.c:263
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/pocketvox-indicator.c:245 ../src/pocketvox-indicator.c:368
+#: ../src/pocketvox-indicator.c:263 ../src/pocketvox-indicator.c:386
 msgid "Run"
 msgstr "Lancer"
 
-#: ../src/pocketvox-indicator.c:369
+#: ../src/pocketvox-indicator.c:387
 msgid "Modules"
 msgstr "Modules"
 
-#: ../src/pocketvox-indicator.c:374
+#: ../src/pocketvox-indicator.c:392
 msgid "Quit"
 msgstr "Quitter"
 
-#: ../src/pocketvox-indicator.c:375
+#: ../src/pocketvox-indicator.c:393
 msgid "Apps"
 msgstr "Applications"
 
-#: ../src/pocketvox-indicator.c:377
+#: ../src/pocketvox-indicator.c:395
 msgid "Pocketsphinx"
 msgstr "Pocketsphinx"
 
-#: ../src/pocketvox-indicator.c:380
+#: ../src/pocketvox-indicator.c:398
 msgid "Set the dictionnary"
 msgstr "Régler le dictionnaire"
 
-#: ../src/pocketvox-indicator.c:381
+#: ../src/pocketvox-indicator.c:399
 msgid "Set the language model"
 msgstr "Régler le modèle de langage"
 
-#: ../src/pocketvox-indicator.c:382
+#: ../src/pocketvox-indicator.c:400
 msgid "Set the acoustic model"
 msgstr "Régler le modèle acoustique"
 
-#: ../src/pocketvox-indicator.c:391
+#: ../src/pocketvox-indicator.c:409
 msgid "Espeak"
 msgstr "Espeak"
+
+#~ msgid "Goodbye %s"
+#~ msgstr "Au revoir %s"

@@ -3,17 +3,17 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
+ *
  */
 
 #include "pocketvox-application.h"
@@ -194,17 +194,11 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 
 void pocketvox_application_start(PocketvoxApplication *application)
 {
-	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
+    application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
 			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
 	PocketvoxApplicationPrivate *priv = application->priv;
 
 	pocketvox_controller_start(priv->controller);
-
-	//say goodbye to the user
-	gchar *name = pocketvox_profile_get_name(priv->profile);
-	gchar *msg = g_strdup_printf(_("Goodbye %s"), name);
-	pocketvox_notifier_say(priv->notifier, msg);
-	g_free(msg);
 
 	pocketvox_profile_save(priv->profile);
 }

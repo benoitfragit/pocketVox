@@ -3,17 +3,17 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
+ *
  */
 
 #include "pocketvox-module.h"
@@ -257,18 +257,6 @@ gchar* pocketvox_module_get_command(PocketvoxModule *module)
 	PocketvoxModulePrivate *priv = module->priv;
 
 	return priv->cmd;
-}
-
-gchar* pocketvox_module_get_raw(PocketvoxModule *module)
-{
-	g_return_val_if_fail(NULL != module, NULL);
-
-	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
-			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
-	PocketvoxModulePrivate *priv = module->priv;
-
-	//get the raw sentence from the dictionnary
-	return pocketvox_dictionnary_get_raw(priv->dict);
 }
 
 void pocketvox_module_execute(PocketvoxModule *module)

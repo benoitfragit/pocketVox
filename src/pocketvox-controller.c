@@ -3,17 +3,17 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
+ *
  */
 
 #include "pocketvox-controller.h"
@@ -419,55 +419,4 @@ void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *
 
 	g_hash_table_remove(priv->modules, id);
 	pocketvox_indicator_remove_module_item(priv->indicator, id);
-}
-
-static void pocketvox_controller_write_dictionnary(gpointer key, gpointer value, gpointer user_data)
-{
-	gchar *filepath = (gchar *)user_data;
-	PocketvoxModule *module =(PocketvoxModule *)value;
-
-	gchar *raw = pocketvox_module_get_raw(module);
-
-	//write the raw txt to file
-	FILE *fp = fopen(filepath, "a+");
-	fprintf(fp, "%s", raw);
-
-	fclose(fp);
-	g_free(raw);
-}
-
-gint pocketvox_controller_create_custom_lm_file(PocketvoxController *controller)
-{
-	gint res;
-
-	g_return_val_if_fail(NULL != controller, -1);
-
-	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
-			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
-	PocketvoxControllerPrivate *priv = controller->priv;
-
-	//create a new tmp file
-	gchar* filepath = g_strdup("/tmp/pocketvox_raw.txt");
-	FILE *fp = fopen(filepath, "w");
-	fclose(fp);
-
-	//for each module in the hashtable modules
-	g_hash_table_foreach(priv->modules,
-						 pocketvox_controller_write_dictionnary,
-						 filepath);
-
-	//use cmuclmtk tools to build a lm file
-	res = system("text2wfreq < /tmp/pocketvox_raw.txt | wfreq2vocab > /tmp/pocketvox.vocab");
-	g_return_val_if_fail(-1 != res, res);
-
-	res = system("text2idngram -vocab /tmp/pocketvox.vocab -idngram /tmp/pocketvox.idngram < /tmp/pocketvox_raw.txt");
-	g_return_val_if_fail(-1 != res, res);
-
-	res = system("idngram2lm -vocab_type 0 -idngram /tmp/pocketvox.idngram -vocab /tmp/pocketvox.vocab -arpa /tmp/pocketvox.arpa");
-	g_return_val_if_fail(-1 != res, res);
-
-	res = system("sphinx_lm_convert -i /tmp/pocketvox.arpa -o /tmp/pocketvox.lm.dmp");
-	g_return_val_if_fail(-1 != res, res);
-
-	return 0;
 }
