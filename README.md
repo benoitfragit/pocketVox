@@ -100,9 +100,9 @@ Download ar clone the project on Github..
  
  or 
  
-    git clone https://github.com/benoitfragit/pocketVox
-  
- Then you have to setup the environment variable using the setup.sh script (look in the utils folder to find this script). This script will set the following variable:
+    `git clone https://github.com/benoitfragit/pocketVox`
+
+Then you have to setup the environment variable using the setup.sh script (look in the utils folder to find this script). This script will set the following variable:
  
  1. LD_LIBRARY_PATH
  2. PKG_CONFIG_PATH  
@@ -199,9 +199,11 @@ Then you can start the application using:
 `Application.start()`
 
 
-ANNEXE: WRITE DICTIONNARIES AND CREATE CUSTOM LANGUAGE MODELS
-===========================
+ANNEXE
+======
 
+WRITE DICTIONNARIES AND CREATE CUSTOM LANGUAGE MODELS
+-------
 
 Because I want everybody to be able to use Pocketvox, I've added to the Github project somes scripts that automatize and make very easy dictionnaries creation and langage model creation.
 The main purpose of those module is to make users able to create their own dictionnary for their modules. those scripts require that cmuclmtk is installed on the system.
@@ -256,3 +258,35 @@ Hop, the raw file is ready then build the language module file using the LMBuild
 This script will generate a language model file in the current folder or in the output_lm_dir if it is given.
 
 Then you can use this language model with your application.
+
+TRANSLATE POCKETVOX IN MY LANGAGE
+------
+Ok pocketvox seems to be a great project but it is not avalaible in my language. How can I extand it ? is it difficult ?
+
+Don't be afraid the way to translate pocketvox is very easy and everybody can do it.
+
+1. Write the .po file
+
+    The first thing you have to do is to create a .po for you language.
+    
+    `cd po/`
+    `msginit --input=Pocketvox.pot --output=<LANGAGE_CODE>.po`
+    
+    
+    You only need to change <LANGAGE_CODE> by your langage code for example fr for french users.
+    
+
+2. Edit the <LANGAGE_CODE>.po file
+    
+    Then you need to open the file and translate fill all msgstr field
+
+    
+    `msgid "Hello world"`
+    `msgstr "Bonjour le monde"`
+    
+
+3. Then add your new langage to the LINGUAS file
+
+    `echo "<LANGAGE_CODE>" >> LINGUAS`
+ 
+Done
