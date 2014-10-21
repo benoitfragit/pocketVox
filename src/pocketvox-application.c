@@ -24,7 +24,7 @@
 #include "pocketvox-profile.h"
 #include <gtk/gtk.h>
 #include <gst/gst.h>
-
+#include <gio/gio.h>
 #include "config.h"
 
 #include <libintl.h>
@@ -37,7 +37,7 @@ enum
 
 struct _PocketvoxApplicationPrivate
 {
-	PocketvoxIndicator  *indicator;
+    PocketvoxIndicator  *indicator;
 	PocketvoxNotifier   *notifier;
 	PocketvoxRecognizer *recognizer;
 	PocketvoxController *controller;
@@ -140,7 +140,7 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 	gtk_init(NULL, NULL);
 	gst_init(NULL, NULL);
 
-	//read the user profile
+    //read the user profile
 	priv->profile		= pocketvox_profile_new(path);
 
     if(priv->profile == NULL)
@@ -155,12 +155,14 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 	gchar *dic			= pocketvox_profile_get_dict(priv->profile);
 	gchar *acoustic		= pocketvox_profile_get_acoustic(priv->profile);
     gchar *keyword      = pocketvox_profile_get_keyword(priv->profile);
+    gchar *material     = pocketvox_profile_get_material(priv->profile);
+    gchar *device       = pocketvox_profile_get_device(priv->profile);
 
     GHashTable* apps    = pocketvox_profile_get_profile_apps(priv->profile);
 
 	priv->indicator 	= pocketvox_indicator_new(voice);
 	priv->notifier 		= pocketvox_notifier_new(name, voice);
-	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic);
+	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic, keyword, material, device);
 
     if(priv->indicator  == NULL
     || priv->notifier   == NULL
@@ -171,9 +173,6 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
                  "PocketvoxNotifier", priv->notifier,
                  "PocketvoxRecognizer", priv->recognizer);
     }
-
-    //set the keyword in th recognizer
-    pocketvox_recognizer_set_keyword(priv->recognizer, keyword);
 
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
 

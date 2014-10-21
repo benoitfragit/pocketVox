@@ -38,7 +38,7 @@ struct _PocketvoxRecognizerClass
 
 GType pocketvox_recognizer_get_type (void) G_GNUC_CONST;
 
-PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic);
+PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic, gchar *key, gchar *mat, gchar *dev);
 
 void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer,PocketvoxState state);
 

@@ -37,11 +37,14 @@ GType pocketvox_profile_get_type (void) G_GNUC_CONST;
 
 PocketvoxProfile* pocketvox_profile_new(gchar *path);
 
-void pocketvox_profile_set_name(PocketvoxProfile *profile, gchar *name);
-void pocketvox_profile_set_acoustic(PocketvoxProfile *profile, gchar *acoustic);
-void pocketvox_profile_set_lm(PocketvoxProfile *profile, gchar *lm);
+void pocketvox_profile_set_name(PocketvoxProfile *profile,      gchar *name);
+void pocketvox_profile_set_acoustic(PocketvoxProfile *profile,  gchar *acoustic);
+void pocketvox_profile_set_lm(PocketvoxProfile *profile,        gchar *lm);
 void pocketvox_profile_set_dict(PocketvoxProfile *profile, gchar *dict);
 void pocketvox_profile_set_voice(PocketvoxProfile *profile, gchar *voice);
+void pocketvox_profile_set_keyword(PocketvoxProfile *profile, gchar *k);
+void pocketvox_profile_set_material(PocketvoxProfile *profile, gchar *m);
+void pocketvox_profile_set_device(PocketvoxProfile *profile, gchar *m);
 
 gchar* pocketvox_profile_get_name(PocketvoxProfile *profile);
 gchar* pocketvox_profile_get_acoustic(PocketvoxProfile *profile);
@@ -49,10 +52,11 @@ gchar* pocketvox_profile_get_lm(PocketvoxProfile *profile);
 gchar* pocketvox_profile_get_dict(PocketvoxProfile *profile);
 gchar* pocketvox_profile_get_voice(PocketvoxProfile *profile);
 gchar* pocketvox_profile_get_keyword(PocketvoxProfile *profile);
-void pocketvox_profile_set_keyword(PocketvoxProfile *profile, gchar *k);
+gchar* pocketvox_profile_get_material(PocketvoxProfile *profile);
+gchar* pocketvox_profile_get_device(PocketvoxProfile *profile);
+GHashTable* pocketvox_profile_get_profile_apps(PocketvoxProfile *profile);
 
 void pocketvox_profile_save(PocketvoxProfile *profile);
 
-GHashTable* pocketvox_profile_get_profile_apps(PocketvoxProfile *profile);
 G_END_DECLS
 #endif

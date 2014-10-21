@@ -3,17 +3,17 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
+ *
  */
 
 #include "pocketvox-recognizer.h"
@@ -263,10 +263,13 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
     }
 }
 
-PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
+PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic, gchar *key, gchar *mat, gchar *dev)
 {
 	GstElement *source, *converter, *sampler, *vader, *sphinx;
 	GstBus *bus = NULL;
+
+    gchar *material = mat == NULL ? g_strdup("gsettingsaudiosrc") : g_strdup(mat);
+    gchar *device = dev == NULL ? g_strdup("hw:0") : g_strdup(dev);
 
 	PocketvoxRecognizer *recognizer = (PocketvoxRecognizer *)g_object_new(TYPE_POCKETVOX_RECOGNIZER,
 																		"hmm", 	hmm,
@@ -280,6 +283,9 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 	g_return_val_if_fail(g_file_test(lm, G_FILE_TEST_EXISTS), 	NULL);
 	g_return_val_if_fail(g_file_test(dic, G_FILE_TEST_EXISTS), 	NULL);
 
+    g_return_val_if_fail(NULL != mat, NULL);
+    g_return_val_if_fail(NULL != dev, NULL);
+
 	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
 		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
 	PocketvoxRecognizerPrivate *priv = recognizer->priv;
@@ -287,6 +293,7 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 	priv->hmm = g_strdup(hmm);
 	priv->lm  = g_strdup(lm);
 	priv->dic = g_strdup(dic);
+    priv->keyword = g_strdup(key);
 
 	//build the pipeline auto-threshold=true
     priv->pipeline = gst_pipeline_new("pipeline");
@@ -295,8 +302,16 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
     bus = gst_pipeline_get_bus(GST_PIPELINE(priv->pipeline));
     g_assert(bus);
 
-    source    = gst_element_factory_make("gsettingsaudiosrc", "src");
+    source    = gst_element_factory_make(material, "src");
     g_assert(source);
+
+    //set the device name if we use alsasrc input
+    if( !g_strcmp0(material, "alsasrc") == TRUE )
+    {
+        g_object_set(G_OBJECT(source),
+                      "device", device,
+                      NULL);
+    }
 
     converter = gst_element_factory_make("audioconvert",      "convert");
     g_assert(converter);
@@ -306,6 +321,10 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 
     vader     = gst_element_factory_make("vader",             "vader");
     g_assert(vader);
+    g_object_set(G_OBJECT(vader),
+                "auto-threshold", TRUE,
+                NULL);
+
 
     sphinx    = gst_element_factory_make("pocketsphinx",      "psphinx");
     g_assert(sphinx);
@@ -336,7 +355,11 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic)
 	//play
 	gst_element_set_state(priv->pipeline, GST_STATE_PAUSED);
 
-	return recognizer;
+
+    g_free(material);
+    g_free(device);
+
+    return recognizer;
 }
 
 void pocketvox_recognizer_set_state(PocketvoxRecognizer *recognizer,PocketvoxState state)

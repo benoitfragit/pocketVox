@@ -3,17 +3,17 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
+ *
  */
 
 #include "pocketvox-profile.h"
@@ -32,7 +32,8 @@ struct _PocketvoxProfilePrivate
 	gchar *dict;
 	gchar *acoustic;
     gchar *keyword;
-
+    gchar *material;
+    gchar *device;
     GHashTable *apps;
 };
 
@@ -58,6 +59,8 @@ static void pocketvox_profile_finalize(GObject *object)
 	g_free(priv->acoustic);
 	g_free(priv->path);
 	g_free(priv->keyword);
+    g_free(priv->material);
+    g_free(priv->device);
 
 	g_hash_table_destroy(priv->apps);
 
@@ -114,6 +117,8 @@ static void pocketvox_profile_init (PocketvoxProfile *profile){
 	priv->dict		= NULL;
 	priv->acoustic 	= NULL;
 	priv->keyword   = NULL;
+    priv->material  = NULL;
+    priv->device    = NULL;
 
 	priv->apps = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
 }
@@ -140,19 +145,35 @@ PocketvoxProfile* pocketvox_profile_new(gchar *path)
 	if(g_key_file_load_from_file (keyfile, path, flags, &error ) )
 	{
 	    //loading first/personal parameters
-		priv->name 		= g_key_file_get_string(keyfile, "profile", "name",  NULL);
-		priv->voice 	= g_key_file_get_string(keyfile, "profile", "voice", NULL);
-		priv->lm		= g_key_file_get_string(keyfile, "profile", "lm",	 NULL);
-		priv->dict  	= g_key_file_get_string(keyfile, "profile", "dict",	 NULL);
+		priv->name 		= g_key_file_get_string(keyfile, "profile", "name",     NULL);
+		priv->voice 	= g_key_file_get_string(keyfile, "profile", "voice",    NULL);
+		priv->lm		= g_key_file_get_string(keyfile, "profile", "lm",	    NULL);
+		priv->dict  	= g_key_file_get_string(keyfile, "profile", "dict",	    NULL);
 		priv->acoustic 	= g_key_file_get_string(keyfile, "profile", "acoustic", NULL);
-		priv->keyword   = g_key_file_get_string(keyfile, "profile", "keyword", NULL);
+		priv->keyword   = g_key_file_get_string(keyfile, "profile", "keyword",  NULL);
+        priv->material  = g_key_file_get_string(keyfile, "profile", "material", NULL);
+        priv->device    = g_key_file_get_string(keyfile, "profile", "device",   NULL);
 
-		priv->name 	= priv->name 	== NULL ? g_strdup(g_get_user_name()) : priv->name;
-		priv->voice = priv->voice 	== NULL ? g_strdup("default") : priv->voice;
+        //set the default value if not set in the profile
+        if(     (NULL == priv->material )
+          || (  !g_strcmp0(priv->material, "gsettingsaudiosrc") == FALSE && !g_strcmp0(priv->material, "alsasrc") == FALSE ) )
+        {
+            g_warning("BAD parameter: material should be alsasrc or gsettingsaudiosrc");
+            priv->material = g_strdup("gsettingsaudiosrc");
+        }
+
+        if( (!g_strcmp0(priv->device,"alsasrc" ) == TRUE)
+          && (NULL == priv->device))
+        {
+		    priv->device    = priv->device    == NULL ? g_strdup("hw:0")              : priv->device;
+        }
+
+        priv->name 	    = priv->name 	  == NULL ? g_strdup(g_get_user_name())   : priv->name;
+		priv->voice     = priv->voice 	  == NULL ? g_strdup("default")           : priv->voice;
 
 	    //then load app category app=dict
 	    //goal is to associate an destkop app to a dictionnary
-	    gchar **groups = g_key_file_get_groups(keyfile, NULL);
+	    gchar **groups  = g_key_file_get_groups(keyfile, NULL);
 
 	    while ( *groups != NULL )
 	    {
@@ -330,6 +351,8 @@ void pocketvox_profile_save(PocketvoxProfile *profile)
 	g_key_file_set_string(keyfile, "profile", "dict",		priv->dict);
 	g_key_file_set_string(keyfile, "profile", "acoustic", 	priv->acoustic);
     g_key_file_set_string(keyfile, "profile", "keyword",    priv->keyword);
+    g_key_file_set_string(keyfile, "profile", "material",   priv->material);
+    g_key_file_set_string(keyfile, "profile", "device",     priv->device);
 
 	for(i = 0; i < g_list_length(keys); i++)
 	{
@@ -381,4 +404,48 @@ gchar* pocketvox_profile_get_keyword(PocketvoxProfile *profile)
   PocketvoxProfilePrivate *priv = profile->priv;
 
   return priv->keyword;
+}
+
+gchar* pocketvox_profile_get_material(PocketvoxProfile *profile)
+{
+  g_return_val_if_fail(NULL != profile, NULL);
+
+  profile->priv = G_TYPE_INSTANCE_GET_PRIVATE (profile,
+      TYPE_POCKETVOX_PROFILE, PocketvoxProfilePrivate);
+  PocketvoxProfilePrivate *priv = profile->priv;
+
+  return priv->material;
+}
+
+void pocketvox_profile_set_material(PocketvoxProfile *profile, gchar *m)
+{
+  g_return_val_if_fail(NULL != profile, NULL);
+
+  profile->priv = G_TYPE_INSTANCE_GET_PRIVATE (profile,
+      TYPE_POCKETVOX_PROFILE, PocketvoxProfilePrivate);
+  PocketvoxProfilePrivate *priv = profile->priv;
+
+  priv->material = g_strdup(m);
+}
+
+gchar* pocketvox_profile_get_device(PocketvoxProfile *profile)
+{
+  g_return_val_if_fail(NULL != profile, NULL);
+
+  profile->priv = G_TYPE_INSTANCE_GET_PRIVATE (profile,
+      TYPE_POCKETVOX_PROFILE, PocketvoxProfilePrivate);
+  PocketvoxProfilePrivate *priv = profile->priv;
+
+  return priv->device;
+}
+
+void pocketvox_profile_set_device(PocketvoxProfile *profile, gchar *m)
+{
+  g_return_val_if_fail(NULL != profile, NULL);
+
+  profile->priv = G_TYPE_INSTANCE_GET_PRIVATE (profile,
+      TYPE_POCKETVOX_PROFILE, PocketvoxProfilePrivate);
+  PocketvoxProfilePrivate *priv = profile->priv;
+
+  priv->device = g_strdup(m);
 }
