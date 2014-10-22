@@ -165,7 +165,7 @@ PocketvoxProfile* pocketvox_profile_new(gchar *path)
         if( (!g_strcmp0(priv->device,"alsasrc" ) == TRUE)
           && (NULL == priv->device))
         {
-		    priv->device    = priv->device    == NULL ? g_strdup("hw:0")              : priv->device;
+		    priv->device = g_strdup("hw:0");
         }
 
         priv->name 	    = priv->name 	  == NULL ? g_strdup(g_get_user_name())   : priv->name;
