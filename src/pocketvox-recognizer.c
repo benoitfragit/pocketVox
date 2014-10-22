@@ -271,20 +271,17 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
     gchar *material = mat == NULL ? g_strdup("gsettingsaudiosrc") : g_strdup(mat);
     gchar *device = dev == NULL ? g_strdup("hw:0") : g_strdup(dev);
 
+	g_return_val_if_fail(g_file_test(hmm, G_FILE_TEST_EXISTS), 	NULL);
+	g_return_val_if_fail(g_file_test(lm, G_FILE_TEST_EXISTS), 	NULL);
+	g_return_val_if_fail(g_file_test(dic, G_FILE_TEST_EXISTS), 	NULL);
+
 	PocketvoxRecognizer *recognizer = (PocketvoxRecognizer *)g_object_new(TYPE_POCKETVOX_RECOGNIZER,
 																		"hmm", 	hmm,
 																		"lm", 	lm,
 																		"dic",	dic,
 																		NULL);
 
-	g_return_val_if_fail(NULL != recognizer, 					NULL);
-
-	g_return_val_if_fail(g_file_test(hmm, G_FILE_TEST_EXISTS), 	NULL);
-	g_return_val_if_fail(g_file_test(lm, G_FILE_TEST_EXISTS), 	NULL);
-	g_return_val_if_fail(g_file_test(dic, G_FILE_TEST_EXISTS), 	NULL);
-
-    g_return_val_if_fail(NULL != mat, NULL);
-    g_return_val_if_fail(NULL != dev, NULL);
+	g_return_val_if_fail(NULL != recognizer, NULL);
 
 	recognizer->priv = G_TYPE_INSTANCE_GET_PRIVATE (recognizer,
 		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);

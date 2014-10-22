@@ -36,12 +36,12 @@ struct _PocketvoxIndicatorClass
 
 /**
  * pocketvox_indicator_get_type:
- * 
- * get the type 
- * 
+ *
+ * get the type
+ *
  * Returns: return the type
- * 
- */ 
+ *
+ */
 GType pocketvox_indicator_get_type (void) G_GNUC_CONST;
 
 PocketvoxIndicator* pocketvox_indicator_new(gchar *voice);

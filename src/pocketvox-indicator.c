@@ -552,3 +552,4 @@ void pocketvox_indicator_remove_module_item(PocketvoxIndicator *indicator, gchar
 	g_hash_table_remove(priv->table, id);
 	gtk_widget_queue_draw(priv->modulesMenu);
 }
+

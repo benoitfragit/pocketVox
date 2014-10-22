@@ -274,10 +274,14 @@ void pocketvox_module_execute(PocketvoxModule *module)
 	else
 	{
 		gchar* cc = g_strdup_printf("%s &", priv->cmd);
-		gint res = system(cc);
-		g_free(cc);
-		if( res == -1) g_error("An error occured when I've executed %s", priv->cmd);
-	}
+
+        if(cc != NULL)
+        {
+		    gint res = system(cc);
+		    g_free(cc);
+		    if( res == -1) g_error("An error occured when I've executed %s", priv->cmd);
+	    }
+    }
 }
 
 gboolean pocketvox_module_is_apps(PocketvoxModule *module)
