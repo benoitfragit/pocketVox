@@ -163,6 +163,11 @@ dnl
 AC_SUBST(DEBUG_CFLAGS)
 
 dnl
+dnl GSETTINGS
+dnl
+GLIB_GSETTINGS
+
+dnl
 dnl locale
 dnl
 IT_PROG_INTLTOOL([0.35.0])
@@ -193,6 +198,8 @@ AM_CONDITIONAL([ENABLE_GTK_DOC], false)
 AC_CONFIG_FILES([
                 Makefile
                 src/Makefile
+                src/lib/Makefile
+                src/gui/Makefile
                 po/Makefile.in
                 docs/Makefile
                 docs/reference/Makefile

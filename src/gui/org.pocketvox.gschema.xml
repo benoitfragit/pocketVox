@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="pocketvox">
+<enum id="org.pocketvox.config.enum">
+<value nick="option1" value="0"/>
+<value nick="option2" value="1"/>
+<value nick="option3" value="2"/>
+</enum>	
+<schema id="org.pocketvox.config" path="/org/pocketvox/config/">
+<key type="b" name="visual-notification">
+<default>true</default>
+<summary>Enable visual notifications</summary>
+<description>Enables visual notifications</description>
+</key>
+<key type="b" name="sound-notification">
+<default>true</default>
+<summary>Enable sound notifications</summary>
+<description>Enables sound notifications</description>
+</key>
+<key name="list-apps" type="a(ssb)">
+<default>[]</default>
+<summary>The application list</summary>
+<description>List of applications</description>
+</key>
+<key name="voice" type="s">
+<default>'en'</default>
+<summary>The voice </summary>
+<description>voice</description>
+</key>
+<key name="name" type="s">
+<default>''</default>
+<summary>User given name</summary>
+</key>
+<key name="keyword" type="s">
+<default>''</default>
+<summary>User given keyword</summary>
+</key>
+<key name="lm" type="s">
+<default>''</default>
+<summary>User given language model</summary>
+</key>
+<key name="dict" type="s">
+<default>''</default>
+<summary>User given dictionnary</summary>
+</key>
+<key name="hmm" type="s">
+<default>''</default>
+<summary>User given acoustic model</summary>
+</key>
+<key name="source" type="s">
+<default>'Default'</default>
+<summary>Choose pipeline input</summary>
+<description>Choose between Default, Alsa, Network</description>
+</key>
+<key name="device" type="s">
+<default>'hw:0'</default>
+<summary>Mic input</summary>
+<description>Set the mic input (only for alsa)</description>
+</key>
+</schema>
+</schemalist>

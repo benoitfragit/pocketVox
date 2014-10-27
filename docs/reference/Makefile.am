@@ -22,7 +22,7 @@ DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.xml
 # gtk-doc will search all .c and .h files beneath these paths
 # for inline comments documenting functions and macros.
 # e.g. DOC_SOURCE_DIR=$(top_srcdir)/gtk $(top_srcdir)/gdk
-DOC_SOURCE_DIR=$(top_srcdir)/src
+DOC_SOURCE_DIR=$(top_srcdir)/src/lib
 
 # Extra options to pass to gtkdoc-scangobj. Not normally needed.
 SCANGOBJ_OPTIONS=
@@ -49,13 +49,13 @@ FIXXREF_OPTIONS=
 # Used for dependencies. The docs will be rebuilt if any of these change.
 # e.g. HFILE_GLOB=$(top_srcdir)/gtk/*.h
 # e.g. CFILE_GLOB=$(top_srcdir)/gtk/*.c
-HFILE_GLOB=$(top_srcdir)/src/*.h
-CFILE_GLOB=$(top_srcdir)/src/*.c
+HFILE_GLOB=$(top_srcdir)/src/lib/*.h
+CFILE_GLOB=$(top_srcdir)/src/lib/*.c
 
 AM_CPPFLAGS =					\
 	-I$(top_builddir)			\
 	-I$(top_srcdir) 			\
-    -I${top_srcdir}/src/		\
+    -I${top_srcdir}/src/lib		\
     @GLIB_CFLAGS@				\
     @GTK3_CFLAGS@				\
     @GDK_CFLAGS@				\
@@ -93,7 +93,7 @@ expand_content_files=
 # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
 GTKDOC_CFLAGS=
 GTKDOC_LIBS=\
-	${top_builddir}/src/libpocketvox-1.0.la	\
+	${top_builddir}/src/lib/libpocketvox-1.0.la	\
 	@GLIB_LIBS@ \
 	@GTK3_LIBS@ \
 	@GDK_LIBS@ \
