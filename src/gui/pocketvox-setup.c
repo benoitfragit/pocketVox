@@ -22,6 +22,9 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
+#include <libintl.h>
+#define _(String) dgettext(GETTEXT_PACKAGE,String)
+
 enum
 {
 	PROP_0,
@@ -153,9 +156,9 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
 
     ModuleInfos *info = (ModuleInfos *)g_malloc0(sizeof(ModuleInfos));
 
-	GtkWidget* label_id 	= gtk_label_new("id");
-	GtkWidget* label_app	= gtk_label_new("Is this module is associated to a desktop app ?");
-	GtkWidget* label_path	= gtk_label_new("Dictionnary's path");
+	GtkWidget* label_id 	= gtk_label_new(_("id"));
+	GtkWidget* label_app	= gtk_label_new(_("Is this module is associated to a desktop app ?"));
+	GtkWidget* label_path	= gtk_label_new(_("Dictionnary's path"));
 
     GtkWidget* row          = gtk_list_box_row_new();
     gchar *name             = g_strdup_printf("row_%d",current_line);
@@ -207,7 +210,7 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
 
 static void pocketvox_setup_add_module_callback(PocketvoxSetup *setup, gpointer data)
 {
-    pocketvox_setup_add_module(setup, "your-id", "your path", FALSE);
+    pocketvox_setup_add_module(setup, _("your-id"), _("your path"), FALSE);
 }
 
 static void pocketvox_setup_get_modules_grid(PocketvoxSetup *setup)
@@ -245,11 +248,11 @@ static GtkWidget* pocketvox_setup_get_user_grid(PocketvoxSetup *setup)
 	PocketvoxSetupPrivate *priv = setup->priv;
 
 	GtkWidget *grid 		 	= gtk_grid_new();
-	GtkWidget *label_name 	 	= gtk_label_new("Your name");
+	GtkWidget *label_name 	 	= gtk_label_new(_("Your name"));
 	GtkWidget *entry_name 		= gtk_entry_new();
-	GtkWidget *label_keyword 	= gtk_label_new("Activation keyword");
+	GtkWidget *label_keyword 	= gtk_label_new(_("Activation keyword"));
 	GtkWidget *entry_keyword	= gtk_entry_new();
-	GtkWidget *label_voice		= gtk_label_new("Choose the espeak voice");
+	GtkWidget *label_voice		= gtk_label_new(("Choose the espeak voice"));
 	GtkWidget *combo_voice		= gtk_combo_box_text_new();
 
 	gchar *voicesPath = (gchar *)g_getenv("ESPEAK_VOICES_PATH");
@@ -310,9 +313,9 @@ static GtkWidget* pocketvox_setup_get_pocketsphinx_grid(PocketvoxSetup *setup)
     GtkWidget *et_dict 	          = gtk_label_new("");
     GtkWidget *et_hmm	          = gtk_label_new("");
 
-	gtk_label_set_markup(GTK_LABEL(et_lm), "<b> Language model </b>");
-	gtk_label_set_markup(GTK_LABEL(et_hmm), "<b> Acoustic model </b>");
-	gtk_label_set_markup(GTK_LABEL(et_dict), "<b> Dictionnary </b>");
+	gtk_label_set_markup(GTK_LABEL(et_lm),  _("<b> Language model </b>"));
+	gtk_label_set_markup(GTK_LABEL(et_hmm), _("<b> Acoustic model </b>"));
+	gtk_label_set_markup(GTK_LABEL(et_dict),_("<b> Dictionnary </b>"));
 
     gtk_misc_set_alignment(GTK_MISC(et_lm),   0.0, 0.5);
     gtk_misc_set_alignment(GTK_MISC(et_dict), 0.0, 0.5);
@@ -361,8 +364,8 @@ static GtkWidget* pocketvox_setup_get_notification_grid(PocketvoxSetup *setup)
 	PocketvoxSetupPrivate *priv = setup->priv;
 
 	GtkWidget *grid = gtk_grid_new();
-    GtkWidget *label_visual  = gtk_label_new("Allow visual notifications");
-    GtkWidget *label_sound   = gtk_label_new("Allow sound notifications");
+    GtkWidget *label_visual  = gtk_label_new(_("Allow visual notifications"));
+    GtkWidget *label_sound   = gtk_label_new(_("Allow sound notifications"));
 
     gtk_misc_set_alignment(GTK_MISC(label_visual),        0.0, 0.5);
     gtk_misc_set_alignment(GTK_MISC(label_sound),         0.0, 0.5);
@@ -392,14 +395,14 @@ static GtkWidget* pocketvox_setup_get_gstreamer_grid(PocketvoxSetup *setup)
 
 	GtkWidget *grid = gtk_grid_new();
 
-	GtkWidget* label_mode 	= gtk_label_new("Gstreamer source");
+	GtkWidget* label_mode 	= gtk_label_new(_("Gstreamer source"));
 	GtkWidget* combo_mode 	= gtk_combo_box_text_new();
-	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(combo_mode), "Default", 	"Default");
-	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(combo_mode), "Alsa",		"Alsa");
-	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(combo_mode), "Network",	"Network");
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(combo_mode), "Default", 	_("Default"));
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(combo_mode), "Alsa",		_("Alsa"));
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(combo_mode), "Network",	_("Network"));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo_mode), 0);
 
-	GtkWidget* label_mic  	= gtk_label_new("Mic");
+	GtkWidget* label_mic  	= gtk_label_new(_("Mic"));
 	GtkWidget* entry_mic	= gtk_entry_new();
 
 	g_settings_bind(priv->settings, "source", combo_mode, "active-id", G_SETTINGS_BIND_DEFAULT);
@@ -480,12 +483,16 @@ PocketvoxSetup* pocketvox_setup_new()
 			TYPE_POCKETVOX_SETUP, PocketvoxSetupPrivate);
 	PocketvoxSetupPrivate *priv = setup->priv;
 
+	bindtextdomain (GETTEXT_PACKAGE, PROGRAMNAME_LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+    textdomain(GETTEXT_PACKAGE);
+
 	priv->settings = g_settings_new("org.pocketvox.config");
 
     //Build the window
     priv->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_position(GTK_WINDOW(priv->window), GTK_WIN_POS_CENTER_ALWAYS);
-    gtk_window_set_title(GTK_WINDOW(priv->window), "Pocketvox setups");
+    gtk_window_set_title(GTK_WINDOW(priv->window), "pocketvox-gtk");
     gtk_window_set_default_size(GTK_WINDOW(priv->window), 500, 350);
     gtk_container_set_border_width(GTK_CONTAINER(priv->window), 5);
 
@@ -500,10 +507,10 @@ PocketvoxSetup* pocketvox_setup_new()
     gtk_container_add(GTK_CONTAINER(priv->window), box);
 
     //a button for all
-    GtkWidget* button_notification 	= gtk_button_new_with_label("Notifications");
-    GtkWidget* button_user 			= gtk_button_new_with_label("Users");
-    GtkWidget* button_pocketsphinx 	= gtk_button_new_with_label("Pocketsphinx");
-    GtkWidget* button_gstreamer		= gtk_button_new_with_label("Gstreamer");
+    GtkWidget* button_notification 	= gtk_button_new_with_label(_("Notifications"));
+    GtkWidget* button_user 			= gtk_button_new_with_label(_("Users"));
+    GtkWidget* button_pocketsphinx 	= gtk_button_new_with_label(_("Pocketsphinx"));
+    GtkWidget* button_gstreamer		= gtk_button_new_with_label(_("Gstreamer"));
 
     gtk_button_set_relief(GTK_BUTTON(button_notification), 	GTK_RELIEF_NONE);
     gtk_button_set_relief(GTK_BUTTON(button_user), 			GTK_RELIEF_NONE);
@@ -561,7 +568,7 @@ PocketvoxSetup* pocketvox_setup_new()
     gtk_stack_set_transition_type(GTK_STACK(stack) , GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT);
     gtk_stack_set_transition_duration(GTK_STACK(stack), 1000);
 
-    gtk_stack_add_titled(GTK_STACK(stack), hgridBox, "Setup", "Setup");
+    gtk_stack_add_titled(GTK_STACK(stack), hgridBox, "Setup", _("Configuration"));
 
 	GtkWidget* scrolledWindow  = gtk_scrolled_window_new(NULL, NULL);
 
@@ -570,7 +577,7 @@ PocketvoxSetup* pocketvox_setup_new()
     gtk_container_add(GTK_CONTAINER(scrolledWindow), priv->listBox);
     gtk_widget_show_all(scrolledWindow);
 
-    gtk_stack_add_titled(GTK_STACK(stack), scrolledWindow, "Modules", "Modules");
+    gtk_stack_add_titled(GTK_STACK(stack), scrolledWindow, "Modules", _("Modules"));
 
     //adding a task switcher
     GtkWidget* stackSwitcher = gtk_stack_switcher_new();

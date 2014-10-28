@@ -21,7 +21,6 @@
 #include "pocketvox-notifier.h"
 #include "pocketvox-indicator.h"
 #include "pocketvox-controller.h"
-#include "pocketvox-profile.h"
 #include <gtk/gtk.h>
 #include <gst/gst.h>
 #include <gio/gio.h>
@@ -41,7 +40,9 @@ struct _PocketvoxApplicationPrivate
 	PocketvoxNotifier   *notifier;
 	PocketvoxRecognizer *recognizer;
 	PocketvoxController *controller;
-	PocketvoxProfile 	*profile;
+	
+	//new method to acquire user params
+	GSettings			*settings;
 };
 
 G_DEFINE_TYPE (PocketvoxApplication, pocketvox_application, G_TYPE_OBJECT);
@@ -104,20 +105,16 @@ static void pocketvox_application_init (PocketvoxApplication *application){
 	priv->notifier 		= NULL;
 	priv->controller 	= NULL;
 	priv->indicator 	= NULL;
-	priv->profile		= NULL;
+	
+	priv->settings 		= g_settings_new("org.pocketvox.config");
 }
 
-static void pocketvox_application_add_profile_module(gpointer key, gpointer value, gpointer data)
+static void pocketvox_application_add_profile_module(PocketvoxApplication *application, gchar* id, gchar* path, gboolean isapp)
 {
-    gchar *app = (gchar *)key;
-    gchar *dict = (gchar *)value;
-
-    PocketvoxApplication *application = (PocketvoxApplication *)data;
-
-    PocketvoxModule* module = pocketvox_module_new(g_strdup(app), g_strdup(dict), FALSE);
+    PocketvoxModule* module = pocketvox_module_new(g_strdup(id), g_strdup(path), FALSE);
 
     //set the module ModuleProfile to TRUE :: TODO
-    g_object_set(G_OBJECT(module), "apps", TRUE, NULL);
+    g_object_set(G_OBJECT(module), "apps", isapp, NULL);
 
     //add the module to the application
     pocketvox_application_add_module( application, module);
@@ -140,27 +137,22 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
 	gtk_init(NULL, NULL);
 	gst_init(NULL, NULL);
 
-    //read the user profile
-	priv->profile		= pocketvox_profile_new(path);
+	//access gettings parameters
+	gchar *name 		= g_settings_get_string(priv->settings, "name");
+	gchar *voice		= g_settings_get_string(priv->settings, "voice");
+	gchar *lm			= g_settings_get_string(priv->settings, "lm");
+	gchar *dic			= g_settings_get_string(priv->settings, "dict");
+	gchar *acoustic		= g_settings_get_string(priv->settings, "hmm");
+    gchar *keyword      = g_settings_get_string(priv->settings, "keyword");
+    gchar *material     = g_settings_get_string(priv->settings, "source");
+    gchar *device       = g_settings_get_string(priv->settings, "device");
 
-    if(priv->profile == NULL)
-    {
-        g_error("Unable to load your profile, be sure that your profile's file exists");
-    }
+	GVariant *modules;
+	GVariantIter *iter;
+	gchar *key, *value;
+	gboolean isapps;
 
-	//we will set the starting voice and give your name here
-	gchar *name 		= pocketvox_profile_get_name(priv->profile);
-	gchar *voice		= pocketvox_profile_get_voice(priv->profile);
-	gchar *lm			= pocketvox_profile_get_lm(priv->profile);
-	gchar *dic			= pocketvox_profile_get_dict(priv->profile);
-	gchar *acoustic		= pocketvox_profile_get_acoustic(priv->profile);
-    gchar *keyword      = pocketvox_profile_get_keyword(priv->profile);
-    gchar *material     = pocketvox_profile_get_material(priv->profile);
-    gchar *device       = pocketvox_profile_get_device(priv->profile);
-
-    GHashTable* apps    = pocketvox_profile_get_profile_apps(priv->profile);
-
-	priv->indicator 	= pocketvox_indicator_new(voice);
+	priv->indicator 	= pocketvox_indicator_new();
 	priv->notifier 		= pocketvox_notifier_new(name, voice);
 	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic, keyword, material, device);
 
@@ -174,6 +166,7 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
                  "PocketvoxRecognizer", priv->recognizer);
     }
 
+
 	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
 
     if(priv->controller == NULL)
@@ -181,7 +174,19 @@ PocketvoxApplication* pocketvox_application_new(gchar* path)
         g_error("PocketvoxController couldn't be created");
     }
 
-    g_hash_table_foreach(apps, pocketvox_application_add_profile_module, application);
+    //only need to connect signals
+	modules = g_settings_get_value(priv->settings, "list-apps");
+
+	//get the content of the GVariant
+	g_variant_get(modules, "a(ssb)", &iter);
+
+	//loop other all apps
+	while(g_variant_iter_loop(iter, "(ssb)", &key, &value, &isapps))
+	{
+		pocketvox_application_add_profile_module(application, key, value, isapps);
+	}
+
+	g_variant_iter_free(iter);
 
 	//a little startup msg
 	gchar *startup = g_strdup_printf(_("Hello %s, I'm listening you"), name);
@@ -198,8 +203,6 @@ void pocketvox_application_start(PocketvoxApplication *application)
 	PocketvoxApplicationPrivate *priv = application->priv;
 
 	pocketvox_controller_start(priv->controller);
-
-	pocketvox_profile_save(priv->profile);
 }
 
 void pocketvox_application_add_module(PocketvoxApplication *application, PocketvoxModule *module)

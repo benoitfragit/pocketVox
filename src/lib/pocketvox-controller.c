@@ -158,54 +158,6 @@ static void pocketvox_controller_quit(PocketvoxController *controller, gpointer 
 	g_main_loop_unref(priv->loop);
 }
 
-static void pocketvox_controller_set_dict(PocketvoxController *controller, gpointer user_data)
-{
-	g_return_if_fail(NULL != controller);
-
-	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
-			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
-	PocketvoxControllerPrivate *priv = controller->priv;
-
-	PocketvoxChooser *chooser = pocketvox_chooser_new(FALSE);
-	gchar *path = pocketvox_chooser_get_filepath(chooser);
-
-	g_return_if_fail(NULL != path);
-
-	pocketvox_recognizer_set(priv->recognizer, "dict", g_strdup(path));
-}
-
-static void pocketvox_controller_set_lm(PocketvoxController *controller, gpointer user_data)
-{
-	g_return_if_fail(NULL != controller);
-
-	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
-			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
-	PocketvoxControllerPrivate *priv = controller->priv;
-
-	PocketvoxChooser *chooser = pocketvox_chooser_new(FALSE);
-	gchar *path = pocketvox_chooser_get_filepath(chooser);
-
-	g_return_if_fail(NULL != path);
-
-	pocketvox_recognizer_set(priv->recognizer, "lm", g_strdup(path));
-}
-
-static void pocketvox_controller_set_acoustic(PocketvoxController *controller, gpointer user_data)
-{
-	g_return_if_fail(NULL != controller);
-
-	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
-			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
-	PocketvoxControllerPrivate *priv = controller->priv;
-
-	PocketvoxChooser *chooser = pocketvox_chooser_new(TRUE);
-	gchar *path = pocketvox_chooser_get_filepath(chooser);
-
-	g_return_if_fail(NULL != path);
-
-	pocketvox_recognizer_set(priv->recognizer, "hmm", g_strdup(path));
-}
-
 void pocketvox_controller_on_request(PocketvoxController *controller, gpointer hyp, gpointer user_data)
 {
 	gchar *request = (gchar *)hyp;
@@ -266,19 +218,6 @@ void pocketvox_controller_set_module_state(PocketvoxController *controller, gpoi
 	pocketvox_module_set_activated(module, !pocketvox_module_get_activated(module));
 }
 
-static void pocketvox_controller_set_voice(PocketvoxController* controller, gpointer v, gpointer user_data)
-{
-	gchar *voice = (gchar *)v;
-	g_return_if_fail(NULL != controller);
-	g_return_if_fail(NULL != voice);
-
-	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
-			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
-	PocketvoxControllerPrivate *priv = controller->priv;
-
-	pocketvox_notifier_set_voice(priv->notifier, voice);
-}
-
 static void pocketvox_controller_waiting(PocketvoxController *controller, gpointer data)
 {
     g_return_if_fail(NULL != controller);
@@ -332,28 +271,8 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 							controller);
 
 	g_signal_connect_swapped(priv->indicator,
-							"indicator_dict",
-							G_CALLBACK(pocketvox_controller_set_dict),
-							controller);
-
-	g_signal_connect_swapped(priv->indicator,
-							"indicator_lm",
-							G_CALLBACK(pocketvox_controller_set_lm),
-							controller);
-
-	g_signal_connect_swapped(priv->indicator,
-							"indicator_acoustic",
-							G_CALLBACK(pocketvox_controller_set_acoustic),
-							controller);
-
-	g_signal_connect_swapped(priv->indicator,
 							"indicator_module_toggled",
 							G_CALLBACK(pocketvox_controller_set_module_state),
-							controller);
-
-	g_signal_connect_swapped(priv->indicator,
-							"indicator_language_toggled",
-							G_CALLBACK(pocketvox_controller_set_voice),
 							controller);
 
     g_signal_connect_swapped(priv->recognizer,

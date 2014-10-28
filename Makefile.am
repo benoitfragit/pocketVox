@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I build/autotools
 DISTCHECK_CONFIGURE_FLAGS = --enable-introspection
-SUBDIRS = src docs po
+SUBDIRS = data src docs po
 
 INTLTOOL_FILES = intltool-extract.in \
                  intltool-merge.in \

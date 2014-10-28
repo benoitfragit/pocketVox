@@ -66,10 +66,11 @@ DISTFILES = Makefile.in.in POTFILES.in $(POFILES)
 EXTRA_DISTFILES = ChangeLog POTFILES.skip Makevars LINGUAS
 
 POTFILES = \
-	../src/pocketvox-application.c \
-	../src/pocketvox-indicator.c \
-	../src/pocketvox-controller.c \
-	../src/pocketvox-chooser.c
+	../src/lib/pocketvox-application.c \
+	../src/lib/pocketvox-indicator.c \
+	../src/lib/pocketvox-controller.c \
+	../src/lib/pocketvox-chooser.c \
+	../src/gui/pocketvox-setup.c
 
 CATALOGS=$(shell LINGUAS="$(USE_LINGUAS)"; for lang in $$LINGUAS; do printf "$$lang.gmo "; done)
 

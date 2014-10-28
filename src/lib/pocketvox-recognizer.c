@@ -268,8 +268,24 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
 	GstElement *source, *converter, *sampler, *vader, *sphinx;
 	GstBus *bus = NULL;
 
-    gchar *material = mat == NULL ? g_strdup("gsettingsaudiosrc") : g_strdup(mat);
+    gchar *material = NULL;
     gchar *device = dev == NULL ? g_strdup("hw:0") : g_strdup(dev);
+
+	if(mat == NULL || !g_strcmp0(mat, "Default") == TRUE)
+	{
+		material = g_strdup("gsettingsaudiosrc");
+	}
+	else
+	{
+		if( !g_strcmp0(mat, "Alsa") == TRUE)
+		{
+			material = g_strdup("alsasrc");
+		}
+		else
+		{
+			material = g_strdup("gsettingsaudiosrc");
+		}
+	}
 
 	g_return_val_if_fail(g_file_test(hmm, G_FILE_TEST_EXISTS), 	NULL);
 	g_return_val_if_fail(g_file_test(lm, G_FILE_TEST_EXISTS), 	NULL);
