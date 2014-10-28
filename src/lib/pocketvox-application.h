@@ -37,7 +37,7 @@ struct _PocketvoxApplicationClass
 GType pocketvox_application_get_type (void) G_GNUC_CONST;
 
 
-PocketvoxApplication* pocketvox_application_new(gchar *path);
+PocketvoxApplication* pocketvox_application_new();
 void pocketvox_application_start(PocketvoxApplication *application);
 void pocketvox_application_add_module(PocketvoxApplication *application, PocketvoxModule *module);
 void pocketvox_application_remove_module(PocketvoxApplication *application, gchar *id);

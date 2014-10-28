@@ -20,12 +20,9 @@
 
 int main(int argc, char **argv)
 {
-	if(argc >= 2)
-	{
-		PocketvoxApplication *application = pocketvox_application_new(argv[1]);
+	PocketvoxApplication *application = pocketvox_application_new();
 
-		pocketvox_application_start(application);
-	}
+	pocketvox_application_start(application);
 
     return 0;
 }

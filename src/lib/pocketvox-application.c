@@ -40,7 +40,7 @@ struct _PocketvoxApplicationPrivate
 	PocketvoxNotifier   *notifier;
 	PocketvoxRecognizer *recognizer;
 	PocketvoxController *controller;
-	
+
 	//new method to acquire user params
 	GSettings			*settings;
 };
@@ -105,7 +105,7 @@ static void pocketvox_application_init (PocketvoxApplication *application){
 	priv->notifier 		= NULL;
 	priv->controller 	= NULL;
 	priv->indicator 	= NULL;
-	
+
 	priv->settings 		= g_settings_new("org.pocketvox.config");
 }
 
@@ -120,7 +120,7 @@ static void pocketvox_application_add_profile_module(PocketvoxApplication *appli
     pocketvox_application_add_module( application, module);
 }
 
-PocketvoxApplication* pocketvox_application_new(gchar* path)
+PocketvoxApplication* pocketvox_application_new()
 {
 	g_return_val_if_fail(NULL != path, NULL);
 
