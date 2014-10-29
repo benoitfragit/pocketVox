@@ -508,6 +508,7 @@ PocketvoxSetup* pocketvox_setup_new()
     gtk_window_set_position(GTK_WINDOW(priv->window), GTK_WIN_POS_CENTER_ALWAYS);
     gtk_window_set_title(GTK_WINDOW(priv->window), "pocketvox-gtk");
     gtk_window_set_default_size(GTK_WINDOW(priv->window), 500, 350);
+    gtk_window_set_icon_name(GTK_WINDOW(priv->window), "pocketvox");
     gtk_container_set_border_width(GTK_CONTAINER(priv->window), 5);
 
 	g_signal_connect_swapped(priv->window, "delete-event", G_CALLBACK(pocketvox_setup_save_and_quit), setup);

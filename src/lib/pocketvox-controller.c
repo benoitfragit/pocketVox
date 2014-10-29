@@ -125,7 +125,7 @@ static void pocketvox_controller_state_changer(PocketvoxController *controller, 
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;
 
-	pocketvox_notifier_notify(priv->notifier,state, NULL);
+	//pocketvox_notifier_notify(priv->notifier,state, NULL);
 
 	if(!g_strcmp0("Run", state))
 	{

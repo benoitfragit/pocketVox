@@ -175,6 +175,8 @@ AM_CONDITIONAL([ENABLE_GTK_DOC], false)
 AC_CONFIG_FILES([
                 Makefile
                 data/Makefile
+                data/pocketvox.desktop
+                data/pocketvox-gtk.desktop
                 src/Makefile
                 src/lib/Makefile
                 src/gui/Makefile

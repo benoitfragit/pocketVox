@@ -144,6 +144,8 @@ PocketvoxApplication* pocketvox_application_new()
     gchar *keyword      = g_settings_get_string(priv->settings, "keyword");
     gchar *material     = g_settings_get_string(priv->settings, "source");
     gchar *device       = g_settings_get_string(priv->settings, "device");
+    gboolean visual     = g_settings_get_boolean(priv->settings, "visual-notification");
+    gboolean sound      = g_settings_get_boolean(priv->settings, "sound-notification");
 
 	GVariant *modules;
 	GVariantIter *iter;
@@ -164,8 +166,12 @@ PocketvoxApplication* pocketvox_application_new()
                  "PocketvoxRecognizer", priv->recognizer);
     }
 
+    g_object_set(G_OBJECT(priv->notifier),
+                  "visual_notification", visual,
+                  "sound_notification",  sound,
+                  NULL);
 
-	priv->controller	= pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
+	priv->controller = pocketvox_controller_new(priv->recognizer, priv->notifier, priv->indicator);
 
     if(priv->controller == NULL)
     {
