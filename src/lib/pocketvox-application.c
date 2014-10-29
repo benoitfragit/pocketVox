@@ -122,8 +122,6 @@ static void pocketvox_application_add_profile_module(PocketvoxApplication *appli
 
 PocketvoxApplication* pocketvox_application_new()
 {
-	g_return_val_if_fail(NULL != path, NULL);
-
 	PocketvoxApplication *application = (PocketvoxApplication *)g_object_new(TYPE_POCKETVOX_APPLICATION, NULL);
 
 	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,

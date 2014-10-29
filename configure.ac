@@ -1,12 +1,6 @@
 m4_define([pocketvox_major], [0])
 m4_define([pocketvox_minor], [0])
-
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# ATTENTION version IMPAIRES pour les devs
-# et PAIRS pour les releases
 m4_define([pocketvox_micro], [1])
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 m4_define([pocketvox_version],
         [pocketvox_major.pocketvox_minor.pocketvox_micro])
 
@@ -20,14 +14,9 @@ AC_CONFIG_MACRO_DIR([build/autotools])
 AM_INIT_AUTOMAKE
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
-# Check local libtool
 AC_PROG_LIBTOOL
-
-# Handle cross-compil mode
 AC_CANONICAL_HOST
-
 AM_MAINTAINER_MODE
-
 AC_CONFIG_HEADERS([config.h])
 
 AC_ISC_POSIX
@@ -55,17 +44,10 @@ AC_SUBST(PREFIX)
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
 
-
-dnl
-dnl View options
-dnl
 AC_ARG_ENABLE([debug],
     AS_HELP_STRING([--enable-debug],[Set debug CFLAGS]),,
     enable_debug=$profile_enable_debug)
 
-dnl
-dnl Enable debug
-dnl
 AC_MSG_CHECKING(for debug flags)
 if test "x$enable_debug" = "xyes"; then
     DEBUG_CFLAGS="-O0 -g3 -fno-strict-aliasing"
@@ -76,10 +58,6 @@ else
     DEBUG_CFLAGS="-fno-strict-aliasing"
     AC_MSG_RESULT(debug off)
 fi
-
-dnl
-dnl Check Deps
-dnl
 
 PKG_CONFIG_PATH+=":/usr/local/lib/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig"
 
@@ -181,7 +159,6 @@ AM_GLIB_GNU_GETTEXT
 PROGRAMNAME_LOCALEDIR=[${datadir}/locale]
 AC_SUBST(PROGRAMNAME_LOCALEDIR)
 
-
 dnl
 dnl Introspection
 dnl
@@ -198,7 +175,6 @@ AM_CONDITIONAL([ENABLE_GTK_DOC], false)
 AC_CONFIG_FILES([
                 Makefile
                 data/Makefile
-                data/pocketvox-gtk.desktop
                 src/Makefile
                 src/lib/Makefile
                 src/gui/Makefile
@@ -207,5 +183,7 @@ AC_CONFIG_FILES([
                 docs/reference/Makefile
                 pocketvox.pc
 ])
+
+AC_CONFIG_FILES([data/pocketvox-launcher.sh], [chmod +x data/pocketvox-launcher.sh])
 
 AC_OUTPUT

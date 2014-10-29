@@ -237,9 +237,9 @@ pocketvox-controller.lo: pocketvox-controller.c \
  /usr/include/gstreamer-0.10/gst/gstparse.h \
  /usr/include/gstreamer-0.10/gst/gstxml.h \
  /usr/include/gstreamer-0.10/gst/gstcompat.h pocketvox-types.h \
- pocketvox-notifier.h pocketvox-module.h pocketvox-chooser.h \
- pocketvox-xmanager.h ../../config.h /usr/include/libintl.h \
- /usr/include/locale.h /usr/include/i386-linux-gnu/bits/locale.h
+ pocketvox-notifier.h pocketvox-module.h pocketvox-xmanager.h \
+ ../../config.h /usr/include/libintl.h /usr/include/locale.h \
+ /usr/include/i386-linux-gnu/bits/locale.h
 
 /usr/include/stdc-predef.h:
 
@@ -802,8 +802,6 @@ pocketvox-types.h:
 pocketvox-notifier.h:
 
 pocketvox-module.h:
-
-pocketvox-chooser.h:
 
 pocketvox-xmanager.h:
 

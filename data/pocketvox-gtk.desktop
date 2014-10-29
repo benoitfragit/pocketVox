@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=pocketvox-gtk
+Icon=pocketvox
+StartupNotify=true
+Exec=pocketvox-launcher.sh

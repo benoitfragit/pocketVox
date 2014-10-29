@@ -17,7 +17,6 @@
  */
 
 #include "pocketvox-controller.h"
-#include "pocketvox-chooser.h"
 #include "pocketvox-xmanager.h"
 #include <stdio.h>
 #include <stdlib.h>

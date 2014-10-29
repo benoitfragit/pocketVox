@@ -20,7 +20,7 @@ AM_CPPFLAGS = 						\
     @LIBNOTIFY_CFLAGS@ 				\
     @GOBJECT_CFLAGS@ \
 	-DPROGRAMNAME_LOCALEDIR=\"${PROGRAMNAME_LOCALEDIR}\"
-	
+
 DEBUG_CFLAGS = @DEBUG_CFLAGS@
 
 AM_CFLAGS = $(AM_COMMON_FLAGS) $(DEBUG_CFLAGS)
@@ -31,10 +31,12 @@ gsettings_SCHEMAS = org.pocketvox.gschema.xml
 bin_PROGRAMS = pocketvox-gtk
 
 pocketvox_gtk_SOURCES = \
-	pocketvox-setup.c \
-	pocketvox-setup.h \
+    pocketvox-chooser.c \
+    pocketvox-chooser.h \
+    pocketvox-setup.c   \
+	pocketvox-setup.h   \
 	main.c
-	
+
 pocketvox_gtk_LDADD = \
 	${top_builddir}/src/lib/libpocketvox-1.0.la	\
 	@GLIB_LIBS@ \

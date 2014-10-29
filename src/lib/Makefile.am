@@ -32,7 +32,6 @@ include_HEADERS = 			\
 	pocketvox-recognizer.h 	\
 	pocketvox-dictionnary.h \
 	pocketvox-module.h 		\
-	pocketvox-chooser.h		\
 	pocketvox-indicator.h 	\
 	pocketvox-notifier.h 	\
 	pocketvox-controller.h 	\
@@ -44,7 +43,6 @@ sources_h = 									\
 	$(top_srcdir)/src/lib/pocketvox-recognizer.h 	\
 	$(top_srcdir)/src/lib/pocketvox-dictionnary.h 	\
 	$(top_srcdir)/src/lib/pocketvox-module.h 		\
-	$(top_srcdir)/src/lib/pocketvox-chooser.h		\
 	$(top_srcdir)/src/lib/pocketvox-indicator.h 	\
 	$(top_srcdir)/src/lib/pocketvox-notifier.h		\
 	$(top_srcdir)/src/lib/pocketvox-controller.h 	\
@@ -54,7 +52,6 @@ sources_c = \
 	pocketvox-xmanager.c	\
 	pocketvox-recognizer.c 	\
 	pocketvox-dictionnary.c \
-	pocketvox-chooser.c		\
 	pocketvox-indicator.c 	\
 	pocketvox-notifier.c 	\
 	pocketvox-controller.c 	\

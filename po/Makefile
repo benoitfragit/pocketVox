@@ -69,7 +69,7 @@ POTFILES = \
 	../src/lib/pocketvox-application.c \
 	../src/lib/pocketvox-indicator.c \
 	../src/lib/pocketvox-controller.c \
-	../src/lib/pocketvox-chooser.c \
+	../src/gui/pocketvox-chooser.c \
 	../src/gui/pocketvox-setup.c
 
 CATALOGS=$(shell LINGUAS="$(USE_LINGUAS)"; for lang in $$LINGUAS; do printf "$$lang.gmo "; done)
