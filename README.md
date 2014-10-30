@@ -48,6 +48,12 @@ Here the user can choose the source of the voice between:
  - Alsa (The user can specify a custom microphone like hw:0)
  - Network (Tcp streaming, the user can set host and port)
 
+If you want to send commands over TCP the user only need to build a simple pipeline like this:
+
+     gst-launch-0.10 gsettingsaudiosrc ! tcpclientsink host=localhost port=3000
+
+Such command can easily be run on any device that can embed GStreamer
+
 ![modules config](http://pix.toile-libre.org/upload/original/1414696764.jpg)
 
 Pocketvox-gtk lets the user manage all modules;
