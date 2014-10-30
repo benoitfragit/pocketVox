@@ -28,15 +28,15 @@ The project gives first an application/library to enable voice controlled comman
 ================
 The first thing to do once you have installed pocketvox is to launch pocketvox-gtk to configure pocketvox.
 
-![User config](http://pix.toile-libre.org/?img=1414695516.jpg)
+![User config](http://pix.toile-libre.org/upload/original/1414695516.jpg)
 
 Pocketvox-gtk first lets the user configure some personal parameters, like his name, his language or the activation keyword. This word will be use by pocketvox to detect that the user is currently launching a command.
 
-![notif config](http://pix.toile-libre.org/?img=1414695666.jpg)
+![notif config](http://pix.toile-libre.org/upload/original/1414695666.jpg)
 
 Then, the user can allow or not allow visual/sound notifications.
 
-![pocketsphinx config](http://pix.toile-libre.org/?img=1414695834.jpg)
+![pocketsphinx config](http://pix.toile-libre.org/upload/original/1414695834.jpg)
 
 Some of the most important parameters here let the user configure different files that have to be passed to pocketsphinx.
 
