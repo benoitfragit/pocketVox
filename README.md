@@ -4,13 +4,15 @@
 
 ![enter image description here](https://lh6.googleusercontent.com/-lAbMX8K--nU/VBlPcvFbZRI/AAAAAAAAB1Q/gUlz82rmoYk/s256-no/icons.png)
 
-Pocketvox is a library written in C by [Benoit Franquet](https://plus.google.com/117186375453277453598/posts). It uses [Pocketsphinx](http://cmusphinx.sourceforge.net/wiki/tutorialpocketsphinx) to do voice recognition. The voice recognition is done offline and doesn't nee any Internet connexion.  It's aim is to provide an efficient way to integrate voice recognition on the Linux desktop. More particularly, its main goal is to give to visual impaired (as I am) a powerfull tool to control their desktop. 
+Pocketvox is a both an application and a  library written in C by [Benoit Franquet](https://plus.google.com/117186375453277453598/posts). It uses [Pocketsphinx](http://cmusphinx.sourceforge.net/wiki/tutorialpocketsphinx) to do voice recognition. The voice recognition is done offline and doesn't need an Internet connexion.  It's aim is to provide an eficient way to integrate voice recognition on the Linux desktop. More particularly, its main goal is to give to visual impaired (as I am) a powerfull tool to control their desktop. 
 
-The philosophy of pocketvox is to make a powerfull and collaborative voice recognition library. In order to do this, pocketvox will dispose of a Python interface in order to make everyone able to develop modules
+The philosophy of pocketvox is to make a powerfull and collaborative voice recognition application/library. In order to do this, pocketvox will dispose of a Python interface in order to make everyone able to develop modules
 It give two main way to develop modules:
 
 * In C object oriented (GObject, GLib) using autotools
 * In Python by heriting the Module class from the Pocketvox package
+
+For basics users, it gives a very easy way to use voice recognition on their computer. I've also developed a very common way to configure Pocketvox.
 
 **HOW IT WORKS ?**
 =================
@@ -18,39 +20,36 @@ It give two main way to develop modules:
 STRUCTURE
 --------------
 
-Let me explain how it works !
+The project gives first an application/library to enable voice controlled commands on your desktop and to develop custom Python modules. Pocketvox also comes with a GUI that will let the user manage configuration and store it usings GSettings. Both are accessible from the menu.
 
-So the main object of Pocketvox is a **PocketvoxApplication** that encapsulate everything.
-This object first read a **PocketvoxProfile** that make the user able to pass some informations to the application
+![Pocketvox in the desktop](http://pix.toile-libre.org/?img=1414695396.jpg)
 
-    [profile]
-    name=Benoit
-    voice=fr
-    dict=/home/benoit/Projet/voicerecognition/frenchWords62K.dic
-    acoustic=/home/benoit/Projet/voicerecognition/lium_french_f0
-    lm=/home/benoit/Projet/voicerecognition/lm/dictionnary.lm.dmp
-    keyword=écoute
-    [applications]
-    Thunar=/home/benoit/Bureau/MyModule/MyModule.dic
+**CONFIGURE POCKETVOX**
+================
+The first thing to do once you have installed pocketvox is to launch pocketvox-gtk to configure pocketvox.
 
-The profile could be registered in any text file but should keep the same structure.
+![User config](http://pix.toile-libre.org/?img=1414695516.jpg)
 
-The section "applications" let you start some specific modules those module will be activated when the given window is activated. For example here commands in the dictionnary MyModule.dic will  be executed if Thunar is activated. This structure let you separate commands for differents applications.
+Pocketvox-gtk first lets the user configure some personal parameters, like his name, his language or the activation keyword. This word will be use by pocketvox to detect that the user is currently launching a command.
+
+![notif config](http://pix.toile-libre.org/?img=1414695666.jpg)
+
+Then, the user can allow or not allow visual/sound notifications.
+
+![pocketsphinx config](http://pix.toile-libre.org/?img=1414695834.jpg)
+
+Some of the most important parameters here let the user configure different files that have to be passed to pocketsphinx.
+
+![gstreamer config](http://pix.toile-libre.org/?img=1414695996.jpg)
+
+Here the user can choose the source of the voice between:
+
+ - Default (Gstreamer automatically detect the good microphone to use)
+ - Alsa (The user can specify a custom microphone like hw:0)
+ - Network (Tcp streaming, the user can set host and port)
 
 
-Once the PocketvoxProfile has been readen, some objects are started:
 
- **1. PocketvoxNotifier**
- To manage sonore and visual notifications
-  
- **2. PocketvoxIndicator**
- To start/stop the recognition and to manage settings like Pocketsphinx's settings or Espeak's voice
- 
- **3. PocketvoxRecognizer**
- That make continuous recording and can be started/stopped with the applet
-
- **4. PocketvoxController**
-The controller is a manager that connect all elements (design to do something very similar of the MVC design pattern). So the controller receives signal from the PocketvoxIndicator and start actions on the PocketvoxRecognizer. It manages also signals received from the PocketvoxRecognizer and find the module that contains the nearest sentence with the one that the user say.
 
 BUT WHAT IS A MODULE ?
 ------------------------------
