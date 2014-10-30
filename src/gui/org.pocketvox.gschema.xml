@@ -58,11 +58,11 @@
 </key>
 <key name="host" type="s">
 <default>''</default>
-<summary>Host</summary>
+<summary>localhost</summary>
 <description>Set the host</description>
 </key>
 <key name="port" type="s">
-<default>''</default>
+<default>'3000'</default>
 <summary>port input</summary>
 <description>Set the port</description>
 </key>

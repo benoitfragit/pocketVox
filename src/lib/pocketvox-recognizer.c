@@ -263,7 +263,7 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
     }
 }
 
-PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic, gchar *key, gchar *mat, gchar *dev, gchar* host, gchar *port)
+PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic, gchar *key, gchar *mat, gchar *dev, gchar* host, gint port)
 {
 	GstElement *source, *converter, *sampler, *vader, *sphinx;
 	GstBus *bus = NULL;
@@ -285,13 +285,13 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
 		{
             if( !g_strcmp0(mat, "Network") == TRUE)
             {
-                if( NULL == host || port == NULL)
+                if( NULL != host)
                 {
                     material = g_strdup("tcpserversrc");
                 }
                 else
                 {
-                    g_warning("In order to user streaming you need to give an host and a port");
+                    g_warning("In order to receive order from network you need to give an host and a port");
 
                     material = g_strdup("gsettingsaudiosrc");
                 }

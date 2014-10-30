@@ -25,7 +25,7 @@
 #include <gst/gst.h>
 #include <gio/gio.h>
 #include "config.h"
-
+#include <stdlib.h>
 #include <libintl.h>
 #define _(String) dgettext(GETTEXT_PACKAGE,String)
 
@@ -138,14 +138,19 @@ PocketvoxApplication* pocketvox_application_new()
 	//access gettings parameters
 	gchar *name 		= g_settings_get_string(priv->settings, "name");
 	gchar *voice		= g_settings_get_string(priv->settings, "voice");
-	gchar *lm			= g_settings_get_string(priv->settings, "lm");
+
+    gchar *lm			= g_settings_get_string(priv->settings, "lm");
 	gchar *dic			= g_settings_get_string(priv->settings, "dict");
 	gchar *acoustic		= g_settings_get_string(priv->settings, "hmm");
+
     gchar *keyword      = g_settings_get_string(priv->settings, "keyword");
+
     gchar *material     = g_settings_get_string(priv->settings, "source");
     gchar *device       = g_settings_get_string(priv->settings, "device");
+
     gchar *host         = g_settings_get_string(priv->settings, "host");
-    gchar *port         = g_settings_get_string(priv->settings, "port");
+    gint  port          = atoi(g_settings_get_string(priv->settings, "port"));
+
     gboolean visual     = g_settings_get_boolean(priv->settings, "visual-notification");
     gboolean sound      = g_settings_get_boolean(priv->settings, "sound-notification");
 
