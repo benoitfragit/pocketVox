@@ -40,7 +40,7 @@ Then, the user can allow or not allow visual/sound notifications.
 
 Some of the most important parameters here let the user configure different files that have to be passed to pocketsphinx.
 
-![gstreamer config](http://pix.toile-libre.org/?img=1414695996.jpg)
+![gstreamer config](http://pix.toile-libre.org/upload/original/1414695996.jpg)
 
 Here the user can choose the source of the voice between:
 
