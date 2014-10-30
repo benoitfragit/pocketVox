@@ -22,7 +22,7 @@ STRUCTURE
 
 The project gives first an application/library to enable voice controlled commands on your desktop and to develop custom Python modules. Pocketvox also comes with a GUI that will let the user manage configuration and store it usings GSettings. Both are accessible from the menu.
 
-![Pocketvox in the desktop](http://pix.toile-libre.org/?img=1414695396.jpg)
+![Pocketvox in the desktop](http://pix.toile-libre.org/upload/original/1414695396.jpg)
 
 **CONFIGURE POCKETVOX**
 ================
