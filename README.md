@@ -48,13 +48,14 @@ Here the user can choose the source of the voice between:
  - Alsa (The user can specify a custom microphone like hw:0)
  - Network (Tcp streaming, the user can set host and port)
 
+![modules config](http://pix.toile-libre.org/upload/original/1414696764.jpg)
 
-
+Pocketvox-gtk lets the user manage all modules;
 
 BUT WHAT IS A MODULE ?
 ------------------------------
 
-A **PocketvoxModule** is an object that let Pocketvox able to do action on your computer. A module can be define by 2 main params:
+A **PocketvoxModule** is an object that let Pocketvox execute actions on your computer. A module can be define by 2 main params:
 
  - An unique ID
  - A dictionnary
@@ -65,6 +66,8 @@ open my web browser = xdg-open www.google.com
 open my musics = xdg-open $HOME/Musics
 
 When the PocketvoxRecognizer detects that the user is speaking and get a result. Then all modules is looking in its dictionnary the nearest sentence and its associated action.
+
+A module can be associaed to a specific application, it means that pocketvox will detect focused applications and execute commands if a module is associated to it. 
 
 SOME WORDS ON DICTIONNARY REQUEST !
 --------------------------------------
