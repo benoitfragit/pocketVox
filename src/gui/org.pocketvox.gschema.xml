@@ -4,7 +4,7 @@
 <value nick="option1" value="0"/>
 <value nick="option2" value="1"/>
 <value nick="option3" value="2"/>
-</enum>	
+</enum>
 <schema id="org.pocketvox.config" path="/org/pocketvox/config/">
 <key type="b" name="visual-notification">
 <default>true</default>
@@ -55,6 +55,16 @@
 <default>'hw:0'</default>
 <summary>Mic input</summary>
 <description>Set the mic input (only for alsa)</description>
+</key>
+<key name="host" type="s">
+<default>''</default>
+<summary>Host</summary>
+<description>Set the host</description>
+</key>
+<key name="port" type="s">
+<default>''</default>
+<summary>port input</summary>
+<description>Set the port</description>
 </key>
 </schema>
 </schemalist>

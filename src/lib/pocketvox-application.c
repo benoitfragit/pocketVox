@@ -144,6 +144,8 @@ PocketvoxApplication* pocketvox_application_new()
     gchar *keyword      = g_settings_get_string(priv->settings, "keyword");
     gchar *material     = g_settings_get_string(priv->settings, "source");
     gchar *device       = g_settings_get_string(priv->settings, "device");
+    gchar *host         = g_settings_get_string(priv->settings, "host");
+    gchar *port         = g_settings_get_string(priv->settings, "port");
     gboolean visual     = g_settings_get_boolean(priv->settings, "visual-notification");
     gboolean sound      = g_settings_get_boolean(priv->settings, "sound-notification");
 
@@ -154,7 +156,7 @@ PocketvoxApplication* pocketvox_application_new()
 
 	priv->indicator 	= pocketvox_indicator_new();
 	priv->notifier 		= pocketvox_notifier_new(name, voice);
-	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic, keyword, material, device);
+	priv->recognizer 	= pocketvox_recognizer_new(acoustic, lm, dic, keyword, material, device, host, port);
 
     if(priv->indicator  == NULL
     || priv->notifier   == NULL

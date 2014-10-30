@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pocketvox 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-29 19:34+0100\n"
+"POT-Creation-Date: 2014-10-30 16:42+0100\n"
 "PO-Revision-Date: 2014-10-17 18:25+0200\n"
 "Last-Translator: benoit franquet <benoitfranquet@gmail.com>\n"
 "Language-Team: French\n"
@@ -74,107 +74,123 @@ msgstr "Quel est le mot clé d'activation ?"
 msgid "Choose the language"
 msgstr "Choisir votre langue"
 
-#: ../src/gui/pocketvox-setup.c:323
+#: ../src/gui/pocketvox-setup.c:325
 msgid "<b> Language model </b>"
 msgstr "<b> Modèle de language </b>"
 
-#: ../src/gui/pocketvox-setup.c:324
+#: ../src/gui/pocketvox-setup.c:326
 msgid "<b> Acoustic model </b>"
 msgstr "<b> Modèle acoustique </b>"
 
-#: ../src/gui/pocketvox-setup.c:325
+#: ../src/gui/pocketvox-setup.c:327
 msgid "<b> Dictionnary </b>"
 msgstr "<b> Dictionnaire </b>"
 
-#: ../src/gui/pocketvox-setup.c:336
+#: ../src/gui/pocketvox-setup.c:338
 msgid "Set the pocketsphinx's language model"
 msgstr "Choisir un modèle de langage pour Pocketsphinx"
 
-#: ../src/gui/pocketvox-setup.c:337
+#: ../src/gui/pocketvox-setup.c:339
 msgid "Set the pocketsphinx's acoustic model"
 msgstr "Choisir un modèle acoustique pour Pocketsphinx"
 
-#: ../src/gui/pocketvox-setup.c:338
+#: ../src/gui/pocketvox-setup.c:340
 msgid "Set the pocketsphinx's dictionnary"
 msgstr "Choisir un dictionnaire pour Pocketsphinx"
 
-#: ../src/gui/pocketvox-setup.c:376 ../src/gui/pocketvox-setup.c:387
+#: ../src/gui/pocketvox-setup.c:380 ../src/gui/pocketvox-setup.c:391
 msgid "Allow visual notifications"
 msgstr "Autoriser les notifications visuelles"
 
-#: ../src/gui/pocketvox-setup.c:377 ../src/gui/pocketvox-setup.c:386
+#: ../src/gui/pocketvox-setup.c:381 ../src/gui/pocketvox-setup.c:390
 msgid "Allow sound notifications"
 msgstr "Autoriser les notifications sonores"
 
-#: ../src/gui/pocketvox-setup.c:408
+#: ../src/gui/pocketvox-setup.c:445
 msgid "Gstreamer source"
 msgstr "Source audio"
 
-#: ../src/gui/pocketvox-setup.c:410
+#: ../src/gui/pocketvox-setup.c:447
 msgid "Default"
 msgstr "Défaut"
 
-#: ../src/gui/pocketvox-setup.c:411
+#: ../src/gui/pocketvox-setup.c:448
 msgid "Alsa"
 msgstr "Alsa"
 
-#: ../src/gui/pocketvox-setup.c:412
+#: ../src/gui/pocketvox-setup.c:449
 msgid "Network"
 msgstr "Réseau"
 
-#: ../src/gui/pocketvox-setup.c:414
+#: ../src/gui/pocketvox-setup.c:451
 msgid "Set the source input"
 msgstr "Sélectionner le type de source"
 
-#: ../src/gui/pocketvox-setup.c:416
+#: ../src/gui/pocketvox-setup.c:453
 msgid "Mic"
 msgstr "Microphone"
 
-#: ../src/gui/pocketvox-setup.c:418
+#: ../src/gui/pocketvox-setup.c:455
 msgid "Which microphone to use ?"
 msgstr "Quel microphone utiliser ?"
 
-#: ../src/gui/pocketvox-setup.c:524
+#: ../src/gui/pocketvox-setup.c:457
+msgid "Host"
+msgstr "Hôte"
+
+#: ../src/gui/pocketvox-setup.c:459
+msgid "Choose the host"
+msgstr "Choisir l'hôte"
+
+#: ../src/gui/pocketvox-setup.c:461
+msgid "Port"
+msgstr "Port"
+
+#: ../src/gui/pocketvox-setup.c:463
+msgid "Choose the port"
+msgstr "Choisir le port"
+
+#: ../src/gui/pocketvox-setup.c:594
 msgid "Notifications"
 msgstr "Notifications"
 
-#: ../src/gui/pocketvox-setup.c:525
+#: ../src/gui/pocketvox-setup.c:595
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: ../src/gui/pocketvox-setup.c:526
+#: ../src/gui/pocketvox-setup.c:596
 msgid "Pocketsphinx"
 msgstr "Pocketsphinx"
 
-#: ../src/gui/pocketvox-setup.c:527
+#: ../src/gui/pocketvox-setup.c:597
 msgid "Gstreamer"
 msgstr "Gstreamer"
 
-#: ../src/gui/pocketvox-setup.c:529
+#: ../src/gui/pocketvox-setup.c:599
 msgid "Display notifications parameters"
 msgstr "Afficher les paramètres de notification"
 
-#: ../src/gui/pocketvox-setup.c:530
+#: ../src/gui/pocketvox-setup.c:600
 msgid "Display user parameters"
 msgstr "Afficher les paramètres utilisateur"
 
-#: ../src/gui/pocketvox-setup.c:531
+#: ../src/gui/pocketvox-setup.c:601
 msgid "Display pocketsphinx parameters"
 msgstr "Afficher les paramètres de Pocketsphinx"
 
-#: ../src/gui/pocketvox-setup.c:532
+#: ../src/gui/pocketvox-setup.c:602
 msgid "Display gstreamer parameters"
 msgstr "Afficher les paramètres de Gstreamer"
 
-#: ../src/gui/pocketvox-setup.c:590
+#: ../src/gui/pocketvox-setup.c:660
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../src/gui/pocketvox-setup.c:599 ../src/lib/pocketvox-indicator.c:220
+#: ../src/gui/pocketvox-setup.c:669 ../src/lib/pocketvox-indicator.c:220
 msgid "Modules"
 msgstr "Modules"
 
-#: ../src/lib/pocketvox-application.c:196
+#: ../src/lib/pocketvox-application.c:198
 #, c-format
 msgid "Hello %s, I'm listening you"
 msgstr "Bonjour %s, je vous écoute"

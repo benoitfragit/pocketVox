@@ -263,7 +263,7 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
     }
 }
 
-PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic, gchar *key, gchar *mat, gchar *dev)
+PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic, gchar *key, gchar *mat, gchar *dev, gchar* host, gchar *port)
 {
 	GstElement *source, *converter, *sampler, *vader, *sphinx;
 	GstBus *bus = NULL;
@@ -283,8 +283,24 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
 		}
 		else
 		{
-			material = g_strdup("gsettingsaudiosrc");
-		}
+            if( !g_strcmp0(mat, "Network") == TRUE)
+            {
+                if( NULL == host || port == NULL)
+                {
+                    material = g_strdup("tcpserversrc");
+                }
+                else
+                {
+                    g_warning("In order to user streaming you need to give an host and a port");
+
+                    material = g_strdup("gsettingsaudiosrc");
+                }
+            }
+			else
+            {
+                material = g_strdup("gsettingsaudiosrc");
+		    }
+        }
 	}
 
 	g_return_val_if_fail(g_file_test(hmm, G_FILE_TEST_EXISTS), 	NULL);
@@ -325,6 +341,16 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
                       "device", device,
                       NULL);
     }
+    else
+    {
+        if(!g_strcmp0(material, "tcpserversrc"))
+        {
+            g_object_set(G_OBJECT(source),
+                        "host", host,
+                        "port", port,
+                        NULL);
+        }
+    }
 
     converter = gst_element_factory_make("audioconvert",      "convert");
     g_assert(converter);
@@ -350,7 +376,26 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
                     sphinx,
                     NULL);
 
-    gst_element_link_many(source, converter, sampler, vader, sphinx, NULL);
+    if(!g_strcmp0(material, "tcpserversrc") == FALSE )
+    {
+        gst_element_link_many(source, converter, sampler, vader, sphinx, NULL);
+    }
+    else
+    {
+        GstCaps* caps = gst_caps_new_simple("audio/x-raw-int",
+            "endianness", G_TYPE_INT,     1234,
+            "signed",     G_TYPE_BOOLEAN, TRUE,
+            "width",      G_TYPE_INT,     32,
+            "depth",      G_TYPE_INT,     32,
+            "rate",       G_TYPE_INT,     44100,
+            "channels",   G_TYPE_INT,     2,
+            NULL);
+
+        gst_element_link_filtered(source, converter, caps);
+        gst_element_link_many(converter, sampler, vader, sphinx, NULL);
+
+        gst_caps_unref(caps);
+    }
 
 	//set properties
 	g_object_set(G_OBJECT(sphinx),

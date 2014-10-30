@@ -302,6 +302,8 @@ static GtkWidget* pocketvox_setup_get_user_grid(PocketvoxSetup *setup)
     gtk_grid_attach(GTK_GRID(grid), label_voice,		0, 2, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), combo_voice,		1, 2, 2, 1);
 
+    gtk_widget_show_all(grid);
+
     return grid;
 }
 
@@ -363,6 +365,8 @@ static GtkWidget* pocketvox_setup_get_pocketsphinx_grid(PocketvoxSetup *setup)
     gtk_grid_attach(GTK_GRID(grid), et_dict,						 	0, 4, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), entry_dictionnary, 					0, 5, 2, 1);
 
+    gtk_widget_show_all(grid);
+
 	return grid;
 }
 
@@ -394,7 +398,40 @@ static GtkWidget* pocketvox_setup_get_notification_grid(PocketvoxSetup *setup)
     gtk_grid_attach(GTK_GRID(grid), label_sound, 	0, 3, 2, 1);
     gtk_grid_attach(GTK_GRID(grid), switch_sound,	2, 3, 1, 1);
 
+    gtk_widget_show_all(grid);
+
     return grid;
+}
+
+static void pocketvox_setup_combo_manage_entry_mic(GtkWidget *widget, gpointer data)
+{
+    GtkWidget *combo  = (GtkWidget *)data;
+    const gchar* id   = gtk_combo_box_get_active_id(GTK_COMBO_BOX(combo));
+
+    if( !g_strcmp0(id, "Alsa") == TRUE )
+    {
+        gtk_widget_show(widget);
+    }
+    else
+    {
+        gtk_widget_hide(widget);
+    }
+}
+
+static void pocketvox_setup_combo_manage_network(GtkWidget *widget, gpointer data)
+{
+    GtkWidget *combo = (GtkWidget *)data;
+
+    const gchar* id = gtk_combo_box_get_active_id(GTK_COMBO_BOX(combo));
+
+    if( !g_strcmp0(id, "Network") == TRUE )
+    {
+        gtk_widget_show(widget);
+    }
+    else
+    {
+        gtk_widget_hide(widget);
+    }
 }
 
 static GtkWidget* pocketvox_setup_get_gstreamer_grid(PocketvoxSetup *setup)
@@ -417,18 +454,52 @@ static GtkWidget* pocketvox_setup_get_gstreamer_grid(PocketvoxSetup *setup)
 	GtkWidget* entry_mic	= gtk_entry_new();
     gtk_widget_set_tooltip_text(entry_mic, _("Which microphone to use ?"));
 
+    GtkWidget* label_host   = gtk_label_new(_("Host"));
+    GtkWidget* entry_host   = gtk_entry_new();
+    gtk_widget_set_tooltip_text(entry_host, _("Choose the host"));
+
+    GtkWidget* label_port   = gtk_label_new(_("Port"));
+    GtkWidget* entry_port   = gtk_entry_new();
+    gtk_widget_set_tooltip_text(entry_port, _("Choose the port"));
+
 	g_settings_bind(priv->settings, "source", combo_mode, "active-id", G_SETTINGS_BIND_DEFAULT);
-	g_settings_bind(priv->settings, "device", entry_mic, "text", G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind(priv->settings, "device", entry_mic,  "text", G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind(priv->settings, "port",   entry_port, "text", G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind(priv->settings, "host",   entry_host, "text", G_SETTINGS_BIND_DEFAULT);
+
+    g_signal_connect_swapped(combo_mode, "changed", G_CALLBACK(pocketvox_setup_combo_manage_entry_mic), entry_mic);
+    g_signal_connect_swapped(combo_mode, "changed", G_CALLBACK(pocketvox_setup_combo_manage_entry_mic), label_mic);
+    g_signal_connect_swapped(combo_mode, "changed", G_CALLBACK(pocketvox_setup_combo_manage_network),   label_host);
+    g_signal_connect_swapped(combo_mode, "changed", G_CALLBACK(pocketvox_setup_combo_manage_network),   entry_host);
+    g_signal_connect_swapped(combo_mode, "changed", G_CALLBACK(pocketvox_setup_combo_manage_network),   label_port);
+    g_signal_connect_swapped(combo_mode, "changed", G_CALLBACK(pocketvox_setup_combo_manage_network),   entry_port);
 
     gtk_misc_set_alignment(GTK_MISC(label_mode),        0.0, 0.5);
     gtk_misc_set_alignment(GTK_MISC(label_mic),         0.0, 0.5);
+    gtk_misc_set_alignment(GTK_MISC(label_port),        0.0, 0.5);
+    gtk_misc_set_alignment(GTK_MISC(label_host),        0.0, 0.5);
     gtk_widget_set_hexpand(label_mode,        			TRUE);
     gtk_widget_set_hexpand(label_mic,         			TRUE);
+    gtk_widget_set_hexpand(label_port,                  TRUE);
+    gtk_widget_set_hexpand(label_host,                  TRUE);
 
 	gtk_grid_attach(GTK_GRID(grid), label_mode, 		0, 0, 1, 1);
 	gtk_grid_attach(GTK_GRID(grid), combo_mode, 		1, 0, 2, 1);
 	gtk_grid_attach(GTK_GRID(grid), label_mic, 			0, 1, 1, 1);
-	gtk_grid_attach(GTK_GRID(grid), entry_mic, 	1, 1, 2, 1);
+	gtk_grid_attach(GTK_GRID(grid), entry_mic, 	        1, 1, 2, 1);
+    gtk_grid_attach(GTK_GRID(grid), label_host,         0, 2, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), entry_host,         1, 2, 2, 1);
+    gtk_grid_attach(GTK_GRID(grid), label_port,         0, 3, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), entry_port,         1, 3, 2, 1);
+
+    gtk_widget_show_all(grid);
+
+    pocketvox_setup_combo_manage_entry_mic(entry_mic, combo_mode);
+    pocketvox_setup_combo_manage_entry_mic(label_mic, combo_mode);
+    pocketvox_setup_combo_manage_network(label_host,  combo_mode);
+    pocketvox_setup_combo_manage_network(entry_host,  combo_mode);
+    pocketvox_setup_combo_manage_network(label_port,  combo_mode);
+    pocketvox_setup_combo_manage_network(entry_port,  combo_mode);
 
 	return grid;
 }
@@ -448,8 +519,6 @@ static void pocketvox_stack_child_changed(GtkWidget *button, GParamSpec *pspec, 
 		{
 			gtk_widget_show(button);
 		}
-
-        gtk_widget_queue_draw(stack);
 	}
 }
 
@@ -605,8 +674,8 @@ PocketvoxSetup* pocketvox_setup_new()
 
     gtk_header_bar_set_custom_title(GTK_HEADER_BAR(bar), stackSwitcher);
 
-	GtkWidget *add_module_button 	= gtk_button_new_from_icon_name("gtk-new", GTK_ICON_SIZE_SMALL_TOOLBAR);
-	GtkWidget *remove_module_button = gtk_button_new_from_icon_name("gtk-delete", GTK_ICON_SIZE_SMALL_TOOLBAR);
+	GtkWidget *add_module_button 	= gtk_button_new_from_icon_name("gtk-new", GTK_ICON_SIZE_MENU);
+	GtkWidget *remove_module_button = gtk_button_new_from_icon_name("gtk-delete", GTK_ICON_SIZE_MENU);
 	gtk_button_set_relief(GTK_BUTTON(add_module_button), GTK_RELIEF_NONE);
 	gtk_button_set_relief(GTK_BUTTON(remove_module_button), GTK_RELIEF_NONE);
 
@@ -621,11 +690,11 @@ PocketvoxSetup* pocketvox_setup_new()
     //add them to the vbox
     gtk_box_pack_start(GTK_BOX(box), stack, TRUE, TRUE, 0);
 
-	gtk_widget_show_all(gridBox);
     gtk_widget_show(grid_user);
     gtk_widget_hide(grid_notification);
     gtk_widget_hide(grid_pocketsphinx);
     gtk_widget_hide(grid_gstreamer);
+    gtk_widget_show(gridBox);
 
     gtk_widget_show_all(grid_button);
     gtk_widget_show(hgridBox);
