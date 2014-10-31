@@ -180,7 +180,7 @@ static void pocketvox_indicator_init (PocketvoxIndicator *indicator)
 	priv->appsMenu		= gtk_menu_new();
 	priv->apps			= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_indicator_free_item);
 
-	priv->state 		= POCKETVOX_STATE_STOP;
+	priv->state 		= POCKETVOX_STATE_RUN;
 	priv->table			= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_indicator_free_item);
 }
 
@@ -191,7 +191,7 @@ static void pocketvox_indicator_state_changed(GtkMenuItem *menuitem, gpointer us
 	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
 			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
 	PocketvoxIndicatorPrivate *priv = indicator->priv;
-
+	
 	priv->state = !priv->state;
 
 	gtk_menu_item_set_label(menuitem, priv->state ? _("Stop") : _("Run"));
@@ -216,7 +216,7 @@ PocketvoxIndicator* pocketvox_indicator_new()
 
 	app_indicator_set_status(priv->applet, APP_INDICATOR_STATUS_ACTIVE);
 
-	GtkWidget* stateItem 		= gtk_menu_item_new_with_label(_("Run"));
+	GtkWidget* stateItem 		= gtk_menu_item_new_with_label(_("Stop"));
     priv->modulesItem  	        = gtk_menu_item_new_with_label(_("Modules"));
 
     GtkWidget* separatorItem0	= gtk_separator_menu_item_new();

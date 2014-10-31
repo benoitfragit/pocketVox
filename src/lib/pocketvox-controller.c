@@ -39,8 +39,6 @@ struct _PocketvoxControllerPrivate
 	PocketvoxXmanager 	*xmanager;
 	GHashTable 			*modules;
 	GMainLoop			*loop;
-
-	gboolean 			first_launch;
 };
 
 G_DEFINE_TYPE (PocketvoxController, pocketvox_controller, G_TYPE_OBJECT);
@@ -113,8 +111,6 @@ static void pocketvox_controller_init (PocketvoxController *controller){
 	priv->modules		= NULL;
 	priv->xmanager		= NULL;
 	priv->modules		= g_hash_table_new_full(g_str_hash, g_str_equal, g_free, pocketvox_module_free);
-
-	priv->first_launch	= TRUE;
 }
 
 static void pocketvox_controller_state_changer(PocketvoxController *controller, gchar *state, gpointer user_data)
@@ -129,12 +125,6 @@ static void pocketvox_controller_state_changer(PocketvoxController *controller, 
 
 	if(!g_strcmp0("Run", state))
 	{
-		if(priv->first_launch == TRUE)
-		{
-			pocketvox_notifier_say(priv->notifier, _("It's your first launch, I need some time to initialize myself"));
-			priv->first_launch = FALSE;
-		}
-
 		pocketvox_recognizer_set_state(priv->recognizer, POCKETVOX_STATE_RUN);
 	}
 	else

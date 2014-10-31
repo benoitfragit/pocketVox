@@ -200,7 +200,7 @@ PocketvoxApplication* pocketvox_application_new()
 	g_variant_iter_free(iter);
 
 	//a little startup msg
-	gchar *startup = g_strdup_printf(_("Hello %s, I'm listening you"), name);
+	gchar *startup = g_strdup_printf(_("Hello %s, I'm listening you, I need a few seconds to initialize myself"), name);
 	pocketvox_notifier_say(priv->notifier, startup);
 	g_free(startup);
 

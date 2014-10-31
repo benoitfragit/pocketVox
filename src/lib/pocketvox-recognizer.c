@@ -186,7 +186,7 @@ static void pocketvox_recognizer_init (PocketvoxRecognizer *recognizer)
 	priv->hmm     = NULL;
 	priv->lm 	  = NULL;
     priv->dic     = NULL;
-	priv->state   = POCKETVOX_STATE_STOP;
+	priv->state   = POCKETVOX_STATE_RUN;
     priv->keyword = NULL;
     priv->waiting = TRUE;
 }
@@ -411,8 +411,7 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
 	g_signal_connect(bus, "message::application", G_CALLBACK(pocketvox_recognizer_parse_bus_message), recognizer);
 
 	//play
-	gst_element_set_state(priv->pipeline, GST_STATE_PAUSED);
-
+	gst_element_set_state(priv->pipeline, GST_STATE_PLAYING);
 
     g_free(material);
     g_free(device);
