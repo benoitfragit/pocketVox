@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pocketvox 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-30 16:42+0100\n"
+"POT-Creation-Date: 2014-11-02 10:13+0100\n"
 "PO-Revision-Date: 2014-10-17 18:25+0200\n"
 "Last-Translator: benoit franquet <benoitfranquet@gmail.com>\n"
 "Language-Team: French\n"
@@ -190,24 +190,20 @@ msgstr "Configuration"
 msgid "Modules"
 msgstr "Modules"
 
-#: ../src/lib/pocketvox-application.c:198
+#: ../src/lib/pocketvox-application.c:203
 #, c-format
-msgid "Hello %s, I'm listening you"
-msgstr "Bonjour %s, je vous écoute"
+msgid "Hello %s, I'm listening you, I need a few seconds to initialize myself"
+msgstr "Bonjour %s, je vous écoute, j'ai besoin de quelques secondes pour m'initialiser"
 
-#: ../src/lib/pocketvox-controller.c:134
-msgid "It's your first launch, I need some time to initialize myself"
-msgstr "C'est votre premièr lancement, j'ai besoin de quelques secondes pour m'initialiser"
-
-#: ../src/lib/pocketvox-controller.c:228
+#: ../src/lib/pocketvox-controller.c:218
 msgid "I'm waiting for your orders"
 msgstr "J'attends vos ordres"
 
-#: ../src/lib/pocketvox-indicator.c:197
+#: ../src/lib/pocketvox-indicator.c:197 ../src/lib/pocketvox-indicator.c:219
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/lib/pocketvox-indicator.c:197 ../src/lib/pocketvox-indicator.c:219
+#: ../src/lib/pocketvox-indicator.c:197
 msgid "Run"
 msgstr "Lancer"
 
@@ -218,6 +214,14 @@ msgstr "Quitter"
 #: ../src/lib/pocketvox-indicator.c:225
 msgid "Apps"
 msgstr "Applications"
+
+#~ msgid "Hello %s, I'm listening you"
+#~ msgstr "Bonjour %s, je vous écoute"
+
+#~ msgid "It's your first launch, I need some time to initialize myself"
+#~ msgstr ""
+#~ "C'est votre premièr lancement, j'ai besoin de quelques secondes pour "
+#~ "m'initialiser"
 
 #~ msgid "Set the dictionnary"
 #~ msgstr "Régler le dictionnaire"
