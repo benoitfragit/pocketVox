@@ -191,7 +191,7 @@ static void pocketvox_indicator_state_changed(GtkMenuItem *menuitem, gpointer us
 	indicator->priv = G_TYPE_INSTANCE_GET_PRIVATE (indicator,
 			TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorPrivate);
 	PocketvoxIndicatorPrivate *priv = indicator->priv;
-	
+
 	priv->state = !priv->state;
 
 	gtk_menu_item_set_label(menuitem, priv->state ? _("Stop") : _("Run"));
@@ -234,15 +234,9 @@ PocketvoxIndicator* pocketvox_indicator_new()
 	gtk_menu_attach((GtkMenu *)priv->menu, separatorItem1,		0, 1, 4, 5);
 	gtk_menu_attach((GtkMenu *)priv->menu, quitItem, 			0, 1, 5, 6);
 
-	gtk_widget_show(priv->appsMenu);
-	gtk_widget_hide(priv->appsItem);
-	gtk_widget_show(priv->modulesMenu);
-	gtk_widget_show(stateItem);
-	gtk_widget_show(separatorItem0);
-	gtk_widget_show(separatorItem1);
-	gtk_widget_hide(priv->modulesItem);
-	gtk_widget_show(quitItem);
-	gtk_widget_show(priv->menu);
+    gtk_widget_show_all(priv->menu);
+    gtk_widget_hide(priv->appsItem);
+    gtk_widget_hide(priv->modulesItem);
 
 	g_signal_connect(stateItem, 	"activate", G_CALLBACK(pocketvox_indicator_state_changed), 	indicator);
 	g_signal_connect(quitItem,  	"activate", G_CALLBACK(pocketvox_indicator_quit), 			indicator);

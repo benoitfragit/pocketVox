@@ -147,8 +147,8 @@ static void pocketvox_setup_search_dict(GtkEntry            *entry,
 static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar* value, gboolean isapps)
 {
 	g_return_if_fail(NULL != setup);
-    g_return_if_fail(NULL != value);
-    g_return_if_fail(NULL != key);
+    //g_return_if_fail(NULL != value);
+    //g_return_if_fail(NULL != key);
 
    	setup->priv = G_TYPE_INSTANCE_GET_PRIVATE (setup,
 			TYPE_POCKETVOX_SETUP, PocketvoxSetupPrivate);
@@ -166,7 +166,13 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
 
 	GtkWidget* grid 	    = gtk_grid_new();
 	info->entry_id	        = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(info->entry_id), key);
+
+    if(key != NULL)
+    {
+        gtk_entry_set_text(GTK_ENTRY(info->entry_id), key);
+    }
+
+    gtk_entry_set_placeholder_text(GTK_ENTRY(info->entry_id), _("your-id"));
     gtk_widget_set_tooltip_text(info->entry_id, _("Set the module's id"));
 
 	info->sw		        = gtk_switch_new();
@@ -174,6 +180,7 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
 
 	info->entry_path	    = gtk_entry_new();
 	gtk_entry_set_icon_from_icon_name (GTK_ENTRY(info->entry_path), GTK_ENTRY_ICON_SECONDARY, "gtk-search");
+    gtk_entry_set_placeholder_text(GTK_ENTRY(info->entry_path), _("your path"));
     gtk_widget_set_tooltip_text(info->entry_path,_("Set the dictionnary's path"));
 	g_signal_connect(info->entry_path, "icon-press", G_CALLBACK(pocketvox_setup_search_dict), NULL);
 
@@ -186,9 +193,11 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
 				"active", isapps,
 				NULL);
 
-	g_object_set(G_OBJECT(info->entry_path),
-				"text", value,
-				NULL);
+    if(value != NULL)
+    {
+        gtk_entry_set_text(GTK_ENTRY(info->entry_path),
+                                                value);
+    }
 
     gtk_misc_set_alignment(GTK_MISC(label_id),   0.0, 0.5);
     gtk_misc_set_alignment(GTK_MISC(label_path), 0.0, 0.5);
@@ -214,7 +223,7 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
 
 static void pocketvox_setup_add_module_callback(PocketvoxSetup *setup, gpointer data)
 {
-    pocketvox_setup_add_module(setup, _("your-id"), _("your path"), FALSE);
+    pocketvox_setup_add_module(setup, NULL, NULL, FALSE);
 }
 
 static void pocketvox_setup_get_modules_grid(PocketvoxSetup *setup)
@@ -522,9 +531,22 @@ static void pocketvox_stack_child_changed(GtkWidget *button, GParamSpec *pspec, 
 	}
 }
 
+static int pocketvox_module_check(gconstpointer a, gconstpointer b)
+{
+  gchar *ca = (gchar *)a;
+  gchar *cb = (gchar *)b;
+
+  g_return_val_if_fail(NULL != ca, -1);
+  g_return_val_if_fail(NULL != cb, -1);
+
+  return g_strcmp0(a, b);
+}
+
 static void pocketvox_setup_save_and_quit(PocketvoxSetup *setup, gpointer data)
 {
-	setup->priv = G_TYPE_INSTANCE_GET_PRIVATE (setup,
+    gboolean addModule;
+
+    setup->priv = G_TYPE_INSTANCE_GET_PRIVATE (setup,
 			TYPE_POCKETVOX_SETUP, PocketvoxSetupPrivate);
 	PocketvoxSetupPrivate *priv = setup->priv;
 
@@ -533,17 +555,48 @@ static void pocketvox_setup_save_and_quit(PocketvoxSetup *setup, gpointer data)
 
     GList* infos = g_hash_table_get_values(priv->apps);
     GList* iter = NULL;
+    GList* tmp  = NULL;
 
 	builder = g_variant_builder_new(G_VARIANT_TYPE("a(ssb)"));
 
     for(iter = infos; iter; iter = iter->next)
     {
         ModuleInfos *info = (ModuleInfos *)iter->data;
-        const gchar *id         = gtk_entry_get_text(GTK_ENTRY(info->entry_id));
-        const gchar *dict       = gtk_entry_get_text(GTK_ENTRY(info->entry_path));
-        gboolean isapp      = gtk_switch_get_active(GTK_SWITCH(info->sw));
+        const gchar *id   = gtk_entry_get_text(GTK_ENTRY(info->entry_id));
+        const gchar *dict = gtk_entry_get_text(GTK_ENTRY(info->entry_path));
+        gboolean isapp    = gtk_switch_get_active(GTK_SWITCH(info->sw));
 
-        g_variant_builder_add(builder, "(ssb)", id, dict, isapp);
+        //by default each module should be added
+        addModule = TRUE;
+
+        //check if we have a valid module
+        if( id == NULL
+        || !g_strcmp0(id, "") == TRUE
+        || dict == NULL
+        || !g_strcmp0(dict, "") == TRUE)
+        {
+            g_warning("PocketvoxSetup: an invalid module couldn't be added to your configuration");
+            addModule = FALSE;
+        }
+
+        //check if we already find this one
+        if(addModule == TRUE)
+        {
+            addModule = addModule & (NULL == g_list_find_custom(tmp, id, pocketvox_module_check));
+
+            if(addModule == FALSE)
+            {
+                g_warning("PocketvoxSetup: 2 modules cannot have the same ID");
+            }
+        }
+
+        //add the new module to the GVariant
+        if(addModule == TRUE)
+        {
+            g_variant_builder_add(builder, "(ssb)", id, dict, isapp);
+
+            tmp = g_list_append(tmp, g_strdup(id));
+        }
     }
 
     value = g_variant_new("a(ssb)", builder);
@@ -552,6 +605,12 @@ static void pocketvox_setup_save_and_quit(PocketvoxSetup *setup, gpointer data)
 	g_settings_sync();
 
     g_list_free(infos);
+
+    for(iter=tmp; iter; iter=iter->next)
+    {
+        g_free((gchar *)iter->data);
+    }
+    g_list_free(tmp);
 
     g_hash_table_destroy(priv->apps);
 

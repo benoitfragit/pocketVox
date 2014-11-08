@@ -54,7 +54,20 @@ static void pocketvox_application_dispose(GObject *object)
 
 static void pocketvox_application_finalize(GObject *object)
 {
-	G_OBJECT_CLASS (pocketvox_application_parent_class)->finalize (object);
+    PocketvoxApplication *application = POCKETVOX_APPLICATION(object);
+
+	application->priv = G_TYPE_INSTANCE_GET_PRIVATE (application,
+			TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationPrivate);
+	PocketvoxApplicationPrivate *priv = application->priv;
+
+    //unref all objects
+    g_object_unref(priv->recognizer);
+    g_object_unref(priv->indicator);
+    g_object_unref(priv->controller);
+    g_object_unref(priv->notifier);
+
+    //This object will be destroyed when the reference count will reach 0
+    G_OBJECT_CLASS (pocketvox_application_parent_class)->finalize (object);
 }
 
 static void pocketvox_application_set_property (GObject      *gobject,

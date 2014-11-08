@@ -6,11 +6,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/include/espeak
 if [ "$1" == "-gtk" ];
 then
 {
-	pocketvox-gtk
+	pocketvox-gtk &
 }
 else
 {
-	pocketvox
+	pocketvox &
 }
 fi
 

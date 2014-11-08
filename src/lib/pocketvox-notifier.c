@@ -74,9 +74,9 @@ static void pocketvox_notifier_finalize(GObject *object)
 		TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierPrivate);
 	PocketvoxNotifierPrivate *priv = notifier->priv;
 
-	if(priv->msg != NULL) g_free(priv->msg);
-	if(priv->voice != NULL) g_free(priv->voice);
-	if(priv->name != NULL) g_free(priv->name);
+	if(priv->msg    != NULL) g_free(priv->msg);
+	if(priv->voice  != NULL) g_free(priv->voice);
+	if(priv->name   != NULL) g_free(priv->name);
 
 	notify_uninit();
 

@@ -125,10 +125,12 @@ static void pocketvox_controller_state_changer(PocketvoxController *controller, 
 
 	if(!g_strcmp0("Run", state))
 	{
+        //listen to the user
 		pocketvox_recognizer_set_state(priv->recognizer, POCKETVOX_STATE_RUN);
 	}
 	else
 	{
+        //no more audio
 		pocketvox_recognizer_set_state(priv->recognizer, POCKETVOX_STATE_STOP);
 	}
 }
@@ -297,8 +299,8 @@ void pocketvox_controller_start(PocketvoxController *controller)
     modules   = g_hash_table_get_values(priv->modules);
 
     //create a GThreadPool to make dictionnaries loading smoother
-    n_threads = g_get_num_processors();
-    thread_pool      = g_thread_pool_new((GFunc)pocketvox_module_build_dictionnary, NULL, n_threads, TRUE, NULL);
+    n_threads   = g_get_num_processors();
+    thread_pool = g_thread_pool_new((GFunc)pocketvox_module_build_dictionnary, NULL, n_threads, TRUE, NULL);
 
     for(i = 0; i < g_list_length(modules); i++)
     {

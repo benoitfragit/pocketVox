@@ -320,9 +320,9 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
 		TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
 	PocketvoxRecognizerPrivate *priv = recognizer->priv;
 
-	priv->hmm = g_strdup(hmm);
-	priv->lm  = g_strdup(lm);
-	priv->dic = g_strdup(dic);
+	priv->hmm     = g_strdup(hmm);
+	priv->lm      = g_strdup(lm);
+	priv->dic     = g_strdup(dic);
     priv->keyword = g_strdup(key);
 
 	//build the pipeline auto-threshold=true
