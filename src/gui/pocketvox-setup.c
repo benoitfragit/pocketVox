@@ -239,6 +239,12 @@ static void pocketvox_setup_get_modules_grid(PocketvoxSetup *setup)
 
 	priv->listBox = gtk_list_box_new();
 
+    GtkWidget *ph_widget = gtk_label_new("Add your modules");
+    gtk_label_set_markup(GTK_LABEL(ph_widget), _("<b><b><big> ADD YOUR MODULES </big></b></b>"));
+    gtk_widget_show(ph_widget);
+
+    gtk_list_box_set_placeholder(GTK_LIST_BOX(priv->listBox),ph_widget);
+
     //only need to connect signals
 	modules = g_settings_get_value(priv->settings, "list-apps");
 
