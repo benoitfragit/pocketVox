@@ -123,11 +123,14 @@ static void pocketvox_setup_remove_module(PocketvoxSetup *setup, gpointer data)
 
     GtkListBoxRow* row = gtk_list_box_get_selected_row(GTK_LIST_BOX(priv->listBox));
 
-    const gchar* name = gtk_widget_get_name(GTK_WIDGET(row));
+    if( row != NULL)
+    {
+        const gchar* name = gtk_widget_get_name(GTK_WIDGET(row));
 
-    g_hash_table_remove(priv->apps, name);
+        g_hash_table_remove(priv->apps, name);
 
-	gtk_container_remove(GTK_CONTAINER(priv->listBox), GTK_WIDGET(row));
+	    gtk_container_remove(GTK_CONTAINER(priv->listBox), GTK_WIDGET(row));
+    }
 }
 
 static void pocketvox_setup_search_dict(GtkEntry            *entry,
