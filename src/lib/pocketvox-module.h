@@ -48,7 +48,7 @@ gchar* pocketvox_module_get_command(PocketvoxModule *module);
 gboolean pocketvox_module_is_apps(PocketvoxModule *module);
 void pocketvox_module_manage_apps(gpointer key, gpointer value, gpointer user_data);
 void pocketvox_module_build_dictionnary(PocketvoxModule *module);
-
+void pocketvox_module_threaded_request(PocketvoxModule *module, gchar *request);
 //overwritten by virtual methode
 void pocketvox_module_execute(PocketvoxModule *module);
 G_END_DECLS

@@ -193,6 +193,7 @@ static void pocketvox_notifier_bubble_notification(PocketvoxNotifier*notifier)
     if(priv->visual_notification == TRUE)
     {
     	NotifyNotification * Bubble = notify_notification_new ("PocketVox", priv->msg, "dialog-information");
+
         notify_notification_show (Bubble, NULL);
         g_object_unref(G_OBJECT(Bubble));
     }

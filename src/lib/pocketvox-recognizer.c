@@ -189,6 +189,7 @@ static void pocketvox_recognizer_init (PocketvoxRecognizer *recognizer)
 	priv->state   = POCKETVOX_STATE_RUN;
     priv->keyword = NULL;
     priv->waiting = TRUE;
+    priv->pipeline = NULL;
 }
 
 
@@ -412,6 +413,13 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
 
 	//play
 	gst_element_set_state(priv->pipeline, GST_STATE_PLAYING);
+
+    if(gst_element_get_state(priv->pipeline, NULL, NULL, -1) == GST_STATE_CHANGE_FAILURE)
+    {
+        g_warning("PocketvoxRecognizer: unable to put the pipeline in playing mode");
+
+        return NULL;
+    }
 
     g_free(material);
     g_free(device);

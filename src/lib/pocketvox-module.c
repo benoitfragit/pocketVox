@@ -38,6 +38,7 @@ struct _PocketvoxModulePrivate
 	gboolean activated;
 	gboolean apps;
 	gdouble score;
+    GMutex mutex;
 };
 
 G_DEFINE_TYPE (PocketvoxModule, pocketvox_module, G_TYPE_OBJECT);
@@ -79,12 +80,12 @@ static void pocketvox_module_set_property (GObject      *gobject,
 		case PROP_MODULE_DICT:
 			priv->dict =  pocketvox_dictionnary_new( (gchar *)g_value_get_string(value),FALSE);
 			break;
-                case PROP_MODULE_APPS:
-                        priv->apps = (gboolean)g_value_get_boolean(value);
-		        break;
-                default:
+        case PROP_MODULE_APPS:
+            priv->apps = (gboolean)g_value_get_boolean(value);
+		    break;
+        default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
-			break;
+		break;
 	}
 }
 
@@ -160,6 +161,7 @@ static void pocketvox_module_init (PocketvoxModule *module){
 	priv->cmd = NULL;
 	//people will be able do deactivate module individualy
 	priv->activated = TRUE;
+	priv->apps = FALSE;
 }
 
 PocketvoxModule* pocketvox_module_new(gchar *id, gchar* path, gboolean loadtfidf)
@@ -196,6 +198,27 @@ void pocketvox_module_make_request(gpointer key, gpointer value, gpointer user_d
 	priv->cmd = pocketvox_dictionnary_get_result(priv->dict);
 
 end:
+	return;
+}
+
+void pocketvox_module_threaded_request(PocketvoxModule *module, gchar *request)
+{
+    g_return_if_fail(NULL != module);
+    g_return_if_fail(NULL != request);
+
+	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
+			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
+	PocketvoxModulePrivate *priv = module->priv;
+
+    g_mutex_lock(&(priv->mutex));
+	if(pocketvox_module_get_activated(module) == FALSE)
+		goto end;
+
+	priv->score = pocketvox_dictionnary_process_request(priv->dict, request);
+	priv->cmd = pocketvox_dictionnary_get_result(priv->dict);
+
+end:
+    g_mutex_unlock(&(priv->mutex));
 	return;
 }
 

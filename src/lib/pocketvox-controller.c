@@ -149,7 +149,11 @@ static void pocketvox_controller_quit(PocketvoxController *controller, gpointer 
 
 void pocketvox_controller_on_request(PocketvoxController *controller, gpointer hyp, gpointer user_data)
 {
-	gchar *request = (gchar *)hyp;
+    GList *modules = NULL;
+    gchar *request = (gchar *)hyp;
+    gint i = 0, j = 0, n_threads;
+    gdouble mindist = -1.0f, dist;
+    GThreadPool *thread_pool = NULL;
 
 	g_return_if_fail(NULL != controller);
 	g_return_if_fail(NULL != hyp);
@@ -164,14 +168,20 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 	g_hash_table_foreach(priv->modules, pocketvox_module_manage_apps, window);
 
 	//make request
-	g_hash_table_foreach(priv->modules, pocketvox_module_make_request, request);
+	//g_hash_table_foreach(priv->modules, pocketvox_module_make_request, request);
 
-	GList* modules = g_hash_table_get_values(priv->modules);
-	gint i = 0, j = 0;
-	gdouble mindist = -1.0f;
-	gdouble dist;
+	modules     = g_hash_table_get_values(priv->modules);
 
-	for(i = 0; i< g_list_length(modules); i++)
+    n_threads   = g_get_num_processors();
+    thread_pool = g_thread_pool_new((GFunc)pocketvox_module_threaded_request, request, n_threads, TRUE, NULL );
+
+    for(i = 0; i < g_list_length(modules); i++)
+    {
+        g_thread_pool_push(thread_pool, (PocketvoxModule *)g_list_nth_data(modules,i), NULL);
+    }
+    g_thread_pool_free(thread_pool, FALSE, TRUE);
+
+    for(i = 0; i< g_list_length(modules); i++)
 	{
 		PocketvoxModule *module = g_list_nth_data(modules, i);
 
@@ -274,19 +284,28 @@ PocketvoxController* pocketvox_controller_new(PocketvoxRecognizer *recognizer,
 
 void pocketvox_controller_start(PocketvoxController *controller)
 {
-	g_return_if_fail(NULL != controller);
+	GList* modules = NULL;
+    gint i, n_threads;
+    GThreadPool *thread_pool = NULL;
+
+    g_return_if_fail(NULL != controller);
 
 	controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (controller,
 			TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerPrivate);
 	PocketvoxControllerPrivate *priv = controller->priv;
 
-    GList *modules = g_hash_table_get_values(priv->modules);
-    gint i;
+    modules   = g_hash_table_get_values(priv->modules);
+
+    //create a GThreadPool to make dictionnaries loading smoother
+    n_threads = g_get_num_processors();
+    thread_pool      = g_thread_pool_new((GFunc)pocketvox_module_build_dictionnary, NULL, n_threads, TRUE, NULL);
 
     for(i = 0; i < g_list_length(modules); i++)
     {
-        pocketvox_module_build_dictionnary((PocketvoxModule *)g_list_nth_data(modules, i));
+        g_thread_pool_push(thread_pool, (PocketvoxModule *)g_list_nth_data(modules, i), NULL);
+        //pocketvox_module_build_dictionnary((PocketvoxModule *)g_list_nth_data(modules, i));
     }
+    g_thread_pool_free(thread_pool, FALSE, TRUE);
     g_list_free(modules);
 
 	priv->loop = g_main_loop_new(NULL, FALSE);
