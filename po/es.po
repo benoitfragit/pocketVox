@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pocketvox 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-11 11:04+0100\n"
-"PO-Revision-Date: 2014-10-17 18:25+0200\n"
+"PO-Revision-Date: 2014-11-09 21:27+0100\n"
 "Last-Translator: benoit franquet <benoitfranquet@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -20,91 +20,91 @@ msgstr ""
 
 #: ../src/gui/pocketvox-chooser.c:107
 msgid "Choose a file or folder"
-msgstr "Choisir un fichier ou un dossier"
+msgstr "Seleccione un archivo o carpeta"
 
 #: ../src/gui/pocketvox-setup.c:172
 msgid "your-id"
-msgstr "Votre identifiant"
+msgstr "su nombre usario"
 
 #: ../src/gui/pocketvox-setup.c:173
 msgid "Set the module's id"
-msgstr "Identifiant du module"
+msgstr "Establizca el nombre del modulo"
 
 #: ../src/gui/pocketvox-setup.c:176
 msgid "is this module associated to an desktop application ?"
-msgstr "Ce module est-il associé à une application ?"
+msgstr "este modulo es una application"
 
 #: ../src/gui/pocketvox-setup.c:180
 msgid "your path"
-msgstr "Votre dictionnaire"
+msgstr "su camino"
 
 #: ../src/gui/pocketvox-setup.c:181
 msgid "Set the dictionnary's path"
-msgstr "Chemin du dictionnaire"
+msgstr "establizca el diccionario camino"
 
 #: ../src/gui/pocketvox-setup.c:233
 msgid "<b><b><big> ADD YOUR MODULES </big></b></b>"
-msgstr "<b><b><big> AJOUTER VOS MODULES </big></b></b>"
+msgstr "<b><b><big> ANADIR SUS MODULOS </big></b></b>"
 
 #: ../src/gui/pocketvox-setup.c:260
 msgid "Your name"
-msgstr "Votre nom"
+msgstr "Su nombre"
 
 #: ../src/gui/pocketvox-setup.c:262
 msgid "Activation keyword"
-msgstr "Mot d'activation"
+msgstr "Palabra de activacion"
 
 #: ../src/gui/pocketvox-setup.c:299
 msgid "What is your name ?"
-msgstr "Comment vous appelez-vous ?"
+msgstr "cual es su nombre"
 
 #: ../src/gui/pocketvox-setup.c:300
 msgid "What is your activation keyword ?"
-msgstr "Quel est le mot clé d'activation ?"
+msgstr "cual es su activacion palabra"
 
 #: ../src/gui/pocketvox-setup.c:301
 msgid "Choose the language"
-msgstr "Choisir votre langue"
+msgstr "Cual es su idioma"
 
 #: ../src/gui/pocketvox-setup.c:330
 msgid "<b> Language model </b>"
-msgstr "<b> Modèle de language </b>"
+msgstr "<b> Modelo de idioma </b>"
 
 #: ../src/gui/pocketvox-setup.c:331
 msgid "<b> Acoustic model </b>"
-msgstr "<b> Modèle acoustique </b>"
+msgstr "<b> Modelo acustico </b>"
 
 #: ../src/gui/pocketvox-setup.c:332
 msgid "<b> Dictionnary </b>"
-msgstr "<b> Dictionnaire </b>"
+msgstr "<b> Dicionnario </b>"
 
 #: ../src/gui/pocketvox-setup.c:343
 msgid "Set the pocketsphinx's language model"
-msgstr "Choisir un modèle de langage pour Pocketsphinx"
+msgstr "Establecer el modelo de idioma para Pocketsphinx"
 
 #: ../src/gui/pocketvox-setup.c:344
 msgid "Set the pocketsphinx's acoustic model"
-msgstr "Choisir un modèle acoustique pour Pocketsphinx"
+msgstr "Establecer el modelo acustico para Pocketsphinx"
 
 #: ../src/gui/pocketvox-setup.c:345
 msgid "Set the pocketsphinx's dictionnary"
-msgstr "Choisir un dictionnaire pour Pocketsphinx"
+msgstr "Establece el diccionario para Pocketsphinx"
 
 #: ../src/gui/pocketvox-setup.c:385 ../src/gui/pocketvox-setup.c:396
 msgid "Allow visual notifications"
-msgstr "Autoriser les notifications visuelles"
+msgstr "Permitir las notificaciones visuales"
 
 #: ../src/gui/pocketvox-setup.c:386 ../src/gui/pocketvox-setup.c:395
 msgid "Allow sound notifications"
-msgstr "Autoriser les notifications sonores"
+msgstr "Permiter las notificaciones sonoras"
 
 #: ../src/gui/pocketvox-setup.c:450
 msgid "Gstreamer source"
-msgstr "Source audio"
+msgstr "Gstreamer fuente de audio"
 
 #: ../src/gui/pocketvox-setup.c:452
 msgid "Default"
-msgstr "Défaut"
+msgstr "Defecto"
 
 #: ../src/gui/pocketvox-setup.c:453
 msgid "Alsa"
@@ -112,47 +112,47 @@ msgstr "Alsa"
 
 #: ../src/gui/pocketvox-setup.c:454
 msgid "Network"
-msgstr "Réseau"
+msgstr "Red"
 
 #: ../src/gui/pocketvox-setup.c:456
 msgid "Set the source input"
-msgstr "Sélectionner le type de source"
+msgstr "Establecer el fuente de audio"
 
 #: ../src/gui/pocketvox-setup.c:458
 msgid "Mic"
-msgstr "Microphone"
+msgstr "Microfono"
 
 #: ../src/gui/pocketvox-setup.c:460
 msgid "Which microphone to use ?"
-msgstr "Quel microphone utiliser ?"
+msgstr "Que microfono utilisado"
 
 #: ../src/gui/pocketvox-setup.c:462
 msgid "Host"
-msgstr "Hôte"
+msgstr "Host"
 
 #: ../src/gui/pocketvox-setup.c:464
 msgid "Choose the host"
-msgstr "Choisir l'hôte"
+msgstr "Establecer el host"
 
 #: ../src/gui/pocketvox-setup.c:466
 msgid "Port"
-msgstr "Port"
+msgstr "Puerto"
 
 #: ../src/gui/pocketvox-setup.c:468
 msgid "Choose the port"
-msgstr "Choisir le port"
+msgstr "Eligir el puerto"
 
 #: ../src/gui/pocketvox-setup.c:649
 msgid "Notifications"
-msgstr "Notifications"
+msgstr "Notificaciones"
 
 #: ../src/gui/pocketvox-setup.c:650
 msgid "Users"
-msgstr "Utilisateurs"
+msgstr "Usuarios"
 
 #: ../src/gui/pocketvox-setup.c:651
 msgid "Pocketsphinx"
-msgstr "Pocketsphinx"
+msgstr "Pocketphinx"
 
 #: ../src/gui/pocketvox-setup.c:652
 msgid "Gstreamer"
@@ -160,50 +160,50 @@ msgstr "Gstreamer"
 
 #: ../src/gui/pocketvox-setup.c:654
 msgid "Display notifications parameters"
-msgstr "Afficher les paramètres de notification"
+msgstr "Mostrar configuracion de notificaciones"
 
 #: ../src/gui/pocketvox-setup.c:655
 msgid "Display user parameters"
-msgstr "Afficher les paramètres utilisateur"
+msgstr "Mostrar configuracion de usarios"
 
 #: ../src/gui/pocketvox-setup.c:656
 msgid "Display pocketsphinx parameters"
-msgstr "Afficher les paramètres de Pocketsphinx"
+msgstr "Mostrar configuracion de pocketsphinx"
 
 #: ../src/gui/pocketvox-setup.c:657
 msgid "Display gstreamer parameters"
-msgstr "Afficher les paramètres de Gstreamer"
+msgstr "Mostrar configuracion de gstreamer"
 
 #: ../src/gui/pocketvox-setup.c:715
 msgid "Configuration"
-msgstr "Configuration"
+msgstr "Configuracion"
 
 #: ../src/gui/pocketvox-setup.c:724 ../src/lib/pocketvox-indicator.c:220
 msgid "Modules"
-msgstr "Modules"
+msgstr "Modulos"
 
 #: ../src/lib/pocketvox-application.c:216
 #, c-format
 msgid "Hello %s, I'm listening you, I need a few seconds to initialize myself"
-msgstr "Bonjour %s, je vous écoute, j'ai besoin de quelques secondes pour m'initialiser"
+msgstr "Hola %s, estoy escuchando, necesito algunas secondas antes de empezar"
 
 #: ../src/lib/pocketvox-controller.c:230
 msgid "I'm waiting for your orders"
-msgstr "J'attends vos ordres"
+msgstr "Espero sus ordenes"
 
 #: ../src/lib/pocketvox-indicator.c:197 ../src/lib/pocketvox-indicator.c:219
 msgid "Stop"
-msgstr "Stop"
+msgstr "Parar"
 
 #: ../src/lib/pocketvox-indicator.c:197
 msgid "Run"
-msgstr "Lancer"
+msgstr "Empezar"
 
 #: ../src/lib/pocketvox-indicator.c:224
 msgid "Quit"
-msgstr "Quitter"
+msgstr "Dejar"
 
 #: ../src/lib/pocketvox-indicator.c:225
 msgid "Apps"
-msgstr "Applications"
+msgstr "Aplicacion"
 

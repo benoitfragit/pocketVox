@@ -150,18 +150,12 @@ static void pocketvox_setup_search_dict(GtkEntry            *entry,
 static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar* value, gboolean isapps)
 {
 	g_return_if_fail(NULL != setup);
-    //g_return_if_fail(NULL != value);
-    //g_return_if_fail(NULL != key);
 
    	setup->priv = G_TYPE_INSTANCE_GET_PRIVATE (setup,
 			TYPE_POCKETVOX_SETUP, PocketvoxSetupPrivate);
 	PocketvoxSetupPrivate *priv = setup->priv;
 
     ModuleInfos *info = (ModuleInfos *)g_malloc0(sizeof(ModuleInfos));
-
-	GtkWidget* label_id 	= gtk_label_new(_("id"));
-	GtkWidget* label_app	= gtk_label_new(_("Is this module is associated to a desktop app ?"));
-	GtkWidget* label_path	= gtk_label_new(_("Dictionnary's path"));
 
     GtkWidget* row          = gtk_list_box_row_new();
     gchar *name             = g_strdup_printf("row_%d",current_line);
@@ -187,9 +181,9 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
     gtk_widget_set_tooltip_text(info->entry_path,_("Set the dictionnary's path"));
 	g_signal_connect(info->entry_path, "icon-press", G_CALLBACK(pocketvox_setup_search_dict), NULL);
 
-	gtk_widget_set_hexpand(label_app, TRUE);
-	gtk_widget_set_hexpand(label_path, TRUE);
-	gtk_widget_set_hexpand(label_id, TRUE);
+	//gtk_widget_set_hexpand(label_app, TRUE);
+	gtk_widget_set_hexpand(info->entry_path, TRUE);
+	gtk_widget_set_hexpand(info->entry_id, TRUE);
 	gtk_widget_set_hexpand(info->sw, FALSE);
 
 	g_object_set(G_OBJECT(info->sw),
@@ -202,17 +196,10 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
                                                 value);
     }
 
-    gtk_misc_set_alignment(GTK_MISC(label_id),   0.0, 0.5);
-    gtk_misc_set_alignment(GTK_MISC(label_path), 0.0, 0.5);
-    gtk_misc_set_alignment(GTK_MISC(label_app),  0.0, 0.5);
-
-	gtk_grid_set_row_homogeneous(GTK_GRID(grid), FALSE);
-	gtk_grid_attach(GTK_GRID(grid), label_id, 	        0, 0, 2, 1);
-	gtk_grid_attach(GTK_GRID(grid), info->entry_id, 	2, 0, 2, 1);
-	gtk_grid_attach(GTK_GRID(grid), label_path,         0, 1, 2, 1);
-	gtk_grid_attach(GTK_GRID(grid), info->entry_path, 	2, 1, 2, 1);
-	gtk_grid_attach(GTK_GRID(grid), label_app, 	        0, 2, 3, 1);
-	gtk_grid_attach(GTK_GRID(grid), info->sw,			3, 2, 1, 1);
+    gtk_grid_set_row_homogeneous(GTK_GRID(grid), FALSE);
+	gtk_grid_attach(GTK_GRID(grid), info->entry_id, 	0, 0, 2, 1);
+	gtk_grid_attach(GTK_GRID(grid), info->entry_path, 	2, 0, 2, 1);
+	gtk_grid_attach(GTK_GRID(grid), info->sw,			4, 0, 1, 1);
 
     gtk_container_add(GTK_CONTAINER(row), grid);
 	gtk_widget_show_all(row);
