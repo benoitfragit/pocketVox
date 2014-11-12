@@ -156,6 +156,7 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
     gint i = 0, j = 0, n_threads;
     gdouble mindist = -1.0f, dist;
     GThreadPool *thread_pool = NULL;
+    gboolean first_module = FALSE;
 
 	g_return_if_fail(NULL != controller);
 	g_return_if_fail(NULL != hyp);
@@ -189,10 +190,20 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 
 		dist = pocketvox_module_get_score(module);
 
-		if(pocketvox_module_get_activated(module) == TRUE && (dist < mindist || i==0 ))
+        g_warning("%d %s %d %d %s %.5f",
+                  i,
+                  pocketvox_module_get_id(module),
+                  pocketvox_module_is_apps(module),
+                  pocketvox_module_get_activated(module),
+                  pocketvox_module_get_command(module),
+                  pocketvox_module_get_score(module));
+
+		if(pocketvox_module_get_activated(module) == TRUE && (dist < mindist || first_module==FALSE ))
 		{
 			mindist = dist;
 			j = i;
+
+            first_module = TRUE;
 		}
 	}
 
