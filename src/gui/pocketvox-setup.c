@@ -266,7 +266,7 @@ static GtkWidget* pocketvox_setup_get_user_grid(PocketvoxSetup *setup)
 
 	gchar *voicesPath = (gchar *)g_getenv("ESPEAK_VOICES_PATH");
 
-	g_return_if_fail(NULL != voicesPath);
+	g_return_val_if_fail(NULL != voicesPath, NULL);
 
 	GDir *dir = g_dir_open(voicesPath, 0, NULL);
 	const gchar *file ;

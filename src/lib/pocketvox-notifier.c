@@ -212,8 +212,8 @@ static void pocketvox_notifier_sound_notification(PocketvoxNotifier *notifier)
     {
 	    guint Size = strlen(priv->msg) + 1;
         guint position=0, end_position=0, flags=espeakCHARS_AUTO, *unique_identifier;
-        espeak_POSITION_TYPE position_type;
-        void* user_data;
+        espeak_POSITION_TYPE position_type = POS_CHARACTER;
+        void* user_data = NULL;
 
         espeak_Synth( priv->msg, Size, position, position_type, end_position, flags,
             unique_identifier, user_data );

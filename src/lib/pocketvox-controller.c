@@ -167,6 +167,8 @@ void pocketvox_controller_on_request(PocketvoxController *controller, gpointer h
 
 	gchar* window = pocketvox_xmanager_get_window(priv->xmanager);
 
+    g_warning("WINDOW: %s", window);
+
 	//put modules apps to activated
 	g_hash_table_foreach(priv->modules, pocketvox_module_manage_apps, window);
 
