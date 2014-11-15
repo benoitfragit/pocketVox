@@ -339,7 +339,7 @@ void pocketvox_module_manage_apps(gpointer key, gpointer value, gpointer user_da
 
 void pocketvox_module_build_dictionnary(PocketvoxModule *module)
 {
-	g_return_val_if_fail(NULL != module, FALSE);
+	g_return_if_fail(NULL != module);
 
 	module->priv = G_TYPE_INSTANCE_GET_PRIVATE (module,
 			TYPE_POCKETVOX_MODULE, PocketvoxModulePrivate);
