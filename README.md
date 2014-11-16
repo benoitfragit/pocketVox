@@ -96,7 +96,7 @@ Now we are going to install other dependancies:
 
     sudo apt-get update
     sudo apt-get upgrade
-    sudo apt-get install libglib2.0-0 libgirepository-1.0.1 libgirepository1.0-dev libgstreamer-plugins-base0.10-0 libgstreamer-plugins-bad0.10-0 gir1.2-gstreamer-0.10 gir1.2-appindicator3-0.1 libappindicator3-1 libappindicator3-dev libespeak-dev libespeak1 libnotify-dev gir1.2-gtk-3.0 libgtk-3-0 gobject-introspection gtk-doc-tools libgstreamer-plugins-base0.10-dev libgstreamer0.10-dev libgstreamer0.10-0 python-dev python-pip bison
+    sudo apt-get install libglib2.0-0 libgirepository-1.0.1 libgirepository1.0-dev libgstreamer-plugins-base0.10-0 libgstreamer-plugins-bad0.10-0 gir1.2-gstreamer-0.10 gir1.2-appindicator3-0.1 libappindicator3-1 libappindicator3-dev libespeak-dev libespeak1 libnotify-dev gir1.2-gtk-3.0 libgtk-3-0 gobject-introspection gtk-doc-tools libgstreamer-plugins-base0.10-dev libgstreamer0.10-dev libgstreamer0.10-0 gstreamer0.10-alsa python-dev python-pip bison
 
 
 **BUILD THE PROJECT FROM SOURCE**
@@ -298,3 +298,13 @@ Don't be afraid the way to translate pocketvox is very easy and everybody can do
     `echo "<LANGAGE_CODE>" >> LINGUAS`
  
 Done
+
+ROADMAP
+========
+
+ - Using GtkPopover to revamp the module manager UI
+ - Adding default module to give time
+ - Maybe add a FANN neural network to improve notifications managment (detect mounted device, read news feed, maybe gmail too, give time without any ask from the user)
+ - adding translation
+ - correcting bug
+ - Make module able to communicate using dbus with pocketvox
