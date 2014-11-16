@@ -303,7 +303,7 @@ ROADMAP
 ========
 
  - Using GtkPopover to revamp the module manager UI
- - Adding default module to give time
+ - Adding default module to give time, control the mouse
  - Maybe add a FANN neural network to improve notifications managment (detect mounted device, read news feed, maybe gmail too, give time without any ask from the user)
  - adding translation
  - correcting bug
