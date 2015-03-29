@@ -1,0 +1,646 @@
+<MACRO>
+<NAME>TYPE_POCKETVOX_CONTROLLER</NAME>
+#define TYPE_POCKETVOX_CONTROLLER                  (pocketvox_controller_get_type ())
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_CONTROLLER</NAME>
+#define POCKETVOX_CONTROLLER(obj)                   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_POCKETVOX_CONTROLLER, PocketvoxController))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_CONTROLLER</NAME>
+#define IS_POCKETVOX_CONTROLLER(obj)                (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_POCKETVOX_CONTROLLER))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_CONTROLLER_CLASS</NAME>
+#define POCKETVOX_CONTROLLER_CLASS(klass)           (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerClass))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_CONTROLLER_CLASS</NAME>
+#define IS_POCKETVOX_CONTROLLER_CLASS(klass)        (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_POCKETVOX_CONTROLLER))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_CONTROLLER_GET_CLASS</NAME>
+#define POCKETVOX_CONTROLLER_GET_CLASS(obj)         (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_POCKETVOX_CONTROLLER, PocketvoxControllerClass))
+</MACRO>
+<STRUCT>
+<NAME>PocketvoxController</NAME>
+struct _PocketvoxController
+{
+  /*< private >*/
+  GInitiallyUnowned parent_instance;
+
+  PocketvoxControllerPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>PocketvoxControllerClass</NAME>
+struct _PocketvoxControllerClass
+{
+  /*< private >*/
+  GInitiallyUnownedClass parent_class;
+
+  /*public funcs and data here*/
+};
+</STRUCT>
+<FUNCTION>
+<NAME>pocketvox_controller_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_controller_new</NAME>
+<RETURNS>PocketvoxController * </RETURNS>
+PocketvoxRecognizer *recognizer, PocketvoxNotifier	*notifier, PocketvoxIndicator *indicator 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_controller_start</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxController *controller 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_controller_add_module</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxController *controller, PocketvoxModule *module 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_controller_remove_module</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxController *controller, gchar *id 
+</FUNCTION>
+<STRUCT>
+<NAME>PocketvoxControllerPrivate</NAME>
+</STRUCT>
+<MACRO>
+<NAME>TYPE_POCKETVOX_DICTIONNARY</NAME>
+#define TYPE_POCKETVOX_DICTIONNARY                  (pocketvox_dictionnary_get_type ())
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_DICTIONNARY</NAME>
+#define POCKETVOX_DICTIONNARY(obj)                   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnary))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_DICTIONNARY</NAME>
+#define IS_POCKETVOX_DICTIONNARY(obj)                (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_POCKETVOX_DICTIONNARY))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_DICTIONNARY_CLASS</NAME>
+#define POCKETVOX_DICTIONNARY_CLASS(klass)           (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryClass))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_DICTIONNARY_CLASS</NAME>
+#define IS_POCKETVOX_DICTIONNARY_CLASS(klass)        (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_POCKETVOX_DICTIONNARY))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_DICTIONNARY_GET_CLASS</NAME>
+#define POCKETVOX_DICTIONNARY_GET_CLASS(obj)         (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_POCKETVOX_DICTIONNARY, PocketvoxDictionnaryClass))
+</MACRO>
+<STRUCT>
+<NAME>PocketvoxDictionnary</NAME>
+struct _PocketvoxDictionnary
+{
+  /*< private >*/
+  GInitiallyUnowned parent_instance;
+
+  PocketvoxDictionnaryPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>PocketvoxDictionnaryClass</NAME>
+struct _PocketvoxDictionnaryClass
+{
+  /*< private >*/
+  GInitiallyUnownedClass parent_class;
+
+  /*public funcs and data here*/
+};
+</STRUCT>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_new</NAME>
+<RETURNS>PocketvoxDictionnary * </RETURNS>
+gchar *filepath, gboolean load_tfidf 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_display</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxDictionnary* dictionnary 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_is_loaded</NAME>
+<RETURNS>gboolean  </RETURNS>
+PocketvoxDictionnary *dictionnary 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_write_tfidf_file</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxDictionnary *dictionnary 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_load_tfidf_file</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxDictionnary* dictionnary, gchar* path 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_process_request</NAME>
+<RETURNS>gdouble  </RETURNS>
+PocketvoxDictionnary* dictionnary, gchar* query 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_get_result</NAME>
+<RETURNS>gchar * </RETURNS>
+PocketvoxDictionnary *dictionnary 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_dictionnary_tfidf</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxDictionnary *dictionnary 
+</FUNCTION>
+<STRUCT>
+<NAME>PocketvoxDictionnaryPrivate</NAME>
+</STRUCT>
+<MACRO>
+<NAME>TYPE_POCKETVOX_MODULE</NAME>
+#define TYPE_POCKETVOX_MODULE                  (pocketvox_module_get_type ())
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_MODULE</NAME>
+#define POCKETVOX_MODULE(obj)                   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_POCKETVOX_MODULE, PocketvoxModule))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_MODULE</NAME>
+#define IS_POCKETVOX_MODULE(obj)                (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_POCKETVOX_MODULE))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_MODULE_CLASS</NAME>
+#define POCKETVOX_MODULE_CLASS(klass)           (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_POCKETVOX_MODULE, PocketvoxModuleClass))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_MODULE_CLASS</NAME>
+#define IS_POCKETVOX_MODULE_CLASS(klass)        (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_POCKETVOX_MODULE))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_MODULE_GET_CLASS</NAME>
+#define POCKETVOX_MODULE_GET_CLASS(obj)         (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_POCKETVOX_MODULE, PocketvoxModuleClass))
+</MACRO>
+<STRUCT>
+<NAME>PocketvoxModule</NAME>
+struct _PocketvoxModule
+{
+	/*< private >*/
+	GInitiallyUnowned parent_instance;
+
+	PocketvoxModulePrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>PocketvoxModuleClass</NAME>
+struct _PocketvoxModuleClass
+{
+	/*< private >*/
+	GInitiallyUnownedClass parent_class;
+
+	/*public funcs and data here*/
+	void (*execute)(PocketvoxModule *module);
+
+};
+</STRUCT>
+<FUNCTION>
+<NAME>pocketvox_module_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_new</NAME>
+<RETURNS>PocketvoxModule * </RETURNS>
+gchar *id, gchar *path, gboolean loadtfidf 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_make_request</NAME>
+<RETURNS>void  </RETURNS>
+gpointer key, gpointer value, gpointer user_data 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_get_id</NAME>
+<RETURNS>gchar * </RETURNS>
+PocketvoxModule *module 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_get_activated</NAME>
+<RETURNS>gboolean  </RETURNS>
+PocketvoxModule *module 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_set_activated</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxModule *module, gboolean state 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_free</NAME>
+<RETURNS>void  </RETURNS>
+gpointer data 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_get_score</NAME>
+<RETURNS>gdouble  </RETURNS>
+PocketvoxModule *module 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_get_command</NAME>
+<RETURNS>gchar * </RETURNS>
+PocketvoxModule *module 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_is_apps</NAME>
+<RETURNS>gboolean  </RETURNS>
+PocketvoxModule *module 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_manage_apps</NAME>
+<RETURNS>void  </RETURNS>
+gpointer key, gpointer value, gpointer user_data 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_build_dictionnary</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxModule *module 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_threaded_request</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxModule *module, gchar *request 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_module_execute</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxModule *module 
+</FUNCTION>
+<STRUCT>
+<NAME>PocketvoxModulePrivate</NAME>
+</STRUCT>
+<MACRO>
+<NAME>TYPE_POCKETVOX_XMANAGER</NAME>
+#define TYPE_POCKETVOX_XMANAGER                  (pocketvox_xmanager_get_type ())
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_XMANAGER</NAME>
+#define POCKETVOX_XMANAGER(obj)                   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_POCKETVOX_XMANAGER, PocketvoxXmanager))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_XMANAGER</NAME>
+#define IS_POCKETVOX_XMANAGER(obj)                (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_POCKETVOX_XMANAGER))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_XMANAGER_CLASS</NAME>
+#define POCKETVOX_XMANAGER_CLASS(klass)           (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_POCKETVOX_XMANAGER, PocketvoxXmanagerClass))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_XMANAGER_CLASS</NAME>
+#define IS_POCKETVOX_XMANAGER_CLASS(klass)        (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_POCKETVOX_XMANAGER))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_XMANAGER_GET_CLASS</NAME>
+#define POCKETVOX_XMANAGER_GET_CLASS(obj)         (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_POCKETVOX_XMANAGER, PocketvoxXmanagerClass))
+</MACRO>
+<STRUCT>
+<NAME>PocketvoxXmanager</NAME>
+struct _PocketvoxXmanager
+{
+  /*< private >*/
+  GInitiallyUnowned parent_instance;
+
+  PocketvoxXmanagerPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>PocketvoxXmanagerClass</NAME>
+struct _PocketvoxXmanagerClass
+{
+  /*< private >*/
+  GInitiallyUnownedClass parent_class;
+
+  /*public funcs and data here*/
+};
+</STRUCT>
+<FUNCTION>
+<NAME>pocketvox_xmanager_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_xmanager_new</NAME>
+<RETURNS>PocketvoxXmanager * </RETURNS>
+ 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_xmanager_get_window</NAME>
+<RETURNS>gchar * </RETURNS>
+PocketvoxXmanager *xmanager 
+</FUNCTION>
+<STRUCT>
+<NAME>PocketvoxXmanagerPrivate</NAME>
+</STRUCT>
+<MACRO>
+<NAME>TYPE_POCKETVOX_APPLICATION</NAME>
+#define TYPE_POCKETVOX_APPLICATION                  (pocketvox_application_get_type ())
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_APPLICATION</NAME>
+#define POCKETVOX_APPLICATION(obj)                   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_POCKETVOX_APPLICATION, PocketvoxApplication))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_APPLICATION</NAME>
+#define IS_POCKETVOX_APPLICATION(obj)                (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_POCKETVOX_APPLICATION))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_APPLICATION_CLASS</NAME>
+#define POCKETVOX_APPLICATION_CLASS(klass)           (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationClass))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_APPLICATION_CLASS</NAME>
+#define IS_POCKETVOX_APPLICATION_CLASS(klass)        (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_POCKETVOX_APPLICATION))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_APPLICATION_GET_CLASS</NAME>
+#define POCKETVOX_APPLICATION_GET_CLASS(obj)         (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_POCKETVOX_APPLICATION, PocketvoxApplicationClass))
+</MACRO>
+<STRUCT>
+<NAME>PocketvoxApplication</NAME>
+struct _PocketvoxApplication
+{
+  /*< private >*/
+  GInitiallyUnowned parent_instance;
+
+  PocketvoxApplicationPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>PocketvoxApplicationClass</NAME>
+struct _PocketvoxApplicationClass
+{
+  /*< private >*/
+  GInitiallyUnownedClass parent_class;
+
+  /*public funcs and data here*/
+};
+</STRUCT>
+<FUNCTION>
+<NAME>pocketvox_application_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_application_new</NAME>
+<RETURNS>PocketvoxApplication * </RETURNS>
+ 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_application_start</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxApplication *application 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_application_add_module</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxApplication *application, PocketvoxModule *module 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_application_remove_module</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxApplication *application, gchar *id 
+</FUNCTION>
+<STRUCT>
+<NAME>PocketvoxApplicationPrivate</NAME>
+</STRUCT>
+<MACRO>
+<NAME>TYPE_POCKETVOX_RECOGNIZER</NAME>
+#define TYPE_POCKETVOX_RECOGNIZER                  (pocketvox_recognizer_get_type ())
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_RECOGNIZER</NAME>
+#define POCKETVOX_RECOGNIZER(obj)                   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizer))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_RECOGNIZER</NAME>
+#define IS_POCKETVOX_RECOGNIZER(obj)                (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_POCKETVOX_RECOGNIZER))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_RECOGNIZER_CLASS</NAME>
+#define POCKETVOX_RECOGNIZER_CLASS(klass)           (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerClass))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_RECOGNIZER_CLASS</NAME>
+#define IS_POCKETVOX_RECOGNIZER_CLASS(klass)        (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_POCKETVOX_RECOGNIZER))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_RECOGNIZER_GET_CLASS</NAME>
+#define POCKETVOX_RECOGNIZER_GET_CLASS(obj)         (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerClass))
+</MACRO>
+<STRUCT>
+<NAME>PocketvoxRecognizer</NAME>
+struct _PocketvoxRecognizer
+{
+  /*< private >*/
+  GInitiallyUnowned parent_instance;
+
+  PocketvoxRecognizerPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>PocketvoxRecognizerClass</NAME>
+struct _PocketvoxRecognizerClass
+{
+  /*< private >*/
+  GInitiallyUnownedClass parent_class;
+
+  /*public funcs and data here*/
+};
+</STRUCT>
+<FUNCTION>
+<NAME>pocketvox_recognizer_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_recognizer_new</NAME>
+<RETURNS>PocketvoxRecognizer * </RETURNS>
+gchar* hmm, gchar* lm, gchar* dic, gchar *key, gchar *mat, gchar *dev, gchar* host, gint port 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_recognizer_set_state</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxRecognizer *recognizer,PocketvoxState state 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_recognizer_set</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxRecognizer *recognizer, gchar* ppt, gchar *path 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_recognizer_set_keyword</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxRecognizer *recognizer, gchar *keyword 
+</FUNCTION>
+<STRUCT>
+<NAME>PocketvoxRecognizerPrivate</NAME>
+</STRUCT>
+<MACRO>
+<NAME>TYPE_POCKETVOX_NOTIFIER</NAME>
+#define TYPE_POCKETVOX_NOTIFIER                  (pocketvox_notifier_get_type ())
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_NOTIFIER</NAME>
+#define POCKETVOX_NOTIFIER(obj)                   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifier))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_NOTIFIER</NAME>
+#define IS_POCKETVOX_NOTIFIER(obj)                (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_POCKETVOX_NOTIFIER))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_NOTIFIER_CLASS</NAME>
+#define POCKETVOX_NOTIFIER_CLASS(klass)           (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierClass))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_NOTIFIER_CLASS</NAME>
+#define IS_POCKETVOX_NOTIFIER_CLASS(klass)        (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_POCKETVOX_NOTIFIER))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_NOTIFIER_GET_CLASS</NAME>
+#define POCKETVOX_NOTIFIER_GET_CLASS(obj)         (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_POCKETVOX_NOTIFIER, PocketvoxNotifierClass))
+</MACRO>
+<STRUCT>
+<NAME>PocketvoxNotifier</NAME>
+struct _PocketvoxNotifier
+{
+  /*< private >*/
+  GInitiallyUnowned parent_instance;
+
+  PocketvoxNotifierPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>PocketvoxNotifierClass</NAME>
+struct _PocketvoxNotifierClass
+{
+  /*< private >*/
+  GInitiallyUnownedClass parent_class;
+
+  /*public funcs and data here*/
+};
+</STRUCT>
+<FUNCTION>
+<NAME>pocketvox_notifier_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_notifier_new</NAME>
+<RETURNS>PocketvoxNotifier * </RETURNS>
+gchar *name, gchar *voice 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_notifier_notify</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxNotifier *notifier, gpointer hyp, gpointer user_data 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_notifier_set_voice</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxNotifier *notifier, gchar *voice 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_notifier_say</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxNotifier *notifier, gchar *msg 
+</FUNCTION>
+<STRUCT>
+<NAME>PocketvoxNotifierPrivate</NAME>
+</STRUCT>
+<ENUM>
+<NAME>PocketvoxState</NAME>
+typedef enum {
+	POCKETVOX_STATE_STOP,
+	POCKETVOX_STATE_RUN,
+    POCKETVOX_STATE_WAIT
+}PocketvoxState;
+</ENUM>
+<MACRO>
+<NAME>TYPE_POCKETVOX_INDICATOR</NAME>
+#define TYPE_POCKETVOX_INDICATOR                  (pocketvox_indicator_get_type ())
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_INDICATOR</NAME>
+#define POCKETVOX_INDICATOR(obj)                   (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_POCKETVOX_INDICATOR, PocketvoxIndicator))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_INDICATOR</NAME>
+#define IS_POCKETVOX_INDICATOR(obj)                (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_POCKETVOX_INDICATOR))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_INDICATOR_CLASS</NAME>
+#define POCKETVOX_INDICATOR_CLASS(klass)           (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorClass))
+</MACRO>
+<MACRO>
+<NAME>IS_POCKETVOX_INDICATOR_CLASS</NAME>
+#define IS_POCKETVOX_INDICATOR_CLASS(klass)        (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_POCKETVOX_INDICATOR))
+</MACRO>
+<MACRO>
+<NAME>POCKETVOX_INDICATOR_GET_CLASS</NAME>
+#define POCKETVOX_INDICATOR_GET_CLASS(obj)         (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_POCKETVOX_INDICATOR, PocketvoxIndicatorClass))
+</MACRO>
+<STRUCT>
+<NAME>PocketvoxIndicator</NAME>
+struct _PocketvoxIndicator
+{
+  /*< private >*/
+  GInitiallyUnowned parent_instance;
+
+  PocketvoxIndicatorPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>PocketvoxIndicatorClass</NAME>
+struct _PocketvoxIndicatorClass
+{
+  /*< private >*/
+  GInitiallyUnownedClass parent_class;
+
+  /*public funcs and data here*/
+};
+</STRUCT>
+<FUNCTION>
+<NAME>pocketvox_indicator_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_indicator_new</NAME>
+<RETURNS>PocketvoxIndicator * </RETURNS>
+ 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_indicator_add_module_item</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxIndicator *indicator, gchar *id 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_indicator_remove_module_item</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxIndicator *indicator, gchar *id 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_indicator_add_apps_item</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxIndicator *indicator, gchar *id 
+</FUNCTION>
+<FUNCTION>
+<NAME>pocketvox_indicator_toggle_apps_item</NAME>
+<RETURNS>void  </RETURNS>
+PocketvoxIndicator *indicator, gchar *window 
+</FUNCTION>
+<STRUCT>
+<NAME>PocketvoxIndicatorPrivate</NAME>
+</STRUCT>

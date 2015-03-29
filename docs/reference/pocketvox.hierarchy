@@ -1,0 +1,11 @@
+GObject
+  PocketvoxApplication
+  PocketvoxController
+  PocketvoxDictionnary
+  PocketvoxIndicator
+  PocketvoxModule
+  PocketvoxNotifier
+  PocketvoxRecognizer
+  PocketvoxXmanager
+GInterface
+  GTypePlugin

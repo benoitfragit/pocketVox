@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="pocketvox Reference Manual" link="index.html" author="" name="pocketvox" version="2" language="c">
+  <chapters>
+    <sub name="[Insert title here]" link="ch01.html">
+      <sub name="PocketvoxApplication" link="PocketvoxApplication.html"/>
+      <sub name="PocketvoxController" link="PocketvoxController.html"/>
+      <sub name="PocketvoxDictionnary" link="PocketvoxDictionnary.html"/>
+      <sub name="PocketvoxIndicator" link="PocketvoxIndicator.html"/>
+      <sub name="PocketvoxModule" link="PocketvoxModule.html"/>
+      <sub name="PocketvoxNotifier" link="PocketvoxNotifier.html"/>
+      <sub name="PocketvoxRecognizer" link="PocketvoxRecognizer.html"/>
+      <sub name="pocketvox-types" link="pocketvox-pocketvox-types.html"/>
+      <sub name="PocketvoxXmanager" link="PocketvoxXmanager.html"/>
+    </sub>
+    <sub name="Object Hierarchy" link="object-tree.html"/>
+    <sub name="API Index" link="api-index-full.html"/>
+    <sub name="Index of deprecated API" link="deprecated-api-index.html"/>
+  </chapters>
+  <functions>
+    <keyword type="function" name="pocketvox_application_new ()" link="PocketvoxApplication.html#pocketvox-application-new"/>
+    <keyword type="function" name="pocketvox_application_start ()" link="PocketvoxApplication.html#pocketvox-application-start"/>
+    <keyword type="function" name="pocketvox_application_add_module ()" link="PocketvoxApplication.html#pocketvox-application-add-module"/>
+    <keyword type="function" name="pocketvox_application_remove_module ()" link="PocketvoxApplication.html#pocketvox-application-remove-module"/>
+    <keyword type="function" name="pocketvox_controller_new ()" link="PocketvoxController.html#pocketvox-controller-new"/>
+    <keyword type="function" name="pocketvox_controller_start ()" link="PocketvoxController.html#pocketvox-controller-start"/>
+    <keyword type="function" name="pocketvox_controller_add_module ()" link="PocketvoxController.html#pocketvox-controller-add-module"/>
+    <keyword type="function" name="pocketvox_controller_remove_module ()" link="PocketvoxController.html#pocketvox-controller-remove-module"/>
+    <keyword type="function" name="pocketvox_dictionnary_new ()" link="PocketvoxDictionnary.html#pocketvox-dictionnary-new"/>
+    <keyword type="function" name="pocketvox_dictionnary_display ()" link="PocketvoxDictionnary.html#pocketvox-dictionnary-display"/>
+    <keyword type="function" name="pocketvox_dictionnary_is_loaded ()" link="PocketvoxDictionnary.html#pocketvox-dictionnary-is-loaded"/>
+    <keyword type="function" name="pocketvox_dictionnary_write_tfidf_file ()" link="PocketvoxDictionnary.html#pocketvox-dictionnary-write-tfidf-file"/>
+    <keyword type="function" name="pocketvox_dictionnary_load_tfidf_file ()" link="PocketvoxDictionnary.html#pocketvox-dictionnary-load-tfidf-file"/>
+    <keyword type="function" name="pocketvox_dictionnary_process_request ()" link="PocketvoxDictionnary.html#pocketvox-dictionnary-process-request"/>
+    <keyword type="function" name="pocketvox_dictionnary_get_result ()" link="PocketvoxDictionnary.html#pocketvox-dictionnary-get-result"/>
+    <keyword type="function" name="pocketvox_dictionnary_tfidf ()" link="PocketvoxDictionnary.html#pocketvox-dictionnary-tfidf"/>
+    <keyword type="property" name="The “rawfile” property" link="PocketvoxDictionnary.html#PocketvoxDictionnary--rawfile"/>
+    <keyword type="function" name="pocketvox_indicator_new ()" link="PocketvoxIndicator.html#pocketvox-indicator-new"/>
+    <keyword type="function" name="pocketvox_indicator_add_module_item ()" link="PocketvoxIndicator.html#pocketvox-indicator-add-module-item"/>
+    <keyword type="function" name="pocketvox_indicator_remove_module_item ()" link="PocketvoxIndicator.html#pocketvox-indicator-remove-module-item"/>
+    <keyword type="function" name="pocketvox_indicator_add_apps_item ()" link="PocketvoxIndicator.html#pocketvox-indicator-add-apps-item"/>
+    <keyword type="function" name="pocketvox_indicator_toggle_apps_item ()" link="PocketvoxIndicator.html#pocketvox-indicator-toggle-apps-item"/>
+    <keyword type="signal" name="The “indicator-module-toggled” signal" link="PocketvoxIndicator.html#PocketvoxIndicator-indicator-module-toggled"/>
+    <keyword type="signal" name="The “indicator-quit” signal" link="PocketvoxIndicator.html#PocketvoxIndicator-indicator-quit"/>
+    <keyword type="signal" name="The “indicator-state” signal" link="PocketvoxIndicator.html#PocketvoxIndicator-indicator-state"/>
+    <keyword type="function" name="pocketvox_module_new ()" link="PocketvoxModule.html#pocketvox-module-new"/>
+    <keyword type="function" name="pocketvox_module_make_request ()" link="PocketvoxModule.html#pocketvox-module-make-request"/>
+    <keyword type="function" name="pocketvox_module_get_id ()" link="PocketvoxModule.html#pocketvox-module-get-id"/>
+    <keyword type="function" name="pocketvox_module_get_activated ()" link="PocketvoxModule.html#pocketvox-module-get-activated"/>
+    <keyword type="function" name="pocketvox_module_set_activated ()" link="PocketvoxModule.html#pocketvox-module-set-activated"/>
+    <keyword type="function" name="pocketvox_module_free ()" link="PocketvoxModule.html#pocketvox-module-free"/>
+    <keyword type="function" name="pocketvox_module_get_score ()" link="PocketvoxModule.html#pocketvox-module-get-score"/>
+    <keyword type="function" name="pocketvox_module_get_command ()" link="PocketvoxModule.html#pocketvox-module-get-command"/>
+    <keyword type="function" name="pocketvox_module_is_apps ()" link="PocketvoxModule.html#pocketvox-module-is-apps"/>
+    <keyword type="function" name="pocketvox_module_manage_apps ()" link="PocketvoxModule.html#pocketvox-module-manage-apps"/>
+    <keyword type="function" name="pocketvox_module_build_dictionnary ()" link="PocketvoxModule.html#pocketvox-module-build-dictionnary"/>
+    <keyword type="function" name="pocketvox_module_execute ()" link="PocketvoxModule.html#pocketvox-module-execute"/>
+    <keyword type="property" name="The “apps” property" link="PocketvoxModule.html#PocketvoxModule--apps"/>
+    <keyword type="property" name="The “cmd” property" link="PocketvoxModule.html#PocketvoxModule--cmd"/>
+    <keyword type="property" name="The “dict” property" link="PocketvoxModule.html#PocketvoxModule--dict"/>
+    <keyword type="property" name="The “id” property" link="PocketvoxModule.html#PocketvoxModule--id"/>
+    <keyword type="function" name="pocketvox_notifier_new ()" link="PocketvoxNotifier.html#pocketvox-notifier-new"/>
+    <keyword type="function" name="pocketvox_notifier_notify ()" link="PocketvoxNotifier.html#pocketvox-notifier-notify"/>
+    <keyword type="function" name="pocketvox_notifier_set_voice ()" link="PocketvoxNotifier.html#pocketvox-notifier-set-voice"/>
+    <keyword type="function" name="pocketvox_notifier_say ()" link="PocketvoxNotifier.html#pocketvox-notifier-say"/>
+    <keyword type="property" name="The “sound-notification” property" link="PocketvoxNotifier.html#PocketvoxNotifier--sound-notification"/>
+    <keyword type="property" name="The “visual-notification” property" link="PocketvoxNotifier.html#PocketvoxNotifier--visual-notification"/>
+    <keyword type="function" name="pocketvox_recognizer_new ()" link="PocketvoxRecognizer.html#pocketvox-recognizer-new"/>
+    <keyword type="function" name="pocketvox_recognizer_set_state ()" link="PocketvoxRecognizer.html#pocketvox-recognizer-set-state"/>
+    <keyword type="function" name="pocketvox_recognizer_set ()" link="PocketvoxRecognizer.html#pocketvox-recognizer-set"/>
+    <keyword type="function" name="pocketvox_recognizer_set_keyword ()" link="PocketvoxRecognizer.html#pocketvox-recognizer-set-keyword"/>
+    <keyword type="property" name="The “dic” property" link="PocketvoxRecognizer.html#PocketvoxRecognizer--dic"/>
+    <keyword type="property" name="The “hmm” property" link="PocketvoxRecognizer.html#PocketvoxRecognizer--hmm"/>
+    <keyword type="property" name="The “lm” property" link="PocketvoxRecognizer.html#PocketvoxRecognizer--lm"/>
+    <keyword type="signal" name="The “result” signal" link="PocketvoxRecognizer.html#PocketvoxRecognizer-result"/>
+    <keyword type="signal" name="The “waiting” signal" link="PocketvoxRecognizer.html#PocketvoxRecognizer-waiting"/>
+    <keyword type="enum" name="enum PocketvoxState" link="pocketvox-pocketvox-types.html#PocketvoxState"/>
+    <keyword type="function" name="pocketvox_xmanager_new ()" link="PocketvoxXmanager.html#pocketvox-xmanager-new"/>
+    <keyword type="function" name="pocketvox_xmanager_get_window ()" link="PocketvoxXmanager.html#pocketvox-xmanager-get-window"/>
+  </functions>
+</book>

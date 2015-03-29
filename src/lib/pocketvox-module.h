@@ -32,7 +32,6 @@ struct _PocketvoxModuleClass
 
 	/*public funcs and data here*/
 	void (*execute)(PocketvoxModule *module);
-
 };
 
 GType pocketvox_module_get_type (void) G_GNUC_CONST;

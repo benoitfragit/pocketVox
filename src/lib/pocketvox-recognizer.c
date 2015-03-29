@@ -231,8 +231,10 @@ static void pocketvox_recognizer_parse_bus_message(GstBus *bus, GstMessage *msg,
             TYPE_POCKETVOX_RECOGNIZER, PocketvoxRecognizerPrivate);
         PocketvoxRecognizerPrivate *priv = recognizer->priv;
 
-        if(priv->keyword == NULL)
+        if(priv->keyword == NULL || !g_strcmp0(priv->keyword, ""))
         {
+			g_warning("No keyword found!: %s", hyp);
+			
             //if the keyword is not available then emit the signal
             g_signal_emit(recognizer, pocketvox_recognizer_signals[SIGNAL_RESULT],
                 0, hyp);

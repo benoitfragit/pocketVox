@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<refentry id="PocketvoxDictionnary">
+<refmeta>
+<refentrytitle role="top_of_page" id="PocketvoxDictionnary.top_of_page">PocketvoxDictionnary</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  POCKETVOX Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>PocketvoxDictionnary</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsect1 id="PocketvoxDictionnary.functions" role="functions_proto">
+<title role="functions_proto.title">Functions</title>
+<informaltable pgwide="1" frame="none">
+<tgroup cols="2">
+<colspec colname="functions_return" colwidth="150px"/>
+<colspec colname="functions_name"/>
+<tbody>
+<row><entry role="function_type"><link linkend="PocketvoxDictionnary"><returnvalue>PocketvoxDictionnary</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-dictionnary-new">pocketvox_dictionnary_new</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-dictionnary-display">pocketvox_dictionnary_display</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="gboolean"><returnvalue>gboolean</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-dictionnary-is-loaded">pocketvox_dictionnary_is_loaded</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-dictionnary-write-tfidf-file">pocketvox_dictionnary_write_tfidf_file</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-dictionnary-load-tfidf-file">pocketvox_dictionnary_load_tfidf_file</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="gdouble"><returnvalue>gdouble</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-dictionnary-process-request">pocketvox_dictionnary_process_request</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="gchar"><returnvalue>gchar</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-dictionnary-get-result">pocketvox_dictionnary_get_result</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-dictionnary-tfidf">pocketvox_dictionnary_tfidf</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxDictionnary.properties" role="properties">
+<title role="properties.title">Properties</title>
+<informaltable frame="none">
+<tgroup cols="3">
+<colspec colname="properties_type" colwidth="150px"/>
+<colspec colname="properties_name" colwidth="300px"/>
+<colspec colname="properties_flags" colwidth="200px"/>
+<tbody>
+<row><entry role="property_type"><link linkend="gchar"><type>gchar</type></link>&#160;*</entry><entry role="property_name"><link linkend="PocketvoxDictionnary--rawfile">rawfile</link></entry><entry role="property_flags">Read / Write</entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxDictionnary.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<screen>    <link linkend="GObject">GObject</link>
+    <phrase role="lineart">&#9584;&#9472;&#9472;</phrase> PocketvoxDictionnary
+</screen>
+</refsect1>
+
+
+<refsect1 id="PocketvoxDictionnary.description" role="desc">
+<title role="desc.title">Description</title>
+
+</refsect1>
+<refsect1 id="PocketvoxDictionnary.functions_details" role="details">
+<title role="details.title">Functions</title>
+<refsect2 id="pocketvox-dictionnary-new" role="function">
+<title>pocketvox_dictionnary_new&#160;()</title>
+<indexterm zone="pocketvox-dictionnary-new"><primary>pocketvox_dictionnary_new</primary></indexterm>
+<programlisting language="C"><link linkend="PocketvoxDictionnary"><returnvalue>PocketvoxDictionnary</returnvalue></link>&#160;*
+pocketvox_dictionnary_new (<parameter><link linkend="gchar"><type>gchar</type></link> *filepath</parameter>,
+                           <parameter><link linkend="gboolean"><type>gboolean</type></link> load_tfidf</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-dictionnary-display" role="function">
+<title>pocketvox_dictionnary_display&#160;()</title>
+<indexterm zone="pocketvox-dictionnary-display"><primary>pocketvox_dictionnary_display</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_dictionnary_display (<parameter><link linkend="PocketvoxDictionnary"><type>PocketvoxDictionnary</type></link> *dictionnary</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-dictionnary-is-loaded" role="function">
+<title>pocketvox_dictionnary_is_loaded&#160;()</title>
+<indexterm zone="pocketvox-dictionnary-is-loaded"><primary>pocketvox_dictionnary_is_loaded</primary></indexterm>
+<programlisting language="C"><link linkend="gboolean"><returnvalue>gboolean</returnvalue></link>
+pocketvox_dictionnary_is_loaded (<parameter><link linkend="PocketvoxDictionnary"><type>PocketvoxDictionnary</type></link> *dictionnary</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-dictionnary-write-tfidf-file" role="function">
+<title>pocketvox_dictionnary_write_tfidf_file&#160;()</title>
+<indexterm zone="pocketvox-dictionnary-write-tfidf-file"><primary>pocketvox_dictionnary_write_tfidf_file</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_dictionnary_write_tfidf_file
+                               (<parameter><link linkend="PocketvoxDictionnary"><type>PocketvoxDictionnary</type></link> *dictionnary</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-dictionnary-load-tfidf-file" role="function">
+<title>pocketvox_dictionnary_load_tfidf_file&#160;()</title>
+<indexterm zone="pocketvox-dictionnary-load-tfidf-file"><primary>pocketvox_dictionnary_load_tfidf_file</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_dictionnary_load_tfidf_file (<parameter><link linkend="PocketvoxDictionnary"><type>PocketvoxDictionnary</type></link> *dictionnary</parameter>,
+                                       <parameter><link linkend="gchar"><type>gchar</type></link> *path</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-dictionnary-process-request" role="function">
+<title>pocketvox_dictionnary_process_request&#160;()</title>
+<indexterm zone="pocketvox-dictionnary-process-request"><primary>pocketvox_dictionnary_process_request</primary></indexterm>
+<programlisting language="C"><link linkend="gdouble"><returnvalue>gdouble</returnvalue></link>
+pocketvox_dictionnary_process_request (<parameter><link linkend="PocketvoxDictionnary"><type>PocketvoxDictionnary</type></link> *dictionnary</parameter>,
+                                       <parameter><link linkend="gchar"><type>gchar</type></link> *query</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-dictionnary-get-result" role="function">
+<title>pocketvox_dictionnary_get_result&#160;()</title>
+<indexterm zone="pocketvox-dictionnary-get-result"><primary>pocketvox_dictionnary_get_result</primary></indexterm>
+<programlisting language="C"><link linkend="gchar"><returnvalue>gchar</returnvalue></link>&#160;*
+pocketvox_dictionnary_get_result (<parameter><link linkend="PocketvoxDictionnary"><type>PocketvoxDictionnary</type></link> *dictionnary</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-dictionnary-tfidf" role="function">
+<title>pocketvox_dictionnary_tfidf&#160;()</title>
+<indexterm zone="pocketvox-dictionnary-tfidf"><primary>pocketvox_dictionnary_tfidf</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_dictionnary_tfidf (<parameter><link linkend="PocketvoxDictionnary"><type>PocketvoxDictionnary</type></link> *dictionnary</parameter>);</programlisting>
+</refsect2>
+
+</refsect1>
+<refsect1 id="PocketvoxDictionnary.other_details" role="details">
+<title role="details.title">Types and Values</title>
+
+</refsect1>
+<refsect1 id="PocketvoxDictionnary.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="PocketvoxDictionnary--rawfile" role="property"><title>The <literal>“rawfile”</literal> property</title>
+<indexterm zone="PocketvoxDictionnary--rawfile"><primary>PocketvoxDictionnary:rawfile</primary></indexterm>
+<programlisting>  “rawfile”                  <link linkend="gchar"><type>gchar</type></link>&#160;*</programlisting>
+<para>rawfile.</para><para>Flags: Read / Write</para>
+<para>Default value: NULL</para>
+</refsect2>
+
+</refsect1>
+
+</refentry>

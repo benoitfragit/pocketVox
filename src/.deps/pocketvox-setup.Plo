@@ -1,5 +1,5 @@
-pocketvox-chooser.lo: pocketvox-chooser.c /usr/include/stdc-predef.h \
- pocketvox-chooser.h /usr/include/glib-2.0/glib.h \
+pocketvox-setup.lo: pocketvox-setup.c /usr/include/stdc-predef.h \
+ pocketvox-setup.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/i386-linux-gnu/glib-2.0/include/glibconfig.h \
  /usr/include/glib-2.0/glib/gmacros.h \
@@ -119,7 +119,11 @@ pocketvox-chooser.lo: pocketvox-chooser.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/gobject/gtypemodule.h \
  /usr/include/glib-2.0/gobject/gtypeplugin.h \
  /usr/include/glib-2.0/gobject/gvaluearray.h \
- /usr/include/glib-2.0/gobject/gvaluetypes.h \
+ /usr/include/glib-2.0/gobject/gvaluetypes.h pocketvox-chooser.h \
+ ../config.h /usr/include/string.h \
+ /usr/include/i386-linux-gnu/bits/string.h \
+ /usr/include/i386-linux-gnu/bits/string2.h /usr/include/stdlib.h \
+ /usr/include/i386-linux-gnu/bits/string3.h \
  /usr/include/gtk-3.0/gtk/gtk.h /usr/include/gtk-3.0/gdk/gdk.h \
  /usr/include/gtk-3.0/gdk/gdkconfig.h \
  /usr/include/gtk-3.0/gdk/gdkversionmacros.h \
@@ -573,13 +577,11 @@ pocketvox-chooser.lo: pocketvox-chooser.c /usr/include/stdc-predef.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvpaned.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvscale.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvscrollbar.h \
- /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h ../../config.h \
- /usr/include/libintl.h /usr/include/locale.h \
- /usr/include/i386-linux-gnu/bits/locale.h
+ /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h
 
 /usr/include/stdc-predef.h:
 
-pocketvox-chooser.h:
+pocketvox-setup.h:
 
 /usr/include/glib-2.0/glib.h:
 
@@ -864,6 +866,20 @@ pocketvox-chooser.h:
 /usr/include/glib-2.0/gobject/gvaluearray.h:
 
 /usr/include/glib-2.0/gobject/gvaluetypes.h:
+
+pocketvox-chooser.h:
+
+../config.h:
+
+/usr/include/string.h:
+
+/usr/include/i386-linux-gnu/bits/string.h:
+
+/usr/include/i386-linux-gnu/bits/string2.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/i386-linux-gnu/bits/string3.h:
 
 /usr/include/gtk-3.0/gtk/gtk.h:
 
@@ -1830,11 +1846,3 @@ pocketvox-chooser.h:
 /usr/include/gtk-3.0/gtk/deprecated/gtkvscrollbar.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h:
-
-../../config.h:
-
-/usr/include/libintl.h:
-
-/usr/include/locale.h:
-
-/usr/include/i386-linux-gnu/bits/locale.h:

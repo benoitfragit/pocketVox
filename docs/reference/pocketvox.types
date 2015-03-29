@@ -1,0 +1,8 @@
+pocketvox_application_get_type
+pocketvox_controller_get_type
+pocketvox_dictionnary_get_type
+pocketvox_indicator_get_type
+pocketvox_module_get_type
+pocketvox_notifier_get_type
+pocketvox_recognizer_get_type
+pocketvox_xmanager_get_type

@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<refentry id="PocketvoxRecognizer">
+<refmeta>
+<refentrytitle role="top_of_page" id="PocketvoxRecognizer.top_of_page">PocketvoxRecognizer</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  POCKETVOX Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>PocketvoxRecognizer</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsect1 id="PocketvoxRecognizer.functions" role="functions_proto">
+<title role="functions_proto.title">Functions</title>
+<informaltable pgwide="1" frame="none">
+<tgroup cols="2">
+<colspec colname="functions_return" colwidth="150px"/>
+<colspec colname="functions_name"/>
+<tbody>
+<row><entry role="function_type"><link linkend="PocketvoxRecognizer"><returnvalue>PocketvoxRecognizer</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-recognizer-new">pocketvox_recognizer_new</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-recognizer-set-state">pocketvox_recognizer_set_state</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-recognizer-set">pocketvox_recognizer_set</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-recognizer-set-keyword">pocketvox_recognizer_set_keyword</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxRecognizer.properties" role="properties">
+<title role="properties.title">Properties</title>
+<informaltable frame="none">
+<tgroup cols="3">
+<colspec colname="properties_type" colwidth="150px"/>
+<colspec colname="properties_name" colwidth="300px"/>
+<colspec colname="properties_flags" colwidth="200px"/>
+<tbody>
+<row><entry role="property_type"><link linkend="gchar"><type>gchar</type></link>&#160;*</entry><entry role="property_name"><link linkend="PocketvoxRecognizer--dic">dic</link></entry><entry role="property_flags">Read / Write</entry></row>
+<row><entry role="property_type"><link linkend="gchar"><type>gchar</type></link>&#160;*</entry><entry role="property_name"><link linkend="PocketvoxRecognizer--hmm">hmm</link></entry><entry role="property_flags">Read / Write</entry></row>
+<row><entry role="property_type"><link linkend="gchar"><type>gchar</type></link>&#160;*</entry><entry role="property_name"><link linkend="PocketvoxRecognizer--lm">lm</link></entry><entry role="property_flags">Read / Write</entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxRecognizer.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<informaltable frame="none">
+<tgroup cols="3">
+<colspec colname="signals_return" colwidth="150px"/>
+<colspec colname="signals_name" colwidth="300px"/>
+<colspec colname="signals_flags" colwidth="200px"/>
+<tbody>
+<row><entry role="signal_type"><link linkend="void"><returnvalue>void</returnvalue></link></entry><entry role="signal_name"><link linkend="PocketvoxRecognizer-result">result</link></entry><entry role="signal_flags"><link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></entry></row>
+<row><entry role="signal_type"><link linkend="void"><returnvalue>void</returnvalue></link></entry><entry role="signal_name"><link linkend="PocketvoxRecognizer-waiting">waiting</link></entry><entry role="signal_flags"><link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxRecognizer.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<screen>    <link linkend="GObject">GObject</link>
+    <phrase role="lineart">&#9584;&#9472;&#9472;</phrase> PocketvoxRecognizer
+</screen>
+</refsect1>
+
+
+<refsect1 id="PocketvoxRecognizer.description" role="desc">
+<title role="desc.title">Description</title>
+
+</refsect1>
+<refsect1 id="PocketvoxRecognizer.functions_details" role="details">
+<title role="details.title">Functions</title>
+<refsect2 id="pocketvox-recognizer-new" role="function">
+<title>pocketvox_recognizer_new&#160;()</title>
+<indexterm zone="pocketvox-recognizer-new"><primary>pocketvox_recognizer_new</primary></indexterm>
+<programlisting language="C"><link linkend="PocketvoxRecognizer"><returnvalue>PocketvoxRecognizer</returnvalue></link>&#160;*
+pocketvox_recognizer_new (<parameter><link linkend="gchar"><type>gchar</type></link> *hmm</parameter>,
+                          <parameter><link linkend="gchar"><type>gchar</type></link> *lm</parameter>,
+                          <parameter><link linkend="gchar"><type>gchar</type></link> *dic</parameter>,
+                          <parameter><link linkend="gchar"><type>gchar</type></link> *key</parameter>,
+                          <parameter><link linkend="gchar"><type>gchar</type></link> *mat</parameter>,
+                          <parameter><link linkend="gchar"><type>gchar</type></link> *dev</parameter>,
+                          <parameter><link linkend="gchar"><type>gchar</type></link> *host</parameter>,
+                          <parameter><link linkend="gint"><type>gint</type></link> port</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-recognizer-set-state" role="function">
+<title>pocketvox_recognizer_set_state&#160;()</title>
+<indexterm zone="pocketvox-recognizer-set-state"><primary>pocketvox_recognizer_set_state</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_recognizer_set_state (<parameter><link linkend="PocketvoxRecognizer"><type>PocketvoxRecognizer</type></link> *recognizer</parameter>,
+                                <parameter><link linkend="PocketvoxState"><type>PocketvoxState</type></link> state</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-recognizer-set" role="function">
+<title>pocketvox_recognizer_set&#160;()</title>
+<indexterm zone="pocketvox-recognizer-set"><primary>pocketvox_recognizer_set</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_recognizer_set (<parameter><link linkend="PocketvoxRecognizer"><type>PocketvoxRecognizer</type></link> *recognizer</parameter>,
+                          <parameter><link linkend="gchar"><type>gchar</type></link> *ppt</parameter>,
+                          <parameter><link linkend="gchar"><type>gchar</type></link> *path</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-recognizer-set-keyword" role="function">
+<title>pocketvox_recognizer_set_keyword&#160;()</title>
+<indexterm zone="pocketvox-recognizer-set-keyword"><primary>pocketvox_recognizer_set_keyword</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_recognizer_set_keyword (<parameter><link linkend="PocketvoxRecognizer"><type>PocketvoxRecognizer</type></link> *recognizer</parameter>,
+                                  <parameter><link linkend="gchar"><type>gchar</type></link> *keyword</parameter>);</programlisting>
+</refsect2>
+
+</refsect1>
+<refsect1 id="PocketvoxRecognizer.other_details" role="details">
+<title role="details.title">Types and Values</title>
+
+</refsect1>
+<refsect1 id="PocketvoxRecognizer.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="PocketvoxRecognizer--dic" role="property"><title>The <literal>“dic”</literal> property</title>
+<indexterm zone="PocketvoxRecognizer--dic"><primary>PocketvoxRecognizer:dic</primary></indexterm>
+<programlisting>  “dic”                      <link linkend="gchar"><type>gchar</type></link>&#160;*</programlisting>
+<para>dic.</para><para>Flags: Read / Write</para>
+<para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="PocketvoxRecognizer--hmm" role="property"><title>The <literal>“hmm”</literal> property</title>
+<indexterm zone="PocketvoxRecognizer--hmm"><primary>PocketvoxRecognizer:hmm</primary></indexterm>
+<programlisting>  “hmm”                      <link linkend="gchar"><type>gchar</type></link>&#160;*</programlisting>
+<para>hmm.</para><para>Flags: Read / Write</para>
+<para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="PocketvoxRecognizer--lm" role="property"><title>The <literal>“lm”</literal> property</title>
+<indexterm zone="PocketvoxRecognizer--lm"><primary>PocketvoxRecognizer:lm</primary></indexterm>
+<programlisting>  “lm”                       <link linkend="gchar"><type>gchar</type></link>&#160;*</programlisting>
+<para>lm.</para><para>Flags: Read / Write</para>
+<para>Default value: NULL</para>
+</refsect2>
+
+</refsect1>
+<refsect1 id="PocketvoxRecognizer.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="PocketvoxRecognizer-result" role="signal"><title>The <literal>“result”</literal> signal</title>
+<indexterm zone="PocketvoxRecognizer-result"><primary>PocketvoxRecognizer::result</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+user_function (<link linkend="PocketvoxRecognizer"><type>PocketvoxRecognizer</type></link> *pocketvoxrecognizer,
+               <link linkend="gchar"><type>gchar</type></link>               *arg1,
+               <link linkend="gpointer"><type>gpointer</type></link>             user_data)</programlisting>
+<para>Flags: <link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></para>
+</refsect2><refsect2 id="PocketvoxRecognizer-waiting" role="signal"><title>The <literal>“waiting”</literal> signal</title>
+<indexterm zone="PocketvoxRecognizer-waiting"><primary>PocketvoxRecognizer::waiting</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+user_function (<link linkend="PocketvoxRecognizer"><type>PocketvoxRecognizer</type></link> *pocketvoxrecognizer,
+               <link linkend="gpointer"><type>gpointer</type></link>             user_data)</programlisting>
+<para>Flags: <link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></para>
+</refsect2>
+</refsect1>
+
+</refentry>

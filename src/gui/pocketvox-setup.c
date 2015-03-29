@@ -166,7 +166,7 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
 
     if(key != NULL)
     {
-        gtk_entry_set_text(GTK_ENTRY(info->entry_id), key);
+       gtk_entry_set_text(GTK_ENTRY(info->entry_id), key);
     }
 
     gtk_entry_set_placeholder_text(GTK_ENTRY(info->entry_id), _("your-id"));

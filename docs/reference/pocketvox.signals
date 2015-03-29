@@ -1,0 +1,38 @@
+<SIGNAL>
+<NAME>PocketvoxIndicator::indicator-module-toggled</NAME>
+<RETURNS>void</RETURNS>
+<FLAGS>l</FLAGS>
+PocketvoxIndicator *pocketvoxindicator
+gchar *arg1
+</SIGNAL>
+
+<SIGNAL>
+<NAME>PocketvoxIndicator::indicator-quit</NAME>
+<RETURNS>void</RETURNS>
+<FLAGS>l</FLAGS>
+PocketvoxIndicator *pocketvoxindicator
+</SIGNAL>
+
+<SIGNAL>
+<NAME>PocketvoxIndicator::indicator-state</NAME>
+<RETURNS>void</RETURNS>
+<FLAGS>l</FLAGS>
+PocketvoxIndicator *pocketvoxindicator
+gchar *arg1
+</SIGNAL>
+
+<SIGNAL>
+<NAME>PocketvoxRecognizer::result</NAME>
+<RETURNS>void</RETURNS>
+<FLAGS>l</FLAGS>
+PocketvoxRecognizer *pocketvoxrecognizer
+gchar *arg1
+</SIGNAL>
+
+<SIGNAL>
+<NAME>PocketvoxRecognizer::waiting</NAME>
+<RETURNS>void</RETURNS>
+<FLAGS>l</FLAGS>
+PocketvoxRecognizer *pocketvoxrecognizer
+</SIGNAL>
+

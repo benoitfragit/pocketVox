@@ -362,3 +362,8 @@ void pocketvox_controller_remove_module(PocketvoxController *controller, gchar *
 	g_hash_table_remove(priv->modules, id);
 	pocketvox_indicator_remove_module_item(priv->indicator, id);
 }
+
+void pocketvox_controller_load_modules_list(PocketvoxController *controller)
+{
+	g_return_if_fail(NULL != controller);
+}

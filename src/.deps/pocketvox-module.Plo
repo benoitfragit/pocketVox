@@ -1,5 +1,5 @@
-pocketvox-profile.lo: pocketvox-profile.c /usr/include/stdc-predef.h \
- pocketvox-profile.h /usr/include/glib-2.0/glib.h \
+pocketvox-module.lo: pocketvox-module.c /usr/include/stdc-predef.h \
+ pocketvox-module.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/i386-linux-gnu/glib-2.0/include/glibconfig.h \
  /usr/include/glib-2.0/glib/gmacros.h \
@@ -119,11 +119,16 @@ pocketvox-profile.lo: pocketvox-profile.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/gobject/gtypemodule.h \
  /usr/include/glib-2.0/gobject/gtypeplugin.h \
  /usr/include/glib-2.0/gobject/gvaluearray.h \
- /usr/include/glib-2.0/gobject/gvaluetypes.h
+ /usr/include/glib-2.0/gobject/gvaluetypes.h pocketvox-dictionnary.h \
+ /usr/include/stdlib.h /usr/include/i386-linux-gnu/bits/waitflags.h \
+ /usr/include/i386-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
+ /usr/include/i386-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/i386-linux-gnu/bits/stdlib-float.h \
+ /usr/include/i386-linux-gnu/bits/stdlib.h
 
 /usr/include/stdc-predef.h:
 
-pocketvox-profile.h:
+pocketvox-module.h:
 
 /usr/include/glib-2.0/glib.h:
 
@@ -408,3 +413,19 @@ pocketvox-profile.h:
 /usr/include/glib-2.0/gobject/gvaluearray.h:
 
 /usr/include/glib-2.0/gobject/gvaluetypes.h:
+
+pocketvox-dictionnary.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/i386-linux-gnu/bits/waitflags.h:
+
+/usr/include/i386-linux-gnu/bits/waitstatus.h:
+
+/usr/include/alloca.h:
+
+/usr/include/i386-linux-gnu/bits/stdlib-bsearch.h:
+
+/usr/include/i386-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/i386-linux-gnu/bits/stdlib.h:

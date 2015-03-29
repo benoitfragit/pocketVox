@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<refentry id="PocketvoxModule">
+<refmeta>
+<refentrytitle role="top_of_page" id="PocketvoxModule.top_of_page">PocketvoxModule</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  POCKETVOX Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>PocketvoxModule</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsect1 id="PocketvoxModule.functions" role="functions_proto">
+<title role="functions_proto.title">Functions</title>
+<informaltable pgwide="1" frame="none">
+<tgroup cols="2">
+<colspec colname="functions_return" colwidth="150px"/>
+<colspec colname="functions_name"/>
+<tbody>
+<row><entry role="function_type"><link linkend="PocketvoxModule"><returnvalue>PocketvoxModule</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-module-new">pocketvox_module_new</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-make-request">pocketvox_module_make_request</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="gchar"><returnvalue>gchar</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-module-get-id">pocketvox_module_get_id</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="gboolean"><returnvalue>gboolean</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-get-activated">pocketvox_module_get_activated</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-set-activated">pocketvox_module_set_activated</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-free">pocketvox_module_free</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="gdouble"><returnvalue>gdouble</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-get-score">pocketvox_module_get_score</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="gchar"><returnvalue>gchar</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-module-get-command">pocketvox_module_get_command</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="gboolean"><returnvalue>gboolean</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-is-apps">pocketvox_module_is_apps</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-manage-apps">pocketvox_module_manage_apps</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-build-dictionnary">pocketvox_module_build_dictionnary</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-module-execute">pocketvox_module_execute</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxModule.properties" role="properties">
+<title role="properties.title">Properties</title>
+<informaltable frame="none">
+<tgroup cols="3">
+<colspec colname="properties_type" colwidth="150px"/>
+<colspec colname="properties_name" colwidth="300px"/>
+<colspec colname="properties_flags" colwidth="200px"/>
+<tbody>
+<row><entry role="property_type"><link linkend="gboolean"><type>gboolean</type></link></entry><entry role="property_name"><link linkend="PocketvoxModule--apps">apps</link></entry><entry role="property_flags">Read / Write</entry></row>
+<row><entry role="property_type"><link linkend="gchar"><type>gchar</type></link>&#160;*</entry><entry role="property_name"><link linkend="PocketvoxModule--cmd">cmd</link></entry><entry role="property_flags">Read / Write</entry></row>
+<row><entry role="property_type"><link linkend="gchar"><type>gchar</type></link>&#160;*</entry><entry role="property_name"><link linkend="PocketvoxModule--dict">dict</link></entry><entry role="property_flags">Read / Write</entry></row>
+<row><entry role="property_type"><link linkend="gchar"><type>gchar</type></link>&#160;*</entry><entry role="property_name"><link linkend="PocketvoxModule--id">id</link></entry><entry role="property_flags">Read / Write</entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxModule.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<screen>    <link linkend="GObject">GObject</link>
+    <phrase role="lineart">&#9584;&#9472;&#9472;</phrase> PocketvoxModule
+</screen>
+</refsect1>
+
+
+<refsect1 id="PocketvoxModule.description" role="desc">
+<title role="desc.title">Description</title>
+
+</refsect1>
+<refsect1 id="PocketvoxModule.functions_details" role="details">
+<title role="details.title">Functions</title>
+<refsect2 id="pocketvox-module-new" role="function">
+<title>pocketvox_module_new&#160;()</title>
+<indexterm zone="pocketvox-module-new"><primary>pocketvox_module_new</primary></indexterm>
+<programlisting language="C"><link linkend="PocketvoxModule"><returnvalue>PocketvoxModule</returnvalue></link>&#160;*
+pocketvox_module_new (<parameter><link linkend="gchar"><type>gchar</type></link> *id</parameter>,
+                      <parameter><link linkend="gchar"><type>gchar</type></link> *path</parameter>,
+                      <parameter><link linkend="gboolean"><type>gboolean</type></link> loadtfidf</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-make-request" role="function">
+<title>pocketvox_module_make_request&#160;()</title>
+<indexterm zone="pocketvox-module-make-request"><primary>pocketvox_module_make_request</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_module_make_request (<parameter><link linkend="gpointer"><type>gpointer</type></link> key</parameter>,
+                               <parameter><link linkend="gpointer"><type>gpointer</type></link> value</parameter>,
+                               <parameter><link linkend="gpointer"><type>gpointer</type></link> user_data</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-get-id" role="function">
+<title>pocketvox_module_get_id&#160;()</title>
+<indexterm zone="pocketvox-module-get-id"><primary>pocketvox_module_get_id</primary></indexterm>
+<programlisting language="C"><link linkend="gchar"><returnvalue>gchar</returnvalue></link>&#160;*
+pocketvox_module_get_id (<parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-get-activated" role="function">
+<title>pocketvox_module_get_activated&#160;()</title>
+<indexterm zone="pocketvox-module-get-activated"><primary>pocketvox_module_get_activated</primary></indexterm>
+<programlisting language="C"><link linkend="gboolean"><returnvalue>gboolean</returnvalue></link>
+pocketvox_module_get_activated (<parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-set-activated" role="function">
+<title>pocketvox_module_set_activated&#160;()</title>
+<indexterm zone="pocketvox-module-set-activated"><primary>pocketvox_module_set_activated</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_module_set_activated (<parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>,
+                                <parameter><link linkend="gboolean"><type>gboolean</type></link> state</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-free" role="function">
+<title>pocketvox_module_free&#160;()</title>
+<indexterm zone="pocketvox-module-free"><primary>pocketvox_module_free</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_module_free (<parameter><link linkend="gpointer"><type>gpointer</type></link> data</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-get-score" role="function">
+<title>pocketvox_module_get_score&#160;()</title>
+<indexterm zone="pocketvox-module-get-score"><primary>pocketvox_module_get_score</primary></indexterm>
+<programlisting language="C"><link linkend="gdouble"><returnvalue>gdouble</returnvalue></link>
+pocketvox_module_get_score (<parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-get-command" role="function">
+<title>pocketvox_module_get_command&#160;()</title>
+<indexterm zone="pocketvox-module-get-command"><primary>pocketvox_module_get_command</primary></indexterm>
+<programlisting language="C"><link linkend="gchar"><returnvalue>gchar</returnvalue></link>&#160;*
+pocketvox_module_get_command (<parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-is-apps" role="function">
+<title>pocketvox_module_is_apps&#160;()</title>
+<indexterm zone="pocketvox-module-is-apps"><primary>pocketvox_module_is_apps</primary></indexterm>
+<programlisting language="C"><link linkend="gboolean"><returnvalue>gboolean</returnvalue></link>
+pocketvox_module_is_apps (<parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-manage-apps" role="function">
+<title>pocketvox_module_manage_apps&#160;()</title>
+<indexterm zone="pocketvox-module-manage-apps"><primary>pocketvox_module_manage_apps</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_module_manage_apps (<parameter><link linkend="gpointer"><type>gpointer</type></link> key</parameter>,
+                              <parameter><link linkend="gpointer"><type>gpointer</type></link> value</parameter>,
+                              <parameter><link linkend="gpointer"><type>gpointer</type></link> user_data</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-build-dictionnary" role="function">
+<title>pocketvox_module_build_dictionnary&#160;()</title>
+<indexterm zone="pocketvox-module-build-dictionnary"><primary>pocketvox_module_build_dictionnary</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_module_build_dictionnary (<parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-module-execute" role="function">
+<title>pocketvox_module_execute&#160;()</title>
+<indexterm zone="pocketvox-module-execute"><primary>pocketvox_module_execute</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_module_execute (<parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>);</programlisting>
+</refsect2>
+
+</refsect1>
+<refsect1 id="PocketvoxModule.other_details" role="details">
+<title role="details.title">Types and Values</title>
+
+</refsect1>
+<refsect1 id="PocketvoxModule.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="PocketvoxModule--apps" role="property"><title>The <literal>“apps”</literal> property</title>
+<indexterm zone="PocketvoxModule--apps"><primary>PocketvoxModule:apps</primary></indexterm>
+<programlisting>  “apps”                     <link linkend="gboolean"><type>gboolean</type></link></programlisting>
+<para>apps.</para><para>Flags: Read / Write</para>
+<para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="PocketvoxModule--cmd" role="property"><title>The <literal>“cmd”</literal> property</title>
+<indexterm zone="PocketvoxModule--cmd"><primary>PocketvoxModule:cmd</primary></indexterm>
+<programlisting>  “cmd”                      <link linkend="gchar"><type>gchar</type></link>&#160;*</programlisting>
+<para>cmd.</para><para>Flags: Read / Write</para>
+<para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="PocketvoxModule--dict" role="property"><title>The <literal>“dict”</literal> property</title>
+<indexterm zone="PocketvoxModule--dict"><primary>PocketvoxModule:dict</primary></indexterm>
+<programlisting>  “dict”                     <link linkend="gchar"><type>gchar</type></link>&#160;*</programlisting>
+<para>dict.</para><para>Flags: Read / Write</para>
+<para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="PocketvoxModule--id" role="property"><title>The <literal>“id”</literal> property</title>
+<indexterm zone="PocketvoxModule--id"><primary>PocketvoxModule:id</primary></indexterm>
+<programlisting>  “id”                       <link linkend="gchar"><type>gchar</type></link>&#160;*</programlisting>
+<para>id.</para><para>Flags: Read / Write</para>
+<para>Default value: NULL</para>
+</refsect2>
+
+</refsect1>
+
+</refentry>

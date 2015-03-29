@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE indexdiv PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<indexdiv>
+<indexdiv><title>A</title>
+<indexentry><primaryie linkends="pocketvox-application-add-module"><link linkend="pocketvox-application-add-module">pocketvox_application_add_module</link>, function in <link linkend="PocketvoxApplication">PocketvoxApplication</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-application-new"><link linkend="pocketvox-application-new">pocketvox_application_new</link>, function in <link linkend="PocketvoxApplication">PocketvoxApplication</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-application-remove-module"><link linkend="pocketvox-application-remove-module">pocketvox_application_remove_module</link>, function in <link linkend="PocketvoxApplication">PocketvoxApplication</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-application-start"><link linkend="pocketvox-application-start">pocketvox_application_start</link>, function in <link linkend="PocketvoxApplication">PocketvoxApplication</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>C</title>
+<indexentry><primaryie linkends="pocketvox-controller-add-module"><link linkend="pocketvox-controller-add-module">pocketvox_controller_add_module</link>, function in <link linkend="PocketvoxController">PocketvoxController</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-controller-new"><link linkend="pocketvox-controller-new">pocketvox_controller_new</link>, function in <link linkend="PocketvoxController">PocketvoxController</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-controller-remove-module"><link linkend="pocketvox-controller-remove-module">pocketvox_controller_remove_module</link>, function in <link linkend="PocketvoxController">PocketvoxController</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-controller-start"><link linkend="pocketvox-controller-start">pocketvox_controller_start</link>, function in <link linkend="PocketvoxController">PocketvoxController</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>D</title>
+<indexentry><primaryie linkends="PocketvoxDictionnary--rawfile"><link linkend="PocketvoxDictionnary--rawfile">PocketvoxDictionnary:rawfile</link>, object property in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-dictionnary-display"><link linkend="pocketvox-dictionnary-display">pocketvox_dictionnary_display</link>, function in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-dictionnary-get-result"><link linkend="pocketvox-dictionnary-get-result">pocketvox_dictionnary_get_result</link>, function in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-dictionnary-is-loaded"><link linkend="pocketvox-dictionnary-is-loaded">pocketvox_dictionnary_is_loaded</link>, function in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-dictionnary-load-tfidf-file"><link linkend="pocketvox-dictionnary-load-tfidf-file">pocketvox_dictionnary_load_tfidf_file</link>, function in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-dictionnary-new"><link linkend="pocketvox-dictionnary-new">pocketvox_dictionnary_new</link>, function in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-dictionnary-process-request"><link linkend="pocketvox-dictionnary-process-request">pocketvox_dictionnary_process_request</link>, function in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-dictionnary-tfidf"><link linkend="pocketvox-dictionnary-tfidf">pocketvox_dictionnary_tfidf</link>, function in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-dictionnary-write-tfidf-file"><link linkend="pocketvox-dictionnary-write-tfidf-file">pocketvox_dictionnary_write_tfidf_file</link>, function in <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>I</title>
+<indexentry><primaryie linkends="PocketvoxIndicator-indicator-module-toggled"><link linkend="PocketvoxIndicator-indicator-module-toggled">PocketvoxIndicator::indicator-module-toggled</link>, object signal in <link linkend="PocketvoxIndicator">PocketvoxIndicator</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxIndicator-indicator-quit"><link linkend="PocketvoxIndicator-indicator-quit">PocketvoxIndicator::indicator-quit</link>, object signal in <link linkend="PocketvoxIndicator">PocketvoxIndicator</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxIndicator-indicator-state"><link linkend="PocketvoxIndicator-indicator-state">PocketvoxIndicator::indicator-state</link>, object signal in <link linkend="PocketvoxIndicator">PocketvoxIndicator</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-indicator-add-apps-item"><link linkend="pocketvox-indicator-add-apps-item">pocketvox_indicator_add_apps_item</link>, function in <link linkend="PocketvoxIndicator">PocketvoxIndicator</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-indicator-add-module-item"><link linkend="pocketvox-indicator-add-module-item">pocketvox_indicator_add_module_item</link>, function in <link linkend="PocketvoxIndicator">PocketvoxIndicator</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-indicator-new"><link linkend="pocketvox-indicator-new">pocketvox_indicator_new</link>, function in <link linkend="PocketvoxIndicator">PocketvoxIndicator</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-indicator-remove-module-item"><link linkend="pocketvox-indicator-remove-module-item">pocketvox_indicator_remove_module_item</link>, function in <link linkend="PocketvoxIndicator">PocketvoxIndicator</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-indicator-toggle-apps-item"><link linkend="pocketvox-indicator-toggle-apps-item">pocketvox_indicator_toggle_apps_item</link>, function in <link linkend="PocketvoxIndicator">PocketvoxIndicator</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>M</title>
+<indexentry><primaryie linkends="PocketvoxModule--apps"><link linkend="PocketvoxModule--apps">PocketvoxModule:apps</link>, object property in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxModule--cmd"><link linkend="PocketvoxModule--cmd">PocketvoxModule:cmd</link>, object property in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxModule--dict"><link linkend="PocketvoxModule--dict">PocketvoxModule:dict</link>, object property in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxModule--id"><link linkend="PocketvoxModule--id">PocketvoxModule:id</link>, object property in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-build-dictionnary"><link linkend="pocketvox-module-build-dictionnary">pocketvox_module_build_dictionnary</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-execute"><link linkend="pocketvox-module-execute">pocketvox_module_execute</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-free"><link linkend="pocketvox-module-free">pocketvox_module_free</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-get-activated"><link linkend="pocketvox-module-get-activated">pocketvox_module_get_activated</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-get-command"><link linkend="pocketvox-module-get-command">pocketvox_module_get_command</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-get-id"><link linkend="pocketvox-module-get-id">pocketvox_module_get_id</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-get-score"><link linkend="pocketvox-module-get-score">pocketvox_module_get_score</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-is-apps"><link linkend="pocketvox-module-is-apps">pocketvox_module_is_apps</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-make-request"><link linkend="pocketvox-module-make-request">pocketvox_module_make_request</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-manage-apps"><link linkend="pocketvox-module-manage-apps">pocketvox_module_manage_apps</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-new"><link linkend="pocketvox-module-new">pocketvox_module_new</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-module-set-activated"><link linkend="pocketvox-module-set-activated">pocketvox_module_set_activated</link>, function in <link linkend="PocketvoxModule">PocketvoxModule</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>N</title>
+<indexentry><primaryie linkends="PocketvoxNotifier--sound-notification"><link linkend="PocketvoxNotifier--sound-notification">PocketvoxNotifier:sound-notification</link>, object property in <link linkend="PocketvoxNotifier">PocketvoxNotifier</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxNotifier--visual-notification"><link linkend="PocketvoxNotifier--visual-notification">PocketvoxNotifier:visual-notification</link>, object property in <link linkend="PocketvoxNotifier">PocketvoxNotifier</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-notifier-new"><link linkend="pocketvox-notifier-new">pocketvox_notifier_new</link>, function in <link linkend="PocketvoxNotifier">PocketvoxNotifier</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-notifier-notify"><link linkend="pocketvox-notifier-notify">pocketvox_notifier_notify</link>, function in <link linkend="PocketvoxNotifier">PocketvoxNotifier</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-notifier-say"><link linkend="pocketvox-notifier-say">pocketvox_notifier_say</link>, function in <link linkend="PocketvoxNotifier">PocketvoxNotifier</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-notifier-set-voice"><link linkend="pocketvox-notifier-set-voice">pocketvox_notifier_set_voice</link>, function in <link linkend="PocketvoxNotifier">PocketvoxNotifier</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>R</title>
+<indexentry><primaryie linkends="PocketvoxRecognizer-result"><link linkend="PocketvoxRecognizer-result">PocketvoxRecognizer::result</link>, object signal in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxRecognizer-waiting"><link linkend="PocketvoxRecognizer-waiting">PocketvoxRecognizer::waiting</link>, object signal in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxRecognizer--dic"><link linkend="PocketvoxRecognizer--dic">PocketvoxRecognizer:dic</link>, object property in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxRecognizer--hmm"><link linkend="PocketvoxRecognizer--hmm">PocketvoxRecognizer:hmm</link>, object property in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+<indexentry><primaryie linkends="PocketvoxRecognizer--lm"><link linkend="PocketvoxRecognizer--lm">PocketvoxRecognizer:lm</link>, object property in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-recognizer-new"><link linkend="pocketvox-recognizer-new">pocketvox_recognizer_new</link>, function in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-recognizer-set"><link linkend="pocketvox-recognizer-set">pocketvox_recognizer_set</link>, function in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-recognizer-set-keyword"><link linkend="pocketvox-recognizer-set-keyword">pocketvox_recognizer_set_keyword</link>, function in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-recognizer-set-state"><link linkend="pocketvox-recognizer-set-state">pocketvox_recognizer_set_state</link>, function in <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>S</title>
+<indexentry><primaryie linkends="PocketvoxState"><link linkend="PocketvoxState">PocketvoxState</link>, enum in <link linkend="pocketvox-pocketvox-types">pocketvox-types</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>X</title>
+<indexentry><primaryie linkends="pocketvox-xmanager-get-window"><link linkend="pocketvox-xmanager-get-window">pocketvox_xmanager_get_window</link>, function in <link linkend="PocketvoxXmanager">PocketvoxXmanager</link></primaryie></indexentry>
+<indexentry><primaryie linkends="pocketvox-xmanager-new"><link linkend="pocketvox-xmanager-new">pocketvox_xmanager_new</link>, function in <link linkend="PocketvoxXmanager">PocketvoxXmanager</link></primaryie></indexentry>
+</indexdiv>
+</indexdiv>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE screen PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<screen>
+    <link linkend="GObject">GObject</link>
+    <phrase role="lineart">&#9500;&#9472;&#9472;</phrase> <link linkend="PocketvoxApplication">PocketvoxApplication</link>
+    <phrase role="lineart">&#9500;&#9472;&#9472;</phrase> <link linkend="PocketvoxController">PocketvoxController</link>
+    <phrase role="lineart">&#9500;&#9472;&#9472;</phrase> <link linkend="PocketvoxDictionnary">PocketvoxDictionnary</link>
+    <phrase role="lineart">&#9500;&#9472;&#9472;</phrase> <link linkend="PocketvoxIndicator">PocketvoxIndicator</link>
+    <phrase role="lineart">&#9500;&#9472;&#9472;</phrase> <link linkend="PocketvoxModule">PocketvoxModule</link>
+    <phrase role="lineart">&#9500;&#9472;&#9472;</phrase> <link linkend="PocketvoxNotifier">PocketvoxNotifier</link>
+    <phrase role="lineart">&#9500;&#9472;&#9472;</phrase> <link linkend="PocketvoxRecognizer">PocketvoxRecognizer</link>
+    <phrase role="lineart">&#9584;&#9472;&#9472;</phrase> <link linkend="PocketvoxXmanager">PocketvoxXmanager</link>
+</screen>

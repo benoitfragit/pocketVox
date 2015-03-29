@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<refentry id="PocketvoxApplication">
+<refmeta>
+<refentrytitle role="top_of_page" id="PocketvoxApplication.top_of_page">PocketvoxApplication</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  POCKETVOX Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>PocketvoxApplication</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsect1 id="PocketvoxApplication.functions" role="functions_proto">
+<title role="functions_proto.title">Functions</title>
+<informaltable pgwide="1" frame="none">
+<tgroup cols="2">
+<colspec colname="functions_return" colwidth="150px"/>
+<colspec colname="functions_name"/>
+<tbody>
+<row><entry role="function_type"><link linkend="PocketvoxApplication"><returnvalue>PocketvoxApplication</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-application-new">pocketvox_application_new</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-application-start">pocketvox_application_start</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-application-add-module">pocketvox_application_add_module</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-application-remove-module">pocketvox_application_remove_module</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxApplication.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<screen>    <link linkend="GObject">GObject</link>
+    <phrase role="lineart">&#9584;&#9472;&#9472;</phrase> PocketvoxApplication
+</screen>
+</refsect1>
+
+
+<refsect1 id="PocketvoxApplication.description" role="desc">
+<title role="desc.title">Description</title>
+
+</refsect1>
+<refsect1 id="PocketvoxApplication.functions_details" role="details">
+<title role="details.title">Functions</title>
+<refsect2 id="pocketvox-application-new" role="function">
+<title>pocketvox_application_new&#160;()</title>
+<indexterm zone="pocketvox-application-new"><primary>pocketvox_application_new</primary></indexterm>
+<programlisting language="C"><link linkend="PocketvoxApplication"><returnvalue>PocketvoxApplication</returnvalue></link>&#160;*
+pocketvox_application_new ();</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-application-start" role="function">
+<title>pocketvox_application_start&#160;()</title>
+<indexterm zone="pocketvox-application-start"><primary>pocketvox_application_start</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_application_start (<parameter><link linkend="PocketvoxApplication"><type>PocketvoxApplication</type></link> *application</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-application-add-module" role="function">
+<title>pocketvox_application_add_module&#160;()</title>
+<indexterm zone="pocketvox-application-add-module"><primary>pocketvox_application_add_module</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_application_add_module (<parameter><link linkend="PocketvoxApplication"><type>PocketvoxApplication</type></link> *application</parameter>,
+                                  <parameter><link linkend="PocketvoxModule"><type>PocketvoxModule</type></link> *module</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-application-remove-module" role="function">
+<title>pocketvox_application_remove_module&#160;()</title>
+<indexterm zone="pocketvox-application-remove-module"><primary>pocketvox_application_remove_module</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_application_remove_module (<parameter><link linkend="PocketvoxApplication"><type>PocketvoxApplication</type></link> *application</parameter>,
+                                     <parameter><link linkend="gchar"><type>gchar</type></link> *id</parameter>);</programlisting>
+</refsect2>
+
+</refsect1>
+<refsect1 id="PocketvoxApplication.other_details" role="details">
+<title role="details.title">Types and Values</title>
+
+</refsect1>
+
+</refentry>

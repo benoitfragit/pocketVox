@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<refentry id="PocketvoxNotifier">
+<refmeta>
+<refentrytitle role="top_of_page" id="PocketvoxNotifier.top_of_page">PocketvoxNotifier</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  POCKETVOX Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>PocketvoxNotifier</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsect1 id="PocketvoxNotifier.functions" role="functions_proto">
+<title role="functions_proto.title">Functions</title>
+<informaltable pgwide="1" frame="none">
+<tgroup cols="2">
+<colspec colname="functions_return" colwidth="150px"/>
+<colspec colname="functions_name"/>
+<tbody>
+<row><entry role="function_type"><link linkend="PocketvoxNotifier"><returnvalue>PocketvoxNotifier</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-notifier-new">pocketvox_notifier_new</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-notifier-notify">pocketvox_notifier_notify</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-notifier-set-voice">pocketvox_notifier_set_voice</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-notifier-say">pocketvox_notifier_say</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxNotifier.properties" role="properties">
+<title role="properties.title">Properties</title>
+<informaltable frame="none">
+<tgroup cols="3">
+<colspec colname="properties_type" colwidth="150px"/>
+<colspec colname="properties_name" colwidth="300px"/>
+<colspec colname="properties_flags" colwidth="200px"/>
+<tbody>
+<row><entry role="property_type"><link linkend="gboolean"><type>gboolean</type></link></entry><entry role="property_name"><link linkend="PocketvoxNotifier--sound-notification">sound-notification</link></entry><entry role="property_flags">Read / Write</entry></row>
+<row><entry role="property_type"><link linkend="gboolean"><type>gboolean</type></link></entry><entry role="property_name"><link linkend="PocketvoxNotifier--visual-notification">visual-notification</link></entry><entry role="property_flags">Read / Write</entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxNotifier.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<screen>    <link linkend="GObject">GObject</link>
+    <phrase role="lineart">&#9584;&#9472;&#9472;</phrase> PocketvoxNotifier
+</screen>
+</refsect1>
+
+
+<refsect1 id="PocketvoxNotifier.description" role="desc">
+<title role="desc.title">Description</title>
+
+</refsect1>
+<refsect1 id="PocketvoxNotifier.functions_details" role="details">
+<title role="details.title">Functions</title>
+<refsect2 id="pocketvox-notifier-new" role="function">
+<title>pocketvox_notifier_new&#160;()</title>
+<indexterm zone="pocketvox-notifier-new"><primary>pocketvox_notifier_new</primary></indexterm>
+<programlisting language="C"><link linkend="PocketvoxNotifier"><returnvalue>PocketvoxNotifier</returnvalue></link>&#160;*
+pocketvox_notifier_new (<parameter><link linkend="gchar"><type>gchar</type></link> *name</parameter>,
+                        <parameter><link linkend="gchar"><type>gchar</type></link> *voice</parameter>);</programlisting>
+<para>Create a new PocketvoxNotifier</para>
+<refsect3 role="parameters">
+<title>Parameters</title>
+<informaltable role="parameters_table" pgwide="1" frame="none">
+<tgroup cols="3">
+<colspec colname="parameters_name" colwidth="150px"/>
+<colspec colname="parameters_description"/>
+<colspec colname="parameters_annotations" colwidth="200px"/>
+<tbody>
+<row><entry role="parameter_name"><para>name</para></entry>
+<entry role="parameter_description"><para>the name of the user.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+<row><entry role="parameter_name"><para>voice</para></entry>
+<entry role="parameter_description"><para>espeak's voice to use.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+</tbody></tgroup></informaltable>
+</refsect3><refsect3 role="returns">
+<title>Returns</title>
+<para> the new PocketvoxNotifier.</para>
+<para></para>
+</refsect3></refsect2>
+<refsect2 id="pocketvox-notifier-notify" role="function">
+<title>pocketvox_notifier_notify&#160;()</title>
+<indexterm zone="pocketvox-notifier-notify"><primary>pocketvox_notifier_notify</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_notifier_notify (<parameter><link linkend="PocketvoxNotifier"><type>PocketvoxNotifier</type></link> *notifier</parameter>,
+                           <parameter><link linkend="gpointer"><type>gpointer</type></link> hyp</parameter>,
+                           <parameter><link linkend="gpointer"><type>gpointer</type></link> user_data</parameter>);</programlisting>
+<para>Notify the user about important events with visual and sound notifications</para>
+<refsect3 role="parameters">
+<title>Parameters</title>
+<informaltable role="parameters_table" pgwide="1" frame="none">
+<tgroup cols="3">
+<colspec colname="parameters_name" colwidth="150px"/>
+<colspec colname="parameters_description"/>
+<colspec colname="parameters_annotations" colwidth="200px"/>
+<tbody>
+<row><entry role="parameter_name"><para>notifier</para></entry>
+<entry role="parameter_description"><para>The <link linkend="PocketvoxNotifier"><type>PocketvoxNotifier</type></link> to use.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+<row><entry role="parameter_name"><para>hyp</para></entry>
+<entry role="parameter_description"><para>The text to pass to the notifier.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+<row><entry role="parameter_name"><para>user_data</para></entry>
+<entry role="parameter_description"><para>user data.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+</tbody></tgroup></informaltable>
+</refsect3></refsect2>
+<refsect2 id="pocketvox-notifier-set-voice" role="function">
+<title>pocketvox_notifier_set_voice&#160;()</title>
+<indexterm zone="pocketvox-notifier-set-voice"><primary>pocketvox_notifier_set_voice</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_notifier_set_voice (<parameter><link linkend="PocketvoxNotifier"><type>PocketvoxNotifier</type></link> *notifier</parameter>,
+                              <parameter><link linkend="gchar"><type>gchar</type></link> *voice</parameter>);</programlisting>
+<para>Set the Espeak's voice of the notifier
+be sure that the selected language is present on your system</para>
+<refsect3 role="parameters">
+<title>Parameters</title>
+<informaltable role="parameters_table" pgwide="1" frame="none">
+<tgroup cols="3">
+<colspec colname="parameters_name" colwidth="150px"/>
+<colspec colname="parameters_description"/>
+<colspec colname="parameters_annotations" colwidth="200px"/>
+<tbody>
+<row><entry role="parameter_name"><para>notifier</para></entry>
+<entry role="parameter_description"><para>The <link linkend="PocketvoxNotifier"><type>PocketvoxNotifier</type></link> to modify.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+<row><entry role="parameter_name"><para>voice</para></entry>
+<entry role="parameter_description"><para>a gchar* representing an Espeak voice.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+</tbody></tgroup></informaltable>
+</refsect3></refsect2>
+<refsect2 id="pocketvox-notifier-say" role="function">
+<title>pocketvox_notifier_say&#160;()</title>
+<indexterm zone="pocketvox-notifier-say"><primary>pocketvox_notifier_say</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_notifier_say (<parameter><link linkend="PocketvoxNotifier"><type>PocketvoxNotifier</type></link> *notifier</parameter>,
+                        <parameter><link linkend="gchar"><type>gchar</type></link> *msg</parameter>);</programlisting>
+<para>Give a sound notification to the user</para>
+<refsect3 role="parameters">
+<title>Parameters</title>
+<informaltable role="parameters_table" pgwide="1" frame="none">
+<tgroup cols="3">
+<colspec colname="parameters_name" colwidth="150px"/>
+<colspec colname="parameters_description"/>
+<colspec colname="parameters_annotations" colwidth="200px"/>
+<tbody>
+<row><entry role="parameter_name"><para>notifier</para></entry>
+<entry role="parameter_description"><para>The <link linkend="PocketvoxNotifier"><type>PocketvoxNotifier</type></link> to use.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+<row><entry role="parameter_name"><para>msg</para></entry>
+<entry role="parameter_description"><para>a message to notify to the user.</para></entry>
+<entry role="parameter_annotations"></entry></row>
+</tbody></tgroup></informaltable>
+</refsect3></refsect2>
+
+</refsect1>
+<refsect1 id="PocketvoxNotifier.other_details" role="details">
+<title role="details.title">Types and Values</title>
+
+</refsect1>
+<refsect1 id="PocketvoxNotifier.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="PocketvoxNotifier--sound-notification" role="property"><title>The <literal>“sound-notification”</literal> property</title>
+<indexterm zone="PocketvoxNotifier--sound-notification"><primary>PocketvoxNotifier:sound-notification</primary></indexterm>
+<programlisting>  “sound-notification”       <link linkend="gboolean"><type>gboolean</type></link></programlisting>
+<para>sound_notification.</para><para>Flags: Read / Write</para>
+<para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="PocketvoxNotifier--visual-notification" role="property"><title>The <literal>“visual-notification”</literal> property</title>
+<indexterm zone="PocketvoxNotifier--visual-notification"><primary>PocketvoxNotifier:visual-notification</primary></indexterm>
+<programlisting>  “visual-notification”      <link linkend="gboolean"><type>gboolean</type></link></programlisting>
+<para>visual_notification.</para><para>Flags: Read / Write</para>
+<para>Default value: TRUE</para>
+</refsect2>
+
+</refsect1>
+
+</refentry>

@@ -1,0 +1,9 @@
+    <xi:include href="xml/pocketvox-application.xml"/>
+    <xi:include href="xml/pocketvox-controller.xml"/>
+    <xi:include href="xml/pocketvox-dictionnary.xml"/>
+    <xi:include href="xml/pocketvox-indicator.xml"/>
+    <xi:include href="xml/pocketvox-module.xml"/>
+    <xi:include href="xml/pocketvox-notifier.xml"/>
+    <xi:include href="xml/pocketvox-recognizer.xml"/>
+    <xi:include href="xml/pocketvox-types.xml"/>
+    <xi:include href="xml/pocketvox-xmanager.xml"/>

@@ -1,0 +1,15 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+requires=glib-2.0,gtk+-3.0,gstreamer-0.10,appindicator3-0.1,libnotify,pocketsphinx
+
+Name: pocketvox
+Description: Pocketsphinx linux integration library
+Version: 0.0.1
+
+Libs: -L${libdir} -lpocketvox
+Cflags: -I${includedir}/
+
+Requires: ${requires}

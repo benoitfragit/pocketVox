@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<refentry id="pocketvox-pocketvox-types">
+<refmeta>
+<refentrytitle role="top_of_page" id="pocketvox-pocketvox-types.top_of_page">pocketvox-types</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  POCKETVOX Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>pocketvox-types</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsect1 id="pocketvox-pocketvox-types.other" role="other_proto">
+<title role="other_proto.title">Types and Values</title>
+<informaltable role="enum_members_table" pgwide="1" frame="none">
+<tgroup cols="2">
+<colspec colname="name" colwidth="150px"/>
+<colspec colname="description"/>
+<tbody>
+<row><entry role="datatype_keyword">enum</entry><entry role="function_name"><link linkend="PocketvoxState">PocketvoxState</link></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="pocketvox-pocketvox-types.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<screen>
+</screen>
+</refsect1>
+
+
+<refsect1 id="pocketvox-pocketvox-types.description" role="desc">
+<title role="desc.title">Description</title>
+
+</refsect1>
+<refsect1 id="pocketvox-pocketvox-types.functions_details" role="details">
+<title role="details.title">Functions</title>
+
+</refsect1>
+<refsect1 id="pocketvox-pocketvox-types.other_details" role="details">
+<title role="details.title">Types and Values</title>
+<refsect2 id="PocketvoxState" role="enum">
+<title>enum PocketvoxState</title>
+<indexterm zone="PocketvoxState"><primary>PocketvoxState</primary></indexterm>
+<refsect3 role="enum_members">
+<title>Members</title>
+<informaltable role="enum_members_table" pgwide="1" frame="none">
+<tgroup cols="3">
+<colspec colname="enum_members_name" colwidth="300px"/>
+<colspec colname="enum_members_description"/>
+<colspec colname="enum_members_annotations" colwidth="200px"/>
+<tbody>
+<row role="constant"><entry role="enum_member_name"><para id="POCKETVOX-STATE-STOP:CAPS">POCKETVOX_STATE_STOP</para></entry>
+<entry /><entry />
+</row>
+<row role="constant"><entry role="enum_member_name"><para id="POCKETVOX-STATE-RUN:CAPS">POCKETVOX_STATE_RUN</para></entry>
+<entry /><entry />
+</row>
+<row role="constant"><entry role="enum_member_name"><para id="POCKETVOX-STATE-WAIT:CAPS">POCKETVOX_STATE_WAIT</para></entry>
+<entry /><entry />
+</row>
+</tbody></tgroup></informaltable>
+</refsect3></refsect2>
+
+</refsect1>
+
+</refentry>

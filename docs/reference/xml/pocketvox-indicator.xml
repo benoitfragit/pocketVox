@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<refentry id="PocketvoxIndicator">
+<refmeta>
+<refentrytitle role="top_of_page" id="PocketvoxIndicator.top_of_page">PocketvoxIndicator</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>
+  POCKETVOX Library
+</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>PocketvoxIndicator</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsect1 id="PocketvoxIndicator.functions" role="functions_proto">
+<title role="functions_proto.title">Functions</title>
+<informaltable pgwide="1" frame="none">
+<tgroup cols="2">
+<colspec colname="functions_return" colwidth="150px"/>
+<colspec colname="functions_name"/>
+<tbody>
+<row><entry role="function_type"><link linkend="PocketvoxIndicator"><returnvalue>PocketvoxIndicator</returnvalue></link>&#160;*
+</entry><entry role="function_name"><link linkend="pocketvox-indicator-new">pocketvox_indicator_new</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-indicator-add-module-item">pocketvox_indicator_add_module_item</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-indicator-remove-module-item">pocketvox_indicator_remove_module_item</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-indicator-add-apps-item">pocketvox_indicator_add_apps_item</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+<row><entry role="function_type"><link linkend="void"><returnvalue>void</returnvalue></link>
+</entry><entry role="function_name"><link linkend="pocketvox-indicator-toggle-apps-item">pocketvox_indicator_toggle_apps_item</link>&#160;<phrase role="c_punctuation">()</phrase></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxIndicator.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<informaltable frame="none">
+<tgroup cols="3">
+<colspec colname="signals_return" colwidth="150px"/>
+<colspec colname="signals_name" colwidth="300px"/>
+<colspec colname="signals_flags" colwidth="200px"/>
+<tbody>
+<row><entry role="signal_type"><link linkend="void"><returnvalue>void</returnvalue></link></entry><entry role="signal_name"><link linkend="PocketvoxIndicator-indicator-module-toggled">indicator-module-toggled</link></entry><entry role="signal_flags"><link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></entry></row>
+<row><entry role="signal_type"><link linkend="void"><returnvalue>void</returnvalue></link></entry><entry role="signal_name"><link linkend="PocketvoxIndicator-indicator-quit">indicator-quit</link></entry><entry role="signal_flags"><link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></entry></row>
+<row><entry role="signal_type"><link linkend="void"><returnvalue>void</returnvalue></link></entry><entry role="signal_name"><link linkend="PocketvoxIndicator-indicator-state">indicator-state</link></entry><entry role="signal_flags"><link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></entry></row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</refsect1>
+<refsect1 id="PocketvoxIndicator.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<screen>    <link linkend="GObject">GObject</link>
+    <phrase role="lineart">&#9584;&#9472;&#9472;</phrase> PocketvoxIndicator
+</screen>
+</refsect1>
+
+
+<refsect1 id="PocketvoxIndicator.description" role="desc">
+<title role="desc.title">Description</title>
+
+</refsect1>
+<refsect1 id="PocketvoxIndicator.functions_details" role="details">
+<title role="details.title">Functions</title>
+<refsect2 id="pocketvox-indicator-new" role="function">
+<title>pocketvox_indicator_new&#160;()</title>
+<indexterm zone="pocketvox-indicator-new"><primary>pocketvox_indicator_new</primary></indexterm>
+<programlisting language="C"><link linkend="PocketvoxIndicator"><returnvalue>PocketvoxIndicator</returnvalue></link>&#160;*
+pocketvox_indicator_new ();</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-indicator-add-module-item" role="function">
+<title>pocketvox_indicator_add_module_item&#160;()</title>
+<indexterm zone="pocketvox-indicator-add-module-item"><primary>pocketvox_indicator_add_module_item</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_indicator_add_module_item (<parameter><link linkend="PocketvoxIndicator"><type>PocketvoxIndicator</type></link> *indicator</parameter>,
+                                     <parameter><link linkend="gchar"><type>gchar</type></link> *id</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-indicator-remove-module-item" role="function">
+<title>pocketvox_indicator_remove_module_item&#160;()</title>
+<indexterm zone="pocketvox-indicator-remove-module-item"><primary>pocketvox_indicator_remove_module_item</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_indicator_remove_module_item
+                               (<parameter><link linkend="PocketvoxIndicator"><type>PocketvoxIndicator</type></link> *indicator</parameter>,
+                                <parameter><link linkend="gchar"><type>gchar</type></link> *id</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-indicator-add-apps-item" role="function">
+<title>pocketvox_indicator_add_apps_item&#160;()</title>
+<indexterm zone="pocketvox-indicator-add-apps-item"><primary>pocketvox_indicator_add_apps_item</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_indicator_add_apps_item (<parameter><link linkend="PocketvoxIndicator"><type>PocketvoxIndicator</type></link> *indicator</parameter>,
+                                   <parameter><link linkend="gchar"><type>gchar</type></link> *id</parameter>);</programlisting>
+</refsect2>
+<refsect2 id="pocketvox-indicator-toggle-apps-item" role="function">
+<title>pocketvox_indicator_toggle_apps_item&#160;()</title>
+<indexterm zone="pocketvox-indicator-toggle-apps-item"><primary>pocketvox_indicator_toggle_apps_item</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+pocketvox_indicator_toggle_apps_item (<parameter><link linkend="PocketvoxIndicator"><type>PocketvoxIndicator</type></link> *indicator</parameter>,
+                                      <parameter><link linkend="gchar"><type>gchar</type></link> *window</parameter>);</programlisting>
+</refsect2>
+
+</refsect1>
+<refsect1 id="PocketvoxIndicator.other_details" role="details">
+<title role="details.title">Types and Values</title>
+
+</refsect1>
+<refsect1 id="PocketvoxIndicator.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="PocketvoxIndicator-indicator-module-toggled" role="signal"><title>The <literal>“indicator-module-toggled”</literal> signal</title>
+<indexterm zone="PocketvoxIndicator-indicator-module-toggled"><primary>PocketvoxIndicator::indicator-module-toggled</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+user_function (<link linkend="PocketvoxIndicator"><type>PocketvoxIndicator</type></link> *pocketvoxindicator,
+               <link linkend="gchar"><type>gchar</type></link>              *arg1,
+               <link linkend="gpointer"><type>gpointer</type></link>            user_data)</programlisting>
+<para>Flags: <link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></para>
+</refsect2><refsect2 id="PocketvoxIndicator-indicator-quit" role="signal"><title>The <literal>“indicator-quit”</literal> signal</title>
+<indexterm zone="PocketvoxIndicator-indicator-quit"><primary>PocketvoxIndicator::indicator-quit</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+user_function (<link linkend="PocketvoxIndicator"><type>PocketvoxIndicator</type></link> *pocketvoxindicator,
+               <link linkend="gpointer"><type>gpointer</type></link>            user_data)</programlisting>
+<para>Flags: <link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></para>
+</refsect2><refsect2 id="PocketvoxIndicator-indicator-state" role="signal"><title>The <literal>“indicator-state”</literal> signal</title>
+<indexterm zone="PocketvoxIndicator-indicator-state"><primary>PocketvoxIndicator::indicator-state</primary></indexterm>
+<programlisting language="C"><link linkend="void"><returnvalue>void</returnvalue></link>
+user_function (<link linkend="PocketvoxIndicator"><type>PocketvoxIndicator</type></link> *pocketvoxindicator,
+               <link linkend="gchar"><type>gchar</type></link>              *arg1,
+               <link linkend="gpointer"><type>gpointer</type></link>            user_data)</programlisting>
+<para>Flags: <link linkend="G-SIGNAL-RUN-LAST:CAPS">Run Last</link></para>
+</refsect2>
+</refsect1>
+
+</refentry>
