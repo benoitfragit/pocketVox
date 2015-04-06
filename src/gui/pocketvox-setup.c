@@ -25,6 +25,9 @@
 #include <libintl.h>
 #define _(String) dgettext(GETTEXT_PACKAGE,String)
 
+#define GTK_TOP_MARGIN 3
+#define GTK_BOTTOM_MARGIN 3
+
 enum
 {
 	PROP_0,
@@ -186,6 +189,14 @@ static void pocketvox_setup_add_module(PocketvoxSetup *setup, gchar* key, gchar*
 	gtk_widget_set_hexpand(info->entry_id, TRUE);
 	gtk_widget_set_hexpand(info->sw, FALSE);
 
+	gtk_widget_set_margin_top(info->entry_path, GTK_TOP_MARGIN);
+	gtk_widget_set_margin_top(info->entry_id,   GTK_TOP_MARGIN);
+	gtk_widget_set_margin_top(info->sw, 		GTK_TOP_MARGIN);
+	gtk_widget_set_margin_bottom(info->entry_path, GTK_BOTTOM_MARGIN);
+	gtk_widget_set_margin_bottom(info->entry_id,   GTK_BOTTOM_MARGIN);
+	gtk_widget_set_margin_bottom(info->sw, 		GTK_BOTTOM_MARGIN);
+	
+
 	g_object_set(G_OBJECT(info->sw),
 				"active", isapps,
 				NULL);
@@ -300,6 +311,20 @@ static GtkWidget* pocketvox_setup_get_user_grid(PocketvoxSetup *setup)
     gtk_widget_set_tooltip_text(entry_keyword, _("What is your activation keyword ?"));
     gtk_widget_set_tooltip_text(combo_voice, _("Choose the language"));
 
+    gtk_widget_set_margin_top(label_name, GTK_TOP_MARGIN);
+    gtk_widget_set_margin_top(entry_name, GTK_TOP_MARGIN);
+    gtk_widget_set_margin_top(label_keyword, GTK_TOP_MARGIN);
+    gtk_widget_set_margin_top(entry_keyword, GTK_TOP_MARGIN);
+    gtk_widget_set_margin_top(label_voice, GTK_TOP_MARGIN);
+    gtk_widget_set_margin_top(combo_voice, GTK_TOP_MARGIN);
+
+    gtk_widget_set_margin_bottom(label_name, GTK_BOTTOM_MARGIN);
+    gtk_widget_set_margin_bottom(entry_name, GTK_BOTTOM_MARGIN);
+    gtk_widget_set_margin_bottom(label_keyword, GTK_BOTTOM_MARGIN);
+    gtk_widget_set_margin_bottom(entry_keyword, GTK_BOTTOM_MARGIN);
+    gtk_widget_set_margin_bottom(label_voice, GTK_BOTTOM_MARGIN);
+    gtk_widget_set_margin_bottom(combo_voice, GTK_BOTTOM_MARGIN);
+
     gtk_grid_attach(GTK_GRID(grid), label_name, 		0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), entry_name, 		1, 0, 2, 1);
     gtk_grid_attach(GTK_GRID(grid), label_keyword, 		0, 1, 1, 1);
@@ -348,6 +373,20 @@ static GtkWidget* pocketvox_setup_get_pocketsphinx_grid(PocketvoxSetup *setup)
     gtk_widget_set_name(entry_dictionnary, "dict");
     gtk_widget_set_name(entry_acoustic, "hmm");
 
+	gtk_widget_set_margin_top(et_lm, GTK_TOP_MARGIN);
+	gtk_widget_set_margin_top(et_dict, GTK_TOP_MARGIN);
+	gtk_widget_set_margin_top(et_hmm, GTK_TOP_MARGIN);
+	gtk_widget_set_margin_top(entry_lm, GTK_TOP_MARGIN);
+	gtk_widget_set_margin_top(entry_dictionnary, GTK_TOP_MARGIN);
+	gtk_widget_set_margin_top(entry_acoustic, GTK_TOP_MARGIN);
+
+	gtk_widget_set_margin_bottom(et_lm, GTK_BOTTOM_MARGIN);
+	gtk_widget_set_margin_bottom(et_dict, GTK_BOTTOM_MARGIN);
+	gtk_widget_set_margin_bottom(et_hmm, GTK_BOTTOM_MARGIN);
+	gtk_widget_set_margin_bottom(entry_lm, GTK_BOTTOM_MARGIN);
+	gtk_widget_set_margin_bottom(entry_acoustic, GTK_BOTTOM_MARGIN);
+	gtk_widget_set_margin_bottom(entry_dictionnary, GTK_BOTTOM_MARGIN);
+
 	gtk_entry_set_icon_from_icon_name (GTK_ENTRY(entry_lm), GTK_ENTRY_ICON_SECONDARY, "gtk-search");
 	g_signal_connect(entry_lm, "icon-press", G_CALLBACK(pocketvox_setup_search_dict), NULL);
 
@@ -394,6 +433,11 @@ static GtkWidget* pocketvox_setup_get_notification_grid(PocketvoxSetup *setup)
     GtkWidget* switch_visual = gtk_switch_new();
     gtk_widget_set_tooltip_text(switch_sound, _("Allow sound notifications"));
     gtk_widget_set_tooltip_text(switch_visual, _("Allow visual notifications"));
+
+    gtk_widget_set_margin_bottom(switch_sound, GTK_BOTTOM_MARGIN);
+    gtk_widget_set_margin_bottom(switch_visual, GTK_BOTTOM_MARGIN);
+    gtk_widget_set_margin_top(switch_sound, GTK_TOP_MARGIN);
+    gtk_widget_set_margin_top(switch_visual, GTK_TOP_MARGIN);
 
 	g_settings_bind(priv->settings, "visual-notification", switch_visual, "active", G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind(priv->settings, "sound-notification", switch_sound, "active", G_SETTINGS_BIND_DEFAULT);

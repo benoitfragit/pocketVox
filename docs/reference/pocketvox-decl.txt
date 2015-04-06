@@ -205,7 +205,6 @@ struct _PocketvoxModuleClass
 
 	/*public funcs and data here*/
 	void (*execute)(PocketvoxModule *module);
-
 };
 </STRUCT>
 <FUNCTION>
