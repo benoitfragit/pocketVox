@@ -1,43 +1,44 @@
 pocketvox-notifier.lo: pocketvox-notifier.c /usr/include/stdc-predef.h \
  pocketvox-notifier.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
- /usr/lib/i386-linux-gnu/glib-2.0/include/glibconfig.h \
+ /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h \
  /usr/include/glib-2.0/glib/gmacros.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include/stddef.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include-fixed/limits.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include-fixed/syslimits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/features.h \
- /usr/include/i386-linux-gnu/sys/cdefs.h \
- /usr/include/i386-linux-gnu/bits/wordsize.h \
- /usr/include/i386-linux-gnu/gnu/stubs.h \
- /usr/include/i386-linux-gnu/gnu/stubs-32.h \
- /usr/include/i386-linux-gnu/bits/posix1_lim.h \
- /usr/include/i386-linux-gnu/bits/local_lim.h /usr/include/linux/limits.h \
- /usr/include/i386-linux-gnu/bits/posix2_lim.h \
- /usr/include/i386-linux-gnu/bits/xopen_lim.h \
- /usr/include/i386-linux-gnu/bits/stdio_lim.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include/float.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/float.h \
  /usr/include/glib-2.0/glib/gversionmacros.h /usr/include/time.h \
- /usr/include/i386-linux-gnu/bits/time.h \
- /usr/include/i386-linux-gnu/bits/types.h \
- /usr/include/i386-linux-gnu/bits/typesizes.h \
- /usr/include/i386-linux-gnu/bits/timex.h /usr/include/xlocale.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h /usr/include/xlocale.h \
  /usr/include/glib-2.0/glib/garray.h \
  /usr/include/glib-2.0/glib/gasyncqueue.h \
  /usr/include/glib-2.0/glib/gthread.h \
  /usr/include/glib-2.0/glib/gatomic.h /usr/include/glib-2.0/glib/gerror.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
- /usr/include/glib-2.0/glib/gquark.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
+ /usr/include/glib-2.0/glib/gquark.h /usr/include/glib-2.0/glib/gutils.h \
  /usr/include/glib-2.0/glib/gbacktrace.h /usr/include/signal.h \
- /usr/include/i386-linux-gnu/bits/sigset.h \
- /usr/include/i386-linux-gnu/bits/signum.h \
- /usr/include/i386-linux-gnu/bits/siginfo.h \
- /usr/include/i386-linux-gnu/bits/sigaction.h \
- /usr/include/i386-linux-gnu/bits/sigcontext.h \
- /usr/include/i386-linux-gnu/bits/sigstack.h \
- /usr/include/i386-linux-gnu/sys/ucontext.h \
- /usr/include/i386-linux-gnu/bits/pthreadtypes.h \
- /usr/include/i386-linux-gnu/bits/sigthread.h \
+ /usr/include/x86_64-linux-gnu/bits/sigset.h \
+ /usr/include/x86_64-linux-gnu/bits/signum.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/glib-2.0/glib/gbase64.h \
  /usr/include/glib-2.0/glib/gbitlock.h \
  /usr/include/glib-2.0/glib/gbookmarkfile.h \
@@ -48,7 +49,7 @@ pocketvox-notifier.lo: pocketvox-notifier.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/glib/gdataset.h /usr/include/glib-2.0/glib/gdate.h \
  /usr/include/glib-2.0/glib/gdatetime.h \
  /usr/include/glib-2.0/glib/gtimezone.h /usr/include/glib-2.0/glib/gdir.h \
- /usr/include/dirent.h /usr/include/i386-linux-gnu/bits/dirent.h \
+ /usr/include/dirent.h /usr/include/x86_64-linux-gnu/bits/dirent.h \
  /usr/include/glib-2.0/glib/genviron.h \
  /usr/include/glib-2.0/glib/gfileutils.h \
  /usr/include/glib-2.0/glib/ggettext.h /usr/include/glib-2.0/glib/ghash.h \
@@ -61,7 +62,6 @@ pocketvox-notifier.lo: pocketvox-notifier.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/glib/gmain.h /usr/include/glib-2.0/glib/gpoll.h \
  /usr/include/glib-2.0/glib/gslist.h /usr/include/glib-2.0/glib/gstring.h \
  /usr/include/glib-2.0/glib/gunicode.h \
- /usr/include/glib-2.0/glib/gutils.h \
  /usr/include/glib-2.0/glib/gkeyfile.h \
  /usr/include/glib-2.0/glib/gmappedfile.h \
  /usr/include/glib-2.0/glib/gmarkup.h \
@@ -92,16 +92,16 @@ pocketvox-notifier.lo: pocketvox-notifier.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/glib/deprecated/gmain.h \
  /usr/include/glib-2.0/glib/deprecated/grel.h \
  /usr/include/glib-2.0/glib/deprecated/gthread.h \
- /usr/include/i386-linux-gnu/sys/types.h /usr/include/endian.h \
- /usr/include/i386-linux-gnu/bits/endian.h \
- /usr/include/i386-linux-gnu/bits/byteswap.h \
- /usr/include/i386-linux-gnu/bits/byteswap-16.h \
- /usr/include/i386-linux-gnu/sys/select.h \
- /usr/include/i386-linux-gnu/bits/select.h \
- /usr/include/i386-linux-gnu/bits/select2.h \
- /usr/include/i386-linux-gnu/sys/sysmacros.h /usr/include/pthread.h \
- /usr/include/sched.h /usr/include/i386-linux-gnu/bits/sched.h \
- /usr/include/i386-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/glib-2.0/glib/glib-autocleanups.h \
  /usr/include/glib-2.0/glib-object.h \
  /usr/include/glib-2.0/gobject/gbinding.h \
  /usr/include/glib-2.0/gobject/gobject.h \
@@ -120,6 +120,7 @@ pocketvox-notifier.lo: pocketvox-notifier.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/gobject/gtypeplugin.h \
  /usr/include/glib-2.0/gobject/gvaluearray.h \
  /usr/include/glib-2.0/gobject/gvaluetypes.h \
+ /usr/include/glib-2.0/gobject/gobject-autocleanups.h \
  /usr/include/libnotify/notify.h /usr/include/libnotify/notification.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h \
@@ -149,10 +150,9 @@ pocketvox-notifier.lo: pocketvox-notifier.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/gio/gconverterinputstream.h \
  /usr/include/glib-2.0/gio/gconverteroutputstream.h \
  /usr/include/glib-2.0/gio/gcredentials.h /usr/include/unistd.h \
- /usr/include/i386-linux-gnu/bits/posix_opt.h \
- /usr/include/i386-linux-gnu/bits/environments.h \
- /usr/include/i386-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/i386-linux-gnu/bits/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/glib-2.0/gio/gdatainputstream.h \
  /usr/include/glib-2.0/gio/gdataoutputstream.h \
  /usr/include/glib-2.0/gio/gdbusaddress.h \
@@ -218,6 +218,7 @@ pocketvox-notifier.lo: pocketvox-notifier.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/gio/gactiongroup.h \
  /usr/include/glib-2.0/gio/gactionmap.h \
  /usr/include/glib-2.0/gio/gsimpleasyncresult.h \
+ /usr/include/glib-2.0/gio/gsimpleiostream.h \
  /usr/include/glib-2.0/gio/gsimplepermission.h \
  /usr/include/glib-2.0/gio/gsocketclient.h \
  /usr/include/glib-2.0/gio/gsocketconnectable.h \
@@ -263,21 +264,23 @@ pocketvox-notifier.lo: pocketvox-notifier.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/gio/gmenuexporter.h \
  /usr/include/glib-2.0/gio/gdbusmenumodel.h \
  /usr/include/glib-2.0/gio/gnotification.h \
+ /usr/include/glib-2.0/gio/glistmodel.h \
+ /usr/include/glib-2.0/gio/gliststore.h \
+ /usr/include/glib-2.0/gio/gio-autocleanups.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-transform.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-animation.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-simple-anim.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
- /usr/include/wchar.h /usr/include/i386-linux-gnu/bits/sys_errlist.h \
- /usr/include/i386-linux-gnu/bits/stdio.h \
- /usr/include/i386-linux-gnu/bits/stdio2.h \
+ /usr/include/wchar.h /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h \
+ /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h \
  /usr/include/libnotify/notify-enum-types.h \
  /usr/include/libnotify/notify-features.h ../../config.h \
- /usr/include/string.h /usr/include/i386-linux-gnu/bits/string.h \
- /usr/include/i386-linux-gnu/bits/string2.h /usr/include/stdlib.h \
- /usr/include/i386-linux-gnu/bits/string3.h \
+ /usr/include/string.h /usr/include/x86_64-linux-gnu/bits/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/stdlib.h \
  /usr/include/espeak/speak_lib.h
 
 /usr/include/stdc-predef.h:
@@ -290,53 +293,53 @@ pocketvox-notifier.h:
 
 /usr/include/glib-2.0/glib/gtypes.h:
 
-/usr/lib/i386-linux-gnu/glib-2.0/include/glibconfig.h:
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:
 
 /usr/include/glib-2.0/glib/gmacros.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include/stddef.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include-fixed/limits.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include-fixed/syslimits.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h:
 
 /usr/include/limits.h:
 
 /usr/include/features.h:
 
-/usr/include/i386-linux-gnu/sys/cdefs.h:
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
-/usr/include/i386-linux-gnu/bits/wordsize.h:
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
-/usr/include/i386-linux-gnu/gnu/stubs.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
-/usr/include/i386-linux-gnu/gnu/stubs-32.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/include/i386-linux-gnu/bits/posix1_lim.h:
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
-/usr/include/i386-linux-gnu/bits/local_lim.h:
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
 
 /usr/include/linux/limits.h:
 
-/usr/include/i386-linux-gnu/bits/posix2_lim.h:
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
-/usr/include/i386-linux-gnu/bits/xopen_lim.h:
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
-/usr/include/i386-linux-gnu/bits/stdio_lim.h:
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include/float.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/float.h:
 
 /usr/include/glib-2.0/glib/gversionmacros.h:
 
 /usr/include/time.h:
 
-/usr/include/i386-linux-gnu/bits/time.h:
+/usr/include/x86_64-linux-gnu/bits/time.h:
 
-/usr/include/i386-linux-gnu/bits/types.h:
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
-/usr/include/i386-linux-gnu/bits/typesizes.h:
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-/usr/include/i386-linux-gnu/bits/timex.h:
+/usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/xlocale.h:
 
@@ -350,31 +353,33 @@ pocketvox-notifier.h:
 
 /usr/include/glib-2.0/glib/gerror.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h:
 
 /usr/include/glib-2.0/glib/gquark.h:
+
+/usr/include/glib-2.0/glib/gutils.h:
 
 /usr/include/glib-2.0/glib/gbacktrace.h:
 
 /usr/include/signal.h:
 
-/usr/include/i386-linux-gnu/bits/sigset.h:
+/usr/include/x86_64-linux-gnu/bits/sigset.h:
 
-/usr/include/i386-linux-gnu/bits/signum.h:
+/usr/include/x86_64-linux-gnu/bits/signum.h:
 
-/usr/include/i386-linux-gnu/bits/siginfo.h:
+/usr/include/x86_64-linux-gnu/bits/siginfo.h:
 
-/usr/include/i386-linux-gnu/bits/sigaction.h:
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
 
-/usr/include/i386-linux-gnu/bits/sigcontext.h:
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
 
-/usr/include/i386-linux-gnu/bits/sigstack.h:
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
 
-/usr/include/i386-linux-gnu/sys/ucontext.h:
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
-/usr/include/i386-linux-gnu/bits/pthreadtypes.h:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
-/usr/include/i386-linux-gnu/bits/sigthread.h:
+/usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
 /usr/include/glib-2.0/glib/gbase64.h:
 
@@ -402,7 +407,7 @@ pocketvox-notifier.h:
 
 /usr/include/dirent.h:
 
-/usr/include/i386-linux-gnu/bits/dirent.h:
+/usr/include/x86_64-linux-gnu/bits/dirent.h:
 
 /usr/include/glib-2.0/glib/genviron.h:
 
@@ -437,8 +442,6 @@ pocketvox-notifier.h:
 /usr/include/glib-2.0/glib/gstring.h:
 
 /usr/include/glib-2.0/glib/gunicode.h:
-
-/usr/include/glib-2.0/glib/gutils.h:
 
 /usr/include/glib-2.0/glib/gkeyfile.h:
 
@@ -506,31 +509,31 @@ pocketvox-notifier.h:
 
 /usr/include/glib-2.0/glib/deprecated/gthread.h:
 
-/usr/include/i386-linux-gnu/sys/types.h:
+/usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/endian.h:
 
-/usr/include/i386-linux-gnu/bits/endian.h:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/include/i386-linux-gnu/bits/byteswap.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/usr/include/i386-linux-gnu/bits/byteswap-16.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
 
-/usr/include/i386-linux-gnu/sys/select.h:
+/usr/include/x86_64-linux-gnu/sys/select.h:
 
-/usr/include/i386-linux-gnu/bits/select.h:
+/usr/include/x86_64-linux-gnu/bits/select.h:
 
-/usr/include/i386-linux-gnu/bits/select2.h:
-
-/usr/include/i386-linux-gnu/sys/sysmacros.h:
+/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/pthread.h:
 
 /usr/include/sched.h:
 
-/usr/include/i386-linux-gnu/bits/sched.h:
+/usr/include/x86_64-linux-gnu/bits/sched.h:
 
-/usr/include/i386-linux-gnu/bits/setjmp.h:
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/glib-2.0/glib/glib-autocleanups.h:
 
 /usr/include/glib-2.0/glib-object.h:
 
@@ -567,6 +570,8 @@ pocketvox-notifier.h:
 /usr/include/glib-2.0/gobject/gvaluearray.h:
 
 /usr/include/glib-2.0/gobject/gvaluetypes.h:
+
+/usr/include/glib-2.0/gobject/gobject-autocleanups.h:
 
 /usr/include/libnotify/notify.h:
 
@@ -634,15 +639,13 @@ pocketvox-notifier.h:
 
 /usr/include/unistd.h:
 
-/usr/include/i386-linux-gnu/bits/posix_opt.h:
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
-/usr/include/i386-linux-gnu/bits/environments.h:
+/usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/usr/include/i386-linux-gnu/bits/confname.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/getopt.h:
-
-/usr/include/i386-linux-gnu/bits/unistd.h:
 
 /usr/include/glib-2.0/gio/gdatainputstream.h:
 
@@ -780,6 +783,8 @@ pocketvox-notifier.h:
 
 /usr/include/glib-2.0/gio/gsimpleasyncresult.h:
 
+/usr/include/glib-2.0/gio/gsimpleiostream.h:
+
 /usr/include/glib-2.0/gio/gsimplepermission.h:
 
 /usr/include/glib-2.0/gio/gsocketclient.h:
@@ -874,6 +879,12 @@ pocketvox-notifier.h:
 
 /usr/include/glib-2.0/gio/gnotification.h:
 
+/usr/include/glib-2.0/gio/glistmodel.h:
+
+/usr/include/glib-2.0/gio/gliststore.h:
+
+/usr/include/glib-2.0/gio/gio-autocleanups.h:
+
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-transform.h:
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-animation.h:
@@ -890,15 +901,15 @@ pocketvox-notifier.h:
 
 /usr/include/wchar.h:
 
-/usr/include/i386-linux-gnu/bits/sys_errlist.h:
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
 
-/usr/include/i386-linux-gnu/bits/stdio.h:
-
-/usr/include/i386-linux-gnu/bits/stdio2.h:
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h:
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h:
+
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h:
 
 /usr/include/libnotify/notify-enum-types.h:
 
@@ -908,12 +919,10 @@ pocketvox-notifier.h:
 
 /usr/include/string.h:
 
-/usr/include/i386-linux-gnu/bits/string.h:
+/usr/include/x86_64-linux-gnu/bits/string.h:
 
-/usr/include/i386-linux-gnu/bits/string2.h:
+/usr/include/x86_64-linux-gnu/bits/string2.h:
 
 /usr/include/stdlib.h:
-
-/usr/include/i386-linux-gnu/bits/string3.h:
 
 /usr/include/espeak/speak_lib.h:
