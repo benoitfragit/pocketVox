@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+%:
+	dh ${@}
+
+#TODO
+#remove .sh extensions in /usr/bin
+#3 man pages
+#solve: non-empty-dependency_libs-in-la-file usr/lib/x86_64-linux-gnu/libpocketvox-1.0.la
+#lintian override non-dev-pkg-with-shlib-symlink
+
