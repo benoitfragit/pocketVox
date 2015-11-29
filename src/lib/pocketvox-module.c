@@ -326,7 +326,7 @@ void pocketvox_module_manage_apps(gpointer key, gpointer value, gpointer user_da
 
 	if(pocketvox_module_is_apps(module) == TRUE)
 	{
-		if(!g_strcmp0(id, window) == TRUE )
+		if(g_strcmp0(id, window) != TRUE )
 		{
 			pocketvox_module_set_activated(module, TRUE);
 		}
