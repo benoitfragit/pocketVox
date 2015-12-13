@@ -2,43 +2,44 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/stdc-predef.h pocketvox-application.h pocketvox-module.h \
  /usr/include/glib-2.0/glib.h /usr/include/glib-2.0/glib/galloca.h \
  /usr/include/glib-2.0/glib/gtypes.h \
- /usr/lib/i386-linux-gnu/glib-2.0/include/glibconfig.h \
+ /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h \
  /usr/include/glib-2.0/glib/gmacros.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include/stddef.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include-fixed/limits.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include-fixed/syslimits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/features.h \
- /usr/include/i386-linux-gnu/sys/cdefs.h \
- /usr/include/i386-linux-gnu/bits/wordsize.h \
- /usr/include/i386-linux-gnu/gnu/stubs.h \
- /usr/include/i386-linux-gnu/gnu/stubs-32.h \
- /usr/include/i386-linux-gnu/bits/posix1_lim.h \
- /usr/include/i386-linux-gnu/bits/local_lim.h /usr/include/linux/limits.h \
- /usr/include/i386-linux-gnu/bits/posix2_lim.h \
- /usr/include/i386-linux-gnu/bits/xopen_lim.h \
- /usr/include/i386-linux-gnu/bits/stdio_lim.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include/float.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/float.h \
  /usr/include/glib-2.0/glib/gversionmacros.h /usr/include/time.h \
- /usr/include/i386-linux-gnu/bits/time.h \
- /usr/include/i386-linux-gnu/bits/types.h \
- /usr/include/i386-linux-gnu/bits/typesizes.h \
- /usr/include/i386-linux-gnu/bits/timex.h /usr/include/xlocale.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h /usr/include/xlocale.h \
  /usr/include/glib-2.0/glib/garray.h \
  /usr/include/glib-2.0/glib/gasyncqueue.h \
  /usr/include/glib-2.0/glib/gthread.h \
  /usr/include/glib-2.0/glib/gatomic.h /usr/include/glib-2.0/glib/gerror.h \
- /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
- /usr/include/glib-2.0/glib/gquark.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
+ /usr/include/glib-2.0/glib/gquark.h /usr/include/glib-2.0/glib/gutils.h \
  /usr/include/glib-2.0/glib/gbacktrace.h /usr/include/signal.h \
- /usr/include/i386-linux-gnu/bits/sigset.h \
- /usr/include/i386-linux-gnu/bits/signum.h \
- /usr/include/i386-linux-gnu/bits/siginfo.h \
- /usr/include/i386-linux-gnu/bits/sigaction.h \
- /usr/include/i386-linux-gnu/bits/sigcontext.h \
- /usr/include/i386-linux-gnu/bits/sigstack.h \
- /usr/include/i386-linux-gnu/sys/ucontext.h \
- /usr/include/i386-linux-gnu/bits/pthreadtypes.h \
- /usr/include/i386-linux-gnu/bits/sigthread.h \
+ /usr/include/x86_64-linux-gnu/bits/sigset.h \
+ /usr/include/x86_64-linux-gnu/bits/signum.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/glib-2.0/glib/gbase64.h \
  /usr/include/glib-2.0/glib/gbitlock.h \
  /usr/include/glib-2.0/glib/gbookmarkfile.h \
@@ -49,7 +50,7 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/glib-2.0/glib/gdataset.h /usr/include/glib-2.0/glib/gdate.h \
  /usr/include/glib-2.0/glib/gdatetime.h \
  /usr/include/glib-2.0/glib/gtimezone.h /usr/include/glib-2.0/glib/gdir.h \
- /usr/include/dirent.h /usr/include/i386-linux-gnu/bits/dirent.h \
+ /usr/include/dirent.h /usr/include/x86_64-linux-gnu/bits/dirent.h \
  /usr/include/glib-2.0/glib/genviron.h \
  /usr/include/glib-2.0/glib/gfileutils.h \
  /usr/include/glib-2.0/glib/ggettext.h /usr/include/glib-2.0/glib/ghash.h \
@@ -62,7 +63,6 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/glib-2.0/glib/gmain.h /usr/include/glib-2.0/glib/gpoll.h \
  /usr/include/glib-2.0/glib/gslist.h /usr/include/glib-2.0/glib/gstring.h \
  /usr/include/glib-2.0/glib/gunicode.h \
- /usr/include/glib-2.0/glib/gutils.h \
  /usr/include/glib-2.0/glib/gkeyfile.h \
  /usr/include/glib-2.0/glib/gmappedfile.h \
  /usr/include/glib-2.0/glib/gmarkup.h \
@@ -93,16 +93,16 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/glib-2.0/glib/deprecated/gmain.h \
  /usr/include/glib-2.0/glib/deprecated/grel.h \
  /usr/include/glib-2.0/glib/deprecated/gthread.h \
- /usr/include/i386-linux-gnu/sys/types.h /usr/include/endian.h \
- /usr/include/i386-linux-gnu/bits/endian.h \
- /usr/include/i386-linux-gnu/bits/byteswap.h \
- /usr/include/i386-linux-gnu/bits/byteswap-16.h \
- /usr/include/i386-linux-gnu/sys/select.h \
- /usr/include/i386-linux-gnu/bits/select.h \
- /usr/include/i386-linux-gnu/bits/select2.h \
- /usr/include/i386-linux-gnu/sys/sysmacros.h /usr/include/pthread.h \
- /usr/include/sched.h /usr/include/i386-linux-gnu/bits/sched.h \
- /usr/include/i386-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/glib-2.0/glib/glib-autocleanups.h \
  /usr/include/glib-2.0/glib-object.h \
  /usr/include/glib-2.0/gobject/gbinding.h \
  /usr/include/glib-2.0/gobject/gobject.h \
@@ -120,12 +120,12 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/glib-2.0/gobject/gtypemodule.h \
  /usr/include/glib-2.0/gobject/gtypeplugin.h \
  /usr/include/glib-2.0/gobject/gvaluearray.h \
- /usr/include/glib-2.0/gobject/gvaluetypes.h pocketvox-recognizer.h \
- /usr/local/include/pocketsphinx/pocketsphinx.h /usr/include/stdio.h \
- /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
- /usr/include/i386-linux-gnu/bits/sys_errlist.h \
- /usr/include/i386-linux-gnu/bits/stdio.h \
- /usr/include/i386-linux-gnu/bits/stdio2.h \
+ /usr/include/glib-2.0/gobject/gvaluetypes.h \
+ /usr/include/glib-2.0/gobject/gobject-autocleanups.h \
+ pocketvox-recognizer.h /usr/local/include/pocketsphinx/pocketsphinx.h \
+ /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
+ /usr/include/wchar.h /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
  /usr/local/include/sphinxbase/cmd_ln.h \
  /usr/local/include/sphinxbase/sphinxbase_export.h \
  /usr/local/include/sphinxbase/prim_type.h \
@@ -143,18 +143,15 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/local/include/pocketsphinx/ps_mllr.h \
  /usr/local/include/pocketsphinx/ps_search.h \
  /usr/local/include/sphinxbase/fsg_model.h /usr/include/string.h \
- /usr/include/i386-linux-gnu/bits/string.h \
- /usr/include/i386-linux-gnu/bits/string2.h /usr/include/stdlib.h \
- /usr/include/i386-linux-gnu/bits/string3.h \
+ /usr/include/x86_64-linux-gnu/bits/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/stdlib.h \
  /usr/local/include/sphinxbase/glist.h \
- /usr/include/i386-linux-gnu/bits/waitflags.h \
- /usr/include/i386-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
- /usr/include/i386-linux-gnu/bits/stdlib-bsearch.h \
- /usr/include/i386-linux-gnu/bits/stdlib-float.h \
- /usr/include/i386-linux-gnu/bits/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/local/include/sphinxbase/bitvec.h \
  /usr/local/include/sphinxbase/ckd_alloc.h /usr/include/setjmp.h \
- /usr/include/i386-linux-gnu/bits/setjmp2.h \
  /usr/local/include/sphinxbase/hash_table.h \
  /usr/local/include/sphinxbase/listelem_alloc.h \
  /usr/include/gstreamer-0.10/gst/gst.h \
@@ -178,6 +175,24 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/libxml2/libxml/xmlautomata.h \
  /usr/include/libxml2/libxml/entities.h \
  /usr/include/libxml2/libxml/encoding.h /usr/include/iconv.h \
+ /usr/include/x86_64-linux-gnu/unicode/ucnv.h \
+ /usr/include/x86_64-linux-gnu/unicode/ucnv_err.h \
+ /usr/include/x86_64-linux-gnu/unicode/utypes.h \
+ /usr/include/x86_64-linux-gnu/unicode/umachine.h \
+ /usr/include/x86_64-linux-gnu/unicode/ptypes.h \
+ /usr/include/x86_64-linux-gnu/unicode/platform.h \
+ /usr/include/x86_64-linux-gnu/unicode/uconfig.h \
+ /usr/include/x86_64-linux-gnu/unicode/uvernum.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/unicode/urename.h \
+ /usr/include/x86_64-linux-gnu/unicode/uversion.h \
+ /usr/include/x86_64-linux-gnu/unicode/utf.h \
+ /usr/include/x86_64-linux-gnu/unicode/utf8.h \
+ /usr/include/x86_64-linux-gnu/unicode/utf16.h \
+ /usr/include/x86_64-linux-gnu/unicode/utf_old.h \
+ /usr/include/x86_64-linux-gnu/unicode/uenum.h \
+ /usr/include/x86_64-linux-gnu/unicode/localpointer.h \
  /usr/include/libxml2/libxml/xmlIO.h \
  /usr/include/libxml2/libxml/globals.h /usr/include/libxml2/libxml/SAX.h \
  /usr/include/libxml2/libxml/xlink.h /usr/include/libxml2/libxml/SAX2.h \
@@ -204,8 +219,9 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gstreamer-0.10/gst/gstmessage.h \
  /usr/include/gstreamer-0.10/gst/gstelementfactory.h \
  /usr/include/gstreamer-0.10/gst/gstplugin.h \
- /usr/include/i386-linux-gnu/sys/stat.h \
- /usr/include/i386-linux-gnu/bits/stat.h /usr/include/glib-2.0/gmodule.h \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/glib-2.0/gmodule.h \
  /usr/include/gstreamer-0.10/gst/gstmacros.h \
  /usr/include/gstreamer-0.10/gst/gstpluginfeature.h \
  /usr/include/gstreamer-0.10/gst/gstindex.h \
@@ -213,9 +229,9 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gstreamer-0.10/gst/gstchildproxy.h \
  /usr/include/gstreamer-0.10/gst/gstdebugutils.h \
  /usr/include/gstreamer-0.10/gst/gsterror.h /usr/include/errno.h \
- /usr/include/i386-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/i386-linux-gnu/asm/errno.h /usr/include/asm-generic/errno.h \
- /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/gstreamer-0.10/gst/gstghostpad.h \
  /usr/include/gstreamer-0.10/gst/gstinfo.h \
  /usr/include/gstreamer-0.10/gst/gstinterface.h \
@@ -267,10 +283,9 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/glib-2.0/gio/gconverterinputstream.h \
  /usr/include/glib-2.0/gio/gconverteroutputstream.h \
  /usr/include/glib-2.0/gio/gcredentials.h /usr/include/unistd.h \
- /usr/include/i386-linux-gnu/bits/posix_opt.h \
- /usr/include/i386-linux-gnu/bits/environments.h \
- /usr/include/i386-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/i386-linux-gnu/bits/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/glib-2.0/gio/gdatainputstream.h \
  /usr/include/glib-2.0/gio/gdataoutputstream.h \
  /usr/include/glib-2.0/gio/gdbusaddress.h \
@@ -336,6 +351,7 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/glib-2.0/gio/gactiongroup.h \
  /usr/include/glib-2.0/gio/gactionmap.h \
  /usr/include/glib-2.0/gio/gsimpleasyncresult.h \
+ /usr/include/glib-2.0/gio/gsimpleiostream.h \
  /usr/include/glib-2.0/gio/gsimplepermission.h \
  /usr/include/glib-2.0/gio/gsocketclient.h \
  /usr/include/glib-2.0/gio/gsocketconnectable.h \
@@ -381,6 +397,9 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/glib-2.0/gio/gmenuexporter.h \
  /usr/include/glib-2.0/gio/gdbusmenumodel.h \
  /usr/include/glib-2.0/gio/gnotification.h \
+ /usr/include/glib-2.0/gio/glistmodel.h \
+ /usr/include/glib-2.0/gio/gliststore.h \
+ /usr/include/glib-2.0/gio/gio-autocleanups.h \
  /usr/include/gtk-3.0/gdk/gdktypes.h /usr/include/pango-1.0/pango/pango.h \
  /usr/include/pango-1.0/pango/pango-attributes.h \
  /usr/include/pango-1.0/pango/pango-font.h \
@@ -409,11 +428,12 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/cairo/cairo-deprecated.h \
  /usr/include/gtk-3.0/gdk/gdkscreen.h \
  /usr/include/gtk-3.0/gdk/gdkdisplay.h \
- /usr/include/gtk-3.0/gdk/gdkevents.h /usr/include/gtk-3.0/gdk/gdkcolor.h \
- /usr/include/gtk-3.0/gdk/gdkdnd.h /usr/include/gtk-3.0/gdk/gdkdevice.h \
+ /usr/include/gtk-3.0/gdk/gdkevents.h /usr/include/gtk-3.0/gdk/gdkdnd.h \
+ /usr/include/gtk-3.0/gdk/gdkdevice.h \
  /usr/include/gtk-3.0/gdk/gdkdevicemanager.h \
- /usr/include/gtk-3.0/gdk/gdkcairo.h /usr/include/gtk-3.0/gdk/gdkrgba.h \
- /usr/include/gtk-3.0/gdk/gdkpixbuf.h \
+ /usr/include/gtk-3.0/gdk/gdkcairo.h \
+ /usr/include/gtk-3.0/gdk/deprecated/gdkcolor.h \
+ /usr/include/gtk-3.0/gdk/gdkrgba.h /usr/include/gtk-3.0/gdk/gdkpixbuf.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-core.h \
@@ -423,12 +443,14 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h \
+ /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h \
  /usr/include/pango-1.0/pango/pangocairo.h \
  /usr/include/gtk-3.0/gdk/gdkcursor.h \
  /usr/include/gtk-3.0/gdk/gdkdisplaymanager.h \
  /usr/include/gtk-3.0/gdk/gdkenumtypes.h \
  /usr/include/gtk-3.0/gdk/gdkframeclock.h \
  /usr/include/gtk-3.0/gdk/gdkframetimings.h \
+ /usr/include/gtk-3.0/gdk/gdkglcontext.h \
  /usr/include/gtk-3.0/gdk/gdkkeys.h /usr/include/gtk-3.0/gdk/gdkkeysyms.h \
  /usr/include/gtk-3.0/gdk/gdkmain.h /usr/include/gtk-3.0/gdk/gdkpango.h \
  /usr/include/gtk-3.0/gdk/gdkproperty.h \
@@ -438,6 +460,7 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gdk/gdkwindow.h \
  /usr/include/gtk-3.0/gdk/gdkthreads.h \
  /usr/include/gtk-3.0/gdk/gdkvisual.h \
+ /usr/include/gtk-3.0/gdk/gdk-autocleanup.h \
  /usr/include/gtk-3.0/gtk/gtkaboutdialog.h \
  /usr/include/gtk-3.0/gtk/gtkdialog.h \
  /usr/include/gtk-3.0/gtk/gtkwindow.h \
@@ -446,7 +469,9 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtkaccelgroup.h \
  /usr/include/gtk-3.0/gtk/gtkenums.h /usr/include/gtk-3.0/gtk/gtkborder.h \
  /usr/include/gtk-3.0/gtk/gtktypes.h /usr/include/atk-1.0/atk/atk.h \
- /usr/include/atk-1.0/atk/atkobject.h /usr/include/atk-1.0/atk/atkstate.h \
+ /usr/include/atk-1.0/atk/atkobject.h \
+ /usr/include/atk-1.0/atk/atkversion.h \
+ /usr/include/atk-1.0/atk/atkstate.h \
  /usr/include/atk-1.0/atk/atkrelationtype.h \
  /usr/include/atk-1.0/atk/atkaction.h \
  /usr/include/atk-1.0/atk/atkcomponent.h \
@@ -454,6 +479,7 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/atk-1.0/atk/atkdocument.h \
  /usr/include/atk-1.0/atk/atkeditabletext.h \
  /usr/include/atk-1.0/atk/atktext.h \
+ /usr/include/atk-1.0/atk/atk-enum-types.h \
  /usr/include/atk-1.0/atk/atkgobjectaccessible.h \
  /usr/include/atk-1.0/atk/atkhyperlink.h \
  /usr/include/atk-1.0/atk/atkhyperlinkimpl.h \
@@ -462,7 +488,7 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/atk-1.0/atk/atknoopobject.h \
  /usr/include/atk-1.0/atk/atknoopobjectfactory.h \
  /usr/include/atk-1.0/atk/atkobjectfactory.h \
- /usr/include/atk-1.0/atk/atkplug.h \
+ /usr/include/atk-1.0/atk/atkplug.h /usr/include/atk-1.0/atk/atkrange.h \
  /usr/include/atk-1.0/atk/atkregistry.h \
  /usr/include/atk-1.0/atk/atkobjectfactory.h \
  /usr/include/atk-1.0/atk/atkrelation.h \
@@ -471,20 +497,21 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/atk-1.0/atk/atksocket.h \
  /usr/include/atk-1.0/atk/atkstateset.h \
  /usr/include/atk-1.0/atk/atkstreamablecontent.h \
- /usr/include/atk-1.0/atk/atktable.h /usr/include/atk-1.0/atk/atkmisc.h \
- /usr/include/atk-1.0/atk/atkvalue.h \
- /usr/include/atk-1.0/atk/atkversion.h \
+ /usr/include/atk-1.0/atk/atktable.h \
+ /usr/include/atk-1.0/atk/atktablecell.h \
+ /usr/include/atk-1.0/atk/atkmisc.h /usr/include/atk-1.0/atk/atkvalue.h \
  /usr/include/atk-1.0/atk/atkwindow.h /usr/include/gtk-3.0/gtk/gtkbin.h \
  /usr/include/gtk-3.0/gtk/gtkcontainer.h \
  /usr/include/gtk-3.0/gtk/gtkaccellabel.h \
- /usr/include/gtk-3.0/gtk/gtklabel.h /usr/include/gtk-3.0/gtk/gtkmisc.h \
+ /usr/include/gtk-3.0/gtk/gtklabel.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkmisc.h \
  /usr/include/gtk-3.0/gtk/gtkmenu.h \
  /usr/include/gtk-3.0/gtk/gtkmenushell.h \
  /usr/include/gtk-3.0/gtk/gtkaccelmap.h \
  /usr/include/gtk-3.0/gtk/gtkaccessible.h \
  /usr/include/gtk-3.0/gtk/gtkactionable.h \
+ /usr/include/gtk-3.0/gtk/gtkactionbar.h \
  /usr/include/gtk-3.0/gtk/gtkadjustment.h \
- /usr/include/gtk-3.0/gtk/gtkalignment.h \
  /usr/include/gtk-3.0/gtk/gtkappchooser.h \
  /usr/include/gtk-3.0/gtk/gtkappchooserdialog.h \
  /usr/include/gtk-3.0/gtk/gtkappchooserwidget.h \
@@ -512,7 +539,6 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtktreemodelfilter.h \
  /usr/include/gtk-3.0/gtk/gtkimage.h \
  /usr/include/gtk-3.0/gtk/gtkapplicationwindow.h \
- /usr/include/gtk-3.0/gtk/gtkarrow.h \
  /usr/include/gtk-3.0/gtk/gtkaspectframe.h \
  /usr/include/gtk-3.0/gtk/gtkframe.h \
  /usr/include/gtk-3.0/gtk/gtkassistant.h \
@@ -550,6 +576,7 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtkdebug.h \
  /usr/include/gtk-3.0/gtk/gtkdrawingarea.h \
  /usr/include/gtk-3.0/gtk/gtkeventbox.h \
+ /usr/include/gtk-3.0/gtk/gtkeventcontroller.h \
  /usr/include/gtk-3.0/gtk/gtkexpander.h \
  /usr/include/gtk-3.0/gtk/gtkfixed.h \
  /usr/include/gtk-3.0/gtk/gtkfilechooser.h \
@@ -557,17 +584,27 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtkfilechooserbutton.h \
  /usr/include/gtk-3.0/gtk/gtkfilechooserdialog.h \
  /usr/include/gtk-3.0/gtk/gtkfilechooserwidget.h \
+ /usr/include/gtk-3.0/gtk/gtkflowbox.h \
  /usr/include/gtk-3.0/gtk/gtkfontbutton.h \
  /usr/include/gtk-3.0/gtk/gtkfontchooser.h \
  /usr/include/gtk-3.0/gtk/gtkfontchooserdialog.h \
  /usr/include/gtk-3.0/gtk/gtkfontchooserwidget.h \
- /usr/include/gtk-3.0/gtk/gtkgrid.h \
+ /usr/include/gtk-3.0/gtk/gtkgesture.h \
+ /usr/include/gtk-3.0/gtk/gtkgesturedrag.h \
+ /usr/include/gtk-3.0/gtk/gtkgesturesingle.h \
+ /usr/include/gtk-3.0/gtk/gtkgesturelongpress.h \
+ /usr/include/gtk-3.0/gtk/gtkgesturemultipress.h \
+ /usr/include/gtk-3.0/gtk/gtkgesturepan.h \
+ /usr/include/gtk-3.0/gtk/gtkgesturerotate.h \
+ /usr/include/gtk-3.0/gtk/gtkgestureswipe.h \
+ /usr/include/gtk-3.0/gtk/gtkgesturezoom.h \
+ /usr/include/gtk-3.0/gtk/gtkglarea.h /usr/include/gtk-3.0/gtk/gtkgrid.h \
  /usr/include/gtk-3.0/gtk/gtkheaderbar.h \
  /usr/include/gtk-3.0/gtk/gtkicontheme.h \
  /usr/include/gtk-3.0/gtk/gtkstylecontext.h \
  /usr/include/gtk-3.0/gtk/gtkstyleprovider.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkiconfactory.h \
- /usr/include/gtk-3.0/gtk/gtkstyleproperties.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkstyleproperties.h \
  /usr/include/gtk-3.0/gtk/gtkiconview.h \
  /usr/include/gtk-3.0/gtk/gtktooltip.h \
  /usr/include/gtk-3.0/gtk/gtkimcontextinfo.h \
@@ -582,15 +619,16 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtklockbutton.h \
  /usr/include/gtk-3.0/gtk/gtkmain.h /usr/include/gtk-3.0/gtk/gtkmenubar.h \
  /usr/include/gtk-3.0/gtk/gtkmenubutton.h \
+ /usr/include/gtk-3.0/gtk/gtkpopover.h \
  /usr/include/gtk-3.0/gtk/gtkmenutoolbutton.h \
  /usr/include/gtk-3.0/gtk/gtktoolbutton.h \
  /usr/include/gtk-3.0/gtk/gtktoolitem.h \
  /usr/include/gtk-3.0/gtk/gtksizegroup.h \
  /usr/include/gtk-3.0/gtk/gtkmessagedialog.h \
+ /usr/include/gtk-3.0/gtk/gtkmodelbutton.h \
  /usr/include/gtk-3.0/gtk/gtkmodules.h \
  /usr/include/gtk-3.0/gtk/gtkmountoperation.h \
  /usr/include/gtk-3.0/gtk/gtknotebook.h \
- /usr/include/gtk-3.0/gtk/gtknumerableicon.h \
  /usr/include/gtk-3.0/gtk/gtkoffscreenwindow.h \
  /usr/include/gtk-3.0/gtk/gtkorientable.h \
  /usr/include/gtk-3.0/gtk/gtkoverlay.h \
@@ -598,6 +636,7 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtkpapersize.h \
  /usr/include/gtk-3.0/gtk/gtkpaned.h \
  /usr/include/gtk-3.0/gtk/gtkplacessidebar.h \
+ /usr/include/gtk-3.0/gtk/gtkpopovermenu.h \
  /usr/include/gtk-3.0/gtk/gtkprintcontext.h \
  /usr/include/gtk-3.0/gtk/gtkprintoperation.h \
  /usr/include/gtk-3.0/gtk/gtkprintsettings.h \
@@ -614,6 +653,7 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtkrecentchooserdialog.h \
  /usr/include/gtk-3.0/gtk/gtkrecentchoosermenu.h \
  /usr/include/gtk-3.0/gtk/gtkrecentchooserwidget.h \
+ /usr/include/gtk-3.0/gtk/gtkrender.h \
  /usr/include/gtk-3.0/gtk/gtkrevealer.h \
  /usr/include/gtk-3.0/gtk/gtkscale.h \
  /usr/include/gtk-3.0/gtk/gtkscalebutton.h \
@@ -627,21 +667,19 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtkseparatortoolitem.h \
  /usr/include/gtk-3.0/gtk/gtksettings.h \
  /usr/include/gtk-3.0/gtk/gtkshow.h \
+ /usr/include/gtk-3.0/gtk/gtkstacksidebar.h \
+ /usr/include/gtk-3.0/gtk/gtkstack.h \
  /usr/include/gtk-3.0/gtk/gtksizerequest.h \
  /usr/include/gtk-3.0/gtk/gtkspinbutton.h \
  /usr/include/gtk-3.0/gtk/gtkspinner.h \
- /usr/include/gtk-3.0/gtk/gtkstack.h \
  /usr/include/gtk-3.0/gtk/gtkstackswitcher.h \
- /usr/include/gtk-3.0/gtk/gtkstack.h \
  /usr/include/gtk-3.0/gtk/gtkstatusbar.h \
- /usr/include/gtk-3.0/gtk/gtkstatusicon.h \
  /usr/include/gtk-3.0/gtk/gtkswitch.h \
  /usr/include/gtk-3.0/gtk/gtktextbuffer.h \
  /usr/include/gtk-3.0/gtk/gtktexttagtable.h \
  /usr/include/gtk-3.0/gtk/gtktextmark.h \
  /usr/include/gtk-3.0/gtk/gtktextbufferrichtext.h \
  /usr/include/gtk-3.0/gtk/gtktextview.h \
- /usr/include/gtk-3.0/gtk/gtkthemingengine.h \
  /usr/include/gtk-3.0/gtk/gtktoolbar.h \
  /usr/include/gtk-3.0/gtk/gtktoolitemgroup.h \
  /usr/include/gtk-3.0/gtk/gtktoolpalette.h \
@@ -656,10 +694,14 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/gtkviewport.h \
  /usr/include/gtk-3.0/gtk/gtkvolumebutton.h \
  /usr/include/gtk-3.0/gtk/gtkwidgetpath.h \
+ /usr/include/gtk-3.0/gtk/gtkwindowgroup.h \
+ /usr/include/gtk-3.0/gtk/gtkwindow.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkarrow.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkactivatable.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkaction.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkactiongroup.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkstock.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkalignment.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkcolorsel.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkcolorseldialog.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkfontsel.h \
@@ -674,22 +716,26 @@ pocketvox-application.lo: pocketvox-application.c \
  /usr/include/gtk-3.0/gtk/deprecated/gtkhscrollbar.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkhseparator.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkimagemenuitem.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtknumerableicon.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkradioaction.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkrc.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkrecentaction.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkstatusicon.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkstyle.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtktable.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtktearoffmenuitem.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkthemingengine.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkuimanager.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvbbox.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvbox.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvpaned.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvscale.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvscrollbar.h \
- /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h ../../config.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h \
+ /usr/include/gtk-3.0/gtk/gtk-autocleanups.h ../../config.h \
  /usr/include/libintl.h /usr/include/locale.h \
- /usr/include/i386-linux-gnu/bits/locale.h
+ /usr/include/x86_64-linux-gnu/bits/locale.h
 
 /usr/include/stdc-predef.h:
 
@@ -703,53 +749,53 @@ pocketvox-module.h:
 
 /usr/include/glib-2.0/glib/gtypes.h:
 
-/usr/lib/i386-linux-gnu/glib-2.0/include/glibconfig.h:
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:
 
 /usr/include/glib-2.0/glib/gmacros.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include/stddef.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include-fixed/limits.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include-fixed/syslimits.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h:
 
 /usr/include/limits.h:
 
 /usr/include/features.h:
 
-/usr/include/i386-linux-gnu/sys/cdefs.h:
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
-/usr/include/i386-linux-gnu/bits/wordsize.h:
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
-/usr/include/i386-linux-gnu/gnu/stubs.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
-/usr/include/i386-linux-gnu/gnu/stubs-32.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/include/i386-linux-gnu/bits/posix1_lim.h:
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
-/usr/include/i386-linux-gnu/bits/local_lim.h:
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
 
 /usr/include/linux/limits.h:
 
-/usr/include/i386-linux-gnu/bits/posix2_lim.h:
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
-/usr/include/i386-linux-gnu/bits/xopen_lim.h:
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
-/usr/include/i386-linux-gnu/bits/stdio_lim.h:
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include/float.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/float.h:
 
 /usr/include/glib-2.0/glib/gversionmacros.h:
 
 /usr/include/time.h:
 
-/usr/include/i386-linux-gnu/bits/time.h:
+/usr/include/x86_64-linux-gnu/bits/time.h:
 
-/usr/include/i386-linux-gnu/bits/types.h:
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
-/usr/include/i386-linux-gnu/bits/typesizes.h:
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-/usr/include/i386-linux-gnu/bits/timex.h:
+/usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/xlocale.h:
 
@@ -763,31 +809,33 @@ pocketvox-module.h:
 
 /usr/include/glib-2.0/glib/gerror.h:
 
-/usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h:
 
 /usr/include/glib-2.0/glib/gquark.h:
+
+/usr/include/glib-2.0/glib/gutils.h:
 
 /usr/include/glib-2.0/glib/gbacktrace.h:
 
 /usr/include/signal.h:
 
-/usr/include/i386-linux-gnu/bits/sigset.h:
+/usr/include/x86_64-linux-gnu/bits/sigset.h:
 
-/usr/include/i386-linux-gnu/bits/signum.h:
+/usr/include/x86_64-linux-gnu/bits/signum.h:
 
-/usr/include/i386-linux-gnu/bits/siginfo.h:
+/usr/include/x86_64-linux-gnu/bits/siginfo.h:
 
-/usr/include/i386-linux-gnu/bits/sigaction.h:
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
 
-/usr/include/i386-linux-gnu/bits/sigcontext.h:
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
 
-/usr/include/i386-linux-gnu/bits/sigstack.h:
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
 
-/usr/include/i386-linux-gnu/sys/ucontext.h:
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
-/usr/include/i386-linux-gnu/bits/pthreadtypes.h:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
-/usr/include/i386-linux-gnu/bits/sigthread.h:
+/usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
 /usr/include/glib-2.0/glib/gbase64.h:
 
@@ -815,7 +863,7 @@ pocketvox-module.h:
 
 /usr/include/dirent.h:
 
-/usr/include/i386-linux-gnu/bits/dirent.h:
+/usr/include/x86_64-linux-gnu/bits/dirent.h:
 
 /usr/include/glib-2.0/glib/genviron.h:
 
@@ -850,8 +898,6 @@ pocketvox-module.h:
 /usr/include/glib-2.0/glib/gstring.h:
 
 /usr/include/glib-2.0/glib/gunicode.h:
-
-/usr/include/glib-2.0/glib/gutils.h:
 
 /usr/include/glib-2.0/glib/gkeyfile.h:
 
@@ -919,31 +965,31 @@ pocketvox-module.h:
 
 /usr/include/glib-2.0/glib/deprecated/gthread.h:
 
-/usr/include/i386-linux-gnu/sys/types.h:
+/usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/endian.h:
 
-/usr/include/i386-linux-gnu/bits/endian.h:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/include/i386-linux-gnu/bits/byteswap.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/usr/include/i386-linux-gnu/bits/byteswap-16.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
 
-/usr/include/i386-linux-gnu/sys/select.h:
+/usr/include/x86_64-linux-gnu/sys/select.h:
 
-/usr/include/i386-linux-gnu/bits/select.h:
+/usr/include/x86_64-linux-gnu/bits/select.h:
 
-/usr/include/i386-linux-gnu/bits/select2.h:
-
-/usr/include/i386-linux-gnu/sys/sysmacros.h:
+/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/pthread.h:
 
 /usr/include/sched.h:
 
-/usr/include/i386-linux-gnu/bits/sched.h:
+/usr/include/x86_64-linux-gnu/bits/sched.h:
 
-/usr/include/i386-linux-gnu/bits/setjmp.h:
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/glib-2.0/glib/glib-autocleanups.h:
 
 /usr/include/glib-2.0/glib-object.h:
 
@@ -981,6 +1027,8 @@ pocketvox-module.h:
 
 /usr/include/glib-2.0/gobject/gvaluetypes.h:
 
+/usr/include/glib-2.0/gobject/gobject-autocleanups.h:
+
 pocketvox-recognizer.h:
 
 /usr/local/include/pocketsphinx/pocketsphinx.h:
@@ -993,11 +1041,9 @@ pocketvox-recognizer.h:
 
 /usr/include/wchar.h:
 
-/usr/include/i386-linux-gnu/bits/sys_errlist.h:
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
 
-/usr/include/i386-linux-gnu/bits/stdio.h:
-
-/usr/include/i386-linux-gnu/bits/stdio2.h:
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
 /usr/local/include/sphinxbase/cmd_ln.h:
 
@@ -1037,35 +1083,29 @@ pocketvox-recognizer.h:
 
 /usr/include/string.h:
 
-/usr/include/i386-linux-gnu/bits/string.h:
+/usr/include/x86_64-linux-gnu/bits/string.h:
 
-/usr/include/i386-linux-gnu/bits/string2.h:
+/usr/include/x86_64-linux-gnu/bits/string2.h:
 
 /usr/include/stdlib.h:
 
-/usr/include/i386-linux-gnu/bits/string3.h:
-
 /usr/local/include/sphinxbase/glist.h:
 
-/usr/include/i386-linux-gnu/bits/waitflags.h:
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
-/usr/include/i386-linux-gnu/bits/waitstatus.h:
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
 /usr/include/alloca.h:
 
-/usr/include/i386-linux-gnu/bits/stdlib-bsearch.h:
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
-/usr/include/i386-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/i386-linux-gnu/bits/stdlib.h:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
 /usr/local/include/sphinxbase/bitvec.h:
 
 /usr/local/include/sphinxbase/ckd_alloc.h:
 
 /usr/include/setjmp.h:
-
-/usr/include/i386-linux-gnu/bits/setjmp2.h:
 
 /usr/local/include/sphinxbase/hash_table.h:
 
@@ -1116,6 +1156,44 @@ pocketvox-recognizer.h:
 /usr/include/libxml2/libxml/encoding.h:
 
 /usr/include/iconv.h:
+
+/usr/include/x86_64-linux-gnu/unicode/ucnv.h:
+
+/usr/include/x86_64-linux-gnu/unicode/ucnv_err.h:
+
+/usr/include/x86_64-linux-gnu/unicode/utypes.h:
+
+/usr/include/x86_64-linux-gnu/unicode/umachine.h:
+
+/usr/include/x86_64-linux-gnu/unicode/ptypes.h:
+
+/usr/include/x86_64-linux-gnu/unicode/platform.h:
+
+/usr/include/x86_64-linux-gnu/unicode/uconfig.h:
+
+/usr/include/x86_64-linux-gnu/unicode/uvernum.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/unicode/urename.h:
+
+/usr/include/x86_64-linux-gnu/unicode/uversion.h:
+
+/usr/include/x86_64-linux-gnu/unicode/utf.h:
+
+/usr/include/x86_64-linux-gnu/unicode/utf8.h:
+
+/usr/include/x86_64-linux-gnu/unicode/utf16.h:
+
+/usr/include/x86_64-linux-gnu/unicode/utf_old.h:
+
+/usr/include/x86_64-linux-gnu/unicode/uenum.h:
+
+/usr/include/x86_64-linux-gnu/unicode/localpointer.h:
 
 /usr/include/libxml2/libxml/xmlIO.h:
 
@@ -1173,9 +1251,9 @@ pocketvox-recognizer.h:
 
 /usr/include/gstreamer-0.10/gst/gstplugin.h:
 
-/usr/include/i386-linux-gnu/sys/stat.h:
+/usr/include/x86_64-linux-gnu/sys/stat.h:
 
-/usr/include/i386-linux-gnu/bits/stat.h:
+/usr/include/x86_64-linux-gnu/bits/stat.h:
 
 /usr/include/glib-2.0/gmodule.h:
 
@@ -1195,11 +1273,11 @@ pocketvox-recognizer.h:
 
 /usr/include/errno.h:
 
-/usr/include/i386-linux-gnu/bits/errno.h:
+/usr/include/x86_64-linux-gnu/bits/errno.h:
 
 /usr/include/linux/errno.h:
 
-/usr/include/i386-linux-gnu/asm/errno.h:
+/usr/include/x86_64-linux-gnu/asm/errno.h:
 
 /usr/include/asm-generic/errno.h:
 
@@ -1321,15 +1399,13 @@ pocketvox-controller.h:
 
 /usr/include/unistd.h:
 
-/usr/include/i386-linux-gnu/bits/posix_opt.h:
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
-/usr/include/i386-linux-gnu/bits/environments.h:
+/usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/usr/include/i386-linux-gnu/bits/confname.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/getopt.h:
-
-/usr/include/i386-linux-gnu/bits/unistd.h:
 
 /usr/include/glib-2.0/gio/gdatainputstream.h:
 
@@ -1465,6 +1541,8 @@ pocketvox-controller.h:
 
 /usr/include/glib-2.0/gio/gsimpleasyncresult.h:
 
+/usr/include/glib-2.0/gio/gsimpleiostream.h:
+
 /usr/include/glib-2.0/gio/gsimplepermission.h:
 
 /usr/include/glib-2.0/gio/gsocketclient.h:
@@ -1559,6 +1637,12 @@ pocketvox-controller.h:
 
 /usr/include/glib-2.0/gio/gnotification.h:
 
+/usr/include/glib-2.0/gio/glistmodel.h:
+
+/usr/include/glib-2.0/gio/gliststore.h:
+
+/usr/include/glib-2.0/gio/gio-autocleanups.h:
+
 /usr/include/gtk-3.0/gdk/gdktypes.h:
 
 /usr/include/pango-1.0/pango/pango.h:
@@ -1623,8 +1707,6 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gdk/gdkevents.h:
 
-/usr/include/gtk-3.0/gdk/gdkcolor.h:
-
 /usr/include/gtk-3.0/gdk/gdkdnd.h:
 
 /usr/include/gtk-3.0/gdk/gdkdevice.h:
@@ -1632,6 +1714,8 @@ pocketvox-controller.h:
 /usr/include/gtk-3.0/gdk/gdkdevicemanager.h:
 
 /usr/include/gtk-3.0/gdk/gdkcairo.h:
+
+/usr/include/gtk-3.0/gdk/deprecated/gdkcolor.h:
 
 /usr/include/gtk-3.0/gdk/gdkrgba.h:
 
@@ -1655,6 +1739,8 @@ pocketvox-controller.h:
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h:
 
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h:
+
 /usr/include/pango-1.0/pango/pangocairo.h:
 
 /usr/include/gtk-3.0/gdk/gdkcursor.h:
@@ -1666,6 +1752,8 @@ pocketvox-controller.h:
 /usr/include/gtk-3.0/gdk/gdkframeclock.h:
 
 /usr/include/gtk-3.0/gdk/gdkframetimings.h:
+
+/usr/include/gtk-3.0/gdk/gdkglcontext.h:
 
 /usr/include/gtk-3.0/gdk/gdkkeys.h:
 
@@ -1689,6 +1777,8 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gdk/gdkvisual.h:
 
+/usr/include/gtk-3.0/gdk/gdk-autocleanup.h:
+
 /usr/include/gtk-3.0/gtk/gtkaboutdialog.h:
 
 /usr/include/gtk-3.0/gtk/gtkdialog.h:
@@ -1711,6 +1801,8 @@ pocketvox-controller.h:
 
 /usr/include/atk-1.0/atk/atkobject.h:
 
+/usr/include/atk-1.0/atk/atkversion.h:
+
 /usr/include/atk-1.0/atk/atkstate.h:
 
 /usr/include/atk-1.0/atk/atkrelationtype.h:
@@ -1726,6 +1818,8 @@ pocketvox-controller.h:
 /usr/include/atk-1.0/atk/atkeditabletext.h:
 
 /usr/include/atk-1.0/atk/atktext.h:
+
+/usr/include/atk-1.0/atk/atk-enum-types.h:
 
 /usr/include/atk-1.0/atk/atkgobjectaccessible.h:
 
@@ -1745,6 +1839,8 @@ pocketvox-controller.h:
 
 /usr/include/atk-1.0/atk/atkplug.h:
 
+/usr/include/atk-1.0/atk/atkrange.h:
+
 /usr/include/atk-1.0/atk/atkregistry.h:
 
 /usr/include/atk-1.0/atk/atkobjectfactory.h:
@@ -1763,11 +1859,11 @@ pocketvox-controller.h:
 
 /usr/include/atk-1.0/atk/atktable.h:
 
+/usr/include/atk-1.0/atk/atktablecell.h:
+
 /usr/include/atk-1.0/atk/atkmisc.h:
 
 /usr/include/atk-1.0/atk/atkvalue.h:
-
-/usr/include/atk-1.0/atk/atkversion.h:
 
 /usr/include/atk-1.0/atk/atkwindow.h:
 
@@ -1779,7 +1875,7 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtklabel.h:
 
-/usr/include/gtk-3.0/gtk/gtkmisc.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkmisc.h:
 
 /usr/include/gtk-3.0/gtk/gtkmenu.h:
 
@@ -1791,9 +1887,9 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtkactionable.h:
 
-/usr/include/gtk-3.0/gtk/gtkadjustment.h:
+/usr/include/gtk-3.0/gtk/gtkactionbar.h:
 
-/usr/include/gtk-3.0/gtk/gtkalignment.h:
+/usr/include/gtk-3.0/gtk/gtkadjustment.h:
 
 /usr/include/gtk-3.0/gtk/gtkappchooser.h:
 
@@ -1850,8 +1946,6 @@ pocketvox-controller.h:
 /usr/include/gtk-3.0/gtk/gtkimage.h:
 
 /usr/include/gtk-3.0/gtk/gtkapplicationwindow.h:
-
-/usr/include/gtk-3.0/gtk/gtkarrow.h:
 
 /usr/include/gtk-3.0/gtk/gtkaspectframe.h:
 
@@ -1927,6 +2021,8 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtkeventbox.h:
 
+/usr/include/gtk-3.0/gtk/gtkeventcontroller.h:
+
 /usr/include/gtk-3.0/gtk/gtkexpander.h:
 
 /usr/include/gtk-3.0/gtk/gtkfixed.h:
@@ -1941,6 +2037,8 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtkfilechooserwidget.h:
 
+/usr/include/gtk-3.0/gtk/gtkflowbox.h:
+
 /usr/include/gtk-3.0/gtk/gtkfontbutton.h:
 
 /usr/include/gtk-3.0/gtk/gtkfontchooser.h:
@@ -1948,6 +2046,26 @@ pocketvox-controller.h:
 /usr/include/gtk-3.0/gtk/gtkfontchooserdialog.h:
 
 /usr/include/gtk-3.0/gtk/gtkfontchooserwidget.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesture.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesturedrag.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesturesingle.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesturelongpress.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesturemultipress.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesturepan.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesturerotate.h:
+
+/usr/include/gtk-3.0/gtk/gtkgestureswipe.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesturezoom.h:
+
+/usr/include/gtk-3.0/gtk/gtkglarea.h:
 
 /usr/include/gtk-3.0/gtk/gtkgrid.h:
 
@@ -1961,7 +2079,7 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkiconfactory.h:
 
-/usr/include/gtk-3.0/gtk/gtkstyleproperties.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkstyleproperties.h:
 
 /usr/include/gtk-3.0/gtk/gtkiconview.h:
 
@@ -1993,6 +2111,8 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtkmenubutton.h:
 
+/usr/include/gtk-3.0/gtk/gtkpopover.h:
+
 /usr/include/gtk-3.0/gtk/gtkmenutoolbutton.h:
 
 /usr/include/gtk-3.0/gtk/gtktoolbutton.h:
@@ -2003,13 +2123,13 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtkmessagedialog.h:
 
+/usr/include/gtk-3.0/gtk/gtkmodelbutton.h:
+
 /usr/include/gtk-3.0/gtk/gtkmodules.h:
 
 /usr/include/gtk-3.0/gtk/gtkmountoperation.h:
 
 /usr/include/gtk-3.0/gtk/gtknotebook.h:
-
-/usr/include/gtk-3.0/gtk/gtknumerableicon.h:
 
 /usr/include/gtk-3.0/gtk/gtkoffscreenwindow.h:
 
@@ -2024,6 +2144,8 @@ pocketvox-controller.h:
 /usr/include/gtk-3.0/gtk/gtkpaned.h:
 
 /usr/include/gtk-3.0/gtk/gtkplacessidebar.h:
+
+/usr/include/gtk-3.0/gtk/gtkpopovermenu.h:
 
 /usr/include/gtk-3.0/gtk/gtkprintcontext.h:
 
@@ -2057,6 +2179,8 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtkrecentchooserwidget.h:
 
+/usr/include/gtk-3.0/gtk/gtkrender.h:
+
 /usr/include/gtk-3.0/gtk/gtkrevealer.h:
 
 /usr/include/gtk-3.0/gtk/gtkscale.h:
@@ -2083,21 +2207,19 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtkshow.h:
 
+/usr/include/gtk-3.0/gtk/gtkstacksidebar.h:
+
+/usr/include/gtk-3.0/gtk/gtkstack.h:
+
 /usr/include/gtk-3.0/gtk/gtksizerequest.h:
 
 /usr/include/gtk-3.0/gtk/gtkspinbutton.h:
 
 /usr/include/gtk-3.0/gtk/gtkspinner.h:
 
-/usr/include/gtk-3.0/gtk/gtkstack.h:
-
 /usr/include/gtk-3.0/gtk/gtkstackswitcher.h:
 
-/usr/include/gtk-3.0/gtk/gtkstack.h:
-
 /usr/include/gtk-3.0/gtk/gtkstatusbar.h:
-
-/usr/include/gtk-3.0/gtk/gtkstatusicon.h:
 
 /usr/include/gtk-3.0/gtk/gtkswitch.h:
 
@@ -2110,8 +2232,6 @@ pocketvox-controller.h:
 /usr/include/gtk-3.0/gtk/gtktextbufferrichtext.h:
 
 /usr/include/gtk-3.0/gtk/gtktextview.h:
-
-/usr/include/gtk-3.0/gtk/gtkthemingengine.h:
 
 /usr/include/gtk-3.0/gtk/gtktoolbar.h:
 
@@ -2141,6 +2261,12 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/gtkwidgetpath.h:
 
+/usr/include/gtk-3.0/gtk/gtkwindowgroup.h:
+
+/usr/include/gtk-3.0/gtk/gtkwindow.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkarrow.h:
+
 /usr/include/gtk-3.0/gtk/deprecated/gtkactivatable.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkaction.h:
@@ -2148,6 +2274,8 @@ pocketvox-controller.h:
 /usr/include/gtk-3.0/gtk/deprecated/gtkactiongroup.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkalignment.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkcolorsel.h:
 
@@ -2177,6 +2305,8 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkimagemenuitem.h:
 
+/usr/include/gtk-3.0/gtk/deprecated/gtknumerableicon.h:
+
 /usr/include/gtk-3.0/gtk/deprecated/gtkradioaction.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h:
@@ -2185,11 +2315,15 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkrecentaction.h:
 
+/usr/include/gtk-3.0/gtk/deprecated/gtkstatusicon.h:
+
 /usr/include/gtk-3.0/gtk/deprecated/gtkstyle.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtktable.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtktearoffmenuitem.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkthemingengine.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkuimanager.h:
 
@@ -2205,10 +2339,12 @@ pocketvox-controller.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h:
 
+/usr/include/gtk-3.0/gtk/gtk-autocleanups.h:
+
 ../../config.h:
 
 /usr/include/libintl.h:
 
 /usr/include/locale.h:
 
-/usr/include/i386-linux-gnu/bits/locale.h:
+/usr/include/x86_64-linux-gnu/bits/locale.h:

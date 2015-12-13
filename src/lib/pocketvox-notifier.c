@@ -200,6 +200,7 @@ static void pocketvox_notifier_bubble_notification(PocketvoxNotifier*notifier)
 }
 
 #ifdef HAVE_LIBESPEAK
+//FIXME without espeake compilation FAILS
 static void pocketvox_notifier_sound_notification(PocketvoxNotifier *notifier)
 {
 	g_return_if_fail(NULL != notifier);

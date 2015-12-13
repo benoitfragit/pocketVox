@@ -274,19 +274,19 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
     gchar *material = NULL;
     gchar *device = dev == NULL ? g_strdup("hw:0") : g_strdup(dev);
 
-	if(mat == NULL || !g_strcmp0(mat, "Default") == TRUE)
+	if(mat == NULL || g_strcmp0(mat, "Default") != TRUE)
 	{
 		material = g_strdup("gsettingsaudiosrc");
 	}
 	else
 	{
-		if( !g_strcmp0(mat, "Alsa") == TRUE)
+		if( g_strcmp0(mat, "Alsa") != TRUE)
 		{
 			material = g_strdup("alsasrc");
 		}
 		else
 		{
-            if( !g_strcmp0(mat, "Network") == TRUE)
+            if( g_strcmp0(mat, "Network") != TRUE)
             {
                 if( NULL != host)
                 {
@@ -338,7 +338,7 @@ PocketvoxRecognizer* pocketvox_recognizer_new(gchar* hmm, gchar* lm, gchar* dic,
     g_assert(source);
 
     //set the device name if we use alsasrc input
-    if( !g_strcmp0(material, "alsasrc") == TRUE )
+    if( g_strcmp0(material, "alsasrc") != TRUE )
     {
         g_object_set(G_OBJECT(source),
                       "device", device,
